@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
     <Folder Include="Validators\Delete\" />
+    <Folder Include="Validators\Select\" />
   </ItemGroup>
 
   <ItemGroup>

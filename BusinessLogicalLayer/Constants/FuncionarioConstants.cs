@@ -9,7 +9,7 @@ namespace BusinessLogicalLayer
     internal class FuncionarioConstants
     {
         public const int TAMANHO_MINIMO_NOME = 3;
-        public const int TAMANHO_MAXIMO_NOME = 20;
+        public const int TAMANHO_MAXIMO_NOME = 100;
         public const int TAMANHO_CPF = 11;
         public const int TAMANHO_MINIMO_EMAIL = 5;
         public const int TAMANHO_MAXIMO_EMAIL = 100;
