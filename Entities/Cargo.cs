@@ -10,6 +10,6 @@ namespace Entities
     {
         public int ID { get; set; }
         public string Funcao { get; set; }
-        public bool HasPermi { get; set; }
+        public int NivelPermissao { get; set; }
     }
 }
