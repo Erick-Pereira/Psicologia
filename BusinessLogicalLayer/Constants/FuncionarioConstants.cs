@@ -23,6 +23,5 @@ namespace BusinessLogicalLayer
         public const string MENSAGEM_ERRO_EMAIL_COMPRIMENTO_MAXIMO = $"Email não pode conter mais que {TAMANHO_MAXIMO_EMAIL} caracteres.";
         public const string MENSAGEM_ERRO_EMAIL_INVALIDO = "Email inválido.";
         public const string MENSAGEM_ERRO_RG_OBRIGATORIO = "RG precisa ser informado";
-
     }
 }

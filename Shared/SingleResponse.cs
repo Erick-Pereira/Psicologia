@@ -8,6 +8,6 @@ namespace Shared
 {
     public class SingleResponse<T>: Response
     {
-        public T Item { get; private set; }
+        public T Item { get; set; }
     }
 }

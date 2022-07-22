@@ -1,13 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace DataAcessLayer
 {
     public class DataBase : DbContext
     {
+        public DbSet<Funcionario> Funcionario { get; set; }
+        public DbSet<Endereco> Endereco { get; set; }
+        public DbSet<Bairro> Bairro { get; set; }
+        public DbSet<Cidade> Cidade { get; set; }
+        public DbSet<Estado> Estado {get; set; }
+        public DbSet<Cargo> Cargo { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"");
+            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\The_Shelow\Documents\NoNameDB.mdf;Integrated Security=True;Connect Timeout=30");
             base.OnConfiguring(optionsBuilder);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -13,8 +13,10 @@ namespace BusinessLogicalLayer
     {
         public InsertFuncionarioValidator()
         {
-            RuleFor(f => f.Nome).NotEmpty().WithMessage(FuncionarioConstants.MENSAGEM_ERRO_NOME_OBRIGATORIO)
-                                .Length(3, 20).WithMessage(FuncionarioConstants.MENSAGEM_ERRO_NOME_COMPRIMENTO);
+            RuleFor(f => f.Nome).NotEmpty()
+                .WithMessage(FuncionarioConstants.MENSAGEM_ERRO_NOME_OBRIGATORIO)
+                .Length(3, 20)
+                .WithMessage(FuncionarioConstants.MENSAGEM_ERRO_NOME_COMPRIMENTO);
         }
     }
 }
