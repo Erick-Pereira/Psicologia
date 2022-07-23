@@ -7,11 +7,6 @@ namespace DataAcessLayer
     public class DataBase : DbContext
     {
         public DbSet<Funcionario> Funcionario { get; set; }
-        public DbSet<Endereco> Endereco { get; set; }
-        public DbSet<Bairro> Bairro { get; set; }
-        public DbSet<Cidade> Cidade { get; set; }
-        public DbSet<Estado> Estado {get; set; }
-        public DbSet<Cargo> Cargo { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
