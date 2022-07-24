@@ -15,8 +15,6 @@ namespace VisualLayer.Controllers
 
         public IActionResult Index()
         {
-            HomeModel home = new();
-
             return View();
         }
 
