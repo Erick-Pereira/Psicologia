@@ -16,3 +16,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+button1 {
+    margin-top: 12px;
+    color: #ffffff;
+    background: #212226;
+    padding: 4px 8px;
+    border-radius: 10px;
+}

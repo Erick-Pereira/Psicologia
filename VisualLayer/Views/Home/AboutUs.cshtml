@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+<style>  
+
+body {
+  background: linear-gradient(236.85deg, #041832 27.26%, #3468A7 96.03%);   font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  margin: 64px;
+  background: #ECF4FF;
+  color: #1C1C1C;
+  border-radius: 20px;
+  padding: 64px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+}
+
+.perfil {
+  display: flex;
+}
+
+.perfil-foto {
+  max-width: 160px;
+  border-radius: 460px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+.titulo {
+  margin-left: 16px;
+}
+
+.titulo h1 {
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.titulo h3 {
+  font-weight: normal;
+  font-size: 24px;
+}
+
+::-webkit-scrollbar{
+width: 5px;
+height: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+background: #1C1C1C;
+border: 1.8px solid #1C1C1C;
+border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background: #ECF4FF;
+}
+
+::-webkit-scrollbar-track{
+background: #ECF4FF;
+border-radius: 100px;
+box-shadow: inset 0px 0px 0px 0px #F0F0F0;
+margin: 15px 0px;
+}
+</style>
+
+<div class="container">
+  <header class="cabecalho">
+    <div class="perfil">
+        <a href="https://discord.gg/rmxhYTn3" target="_blank">
+      <img class="perfil-foto" src="https://avatars.githubusercontent.com/u/106924359?v=4"/>
+      </a>
+      <div class="titulo">
+        <h1>Erick Baptista Pereira</h1> 
+        <h3>Desenvolvedor C#</h3>
+      </div>
+</div>
