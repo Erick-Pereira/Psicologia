@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLogicalLayer;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using VisualLayer.Models;
 
@@ -6,15 +7,17 @@ namespace VisualLayer.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> _logger;
 
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
+        FuncionarioBLL funcionarioBLL = new FuncionarioBLL();
 
         public IActionResult Index()
         {
+            funcionarioBLL.GetAll();
             return View();
         }
 

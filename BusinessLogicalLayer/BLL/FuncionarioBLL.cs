@@ -1,4 +1,6 @@
-﻿using Entities;
+﻿using BusinessLogicalLayer.Extensions;
+using DataAcessLayer;
+using Entities;
 using Entities.Interfaces;
 using Shared;
 using System;
@@ -11,6 +13,7 @@ namespace BusinessLogicalLayer
 {
     public class FuncionarioBLL : IFuncionarioService
     {
+        FuncionarioDAL funcionarioDAL = new FuncionarioDAL();
         public Response Delete(Funcionario funcionario)
         {
             throw new NotImplementedException();
@@ -18,7 +21,7 @@ namespace BusinessLogicalLayer
 
         public DataResponse<Funcionario> GetAll()
         {
-            throw new NotImplementedException();
+            return funcionarioDAL.GetAll();
         }
 
         public SingleResponse<Funcionario> GetByID(int id)
@@ -33,7 +36,15 @@ namespace BusinessLogicalLayer
 
         public Response Update(Funcionario funcionario)
         {
-            throw new NotImplementedException();
+
+            UpdateFuncionarioValidator validationRules = new UpdateFuncionarioValidator();
+
+            Response response = validationRules.Validate(funcionario).ToResponse();
+            if (!response.HasSuccess)
+            {
+                return response;
+            }
+            return funcionarioDAL.Update(funcionario);
         }
     }
 }

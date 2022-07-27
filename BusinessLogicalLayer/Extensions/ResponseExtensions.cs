@@ -12,7 +12,7 @@ namespace BusinessLogicalLayer.Extensions
     {
         public static Response ToResponse(this ValidationResult result)
         {
-            StringBuilder sb = new();
+            StringBuilder sb = new StringBuilder();
             if (!result.IsValid)
             {
                 foreach (var item in result.Errors)
@@ -31,6 +31,5 @@ namespace BusinessLogicalLayer.Extensions
                 Message = "Entidade validada com sucesso."
             };
         }
-
     }
 }
