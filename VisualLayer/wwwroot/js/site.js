@@ -2,9 +2,3 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-
-function Clicar()
-{
-    var nome = document.getElementById("valor1");
-    var email = document.getElementById("valor2");
-}

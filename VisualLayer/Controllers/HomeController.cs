@@ -1,5 +1,7 @@
 ﻿using BusinessLogicalLayer;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
+using Shared;
 using System.Diagnostics;
 using VisualLayer.Models;
 
@@ -13,11 +15,10 @@ namespace VisualLayer.Controllers
         {
             _logger = logger;
         }
-        FuncionarioBLL funcionarioBLL = new FuncionarioBLL();
 
         public IActionResult Index()
         {
-            funcionarioBLL.GetAll();
+            ViewBag.Funcionarios = Select();
             return View();
         }
 
@@ -28,6 +29,12 @@ namespace VisualLayer.Controllers
         public IActionResult AboutUs()
         {
             return View();
+        }
+
+        public DataResponse<Funcionario> Select()
+        {
+            FuncionarioBLL funcionarioBLL = new FuncionarioBLL();
+            return funcionarioBLL.GetAll();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
