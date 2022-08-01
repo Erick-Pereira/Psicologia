@@ -1,14 +1,13 @@
 ﻿@using Entities
 @using Shared
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "company name";
     DataResponse<Funcionario> dataResponse = ViewBag.Funcionarios;
 }
 <script>
     function Clicar() {
         var valor1 = document.getElementById("valor1").value;
-        if (valor1 == null)
-        {
+        if (valor1 == null) {
             valor1 = "";
         }
         var elemento1 = document.getElementById("Elemento1");
@@ -19,14 +18,20 @@
     }
 
 </script>
+<html>
+<head>
+    <meta name="description" content="Uma empresa legal de se trabalhar!" />
+    <title>Nossa Empresa</title>
+</head>
+<body>
+    <section>
+       <div>
 
+       </div>
+    </section>
+    <section>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <input type="text" id="valor1" size="20" /><br>
-    <input type="text" id="valor2" size="20" /><br>
-    <button1 type="submit" onclick="Clicar()">Clicar</button1>
-    <h2 id="Elemento1"></h2>
-    <h2 id="Elemento2"></h2>
-</div>
+    </section>
+</body>
+</html>
+
