@@ -5,17 +5,6 @@
     DataResponse<Funcionario> dataResponse = ViewBag.Funcionarios;
 }
 <script>
-    function Clicar() {
-        var valor1 = document.getElementById("valor1").value;
-        if (valor1 == null) {
-            valor1 = "";
-        }
-        var elemento1 = document.getElementById("Elemento1");
-        var elemento2 = document.getElementById("Elemento2");
-        var abacate = @dataResponse.Data.Count;
-        elemento1.innerHTML = valor1;
-        elemento2.innerHTML = abacate;
-    }
 
 </script>
 <html>

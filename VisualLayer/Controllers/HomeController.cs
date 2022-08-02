@@ -18,7 +18,6 @@ namespace VisualLayer.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Funcionarios = Select();
             return View();
         }
 
