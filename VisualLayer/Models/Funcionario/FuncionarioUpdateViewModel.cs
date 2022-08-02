@@ -29,10 +29,6 @@ namespace VisualLayer.Models.Funcionario
         [Required(ErrorMessage = "O Estao deve ser informado.")]
         public string Estado { get; set; }
 
-        [Required(ErrorMessage = "O Email deve ser informado.")]
-        [StringLength(100, MinimumLength = 5, ErrorMessage = "O Email deve conter entre 5 e 100 caracteres.")]
-        public string Email { get; set; }
-
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "A data de nascimento deve ser informada.")]
         public DateTime DataNascimento { get; set; }

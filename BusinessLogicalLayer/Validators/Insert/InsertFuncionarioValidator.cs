@@ -15,8 +15,9 @@ namespace BusinessLogicalLayer
         {
             RuleFor(f => f.Nome).NotEmpty()
                 .WithMessage(FuncionarioConstants.MENSAGEM_ERRO_NOME_OBRIGATORIO)
-                .Length(3, 20)
+                .Length(FuncionarioConstants.TAMANHO_MINIMO_NOME, FuncionarioConstants.TAMANHO_MAXIMO_NOME)
                 .WithMessage(FuncionarioConstants.MENSAGEM_ERRO_NOME_COMPRIMENTO);
+
         }
     }
 }
