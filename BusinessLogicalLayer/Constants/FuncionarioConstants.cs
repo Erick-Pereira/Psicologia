@@ -7,10 +7,13 @@
         public const int TAMANHO_CPF = 11;
         public const int TAMANHO_MINIMO_EMAIL = 5;
         public const int TAMANHO_MAXIMO_EMAIL = 100;
+
+        public static string MENSAGEM_666 {  get { return ""; } }
+
         public const string MENSAGEM_ERRO_NOME_OBRIGATORIO = "Nome deve ser informado.";
-        public const string MENSAGEM_ERRO_NOME_COMPRIMENTO = $"Nome deve contre entre 3 e 100 caracteres.";
+        public const string MENSAGEM_ERRO_NOME_COMPRIMENTO = "Nome deve contre entre 3 e 100 caracteres.";
         public const string MENSAGEM_ERRO_CPF_OBRIGATORIO = "CPF deve ser informado.";
-        public readonly string MENSAGEM_ERRO_CPF_COMPRIMENTO = $"CPF deve conter {TAMANHO_CPF} caracteres";
+        public static string MENSAGEM_ERRO_CPF_COMPRIMENTO { get { return $"CPF deve conter {TAMANHO_CPF} caracteres"; }}
         public const string MENSAGEM_ERRO_CPF_FORMATO_INVALIDO = "CPF com formato inválido.";
         public const string MENSAGEM_ERRO_EMAIL_OBRIGATORIO = "Email deve ser informado.";
         public readonly string MENSAGEM_ERRO_EMAIL_COMPRIMENTO_MINIMO = $"Email não pode conter menos que {TAMANHO_MINIMO_EMAIL} caracteres.";
