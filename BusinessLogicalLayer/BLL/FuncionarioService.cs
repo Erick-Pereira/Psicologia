@@ -1,4 +1,5 @@
 ﻿using BusinessLogicalLayer.Extensions;
+using BusinessLogicalLayer.Validators.FuncionarioValidator;
 using DataAcessLayer;
 using Entities;
 using Entities.Interfaces;
@@ -6,7 +7,7 @@ using Shared;
 
 namespace BusinessLogicalLayer
 {
-    public class FuncionarioBLL : IFuncionarioService
+    public class FuncionarioService : IFuncionarioService
     {
         private FuncionarioDAL funcionarioDAL = new FuncionarioDAL();
 

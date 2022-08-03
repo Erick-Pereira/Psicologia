@@ -33,7 +33,7 @@ namespace VisualLayer.Controllers
 
         public DataResponse<Funcionario> Select()
         {
-            FuncionarioBLL funcionarioBLL = new FuncionarioBLL();
+            FuncionarioService funcionarioBLL = new FuncionarioService();
             return funcionarioBLL.GetAll();
         }
 

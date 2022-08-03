@@ -1,7 +1,7 @@
 ﻿using Entities;
 using FluentValidation;
 
-namespace BusinessLogicalLayer
+namespace BusinessLogicalLayer.Validators.FuncionarioValidator
 {
     internal class UpdateFuncionarioValidator : AbstractValidator<Funcionario>
     {

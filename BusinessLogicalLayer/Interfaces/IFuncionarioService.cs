@@ -2,7 +2,7 @@
 
 namespace Entities.Interfaces
 {
-    public interface IFuncionarioService
+    internal interface IFuncionarioService
     {
         Response Insert(Funcionario funcionario);
 

@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="11.1.0" />
+    <Compile Remove="Validators\Delete\**" />
+    <Compile Remove="Validators\Select\**" />
+    <EmbeddedResource Remove="Validators\Delete\**" />
+    <EmbeddedResource Remove="Validators\Select\**" />
+    <None Remove="Validators\Delete\**" />
+    <None Remove="Validators\Select\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Validators\Delete\" />
-    <Folder Include="Validators\Select\" />
+    <PackageReference Include="FluentValidation" Version="11.1.0" />
   </ItemGroup>
 
   <ItemGroup>
