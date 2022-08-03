@@ -19,6 +19,11 @@
 
   <ItemGroup>
     <None Include="wwwroot\css\Index.css" />
+    <None Include="wwwroot\Images\pexels-roman-odintsov-4925863.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
 </Project>

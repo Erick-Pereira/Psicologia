@@ -26,7 +26,7 @@ namespace VisualLayer.Controllers
             return View();
         }
 
-        public IActionResult AboutUs()
+        public IActionResult Membros()
         {
             return View();
         }
