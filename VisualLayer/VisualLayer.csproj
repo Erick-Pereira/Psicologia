@@ -17,4 +17,8 @@
     <ProjectReference Include="..\BusinessLogicalLayer\BusinessLogicalLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\css\Index.css" />
+  </ItemGroup>
+
 </Project>
