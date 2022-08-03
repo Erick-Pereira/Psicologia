@@ -5,7 +5,9 @@
     text-decoration: none;
     scroll-behavior: smooth;
 }
-
+nav {
+    top: 0;
+}
 .Membros {
     background: linear-gradient(236.85deg, #041832 27.26%, #3468A7 96.03%);
 }
