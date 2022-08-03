@@ -21,11 +21,6 @@ namespace VisualLayer.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult Membros()
         {
             return View();

@@ -8,7 +8,7 @@ namespace DataAcessLayer
     {
         public Response Delete(Funcionario funcionario)
         {
-            DataBase db = new();
+            DataBaseDbContext db = new();
             db.Funcionario.Remove(funcionario);
             try
             {
@@ -23,7 +23,7 @@ namespace DataAcessLayer
 
         public DataResponse<Funcionario> GetAll()
         {
-            DataBase db = new();
+            DataBaseDbContext db = new();
             DataResponse<Funcionario> dataResponse = new()
             {
                 Data = db.Funcionario.ToList()
@@ -33,7 +33,7 @@ namespace DataAcessLayer
 
         public SingleResponse<Funcionario> GetByID(int id)
         {
-            DataBase db = new();
+            DataBaseDbContext db = new();
             SingleResponse<Funcionario> singleResponse = new()
             {
                 Item = db.Funcionario.Find(id)
@@ -43,7 +43,7 @@ namespace DataAcessLayer
 
         public Response Insert(Funcionario funcionario)
         {
-            DataBase db = new();
+            DataBaseDbContext db = new();
             db.Funcionario.Add(funcionario);
             try
             {
@@ -58,7 +58,7 @@ namespace DataAcessLayer
 
         public Response Update(Funcionario funcionario)
         {
-            DataBase db = new();
+            DataBaseDbContext db = new();
             db.Funcionario.Update(funcionario);
             try
             {
