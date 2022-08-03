@@ -10,6 +10,8 @@ namespace DataAcessLayer.Mapping
         {
             builder.ToTable("FUNCIONARIOS");
             builder.Property(f => f.Nome).HasMaxLength(100).IsUnicode(false);
+            builder.Property(f => f.Email).IsRequired();
+            builder.HasIndex(f => f.Email).IsUnique().HasDatabaseName("UQ_FUNCIONARIO_EMAIL");
         }
     }
 }

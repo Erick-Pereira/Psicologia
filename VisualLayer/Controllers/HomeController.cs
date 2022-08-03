@@ -3,6 +3,7 @@ using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using System.Diagnostics;
+using VisualLayer.Controllers.Funcionario;
 using VisualLayer.Models;
 
 namespace VisualLayer.Controllers
@@ -25,13 +26,31 @@ namespace VisualLayer.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Login(LoginModel login)
+        {
+            Hash hash = new Hash();
+            login.Senha = hash.ComputeSha256Hash(login.Senha);
+            FuncionarioService funcionarioService = new FuncionarioService();
+            Entities.Funcionario funcionario = new()
+            {
+                Email = login.Email,
+                Senha = login.Senha,
+        };
+            if (funcionarioService.GetByLogin(funcionario).Item == 1)
+            {
+                FuncionarioController funcionarioController = new FuncionarioController();
+                return View(funcionarioController.Index(funcionario));
+            }
+            return View();
+        }
 
-        public DataResponse<Funcionario> Select()
+        public DataResponse<Entities.Funcionario> Select()
         {
             FuncionarioService funcionarioBLL = new FuncionarioService();
             return funcionarioBLL.GetAll();

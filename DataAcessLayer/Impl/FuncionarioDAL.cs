@@ -41,6 +41,8 @@ namespace DataAcessLayer
             return singleResponse;
         }
 
+
+
         public Response Insert(Funcionario funcionario)
         {
             DataBaseDbContext db = new();
@@ -70,5 +72,25 @@ namespace DataAcessLayer
                 return ResponseFactory.CreateFailureResponse();
             }
         }
-    }
+        public SingleResponse<int> GetByLogin(Funcionario funcionario)
+        {
+            try
+            {
+                DataBaseDbContext db = new();
+                SingleResponse<int> singleResponse = new()
+                {
+                    Item = db.Funcionario.Where(f => f.Email == funcionario.Email && f.Senha == funcionario.Senha).Count()
+                };
+                return singleResponse;
+            }
+            catch (Exception)
+            {
+                return new SingleResponse<int>()
+                {
+                    HasSuccess = false,
+                    Message = "Erro no banco de dados, contate o adm"
+                };
+            }
+        }
+}
 }

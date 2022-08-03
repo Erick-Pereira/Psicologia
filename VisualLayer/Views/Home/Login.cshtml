@@ -1,6 +1,7 @@
 ﻿ @{
-    ViewData["Title"] = "Logins";
+    ViewData["Title"] = "Login";
 }  
+@model VisualLayer.Models.LoginModel
 
 <!DOCTYPE html>
 <!-- === Coding by CodingLab | www.codinglabweb.com === -->
@@ -19,25 +20,39 @@
     <!--<title>Login & Registration Form</title>-->
 </head>
 <body>
+    
     <div class="container">
         <div class="forms">
             <div class="form login">
                 <span class="title">Login</span>
 
-                <form action="#">
+                <form asp-action="Login">
                     <div class="input-field">
-                        <input type="text" placeholder="Enter your email" required>
+                        <div class="form-group">
+                        <input asp-for="Email" id="Email" class="form-control" placeholder="Enter your email" required/>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                     </div>
+                        @*<input type="text" placeholder="Enter your email" required>*@
                         <i class="uil uil-envelope icon"></i>
+
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Enter your password" required>
+                         <div class="form-group">
+                        <input asp-for="Senha" type="password" id="password" class="form-control" placeholder="Enter your password" required/>
+                        <span asp-validation-for="Senha"  class="text-danger"></span>
+                          </div>
+                          
+                        @*<input type="password" class="password" placeholder="Enter your password" required>*@
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
 
                     <div class="checkbox-text">
                         <div class="checkbox-content">
-                            <input type="checkbox" id="logCheck">
+                            <div class="form-group">
+                                <input type="checkbox" asp-for="IsRemebered"/>
+                          </div>
+                            @*<input type="checkbox" id="logCheck">*@
                             <label for="logCheck" class="text">Remember me</label>
                         </div>
                         
@@ -45,61 +60,15 @@
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" value="Login">
-                    </div>
-                </form>
-
-@*                <div class="login-signup">
-                    <span class="text">Not a member?
-                        <a href="#" class="text signup-link">Signup Now</a>
-                    </span>
-                </div>*@
+                       <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
             </div>
-
-            <!-- Registration Form -->
-            <div class="form signup">
-                <span class="title">Registration</span>
-
-                <form action="#">
-                    <div class="input-field">
-                        <input type="text" placeholder="Enter your name" required>
-                        <i class="uil uil-user"></i>
-                    </div>
-                    <div class="input-field">
-                        <input type="text" placeholder="Enter your email" required>
-                        <i class="uil uil-envelope icon"></i>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" class="password" placeholder="Create a password" required>
-                        <i class="uil uil-lock icon"></i>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" class="password" placeholder="Confirm a password" required>
-                        <i class="uil uil-lock icon"></i>
-                        <i class="uil uil-eye-slash showHidePw"></i>
-                    </div>
-
-                    <div class="checkbox-text">
-                        <div class="checkbox-content">
-                            <input type="checkbox" id="termCon">
-                            <label for="termCon" class="text">I accepted all terms and conditions</label>
-                        </div>
-                    </div>
-
-                    <div class="input-field button">
-                        <input type="button" value="Signup">
                     </div>
                 </form>
-
-                <div class="login-signup">
-                    <span class="text">Already a member?
-                        <a href="#" class="text login-link">Login Now</a>
-                    </span>
-                </div>
             </div>
         </div>
     </div>
-    <script src="~/js/Login.js"></script>
+
+   <script src="~/js/Login.js"></script>
 </body>
 </html>
-
