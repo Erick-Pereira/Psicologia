@@ -25,14 +25,17 @@ namespace VisualLayer.Controllers
         {
             return View();
         }
+
         public IActionResult AboutUs()
         {
             return View();
         }
+
         public IActionResult Login()
         {
             return View();
         }
+
         public DataResponse<Funcionario> Select()
         {
             FuncionarioBLL funcionarioBLL = new FuncionarioBLL();

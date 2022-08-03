@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Shared
+﻿namespace Shared
 {
     public class ResponseFactory
     {
@@ -25,6 +19,7 @@ namespace Shared
                 Message = "Erro no banco, contate o adm"
             };
         }
+
         public static Response CreateFailureResponse(string mensagem)
         {
             return new Response()

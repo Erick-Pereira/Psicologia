@@ -13,6 +13,7 @@ namespace DataAcessLayer
             optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\The_Shelow\Documents\NoNameDB.mdf;Integrated Security=True;Connect Timeout=30");
             base.OnConfiguring(optionsBuilder);
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //List<Type> types = Assembly.GetExecutingAssembly().GetTypes().ToList();
