@@ -4,9 +4,9 @@ namespace VisualLayer.Controllers.Funcionario
 {
     public class FuncionarioController : Controller
     {
-        public IActionResult Index(Entities.Funcionario funcionario)
+        public IActionResult Index()
         {
-            return View(funcionario);
+            return View();
         }
     }
 }

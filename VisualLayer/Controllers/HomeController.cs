@@ -44,12 +44,10 @@ namespace VisualLayer.Controllers
         };
             if (funcionarioService.GetByLogin(funcionario).Item == 1)
             {
-                FuncionarioController funcionarioController = new FuncionarioController();
-                return View(funcionarioController.Index(funcionario));
+                return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
             }
             return View();
         }
-
         public DataResponse<Entities.Funcionario> Select()
         {
             FuncionarioService funcionarioBLL = new FuncionarioService();
