@@ -34,6 +34,7 @@ namespace VisualLayer.Controllers
         [HttpPost]
         public IActionResult Login(LoginModel login)
         {
+            
             Hash hash = new Hash();
             login.Senha = hash.ComputeSha256Hash(login.Senha);
             FuncionarioService funcionarioService = new FuncionarioService();
@@ -41,6 +42,7 @@ namespace VisualLayer.Controllers
             {
                 Email = login.Email,
                 Senha = login.Senha,
+                
         };
             if (funcionarioService.GetByLogin(funcionario).Item == 1)
             {
