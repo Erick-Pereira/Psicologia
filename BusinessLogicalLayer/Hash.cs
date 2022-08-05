@@ -14,6 +14,7 @@ namespace BusinessLogicalLayer
         {
             rawData = "Q342SSGQQWERTD" + rawData + "U7RGJ786EFGQ2";
             // Create a SHA256
+            //Oie 
             using (SHA256 sha256Hash = SHA256.Create())
             {
                 // ComputeHash - returns byte array
