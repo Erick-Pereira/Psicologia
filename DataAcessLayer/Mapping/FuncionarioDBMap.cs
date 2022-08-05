@@ -14,4 +14,4 @@ namespace DataAcessLayer.Mapping
             builder.HasIndex(f => f.Email).IsUnique().HasDatabaseName("UQ_FUNCIONARIO_EMAIL");
         }
     }
-}
+} 
