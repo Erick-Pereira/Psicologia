@@ -7,8 +7,8 @@ nav {
     padding: 20px 0;
     z-index: 998;
     transition: all 0.3s ease;
-   
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -52,7 +52,6 @@ body {
         width: 200%;
         transition: height 0.2s ease;
     }
-
 
     .container .form {
         width: 50%;
@@ -200,7 +199,6 @@ body {
     margin-top: 30px;
     text-align: center;
 }
-
 
 nav {
     top: 0;

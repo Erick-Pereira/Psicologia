@@ -41,8 +41,6 @@ namespace DataAcessLayer
             return singleResponse;
         }
 
-
-
         public Response Insert(Funcionario funcionario)
         {
             DataBaseDbContext db = new();
@@ -72,6 +70,7 @@ namespace DataAcessLayer
                 return ResponseFactory.CreateFailureResponse();
             }
         }
+
         public SingleResponse<int> GetByLogin(Funcionario funcionario)
         {
             try
@@ -92,5 +91,5 @@ namespace DataAcessLayer
                 };
             }
         }
-}
+    }
 }

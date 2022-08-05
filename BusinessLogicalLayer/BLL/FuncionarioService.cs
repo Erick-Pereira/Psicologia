@@ -25,6 +25,7 @@ namespace BusinessLogicalLayer
         {
             throw new NotImplementedException();
         }
+
         public SingleResponse<int> GetByLogin(Funcionario funcionario)
         {
             return funcionarioDAL.GetByLogin(funcionario);

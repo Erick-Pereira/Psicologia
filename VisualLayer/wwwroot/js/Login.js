@@ -32,4 +32,3 @@ signUp.addEventListener("click", () => {
 login.addEventListener("click", () => {
     container.classList.remove("active");
 });
-

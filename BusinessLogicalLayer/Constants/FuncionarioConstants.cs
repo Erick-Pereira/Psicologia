@@ -20,6 +20,7 @@
 
         public static string MENSAGEM_666
         { get { return ""; } }
+
         public static string MENSAGEM_ERRO_CPF_COMPRIMENTO
         { get { return $"CPF deve conter {TAMANHO_CPF} caracteres"; } }
     }
