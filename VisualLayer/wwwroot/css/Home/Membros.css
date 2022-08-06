@@ -1,0 +1,200 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+
+nav {
+    background: #4070f4;
+    padding: 13px 0;
+    top: 0;
+    font-family: 'Poppins', sans-serif;
+}
+h1 {
+    font-family: 'Poppins', sans-serif;
+}
+h3 {
+    font-family: 'Poppins', sans-serif;
+}
+footer {
+    bottom: 0;
+}
+nav {
+    position: fixed;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 998;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+    nav.sticky {
+        background: #4070f4;
+        padding: 13px 0;
+    }
+
+    nav .navbar {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: auto;
+    }
+
+        nav .navbar .logo a {
+            font-weight: 500;
+            font-size: 35px;
+            color: #fff;
+        }
+
+    nav .navbar .menu {
+        display: flex;
+        position: relative;
+    }
+
+        nav .navbar .menu li {
+            list-style: none;
+            margin: 0 8px;
+        }
+
+.navbar .menu a {
+    font-size: 18px;
+    font-weight: 500;
+    color: #FFF;
+    padding: 6px 0;
+    transition: all 0.4s ease;
+}
+
+    .navbar .menu a:hover {
+        color: #0E2431;
+    }
+
+nav.sticky .menu a {
+    color: #FFF;
+}
+
+    nav.sticky .menu a:hover {
+        color: #0E2431;
+    }
+
+.navbar .media-icons a {
+    color: #4070f4;
+    font-size: 18px;
+    margin: 0 6px;
+}
+
+nav.sticky .media-icons a {
+    color: #FFF;
+}
+
+/* Side Navigation Menu Button CSS */
+nav .menu-btn,
+.navbar .menu .cancel-btn {
+    position: absolute;
+    color: #fff;
+    right: 30px;
+    top: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: none;
+}
+
+nav .menu-btn {
+    color: #4070f4;
+}
+
+nav.sticky .menu-btn {
+    color: #FFF;
+}
+
+.navbar .menu .menu-btn {
+    color: #fff;
+}
+.Membros {
+    margin-top: 150px;
+    background: linear-gradient(236.85deg, #041832 27.26%, #3468A7 96.03%);
+}
+
+.container {
+    margin: 64px;
+    background: #ECF4FF;
+    color: #1C1C1C;
+    border-radius: 20px;
+    padding: 64px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+}
+
+.perfil {
+    display: flex;
+    padding: 15px;
+}
+
+.perfil-foto {
+    padding: 3px;
+    max-width: 160px;
+    border-radius: 460px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+.titulo {
+    margin-left: 16px;
+}
+
+    .titulo h1 {
+        font-weight: 700;
+        font-size: 36px;
+    }
+
+    .titulo h3 {
+        font-weight: normal;
+        font-size: 24px;
+    }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6e93f7;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #4070f4;
+    }
+footer {
+    background: #4070f4;
+    padding: 15px 0;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+    footer .text span {
+        font-size: 17px;
+        font-weight: 400;
+        color: #fff;
+    }
+
+        footer .text span a {
+            font-weight: 500;
+            color: #FFF;
+        }
+
+            footer .text span a:hover {
+                text-decoration: underline;
+            }

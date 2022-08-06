@@ -10,19 +10,12 @@ namespace DataAcessLayer
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Douglas\source\repos\TheShelow\Psicologia\DataBase\NoNameDB.mdf;Integrated Security=True;Connect Timeout=30", options => options.EnableRetryOnFailure(5));
+            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\The_Shelow\Documents\NoNameDB.mdf;Integrated Security=True;Connect Timeout=30", options => options.EnableRetryOnFailure(5));
             base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //List<Type> types = Assembly.GetExecutingAssembly().GetTypes().ToList();
-            //Mandrake m = new Mandrake();
-            //object o = Assembly.GetAssembly(typeof(Cargo))
-            //        .GetTypes()
-            //        .FirstOrDefault(c => c.IsClass && c.Name == "Mandrake")
-            //        .GetConstructors()[0].Invoke(null);
-
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
