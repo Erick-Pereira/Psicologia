@@ -31,6 +31,14 @@ namespace BusinessLogicalLayer
             return funcionarioDAL.GetByLogin(funcionario);
         }
 
+        public bool Logar(Funcionario funcionario)
+        {
+            if (GetByLogin(funcionario).Item == 1)
+            {
+                return true;
+            }
+            return false;
+        }
         public Response Insert(Funcionario funcionario)
         {
             throw new NotImplementedException();

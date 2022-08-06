@@ -1,4 +1,5 @@
-﻿using BusinessLogicalLayer;
+﻿using AutoMapper;
+using BusinessLogicalLayer;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using System.Diagnostics;
@@ -37,12 +38,14 @@ namespace VisualLayer.Controllers
             Hash hash = new Hash();
             login.Senha = hash.ComputeSha256Hash(login.Senha);
             FuncionarioService funcionarioService = new FuncionarioService();
-            Entities.Funcionario funcionario = new()
-            {
-                Email = login.Email,
-                Senha = login.Senha,
-            };
-            if (funcionarioService.GetByLogin(funcionario).Item == 1)
+            MapperConfiguration mapper = new MapperConfiguration(m =>
+            m.CreateMap<LoginModel, Entities.Funcionario>()
+        );
+
+            Entities.Funcionario funcionario =
+                mapper.CreateMapper().Map<Entities.Funcionario>(login);
+
+            if (funcionarioService.Logar(funcionario))
             {
                 return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
             }
