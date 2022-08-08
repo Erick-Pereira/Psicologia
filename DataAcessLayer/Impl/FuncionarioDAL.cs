@@ -1,18 +1,24 @@
 ﻿using Entities;
 using Entities.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Shared;
 
 namespace DataAcessLayer
 {
-    public class FuncionarioDAL : IFuncionarioService
+    public class FuncionarioDAL : IFuncionarioDAL
     {
-        public Response Delete(Funcionario funcionario)
+        private readonly DataBaseDbContext _db;
+        public FuncionarioDAL(DataBaseDbContext db)
         {
-            DataBaseDbContext db = new();
-            db.Funcionario.Remove(funcionario);
+            this._db = db;
+        }
+
+        public async Task<Response> Delete(Funcionario funcionario)
+        {
+            _db.Funcionario.Remove(funcionario);
             try
             {
-                db.SaveChanges();
+                await _db.SaveChangesAsync();
                 return ResponseFactory.CreateSuccessResponse();
             }
             catch (Exception)
@@ -21,33 +27,30 @@ namespace DataAcessLayer
             }
         }
 
-        public DataResponse<Funcionario> GetAll()
+        public async Task<DataResponse<Funcionario>> GetAll()
         {
-            DataBaseDbContext db = new();
             DataResponse<Funcionario> dataResponse = new()
             {
-                Data = db.Funcionario.ToList()
+                Data = await _db.Funcionario.ToListAsync()
             };
             return dataResponse;
         }
 
-        public SingleResponse<Funcionario> GetByID(int id)
-        {
-            DataBaseDbContext db = new();
+        public async Task<SingleResponse<Funcionario>> GetByID(int id)
+        {            
             SingleResponse<Funcionario> singleResponse = new()
             {
-                Item = db.Funcionario.Find(id)
+                Item = await _db.Funcionario.FindAsync(id)
             };
             return singleResponse;
         }
 
-        public Response Insert(Funcionario funcionario)
+        public async Task<Response> Insert(Funcionario funcionario)
         {
-            DataBaseDbContext db = new();
-            db.Funcionario.Add(funcionario);
+            _db.Funcionario.Add(funcionario);
             try
             {
-                db.SaveChanges();
+                await _db.SaveChangesAsync();
                 return ResponseFactory.CreateSuccessResponse();
             }
             catch (Exception)
@@ -56,13 +59,12 @@ namespace DataAcessLayer
             }
         }
 
-        public Response Update(Funcionario funcionario)
+        public async Task<Response> Update(Funcionario funcionario)
         {
-            DataBaseDbContext db = new();
-            db.Funcionario.Update(funcionario);
+            _db.Funcionario.Update(funcionario);
             try
             {
-                db.SaveChanges();
+                await _db.SaveChangesAsync();
                 return ResponseFactory.CreateSuccessResponse();
             }
             catch (Exception)
@@ -71,14 +73,13 @@ namespace DataAcessLayer
             }
         }
 
-        public SingleResponse<int> GetByLogin(Funcionario funcionario)
+        public async Task<SingleResponse<int>> GetByLogin(Funcionario funcionario)
         {
             try
             {
-                DataBaseDbContext db = new();
                 SingleResponse<int> singleResponse = new()
                 {
-                    Item = db.Funcionario.Where(f => f.Email == funcionario.Email && f.Senha == funcionario.Senha).Count()
+                    Item = await _db.Funcionario.Where(f => f.Email == funcionario.Email && f.Senha == funcionario.Senha).CountAsync()
                 };
                 return singleResponse;
             }

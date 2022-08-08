@@ -2,7 +2,7 @@
 
 namespace Entities.Interfaces
 {
-    public interface IFuncionarioService
+    public interface IFuncionarioDAL
     {
         Task<Response> Insert(Funcionario funcionario);
 
@@ -13,6 +13,6 @@ namespace Entities.Interfaces
         Task<SingleResponse<Funcionario>> GetByID(int id);
 
         Task<DataResponse<Funcionario>> GetAll();
-        Task<bool> Logar(Funcionario funcionario);
+        Task<SingleResponse<int>> GetByLogin(Funcionario funcionario);
     }
 }

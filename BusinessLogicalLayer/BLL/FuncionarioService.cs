@@ -9,51 +9,57 @@ namespace BusinessLogicalLayer
 {
     public class FuncionarioService : IFuncionarioService
     {
-        private FuncionarioDAL funcionarioDAL = new FuncionarioDAL();
+        private readonly IFuncionarioDAL _funcionarioDAL;
 
-        public Response Delete(Funcionario funcionario)
+
+        public FuncionarioService(IFuncionarioDAL ifuncionarioDAL)
+        {
+            _funcionarioDAL = ifuncionarioDAL;
+        }
+
+        public async Task<Response> Delete(Funcionario funcionario)
         {
             throw new NotImplementedException();
         }
 
-        public DataResponse<Funcionario> GetAll()
+        public async Task<DataResponse<Funcionario>> GetAll()
         {
-            return funcionarioDAL.GetAll();
+            return await _funcionarioDAL.GetAll();
         }
 
-        public SingleResponse<Funcionario> GetByID(int id)
+        public async Task<SingleResponse<Funcionario>> GetByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public SingleResponse<int> GetByLogin(Funcionario funcionario)
+        public async Task<SingleResponse<int>> GetByLogin(Funcionario funcionario)
         {
-            return funcionarioDAL.GetByLogin(funcionario);
+            return await _funcionarioDAL.GetByLogin(funcionario);
         }
 
-        public bool Logar(Funcionario funcionario)
+        public async Task<bool> Logar(Funcionario funcionario)
         {
-            if (GetByLogin(funcionario).Item == 1)
+            if (GetByLogin(funcionario).Result.Item == 1)
             {
                 return true;
             }
             return false;
         }
-        public Response Insert(Funcionario funcionario)
+        public async Task<Response> Insert(Funcionario funcionario)
         {
             throw new NotImplementedException();
         }
 
-        public Response Update(Funcionario funcionario)
+        public async Task<Response> Update(Funcionario funcionario)
         {
             UpdateFuncionarioValidator validationRules = new UpdateFuncionarioValidator();
-
             Response response = validationRules.Validate(funcionario).ToResponse();
             if (!response.HasSuccess)
             {
                 return response;
             }
-            return funcionarioDAL.Update(funcionario);
+            return await _funcionarioDAL.Update(funcionario);
+
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer;
+using Entities.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using System.Diagnostics;
@@ -11,6 +12,7 @@ namespace VisualLayer.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private readonly IFuncionarioService _FuncionarioService;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -33,11 +35,10 @@ namespace VisualLayer.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginModel login)
+        public async Task<IActionResult> Login(LoginModel login)
         {
             Hash hash = new Hash();
             login.Senha = hash.ComputeSha256Hash(login.Senha);
-            FuncionarioService funcionarioService = new FuncionarioService();
             MapperConfiguration mapper = new MapperConfiguration(m =>
             m.CreateMap<LoginModel, Entities.Funcionario>()
         );
@@ -45,17 +46,16 @@ namespace VisualLayer.Controllers
             Entities.Funcionario funcionario =
                 mapper.CreateMapper().Map<Entities.Funcionario>(login);
 
-            if (funcionarioService.Logar(funcionario))
+            if (await _FuncionarioService.Logar(funcionario))
             {
                 return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
             }
             return View();
         }
 
-        public DataResponse<Entities.Funcionario> Select()
+        public Task<DataResponse<Entities.Funcionario>> Select()
         {
-            FuncionarioService funcionarioBLL = new FuncionarioService();
-            return funcionarioBLL.GetAll();
+            return _FuncionarioService.GetAll();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
