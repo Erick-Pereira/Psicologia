@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities;
+using VisualLayer.Models;
 using VisualLayer.Models.Funcionario;
 
 namespace VisualLayer.Profiles
@@ -10,6 +11,7 @@ namespace VisualLayer.Profiles
         {
             CreateMap<FuncionarioInsertViewModel, Funcionario>();
             CreateMap<Funcionario, FuncionarioSelectViewModel>();
+            CreateMap<LoginModel, Funcionario>();
         }
     }
 }
