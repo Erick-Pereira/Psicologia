@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Equipe\" />
     <Folder Include="wwwroot\js\Funcionario\" />
   </ItemGroup>
 

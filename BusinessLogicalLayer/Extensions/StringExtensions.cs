@@ -1,23 +1,18 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace BusinessLogicalLayer
+namespace BusinessLogicalLayer.Extensions
 {
-    public class Hash
+    public static class StringExtensions
     {
-        /// <summary>
-        /// Recebe uma string contendo uma senha e hasheia ela
-        /// </summary>
-        /// <param name="rawData"></param>
-        /// <returns>Retorna um string hasheada</returns>
-        public string ComputeSha256Hash(string rawData)
+        public static string Hash(this string result)
         {
-            rawData = "Q342SSGQQWERTD" + rawData + "U7RGJ786EFGQ2";
+            result = "Q342SSGQQWERTD" + result + "U7RGJ786EFGQ2";
             // Create a SHA256
             using (SHA256 sha256Hash = SHA256.Create())
             {
                 // ComputeHash - returns byte array
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(result));
 
                 // Convert byte array to a string
                 StringBuilder builder = new StringBuilder();

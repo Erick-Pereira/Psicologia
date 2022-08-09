@@ -18,7 +18,13 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<Response> Delete(Funcionario funcionario)
         {
-            throw new NotImplementedException();
+            UpdateFuncionarioValidator validationRules = new UpdateFuncionarioValidator();
+            Response response = validationRules.Validate(funcionario).ToResponse();
+            if (!response.HasSuccess)
+            {
+                return response;
+            }
+            return await _funcionarioDAL.Delete(funcionario);
         }
 
         public async Task<DataResponse<Funcionario>> GetAll()
@@ -28,7 +34,7 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<SingleResponse<Funcionario>> GetByID(int id)
         {
-            throw new NotImplementedException();
+            return await _funcionarioDAL.GetByID(id);
         }
 
         public async Task<SingleResponse<int>> GetByLogin(Funcionario funcionario)
@@ -47,7 +53,13 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<Response> Insert(Funcionario funcionario)
         {
-            throw new NotImplementedException();
+            UpdateFuncionarioValidator validationRules = new UpdateFuncionarioValidator();
+            Response response = validationRules.Validate(funcionario).ToResponse();
+            if (!response.HasSuccess)
+            {
+                return response;
+            }
+            return await _funcionarioDAL.Insert(funcionario);
         }
 
         public async Task<Response> Update(Funcionario funcionario)

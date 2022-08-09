@@ -12,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IFuncionarioService, FuncionarioService>();
 builder.Services.AddTransient<IFuncionarioDAL, FuncionarioDAL>();
+builder.Services.AddTransient<IEquipeService, EquipeService>();
+builder.Services.AddTransient<IEquipeDAL, EquipeDAL>();
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddDbContext<DataBaseDbContext>(options => options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection"));
 

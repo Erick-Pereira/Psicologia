@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BusinessLogicalLayer;
+using BusinessLogicalLayer.Extensions;
 using BusinessLogicalLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
@@ -39,8 +39,7 @@ namespace VisualLayer.Controllers
         public async Task<IActionResult> Login(LoginModel login)
         {
             Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(login);
-            Hash hash = new Hash();
-            funcionario.Senha = hash.ComputeSha256Hash(funcionario.Senha);
+            funcionario.Senha = funcionario.Senha.Hash();
             if (await _FuncionarioService.Logar(funcionario))
             {
                 return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
