@@ -38,9 +38,9 @@ namespace VisualLayer.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel login)
         {
-            Hash hash = new Hash();
-            login.Senha = hash.ComputeSha256Hash(login.Senha);
             Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(login);
+            Hash hash = new Hash();
+            funcionario.Senha = hash.ComputeSha256Hash(funcionario.Senha);
             if (await _FuncionarioService.Logar(funcionario))
             {
                 return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
