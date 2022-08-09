@@ -1,6 +1,7 @@
-﻿using Shared;
+﻿using Entities;
+using Shared;
 
-namespace Entities.Interfaces
+namespace DataAcessLayer.Interfaces
 {
     public interface IFuncionarioDAL
     {
@@ -13,6 +14,7 @@ namespace Entities.Interfaces
         Task<SingleResponse<Funcionario>> GetByID(int id);
 
         Task<DataResponse<Funcionario>> GetAll();
+
         Task<SingleResponse<int>> GetByLogin(Funcionario funcionario);
     }
 }

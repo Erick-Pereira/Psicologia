@@ -73,7 +73,6 @@ body {
         transition: height 0.2s ease;
     }
 
-
     .container .form {
         width: 50%;
         padding: 30px;
@@ -220,8 +219,6 @@ body {
     margin-top: 30px;
     text-align: center;
 }
-
-
 
 /* Custom Scroll Bar CSS */
 ::-webkit-scrollbar {

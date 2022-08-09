@@ -1,7 +1,19 @@
+using BusinessLogicalLayer.BLL;
+using BusinessLogicalLayer.Interfaces;
+using DataAcessLayer;
+using DataAcessLayer.Impl;
+using DataAcessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IFuncionarioService, FuncionarioService>();
+builder.Services.AddTransient<IFuncionarioDAL, FuncionarioDAL>();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddDbContext<DataBaseDbContext>(options => options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection"));
 
 var app = builder.Build();
 

@@ -1,16 +1,15 @@
 ﻿using BusinessLogicalLayer.Extensions;
+using BusinessLogicalLayer.Interfaces;
 using BusinessLogicalLayer.Validators.FuncionarioValidator;
-using DataAcessLayer;
+using DataAcessLayer.Interfaces;
 using Entities;
-using Entities.Interfaces;
 using Shared;
 
-namespace BusinessLogicalLayer
+namespace BusinessLogicalLayer.BLL
 {
     public class FuncionarioService : IFuncionarioService
     {
         private readonly IFuncionarioDAL _funcionarioDAL;
-
 
         public FuncionarioService(IFuncionarioDAL ifuncionarioDAL)
         {
@@ -45,6 +44,7 @@ namespace BusinessLogicalLayer
             }
             return false;
         }
+
         public async Task<Response> Insert(Funcionario funcionario)
         {
             throw new NotImplementedException();
@@ -59,7 +59,6 @@ namespace BusinessLogicalLayer
                 return response;
             }
             return await _funcionarioDAL.Update(funcionario);
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using BusinessLogicalLayer.Constants;
+using Entities;
 using FluentValidation;
 
 namespace BusinessLogicalLayer.Validators.FuncionarioValidator

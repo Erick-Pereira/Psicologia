@@ -1,6 +1,7 @@
-﻿using Shared;
+﻿using Entities;
+using Shared;
 
-namespace Entities.Interfaces
+namespace BusinessLogicalLayer.Interfaces
 {
     public interface IFuncionarioService
     {
@@ -13,6 +14,7 @@ namespace Entities.Interfaces
         Task<SingleResponse<Funcionario>> GetByID(int id);
 
         Task<DataResponse<Funcionario>> GetAll();
+
         Task<bool> Logar(Funcionario funcionario);
     }
 }

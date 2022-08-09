@@ -1,13 +1,14 @@
-﻿using Entities;
-using Entities.Interfaces;
+﻿using DataAcessLayer.Interfaces;
+using Entities;
 using Microsoft.EntityFrameworkCore;
 using Shared;
 
-namespace DataAcessLayer
+namespace DataAcessLayer.Impl
 {
     public class FuncionarioDAL : IFuncionarioDAL
     {
         private readonly DataBaseDbContext _db;
+
         public FuncionarioDAL(DataBaseDbContext db)
         {
             this._db = db;
@@ -37,7 +38,7 @@ namespace DataAcessLayer
         }
 
         public async Task<SingleResponse<Funcionario>> GetByID(int id)
-        {            
+        {
             SingleResponse<Funcionario> singleResponse = new()
             {
                 Item = await _db.Funcionario.FindAsync(id)

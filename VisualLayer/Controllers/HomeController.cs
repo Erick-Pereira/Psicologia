@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer;
-using Entities.Interfaces;
+using BusinessLogicalLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using System.Diagnostics;
@@ -10,12 +10,13 @@ namespace VisualLayer.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
         private readonly IFuncionarioService _FuncionarioService;
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IMapper _mapper;
+
+        public HomeController(IFuncionarioService funcionarioService, IMapper mapper)
         {
-            _logger = logger;
+            _FuncionarioService = funcionarioService;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -39,13 +40,7 @@ namespace VisualLayer.Controllers
         {
             Hash hash = new Hash();
             login.Senha = hash.ComputeSha256Hash(login.Senha);
-            MapperConfiguration mapper = new MapperConfiguration(m =>
-            m.CreateMap<LoginModel, Entities.Funcionario>()
-        );
-
-            Entities.Funcionario funcionario =
-                mapper.CreateMapper().Map<Entities.Funcionario>(login);
-
+            Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(login);
             if (await _FuncionarioService.Logar(funcionario))
             {
                 return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
@@ -53,9 +48,9 @@ namespace VisualLayer.Controllers
             return View();
         }
 
-        public Task<DataResponse<Entities.Funcionario>> Select()
+        public async Task<DataResponse<Entities.Funcionario>> Select()
         {
-            return _FuncionarioService.GetAll();
+            return await _FuncionarioService.GetAll();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

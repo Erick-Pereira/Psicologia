@@ -1,4 +1,4 @@
-﻿namespace BusinessLogicalLayer
+﻿namespace BusinessLogicalLayer.Constants
 {
     internal class GenericConstants
     {
