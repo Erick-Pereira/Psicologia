@@ -17,6 +17,8 @@ builder.Services.AddTransient<IEquipeDAL, EquipeDAL>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddDbContext<DataBaseDbContext>(options => options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection"));
+builder.Services.AddDbContext<DataBaseDbContext>(options =>
+            options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection2"));
 
 var app = builder.Build();
 

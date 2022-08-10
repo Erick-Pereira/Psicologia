@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using VisualLayer.Models.Equipe;
 
 namespace VisualLayer.Controllers.Equipe
 {
@@ -15,10 +16,9 @@ namespace VisualLayer.Controllers.Equipe
             _mapper = mapper;
         }
 
-        public IActionResult Equipe()
+        public IActionResult Equipes()
         {
-            Entities.Equipe equipe = _mapper.Map<Entities.Equipe>(_EquipeService.GetAll());
-            return View(equipe);
+            return View();
         }
     }
 }

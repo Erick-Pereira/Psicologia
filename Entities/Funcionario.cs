@@ -7,8 +7,10 @@
         public string Email { get; set; }
         public string Senha { get; set; }
         public string Cpf { get; set; }
+        public int EnderecoID { get; set; }
         public Endereco Endereco { get; set; }
         public int CargoID { get; set; }
         public Cargo Cargo { get; set; }
+        public ICollection<EquipeFuncionario> Equipes { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace DataAcessLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -119,6 +119,38 @@ namespace DataAcessLayer.Migrations
                     b.ToTable("ENDERECOS", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.Equipe", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("EQUIPES", (string)null);
+                });
+
+            modelBuilder.Entity("Entities.EquipeFuncionario", b =>
+                {
+                    b.Property<int>("EquipeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FuncionarioID")
+                        .HasColumnType("int");
+
+                    b.HasKey("EquipeID", "FuncionarioID");
+
+                    b.HasIndex("FuncionarioID");
+
+                    b.ToTable("EquipeFuncionario");
+                });
+
             modelBuilder.Entity("Entities.Estado", b =>
                 {
                     b.Property<int>("ID")
@@ -157,7 +189,7 @@ namespace DataAcessLayer.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("EnderecoID")
                         .HasColumnType("int");
@@ -175,6 +207,10 @@ namespace DataAcessLayer.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CargoID");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("UQ_FUNCIONARIO_EMAIL");
 
                     b.HasIndex("EnderecoID");
 
@@ -214,6 +250,25 @@ namespace DataAcessLayer.Migrations
                     b.Navigation("Bairro");
                 });
 
+            modelBuilder.Entity("Entities.EquipeFuncionario", b =>
+                {
+                    b.HasOne("Entities.Equipe", "Equipe")
+                        .WithMany("Funcionarios")
+                        .HasForeignKey("EquipeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Funcionario", "Funcionario")
+                        .WithMany("Equipes")
+                        .HasForeignKey("FuncionarioID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Equipe");
+
+                    b.Navigation("Funcionario");
+                });
+
             modelBuilder.Entity("Entities.Funcionario", b =>
                 {
                     b.HasOne("Entities.Cargo", "Cargo")
@@ -231,6 +286,16 @@ namespace DataAcessLayer.Migrations
                     b.Navigation("Cargo");
 
                     b.Navigation("Endereco");
+                });
+
+            modelBuilder.Entity("Entities.Equipe", b =>
+                {
+                    b.Navigation("Funcionarios");
+                });
+
+            modelBuilder.Entity("Entities.Funcionario", b =>
+                {
+                    b.Navigation("Equipes");
                 });
 #pragma warning restore 612, 618
         }

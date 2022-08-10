@@ -11,7 +11,7 @@ namespace DataAcessLayer.Impl
 
         public EquipeDAL(DataBaseDbContext db)
         {
-            _db = db;
+            this._db = db;
         }
 
         public async Task<Response> Delete(Equipe equipe)
