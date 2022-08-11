@@ -8,6 +8,7 @@ namespace DataAcessLayer
     {
         public DbSet<Funcionario> Funcionario { get; set; }
         public DbSet<Equipe> Equipe { get; set; }
+        public DbSet<Cargo> Cargo { get; set; }
 
         public DataBaseDbContext(DbContextOptions<DataBaseDbContext> options)
     : base(options)

@@ -53,7 +53,8 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<Response> Insert(Funcionario funcionario)
         {
-            UpdateFuncionarioValidator validationRules = new UpdateFuncionarioValidator();
+            funcionario.Senha = "123456789".Hash();
+            InsertFuncionarioValidator validationRules = new InsertFuncionarioValidator();
             Response response = validationRules.Validate(funcionario).ToResponse();
             if (!response.HasSuccess)
             {

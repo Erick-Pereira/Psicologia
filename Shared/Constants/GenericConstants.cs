@@ -1,6 +1,6 @@
-﻿namespace BusinessLogicalLayer.Constants
+﻿namespace Shared.Constants
 {
-    internal class GenericConstants
+    public class GenericConstants
     {
         public const string MENSAGEM_ERRO_ID_OBRIGATORIO = "ID deve ser informado";
     }

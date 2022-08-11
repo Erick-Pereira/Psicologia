@@ -1,6 +1,6 @@
-﻿namespace BusinessLogicalLayer.Constants
+﻿namespace Shared.Constants
 {
-    internal class FuncionarioConstants
+    public class FuncionarioConstants
     {
         public const string MENSAGEM_ERRO_CPF_FORMATO_INVALIDO = "CPF com formato inválido.";
         public const string MENSAGEM_ERRO_CPF_OBRIGATORIO = "CPF deve ser informado.";
