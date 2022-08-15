@@ -10,10 +10,12 @@ namespace VisualLayer.Controllers.Funcionario
     public class FuncionarioController : Controller
     {
         private readonly IFuncionarioService _FuncionarioService;
+        private readonly ICargoService _CargoService;
         private readonly IMapper _mapper;
 
-        public FuncionarioController(IFuncionarioService funcionarioService, IMapper mapper)
+        public FuncionarioController(IFuncionarioService funcionarioService, IMapper mapper, ICargoService cargoService)
         {
+            _CargoService = cargoService;
             _FuncionarioService = funcionarioService;
             _mapper = mapper;
         }
@@ -25,7 +27,6 @@ namespace VisualLayer.Controllers.Funcionario
         [HttpGet]
         public async Task<IActionResult> Criar()
         {
-            
             return View();
         }
         [HttpPost]

@@ -13,6 +13,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IFuncionarioService, FuncionarioService>();
 builder.Services.AddTransient<IFuncionarioDAL, FuncionarioDAL>();
 builder.Services.AddTransient<IEquipeService, EquipeService>();
+builder.Services.AddTransient<ICargoService, CargoService>();
+builder.Services.AddTransient<ICargoDAL, CargoDAL>();
 builder.Services.AddTransient<IEquipeDAL, EquipeDAL>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());

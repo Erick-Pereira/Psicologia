@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicalLayer.BLL
 {
-    internal class CargoService : ICargoService
+    public class CargoService : ICargoService
     {
         private readonly ICargoDAL _cargoDAL;
 
@@ -28,22 +28,22 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<DataResponse<Cargo>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _cargoDAL.GetAll();
         }
 
         public async Task<SingleResponse<Cargo>> GetByID(int id)
         {
-            throw new NotImplementedException();
+            return await _cargoDAL.GetByID(id);
         }
 
         public async Task<Response> Insert(Cargo cargo)
         {
-            throw new NotImplementedException();
+            return await _cargoDAL.Insert(cargo);
         }
 
         public async Task<Response> Update(Cargo cargo)
         {
-            throw new NotImplementedException();
+            return await _cargoDAL.Update(cargo);
         }
     }
 }

@@ -47,11 +47,6 @@ namespace VisualLayer.Controllers
             return View();
         }
 
-        public async Task<DataResponse<Entities.Funcionario>> Select()
-        {
-            return await _FuncionarioService.GetAll();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

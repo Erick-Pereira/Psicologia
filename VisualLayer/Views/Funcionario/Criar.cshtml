@@ -1,5 +1,4 @@
 ﻿@model VisualLayer.Models.Funcionario.FuncionarioInsertViewModel
-
 @{
     ViewData["Title"] = "Criar";
 }
@@ -30,8 +29,8 @@
             </div>
             <label for="cars">Choose a car:</label>
 
-            <select name="cars" id="cars">
-                <option value=@Html.DisplayNameFor(model => model.Cargo)>@Html.DisplayNameFor(model => model.Cargo)</option>
+            <select asp-for="Cargo" class="Cargo">
+                <option value=></option>
             </select>
         </form>
     </div>
