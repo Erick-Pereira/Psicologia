@@ -1,10 +1,5 @@
 ﻿using Entities;
 using Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogicalLayer.Interfaces
 {
@@ -16,7 +11,7 @@ namespace BusinessLogicalLayer.Interfaces
 
         Task<Response> Delete(Cargo cargo);
 
-        Task<SingleResponse<Cargo >> GetByID(int id);
+        Task<SingleResponse<Cargo>> GetByID(int id);
 
         Task<DataResponse<Cargo>> GetAll();
     }

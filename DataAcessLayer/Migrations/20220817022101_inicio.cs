@@ -4,7 +4,7 @@
 
 namespace DataAcessLayer.Migrations
 {
-    public partial class Inicio : Migration
+    public partial class inicio : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,6 +20,19 @@ namespace DataAcessLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CARGOS", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EQUIPES",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EQUIPES", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -106,6 +119,8 @@ namespace DataAcessLayer.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cpf = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EnderecoID = table.Column<int>(type: "int", nullable: false),
                     CargoID = table.Column<int>(type: "int", nullable: false)
@@ -127,6 +142,30 @@ namespace DataAcessLayer.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "EQUIPE_FUNCIONARIO",
+                columns: table => new
+                {
+                    EquipeID = table.Column<int>(type: "int", nullable: false),
+                    FuncionarioID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EQUIPE_FUNCIONARIO", x => new { x.EquipeID, x.FuncionarioID });
+                    table.ForeignKey(
+                        name: "FK_EQUIPE_FUNCIONARIO_EQUIPES_EquipeID",
+                        column: x => x.EquipeID,
+                        principalTable: "EQUIPES",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EQUIPE_FUNCIONARIO_FUNCIONARIOS_FuncionarioID",
+                        column: x => x.FuncionarioID,
+                        principalTable: "FUNCIONARIOS",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_BAIRROS_CidadeId",
                 table: "BAIRROS",
@@ -143,6 +182,11 @@ namespace DataAcessLayer.Migrations
                 column: "BairroID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EQUIPE_FUNCIONARIO_FuncionarioID",
+                table: "EQUIPE_FUNCIONARIO",
+                column: "FuncionarioID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FUNCIONARIOS_CargoID",
                 table: "FUNCIONARIOS",
                 column: "CargoID");
@@ -151,10 +195,22 @@ namespace DataAcessLayer.Migrations
                 name: "IX_FUNCIONARIOS_EnderecoID",
                 table: "FUNCIONARIOS",
                 column: "EnderecoID");
+
+            migrationBuilder.CreateIndex(
+                name: "UQ_FUNCIONARIO_EMAIL",
+                table: "FUNCIONARIOS",
+                column: "Email",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "EQUIPE_FUNCIONARIO");
+
+            migrationBuilder.DropTable(
+                name: "EQUIPES");
+
             migrationBuilder.DropTable(
                 name: "FUNCIONARIOS");
 

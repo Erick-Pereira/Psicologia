@@ -148,7 +148,7 @@ namespace DataAcessLayer.Migrations
 
                     b.HasIndex("FuncionarioID");
 
-                    b.ToTable("EquipeFuncionario");
+                    b.ToTable("EQUIPE_FUNCIONARIO", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Estado", b =>
@@ -189,7 +189,8 @@ namespace DataAcessLayer.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("EnderecoID")
                         .HasColumnType("int");

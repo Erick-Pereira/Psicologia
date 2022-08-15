@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Interfaces;
-using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using VisualLayer.Models.Funcionario;
@@ -24,11 +23,13 @@ namespace VisualLayer.Controllers.Funcionario
         {
             return View();
         }
+
         [HttpGet]
         public async Task<IActionResult> Criar()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Criar(FuncionarioInsertViewModel funcionarioInsert)
         {
@@ -36,6 +37,7 @@ namespace VisualLayer.Controllers.Funcionario
             _FuncionarioService.Insert(funcionario);
             return View();
         }
+
         public async Task<IActionResult> Funcionarios()
         {
             DataResponse<Entities.Funcionario> dataResponse = await _FuncionarioService.GetAll();

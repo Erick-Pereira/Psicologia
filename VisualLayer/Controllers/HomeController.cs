@@ -2,7 +2,6 @@
 using BusinessLogicalLayer.Extensions;
 using BusinessLogicalLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Shared;
 using System.Diagnostics;
 using VisualLayer.Models;
 

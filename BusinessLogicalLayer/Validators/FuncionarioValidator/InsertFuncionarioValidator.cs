@@ -1,5 +1,4 @@
-﻿
-using Entities;
+﻿using Entities;
 using FluentValidation;
 using Shared.Constants;
 

@@ -17,8 +17,8 @@ namespace DataAcessLayer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EquipeFuncionario>().HasKey(ef => new { ef.EquipeID, ef.FuncionarioID });
-            modelBuilder.Entity<EquipeFuncionario>().HasOne(e => e.Equipe).WithMany(e => e.Funcionarios).HasForeignKey(e => e.EquipeID);
-            modelBuilder.Entity<EquipeFuncionario>().HasOne(E => E.Funcionario).WithMany(E => E.Equipes).HasForeignKey(E => E.FuncionarioID);
+            modelBuilder.Entity<EquipeFuncionario>().HasOne(E => E.Equipe).WithMany(E => E.Funcionarios).HasForeignKey(E => E.EquipeID);
+            modelBuilder.Entity<EquipeFuncionario>().HasOne(F => F.Funcionario).WithMany(F => F.Equipes).HasForeignKey(F => F.FuncionarioID);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }

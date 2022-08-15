@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAcessLayer.Migrations
 {
     [DbContext(typeof(DataBaseDbContext))]
-    [Migration("20220811014251_Equipes")]
-    partial class Equipes
+    [Migration("20220817022101_inicio")]
+    partial class inicio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -150,7 +150,7 @@ namespace DataAcessLayer.Migrations
 
                     b.HasIndex("FuncionarioID");
 
-                    b.ToTable("EquipeFuncionario");
+                    b.ToTable("EQUIPE_FUNCIONARIO", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Estado", b =>
@@ -191,7 +191,8 @@ namespace DataAcessLayer.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("EnderecoID")
                         .HasColumnType("int");

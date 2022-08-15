@@ -1,14 +1,7 @@
 ﻿using BusinessLogicalLayer.Interfaces;
-using DataAcessLayer.Impl;
 using DataAcessLayer.Interfaces;
-using DataAcessLayer.Migrations;
 using Entities;
 using Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogicalLayer.BLL
 {
