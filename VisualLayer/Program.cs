@@ -21,6 +21,8 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddDbContext<DataBaseDbContext>(options => options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection"));
 builder.Services.AddDbContext<DataBaseDbContext>(options =>
             options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection2"));
+builder.Services.AddDbContext<DataBaseDbContext>(options =>
+            options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection3"));
 
 var app = builder.Build();
 
