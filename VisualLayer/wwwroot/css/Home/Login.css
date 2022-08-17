@@ -220,6 +220,14 @@ body {
     text-align: center;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+
 /* Custom Scroll Bar CSS */
 ::-webkit-scrollbar {
     width: 10px;
@@ -241,8 +249,6 @@ body {
 /* navbar styling */
 nav {
     position: fixed;
-    margin-top: 0;
-    top: 0;
     width: 100%;
     padding: 20px 0;
     z-index: 998;
@@ -266,7 +272,7 @@ nav {
         nav .navbar .logo a {
             font-weight: 500;
             font-size: 35px;
-            color: #fff;
+            color: #4070f4;
         }
 
     nav.sticky .navbar .logo a {
@@ -286,13 +292,13 @@ nav {
 .navbar .menu a {
     font-size: 18px;
     font-weight: 500;
-    color: #FFF;
+    color: #0E2431;
     padding: 6px 0;
     transition: all 0.4s ease;
 }
 
     .navbar .menu a:hover {
-        color: #0E2431;
+        color: #4070f4;
     }
 
 nav.sticky .menu a {
@@ -336,4 +342,172 @@ nav.sticky .menu-btn {
 
 .navbar .menu .menu-btn {
     color: #fff;
+}
+
+
+/* Footer CSS */
+footer {
+    background: #4070f4;
+    padding: 15px 0;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+    footer .text span {
+        font-size: 17px;
+        font-weight: 400;
+        color: #fff;
+    }
+
+        footer .text span a {
+            font-weight: 500;
+            color: #FFF;
+        }
+
+            footer .text span a:hover {
+                text-decoration: underline;
+            }
+/* Scroll TO Top Button CSS */
+.scroll-button a {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: #fff;
+    background: #4070f4;
+    padding: 7px 12px;
+    ;
+    font-size: 18px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.15);
+    display: none;
+}
+
+/* Responsive Media Query */
+@media (max-width: 1190px) {
+    section .content {
+        width: 85%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .about .about-details {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+        .about .about-details .left {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+    .about-details .right {
+        width: 90%;
+        margin: 40px 0;
+    }
+
+    .services .boxes .box {
+        margin: 20px 0;
+        width: calc(100% / 2 - 20px);
+    }
+}
+
+@media (max-width: 900px) {
+    .about .left img {
+        height: 350px;
+        width: 350px;
+    }
+}
+
+@media (max-width: 750px) {
+    nav .navbar {
+        width: 90%;
+    }
+
+        nav .navbar .menu {
+            position: fixed;
+            left: -100%;
+            top: 0;
+            background: #0E2431;
+            height: 100vh;
+            max-width: 400px;
+            width: 100%;
+            padding-top: 60px;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+
+    .navbar.active .menu {
+        left: 0;
+    }
+
+    nav .navbar .menu a {
+        font-size: 23px;
+        display: block;
+        color: #fff;
+        margin: 10px 0;
+    }
+
+    nav.sticky .menu a:hover {
+        color: #4070f4;
+    }
+
+    nav .navbar .media-icons {
+        display: none;
+    }
+
+    nav .menu-btn,
+    .navbar .menu .cancel-btn {
+        display: block;
+    }
+
+    .home .text-two {
+        font-size: 65px;
+    }
+
+    .home .text-three {
+        font-size: 35px;
+    }
+
+    .skills .skills-details {
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .skills-details .text {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .skills-details .boxes {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .services .boxes .box {
+        margin: 20px 0;
+        width: 100%;
+    }
+
+    .contact .text {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .home .text-two {
+        font-size: 55px;
+    }
+
+    .home .text-three {
+        font-size: 33px;
+    }
+
+    .skills-details .boxes .per {
+        font-size: 50px;
+        color: #fff;
+    }
 }
