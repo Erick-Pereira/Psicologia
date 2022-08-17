@@ -30,7 +30,7 @@ namespace BusinessLogicalLayer.BLL
         }
 
         public async Task<Response> Insert(Equipe equipe)
-        {
+        { 
             return await _equipeDAL.Insert(equipe);
         }
 

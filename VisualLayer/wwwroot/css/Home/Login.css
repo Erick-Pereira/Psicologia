@@ -272,7 +272,7 @@ nav {
         nav .navbar .logo a {
             font-weight: 500;
             font-size: 35px;
-            color: #4070f4;
+            color: #fff;
         }
 
     nav.sticky .navbar .logo a {
@@ -292,13 +292,13 @@ nav {
 .navbar .menu a {
     font-size: 18px;
     font-weight: 500;
-    color: #0E2431;
+    color: #FFF;
     padding: 6px 0;
     transition: all 0.4s ease;
 }
 
     .navbar .menu a:hover {
-        color: #4070f4;
+        color: #0E2431;
     }
 
 nav.sticky .menu a {
@@ -333,7 +333,7 @@ nav .menu-btn,
 }
 
 nav .menu-btn {
-    color: #4070f4;
+    color: #fff;
 }
 
 nav.sticky .menu-btn {
@@ -450,7 +450,7 @@ footer {
     }
 
     nav.sticky .menu a:hover {
-        color: #4070f4;
+        color: #fff;
     }
 
     nav .navbar .media-icons {
