@@ -8,7 +8,10 @@ namespace DataAcessLayer.Mapping
     {
         public void Configure(EntityTypeBuilder<Endereco> builder)
         {
-            builder.Property(e => e.Bairro).IsUnicode(false).IsRequired();
+            builder.Property(e => e.CEP).IsUnicode(false).IsRequired();
+            builder.Property(e => e.Complemento).IsUnicode(false);
+            builder.Property(e => e.Rua).IsUnicode(false).IsRequired();
+            builder.Property(e => e.NumeroCasa).IsUnicode(false).IsRequired();
             builder.ToTable("ENDERECOS");
         }
     }

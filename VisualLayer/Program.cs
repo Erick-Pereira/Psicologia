@@ -16,13 +16,10 @@ builder.Services.AddTransient<IEquipeService, EquipeService>();
 builder.Services.AddTransient<ICargoService, CargoService>();
 builder.Services.AddTransient<ICargoDAL, CargoDAL>();
 builder.Services.AddTransient<IEquipeDAL, EquipeDAL>();
+builder.Services.AddTransient<ICompromissoDAL, CompromissoDAL>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.AddDbContext<DataBaseDbContext>(options => options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection"));
-builder.Services.AddDbContext<DataBaseDbContext>(options =>
-            options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection2"));
-builder.Services.AddDbContext<DataBaseDbContext>(options =>
-            options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection3"));
+builder.Services.AddDbContext<DataBaseDbContext>(options => options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection").UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection2").UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection3"));
 
 var app = builder.Build();
 

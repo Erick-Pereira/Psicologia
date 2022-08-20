@@ -1,6 +1,6 @@
 ﻿namespace BusinessLogicalLayer.Validators.FuncionarioValidator
 {
-    internal static class Validator
+    internal class Validator
     {
         public static bool IsCpf(string cpf)
         {

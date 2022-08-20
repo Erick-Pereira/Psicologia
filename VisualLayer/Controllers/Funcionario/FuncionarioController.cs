@@ -27,6 +27,7 @@ namespace VisualLayer.Controllers.Funcionario
         [HttpGet]
         public async Task<IActionResult> Criar()
         {
+            ViewBag.Cargos = _CargoService.GetAll().Result.Data;
             return View();
         }
 

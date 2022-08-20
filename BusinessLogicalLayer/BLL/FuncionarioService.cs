@@ -54,6 +54,8 @@ namespace BusinessLogicalLayer.BLL
         public async Task<Response> Insert(Funcionario funcionario)
         {
             funcionario.Senha = "123456789".Hash();
+            funcionario.IsAtivo = true;
+            funcionario.IsFirstLogin = true;
             InsertFuncionarioValidator validationRules = new InsertFuncionarioValidator();
             Response response = validationRules.Validate(funcionario).ToResponse();
             if (!response.HasSuccess)
@@ -65,16 +67,7 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<Response> Update(Funcionario funcionario)
         {
-            UpdateFuncionarioValidator validationRules = new UpdateFuncionarioValidator();
-            Response response = validationRules.Validate(funcionario).ToResponse();
-            if (!response.HasSuccess)
-            {
-                return response;
-            }
-            return await _funcionarioDAL.Update(funcionario);
-        }
-
-        /*public Response UpdateFuncionarioComEndereco(FuncionarioComEndereco funcionarioComEndereco)
+            /*public Response UpdateFuncionarioComEndereco(FuncionarioComEndereco funcionarioComEndereco)
         {
             Response response = new Response();
             FuncionarioValidator funcionarioValidator = new FuncionarioValidator();
@@ -256,5 +249,13 @@ namespace BusinessLogicalLayer.BLL
             //scope.Dispose();
             return response;
         }*/
+            UpdateFuncionarioValidator validationRules = new UpdateFuncionarioValidator();
+            Response response = validationRules.Validate(funcionario).ToResponse();
+            if (!response.HasSuccess)
+            {
+                return response;
+            }
+            return await _funcionarioDAL.Update(funcionario);
+        }
     }
 }

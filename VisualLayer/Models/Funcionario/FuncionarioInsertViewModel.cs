@@ -1,5 +1,4 @@
 ﻿using Shared.Constants;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace VisualLayer.Models.Funcionario
@@ -15,7 +14,7 @@ namespace VisualLayer.Models.Funcionario
         public string Email { get; set; }
 
         [Required(ErrorMessage = "O CPF deve ser informado.")]
-        [StringLength(FuncionarioConstants.TAMANHO_CPF, ErrorMessage = "CPF deve conter 11 caracteres")]
+        [StringLength((FuncionarioConstants.TAMANHO_CPF) + 3, ErrorMessage = "CPF deve conter 11 caracteres")]
         [Display(Name = "CPF")]
         public string Cpf { get; set; }
 

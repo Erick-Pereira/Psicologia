@@ -23,5 +23,12 @@ namespace BusinessLogicalLayer.Extensions
                 return builder.ToString();
             }
         }
+
+        public static string StringCleaner(this string info)
+        {
+            info = info.Replace("R", "").Replace("$", "").Replace(",", "").Replace(".", "").Replace("(", "").Replace(")", "").Replace("-", "");
+
+            return info;
+        }
     }
 }

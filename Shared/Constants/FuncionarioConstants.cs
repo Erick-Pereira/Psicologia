@@ -26,8 +26,10 @@
 
         public static string MENSAGEM_ERRO_CPF_COMPRIMENTO
         { get { return $"CPF deve conter {TAMANHO_CPF} caracteres"; } }
+
         public static string MENSAGEM_ERRO_EMAIL_COMPRIMENTO
         { get { return $"Email deve conter entre {TAMANHO_MINIMO_EMAIL} e {TAMANHO_MAXIMO_EMAIL} caracteres."; } }
+
         public static string MENSAGEM_ERRO_NOME_COMPRIMENTO
         { get { return $"Nome deve conter entre {TAMANHO_MINIMO_NOME} e {TAMANHO_MAXIMO_NOME} caracteres."; } }
     }

@@ -8,7 +8,6 @@ namespace DataAcessLayer.Mapping
     {
         public void Configure(EntityTypeBuilder<Bairro> builder)
         {
-            builder.Property(b => b.Cidade).IsUnicode(false).IsRequired();
             builder.Property(b => b.NomeBairro).IsUnicode(false).IsRequired();
             builder.ToTable("BAIRROS");
         }

@@ -20,30 +20,36 @@ namespace DataAcessLayer.Impl
             try
             {
                 await _db.SaveChangesAsync();
-                return ResponseFactory.CreateSuccessResponse();
+                return ResponseFactory<Response>.CreateSuccessResponse();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return ResponseFactory.CreateFailureResponse();
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
             }
         }
 
         public async Task<DataResponse<Funcionario>> GetAll()
         {
-            DataResponse<Funcionario> dataResponse = new()
+            try
             {
-                Data = await _db.Funcionario.ToListAsync()
-            };
-            return dataResponse;
+                return ResponseFactory<Funcionario>.CreateSuccessDataResponse(await _db.Funcionario.ToListAsync());
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public async Task<SingleResponse<Funcionario>> GetByID(int id)
         {
-            SingleResponse<Funcionario> singleResponse = new()
+            try
             {
-                Item = await _db.Funcionario.FindAsync(id)
-            };
-            return singleResponse;
+                return ResponseFactory<Funcionario>.CreateSuccessItemResponse(await _db.Funcionario.FindAsync(id));
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Funcionario>.CreateFailureItemResponse(ex);
+            }
         }
 
         public async Task<Response> Insert(Funcionario funcionario)
@@ -52,11 +58,11 @@ namespace DataAcessLayer.Impl
             try
             {
                 await _db.SaveChangesAsync();
-                return ResponseFactory.CreateSuccessResponse();
+                return ResponseFactory<Response>.CreateSuccessResponse();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return ResponseFactory.CreateFailureResponse();
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
             }
         }
 
@@ -66,11 +72,11 @@ namespace DataAcessLayer.Impl
             try
             {
                 await _db.SaveChangesAsync();
-                return ResponseFactory.CreateSuccessResponse();
+                return ResponseFactory<Response>.CreateSuccessResponse();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return ResponseFactory.CreateFailureResponse();
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
             }
         }
 
@@ -78,19 +84,11 @@ namespace DataAcessLayer.Impl
         {
             try
             {
-                SingleResponse<int> singleResponse = new()
-                {
-                    Item = await _db.Funcionario.Where(f => f.Email == funcionario.Email && f.Senha == funcionario.Senha).CountAsync()
-                };
-                return singleResponse;
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Funcionario.Where(f => f.Email == funcionario.Email && f.Senha == funcionario.Senha).CountAsync());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new SingleResponse<int>()
-                {
-                    HasSuccess = false,
-                    Message = "Erro no banco de dados, contate o adm"
-                };
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
             }
         }
     }

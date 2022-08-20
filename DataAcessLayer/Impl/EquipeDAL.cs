@@ -20,30 +20,44 @@ namespace DataAcessLayer.Impl
             try
             {
                 await _db.SaveChangesAsync();
-                return ResponseFactory.CreateSuccessResponse();
+                return ResponseFactory<Response>.CreateSuccessResponse();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return ResponseFactory.CreateFailureResponse();
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
             }
         }
 
         public async Task<DataResponse<Equipe>> GetAll()
         {
-            DataResponse<Equipe> dataResponse = new()
+            try
             {
-                Data = await _db.Equipe.ToListAsync()
-            };
-            return dataResponse;
+                DataResponse<Equipe> dataResponse = new()
+                {
+                    Data = await _db.Equipe.ToListAsync()
+                };
+                return dataResponse;
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Equipe>.CreateFailureDataResponse(ex);
+            }
         }
 
         public async Task<SingleResponse<Equipe>> GetByID(int id)
         {
-            SingleResponse<Equipe> singleResponse = new()
+            try
             {
-                Item = await _db.Equipe.FindAsync(id)
-            };
-            return singleResponse;
+                SingleResponse<Equipe> singleResponse = new()
+                {
+                    Item = await _db.Equipe.FindAsync(id)
+                };
+                return singleResponse;
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Equipe>.CreateFailureItemResponse(ex);
+            }
         }
 
         public async Task<Response> Insert(Equipe equipe)
@@ -52,11 +66,11 @@ namespace DataAcessLayer.Impl
             try
             {
                 await _db.SaveChangesAsync();
-                return ResponseFactory.CreateSuccessResponse();
+                return ResponseFactory<Response>.CreateSuccessResponse();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return ResponseFactory.CreateFailureResponse();
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
             }
         }
 
@@ -66,11 +80,11 @@ namespace DataAcessLayer.Impl
             try
             {
                 await _db.SaveChangesAsync();
-                return ResponseFactory.CreateSuccessResponse();
+                return ResponseFactory<Response>.CreateSuccessResponse();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return ResponseFactory.CreateFailureResponse();
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
             }
         }
     }

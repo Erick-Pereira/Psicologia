@@ -2,13 +2,10 @@
 @{
     ViewData["Title"] = "Criar";
 }
+@using Entities
+<h1>Criar</h1>
 
-@*<h1>Criar</h1>
-
-<h4>FuncionarioInsertViewModel</h4>*@
-<head>
-    <title> Cadastrar Funcionario </title>
-</head>
+<h4>FuncionarioInsertViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,16 +22,32 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                    <label >Cargo:</label>
-                    <select asp-for="Cargo" class="Cargo">
-                        <option value=></option>
-                    </select>
+                <label asp-for="Cpf" class="control-label"></label>
+                <input asp-for="Cpf" class="form-control" />
+                <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
-                
+            <div class="form-group">
+                <label asp-for="Cargo" class="control-label">Cargo</label>
+
+                @{
+                    List<Cargo> cargos = ViewBag.Cargos;
+                }
+                <select asp-for="Cargo" class="form-control">
+                    @for (int i = 0; i < cargos.Count; i++)
+                    {
+                        <option value="@cargos[i]">@cargos[i].Funcao</option>
+                    }
+                </select>
+
+
+                <span asp-validation-for="Cargo" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-
+            <div>
+                <a asp-controller ="Cargo" asp-action="Criar">Criar Cargo</a>
+            </div>
         </form>
     </div>
 </div>
