@@ -8,6 +8,9 @@ namespace DataAcessLayer.Mapping
     {
         public void Configure(EntityTypeBuilder<Cargo> builder)
         {
+            builder.HasIndex(c => c.Funcao).IsUnique();
+            builder.Property(c => c.Funcao).IsUnicode(false).IsRequired();
+            builder.Property(c => c.NivelPermissao).IsRequired();
             builder.ToTable("CARGOS");
         }
     }

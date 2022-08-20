@@ -13,9 +13,8 @@ namespace Entities
         public string Foto { get; set; }
         public Genero Genero { get; set; }
         public EstadoCivil EstadoCivil { get; set; }
-        public string CarteiraTrabalho { get; set; }
         public bool IsFirstLogin { get; set; }
-        public bool HasRequiredTest { get; set; } 
+        public bool HasRequiredTest { get; set; }
         public DateTime DataNascimento { get; set; }
         public int EnderecoID { get; set; }
         public Endereco Endereco { get; set; }

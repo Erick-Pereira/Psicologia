@@ -1,15 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Shared.Constants;
+using System.ComponentModel.DataAnnotations;
 
 namespace VisualLayer.Models.Funcionario
 {
     public class FuncionarioUpdateViewModel
     {
         [Required(ErrorMessage = "O Nome deve ser informado.")]
-        [StringLength(100, MinimumLength = 3, ErrorMessage = "O Nome deve conter entre 3 e 100 caracteres.")]
+        [StringLength(FuncionarioConstants.TAMANHO_MAXIMO_NOME, MinimumLength = FuncionarioConstants.TAMANHO_MINIMO_NOME, ErrorMessage = "O Nome deve conter entre 3 e 100 caracteres.")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "O CPF deve ser informado.")]
-        [StringLength(11, MinimumLength = 11, ErrorMessage = "O CPF deve conter 11 caracteres.")]
+        [StringLength(FuncionarioConstants.TAMANHO_CPF, ErrorMessage = "O CPF deve conter 11 caracteres.")]
         [Display(Name = "CPF")]
         public string Cpf { get; set; }
 
