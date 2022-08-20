@@ -1,8 +1,10 @@
-﻿@model VisualLayer.Models.Funcionario.FuncionarioInsertViewModel
+﻿@using Entities
+@model VisualLayer.Models.Funcionario.FuncionarioInsertViewModel
 @{
+    List<Cargo> cargos = ViewBag.Cargos;
     ViewData["Title"] = "Criar";
 }
-@using Entities
+
 <h1>Criar</h1>
 
 <h4>FuncionarioInsertViewModel</h4>
@@ -27,21 +29,23 @@
                 <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Cargo" class="control-label">Cargo</label>
-
-                @{
-                    List<Cargo> cargos = ViewBag.Cargos;
-                }
-                <select asp-for="Cargo" class="form-control">
+                <label asp-for="CargoId" class="control-label">Cargo</label>
+                <select asp-for="CargoId" class="form-control">
                     @for (int i = 0; i < cargos.Count; i++)
                     {
-                        <option value="@cargos[i]">@cargos[i].Funcao</option>
+                        <option value="@cargos[i].ID">@cargos[i].Funcao</option>
                     }
                 </select>
-
-
-                <span asp-validation-for="Cargo" class="text-danger"></span>
+                <span asp-validation-for="CargoId" class="text-danger"></span>
             </div>
+            @if (ViewBag.Errors != null)
+            {
+                <div class="form-group">
+                    <p class="bg-warning">
+                        @ViewBag.Errors
+                    </p>
+                </div>
+            }
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

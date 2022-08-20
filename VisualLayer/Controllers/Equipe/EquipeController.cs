@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Shared;
+using VisualLayer.Models.Equipe;
 
 namespace VisualLayer.Controllers.Equipe
 {
@@ -14,8 +16,18 @@ namespace VisualLayer.Controllers.Equipe
             _EquipeService = equipeService;
             _mapper = mapper;
         }
-
+        [HttpGet]
         public IActionResult Equipes()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Criar()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Criar(EquipeInsertViewModel equipeInsert)
         {
             return View();
         }

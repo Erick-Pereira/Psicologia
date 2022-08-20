@@ -15,6 +15,7 @@
         public const string MENSAGEM_ERRO_ESTADO_OBRIGATORIO = "Estado deve ser informado";
         public const string MENSAGEM_ERRO_NOME_OBRIGATORIO = "Nome deve ser informado.";
         public const string MENSAGEM_ERRO_RUA_OBRIGATORIA = "Rua deve ser informada";
+        public const string MENSAGEM_ERRO_CARGO_OBRIGATORIO = "Cargo deve ser informado";
         public const int TAMANHO_CPF = 11;
         public const int TAMANHO_MAXIMO_EMAIL = 100;
 
