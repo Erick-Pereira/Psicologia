@@ -16,5 +16,7 @@ namespace DataAcessLayer.Interfaces
         Task<DataResponse<Funcionario>> GetAll();
 
         Task<SingleResponse<int>> GetByLogin(Funcionario funcionario);
+
+        Task<SingleResponse<int>> Iniciar();
     }
 }

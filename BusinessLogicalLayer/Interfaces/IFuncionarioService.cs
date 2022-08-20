@@ -16,5 +16,7 @@ namespace BusinessLogicalLayer.Interfaces
         Task<DataResponse<Funcionario>> GetAll();
 
         Task<bool> Logar(Funcionario funcionario);
+
+        Task<SingleResponse<bool>> Iniciar();
     }
 }

@@ -1,5 +1,4 @@
-﻿using Entities;
-using VisualLayer.Models.Departamento;
+﻿using VisualLayer.Models.Departamento;
 
 namespace VisualLayer.Models.Equipe
 {

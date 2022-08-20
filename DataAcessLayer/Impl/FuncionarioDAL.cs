@@ -91,5 +91,17 @@ namespace DataAcessLayer.Impl
                 return ResponseFactory<int>.CreateFailureItemResponse(ex);
             }
         }
+
+        public async Task<SingleResponse<int>> Iniciar()
+        {
+            try
+            {
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Funcionario.Where(f => f.Cargo.NivelPermissao == 0).CountAsync());
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
+        }
     }
 }

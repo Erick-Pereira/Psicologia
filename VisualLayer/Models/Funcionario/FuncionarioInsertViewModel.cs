@@ -1,6 +1,5 @@
 ﻿using Shared.Constants;
 using System.ComponentModel.DataAnnotations;
-using VisualLayer.Models.Cargo;
 
 namespace VisualLayer.Models.Funcionario
 {

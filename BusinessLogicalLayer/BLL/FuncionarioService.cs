@@ -257,5 +257,11 @@ namespace BusinessLogicalLayer.BLL
             }
             return await _funcionarioDAL.Update(funcionario);
         }
+
+        public async Task<SingleResponse<bool>> Iniciar()
+        {
+            SingleResponse<int> singleResponse = await _funcionarioDAL.Iniciar();
+            return ResponseFactory<bool>.CreateSuccessItemResponse(singleResponse.Item < 1);
+        }
     }
 }

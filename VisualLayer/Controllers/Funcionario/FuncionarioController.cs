@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Interfaces;
-using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using VisualLayer.Models.Funcionario;
@@ -12,6 +11,7 @@ namespace VisualLayer.Controllers.Funcionario
         private readonly IFuncionarioService _FuncionarioService;
         private readonly ICargoService _CargoService;
         private readonly IMapper _mapper;
+
         public FuncionarioController(IFuncionarioService funcionarioService, IMapper mapper, ICargoService cargoService)
         {
             _CargoService = cargoService;
@@ -26,7 +26,7 @@ namespace VisualLayer.Controllers.Funcionario
 
         [HttpGet]
         public async Task<IActionResult> Criar()
-        { 
+        {
             ViewBag.Cargos = _CargoService.GetAll().Result.Data;
             return View();
         }

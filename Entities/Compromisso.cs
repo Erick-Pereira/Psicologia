@@ -6,6 +6,5 @@
         public DateTime DataFim { get; set; }
         public DateTime DataInicio { get; set; }
         public string Descricao { get; set; }
-        public ICollection<Funcionario> Funcionarios { get; set; }
     }
 }

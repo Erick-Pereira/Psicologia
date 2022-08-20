@@ -228,18 +228,14 @@ namespace DataAcessLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Celular")
-                        .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
-                    b.Property<int?>("CompromissoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Cpf")
                         .IsRequired()
-                        .HasMaxLength(11)
+                        .HasMaxLength(14)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(11)");
+                        .HasColumnType("varchar(14)");
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
@@ -251,14 +247,16 @@ namespace DataAcessLayer.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<int>("EnderecoID")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.Property<int>("EstadoCivil")
                         .HasColumnType("int");
 
                     b.Property<string>("Foto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
 
                     b.Property<int>("Genero")
                         .HasColumnType("int");
@@ -295,8 +293,6 @@ namespace DataAcessLayer.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CargoID");
-
-                    b.HasIndex("CompromissoId");
 
                     b.HasIndex("Cpf")
                         .IsUnique()
@@ -371,10 +367,6 @@ namespace DataAcessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Compromisso", null)
-                        .WithMany("Funcionarios")
-                        .HasForeignKey("CompromissoId");
-
                     b.HasOne("Entities.Endereco", "Endereco")
                         .WithMany()
                         .HasForeignKey("EnderecoID")
@@ -384,11 +376,6 @@ namespace DataAcessLayer.Migrations
                     b.Navigation("Cargo");
 
                     b.Navigation("Endereco");
-                });
-
-            modelBuilder.Entity("Entities.Compromisso", b =>
-                {
-                    b.Navigation("Funcionarios");
                 });
 
             modelBuilder.Entity("Entities.Equipe", b =>
