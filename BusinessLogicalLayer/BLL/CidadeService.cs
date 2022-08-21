@@ -21,7 +21,7 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<DataResponse<Cidade>> GetAll()
         {
-           return await _cidadeDAL.GetAll();
+            return await _cidadeDAL.GetAll();
         }
 
         public async Task<SingleResponse<Cidade>> GetByID(int id)
@@ -37,12 +37,12 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<Response> Insert(Cidade cidade)
         {
-            return await _cidadeDAL.Insert(cidade); 
+            return await _cidadeDAL.Insert(cidade);
         }
 
         public async Task<SingleResponse<int>> InsertReturnId(Cidade cidade)
         {
-            return await _cidadeDAL.InsertReturnId(cidade);  
+            return await _cidadeDAL.InsertReturnId(cidade);
         }
 
         public async Task<Response> Update(Cidade cidade)
