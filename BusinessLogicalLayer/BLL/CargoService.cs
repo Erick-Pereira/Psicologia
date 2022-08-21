@@ -29,9 +29,20 @@ namespace BusinessLogicalLayer.BLL
             return await _cargoDAL.GetByID(id);
         }
 
+        public async Task<SingleResponse<bool>> Iniciar()
+        {
+            SingleResponse<int> response = await _cargoDAL.Iniciar();
+            return ResponseFactory<bool>.CreateSuccessItemResponse(response.Item > 0);
+        }
+
         public async Task<Response> Insert(Cargo cargo)
         {
             return await _cargoDAL.Insert(cargo);
+        }
+
+        public async Task<SingleResponse<int>> InsertReturnId(Cargo cargo)
+        {
+            return await _cargoDAL.InsertReturnId(cargo);
         }
 
         public async Task<Response> Update(Cargo cargo)

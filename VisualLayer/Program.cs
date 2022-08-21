@@ -10,13 +10,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IFuncionarioService, FuncionarioService>();
-builder.Services.AddTransient<IFuncionarioDAL, FuncionarioDAL>();
-builder.Services.AddTransient<IEquipeService, EquipeService>();
-builder.Services.AddTransient<ICargoService, CargoService>();
+builder.Services.AddTransient<IBairroDAL, BairroDAL>(); 
+builder.Services.AddTransient<IBairroService, BairroService>();
 builder.Services.AddTransient<ICargoDAL, CargoDAL>();
-builder.Services.AddTransient<IEquipeDAL, EquipeDAL>();
+builder.Services.AddTransient<ICargoService, CargoService>();
+builder.Services.AddTransient<ICidadeDAL, CidadeDAL>();
+builder.Services.AddTransient<ICidadeService, CidadeService>();
 builder.Services.AddTransient<ICompromissoDAL, CompromissoDAL>();
+builder.Services.AddTransient<IEnderecoDAL, EnderecoDAL>();
+builder.Services.AddTransient<IEnderecoService, EnderecoService>();
+builder.Services.AddTransient<IEquipeDAL, EquipeDAL>();
+builder.Services.AddTransient<IEquipeService, EquipeService>();
+builder.Services.AddTransient<IEstadoDAL, EstadoDAL>();
+builder.Services.AddTransient<IEstadoService, EstadoService>();
+builder.Services.AddTransient<IFuncionarioDAL, FuncionarioDAL>();
+builder.Services.AddTransient<IFuncionarioService, FuncionarioService>();
+builder.Services.AddTransient<IInicioService, InicioService>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddDbContext<DataBaseDbContext>(options => options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection").UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection2").UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection3"));

@@ -33,6 +33,7 @@ namespace BusinessLogicalLayer.BLL
                         {
                             if (!_estadoService.Iniciar().Result.Item)
                             {
+                                if(!)
                                 _funcionarioService.Insert(
                                     new Funcionario()
                                     {

@@ -32,7 +32,7 @@ namespace BusinessLogicalLayer.BLL
         public async Task<SingleResponse<bool>> Iniciar()
         {
             SingleResponse<int> response = await _enderecoDAL.Iniciar();
-            return ResponseFactory<bool>.CreateSuccessItemResponse(response.Item < 1);
+            return ResponseFactory<bool>.CreateSuccessItemResponse(response.Item > 0);
         }
 
         public async Task<Response> Insert(Endereco endereco)

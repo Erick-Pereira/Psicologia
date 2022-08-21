@@ -52,6 +52,18 @@ namespace DataAcessLayer.Impl
             }
         }
 
+        public async Task<SingleResponse<int>> Iniciar()
+        {
+            try
+            {
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Cargo.Where(c => c.NivelPermissao == 0).CountAsync());
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
+        }
+
         public async Task<Response> Insert(Cargo cargo)
         {
             _db.Cargo.Add(cargo);
@@ -63,6 +75,31 @@ namespace DataAcessLayer.Impl
             catch (Exception ex)
             {
                 return ResponseFactory<Response>.CreateFailureResponse(ex);
+            }
+        }
+
+        public async Task<SingleResponse<int>> InsertReturnId(Cargo cargo)
+        {
+            _db.Cargo.Add(cargo);
+            try
+            {
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.SaveChangesAsync());
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
+        }
+
+        public async Task<SingleResponse<Cargo>> IniciarReturnId()
+        {
+            try
+            {
+                return ResponseFactory<Cargo>.CreateSuccessItemResponse(await _db.Cargo.FirstAsync(c => c.NivelPermissao == 0));
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Cargo>.CreateFailureItemResponse(ex);
             }
         }
 
