@@ -1,44 +1,53 @@
 ﻿using BusinessLogicalLayer.Interfaces;
+using DataAcessLayer.Interfaces;
 using Entities;
 using Shared;
 
 namespace BusinessLogicalLayer.BLL
 {
-    internal class BairroService : IBairroService
+    public class BairroService : IBairroService
     {
-        public Task<Response> Delete(Bairro bairro)
+        private readonly IBairroDAL _bairroDAL;
+
+        public BairroService(IBairroDAL bairroDAL)
         {
-            throw new NotImplementedException();
+            _bairroDAL = bairroDAL;
         }
 
-        public Task<DataResponse<Bairro>> GetAll()
+        public async Task<Response> Delete(Bairro bairro)
         {
-            throw new NotImplementedException();
+            return await _bairroDAL.Delete(bairro);
         }
 
-        public Task<SingleResponse<Bairro>> GetByID(int id)
+        public async Task<DataResponse<Bairro>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _bairroDAL.GetAll();
         }
 
-        public Task<SingleResponse<bool>> Iniciar()
+        public async Task<SingleResponse<Bairro>> GetByID(int id)
         {
-            throw new NotImplementedException();
+            return await _bairroDAL.GetByID(id);
         }
 
-        public Task<Response> Insert(Bairro bairro)
+        public async Task<SingleResponse<bool>> Iniciar()
         {
-            throw new NotImplementedException();
+            SingleResponse<int> response = await _bairroDAL.Iniciar();
+            return ResponseFactory<bool>.CreateSuccessItemResponse(response.Item < 1);
         }
 
-        public Task<SingleResponse<int>> InsertReturnId(Bairro bairro)
+        public async Task<Response> Insert(Bairro bairro)
         {
-            throw new NotImplementedException();
+            return await _bairroDAL.Insert(bairro);
         }
 
-        public Task<Response> Update(Bairro bairro)
+        public async Task<SingleResponse<int>> InsertReturnId(Bairro bairro)
         {
-            throw new NotImplementedException();
+            return await _bairroDAL.InsertReturnId(bairro);
+        }
+
+        public async Task<Response> Update(Bairro bairro)
+        {
+            return await _bairroDAL.Update(bairro);
         }
     }
 }

@@ -14,19 +14,19 @@ namespace BusinessLogicalLayer.BLL
             _enderecoDAL = enderecoDAL;
         }
 
-        public Task<Response> Delete(Endereco endereco)
+        public async Task<Response> Delete(Endereco endereco)
         {
-            throw new NotImplementedException();
+            return await _enderecoDAL.Delete(endereco);
         }
 
-        public Task<DataResponse<Endereco>> GetAll()
+        public async Task<DataResponse<Endereco>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _enderecoDAL.GetAll();
         }
 
-        public Task<SingleResponse<Endereco>> GetByID(int id)
+        public async Task<SingleResponse<Endereco>> GetByID(int id)
         {
-            throw new NotImplementedException();
+            return await _enderecoDAL.GetByID(id);
         }
 
         public async Task<SingleResponse<bool>> Iniciar()
@@ -35,24 +35,18 @@ namespace BusinessLogicalLayer.BLL
             return ResponseFactory<bool>.CreateSuccessItemResponse(response.Item < 1);
         }
 
-        public Task<Response> Insert(Endereco endereco)
+        public async Task<Response> Insert(Endereco endereco)
         {
-            throw new NotImplementedException();
+            return await _enderecoDAL.Insert(endereco);
+        }
+        public async Task<SingleResponse<int>> InsertReturnId(Endereco endereco)
+        {
+            return await _enderecoDAL.InsertReturnId(endereco);
         }
 
-        public Task<SingleResponse<int>> InsertReturnId(Bairro bairro)
+        public async Task<Response> Update(Endereco endereco)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<SingleResponse<int>> InsertReturnId(Endereco endereco)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Response> Update(Endereco endereco)
-        {
-            throw new NotImplementedException();
+            return await _enderecoDAL.Update(endereco);
         }
     }
 }

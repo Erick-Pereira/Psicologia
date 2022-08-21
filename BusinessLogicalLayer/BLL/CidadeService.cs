@@ -1,44 +1,53 @@
 ﻿using BusinessLogicalLayer.Interfaces;
+using DataAcessLayer.Interfaces;
 using Entities;
 using Shared;
 
 namespace BusinessLogicalLayer.BLL
 {
-    internal class CidadeService : ICidadeService
+    public class CidadeService : ICidadeService
     {
-        public Task<Response> Delete(Cidade cidade)
+        private readonly ICidadeDAL _cidadeDAL;
+
+        public CidadeService(ICidadeDAL cidadeDAL)
         {
-            throw new NotImplementedException();
+            _cidadeDAL = cidadeDAL;
         }
 
-        public Task<DataResponse<Cidade>> GetAll()
+        public async Task<Response> Delete(Cidade cidade)
         {
-            throw new NotImplementedException();
+            return await _cidadeDAL.Delete(cidade);
         }
 
-        public Task<SingleResponse<Cidade>> GetByID(int id)
+        public async Task<DataResponse<Cidade>> GetAll()
         {
-            throw new NotImplementedException();
+           return await _cidadeDAL.GetAll();
         }
 
-        public Task<SingleResponse<bool>> Iniciar()
+        public async Task<SingleResponse<Cidade>> GetByID(int id)
         {
-            throw new NotImplementedException();
+            return await _cidadeDAL.GetByID(id);
         }
 
-        public Task<Response> Insert(Cidade cidade)
+        public async Task<SingleResponse<bool>> Iniciar()
         {
-            throw new NotImplementedException();
+            SingleResponse<int> response = await _cidadeDAL.Iniciar();
+            return ResponseFactory<bool>.CreateSuccessItemResponse(response.Item < 1);
         }
 
-        public Task<SingleResponse<int>> InsertReturnId(Bairro bairro)
+        public async Task<Response> Insert(Cidade cidade)
         {
-            throw new NotImplementedException();
+            return await _cidadeDAL.Insert(cidade); 
         }
 
-        public Task<Response> Update(Cidade cidade)
+        public async Task<SingleResponse<int>> InsertReturnId(Cidade cidade)
         {
-            throw new NotImplementedException();
+            return await _cidadeDAL.InsertReturnId(cidade);  
+        }
+
+        public async Task<Response> Update(Cidade cidade)
+        {
+            return await _cidadeDAL.Update(cidade);
         }
     }
 }

@@ -17,6 +17,6 @@ namespace BusinessLogicalLayer.Interfaces
 
         Task<SingleResponse<Estado>> GetByID(int id);
 
-        Task<SingleResponse<int>> InsertReturnId(Bairro bairro);
+        Task<SingleResponse<int>> InsertReturnId(Estado estado);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BusinessLogicalLayer.Interfaces;
+using DataAcessLayer.Interfaces;
 using Entities;
 using Shared;
 
@@ -6,39 +7,47 @@ namespace BusinessLogicalLayer.BLL
 {
     public class EstadoService : IEstadoService
     {
-        public Task<Response> Delete(Estado estado)
+        private readonly IEstadoDAL _estadoDAL;
+
+        public EstadoService(IEstadoDAL estadoDAL)
         {
-            throw new NotImplementedException();
+            _estadoDAL = estadoDAL;
         }
 
-        public Task<DataResponse<Estado>> GetAll()
+        public async Task<Response> Delete(Estado estado)
         {
-            throw new NotImplementedException();
+            return await _estadoDAL.Delete(estado);
         }
 
-        public Task<SingleResponse<Estado>> GetByID(int id)
+        public async Task<DataResponse<Estado>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _estadoDAL.GetAll();
         }
 
-        public Task<SingleResponse<bool>> Iniciar()
+        public async Task<SingleResponse<Estado>> GetByID(int id)
         {
-            throw new NotImplementedException();
+            return await _estadoDAL.GetByID(id);
         }
 
-        public Task<Response> Insert(Estado estado)
+        public async Task<SingleResponse<bool>> Iniciar()
         {
-            throw new NotImplementedException();
+            SingleResponse<int> response = await _estadoDAL.Iniciar();
+            return ResponseFactory<bool>.CreateSuccessItemResponse(response.Item < 1);
         }
 
-        public Task<SingleResponse<int>> InsertReturnId(Bairro bairro)
+        public async Task<Response> Insert(Estado estado)
         {
-            throw new NotImplementedException();
+            return await _estadoDAL.Insert(estado);
         }
 
-        public Task<Response> Update(Estado estado)
+        public async Task<SingleResponse<int>> InsertReturnId(Estado estado)
         {
-            throw new NotImplementedException();
+            return await _estadoDAL.InsertReturnId(estado);
+        }
+
+        public async Task<Response> Update(Estado estado)
+        {
+            return await _estadoDAL.Update(estado);
         }
     }
 }
