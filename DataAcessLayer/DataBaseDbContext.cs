@@ -15,8 +15,6 @@ namespace DataAcessLayer
         public DbSet<Cidade> Cidade { get; set; }
         public DbSet<Estado> Estado { get; set; }
 
-
-
         public DataBaseDbContext(DbContextOptions<DataBaseDbContext> options)
     : base(options)
         { }

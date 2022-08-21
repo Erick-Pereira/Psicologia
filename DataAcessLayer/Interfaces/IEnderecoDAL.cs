@@ -16,7 +16,7 @@ namespace DataAcessLayer.Interfaces
         Task<DataResponse<Endereco>> GetAll();
 
         Task<SingleResponse<int>> Iniciar();
-        Task<SingleResponse<int>> InsertReturnId(Endereco endereco);
 
+        Task<SingleResponse<int>> InsertReturnId(Endereco endereco);
     }
 }

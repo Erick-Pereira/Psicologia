@@ -1,10 +1,5 @@
 ﻿using Entities;
 using Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAcessLayer.Interfaces
 {
@@ -12,7 +7,7 @@ namespace DataAcessLayer.Interfaces
     {
         Task<Response> Insert(Cidade cidade);
 
-        Task<Response> Update(Cidade cidade );
+        Task<Response> Update(Cidade cidade);
 
         Task<Response> Delete(Cidade cidade);
 
@@ -21,6 +16,7 @@ namespace DataAcessLayer.Interfaces
         Task<DataResponse<Cidade>> GetAll();
 
         Task<SingleResponse<int>> Iniciar();
+
         Task<SingleResponse<int>> InsertReturnId(Cidade cidade);
     }
 }

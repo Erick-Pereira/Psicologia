@@ -2,11 +2,6 @@
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAcessLayer.Impl
 {
@@ -87,7 +82,7 @@ namespace DataAcessLayer.Impl
         {
             _db.Bairro.Add(bairro);
             try
-            {                
+            {
                 return ResponseFactory<int>.CreateSuccessItemResponse(await _db.SaveChangesAsync());
             }
             catch (Exception ex)

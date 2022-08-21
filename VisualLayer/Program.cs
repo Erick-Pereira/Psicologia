@@ -4,7 +4,6 @@ using DataAcessLayer;
 using DataAcessLayer.Impl;
 using DataAcessLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Drawing.Text;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);

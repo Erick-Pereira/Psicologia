@@ -1,11 +1,6 @@
 ﻿using BusinessLogicalLayer.Interfaces;
 using Entities;
 using Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogicalLayer.BLL
 {
@@ -35,6 +30,7 @@ namespace BusinessLogicalLayer.BLL
         {
             throw new NotImplementedException();
         }
+
         public Task<SingleResponse<int>> InsertReturnId(Bairro bairro)
         {
             throw new NotImplementedException();
