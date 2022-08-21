@@ -21,5 +21,7 @@ namespace DataAcessLayer.Interfaces
         Task<DataResponse<Estado>> GetAll();
 
         Task<SingleResponse<int>> Iniciar();
+        Task<SingleResponse<int>> InsertReturnId(Estado estado);
+
     }
 }

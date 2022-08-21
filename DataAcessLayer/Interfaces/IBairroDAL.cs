@@ -19,6 +19,9 @@ namespace DataAcessLayer.Interfaces
         Task<SingleResponse<Bairro>> GetByID(int id);
 
         Task<DataResponse<Bairro>> GetAll();
+
         Task<SingleResponse<int>> Iniciar();
+
+        Task<SingleResponse<int>> InsertReturnId(Bairro bairro);
     }
 }

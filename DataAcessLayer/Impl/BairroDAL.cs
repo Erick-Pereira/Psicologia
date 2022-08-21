@@ -59,7 +59,14 @@ namespace DataAcessLayer.Impl
 
         public async Task<SingleResponse<int>> Iniciar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Bairro.Where(b => b.NomeBairro == "").CountAsync());
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
         }
 
         public async Task<Response> Insert(Bairro bairro)
@@ -73,6 +80,19 @@ namespace DataAcessLayer.Impl
             catch (Exception ex)
             {
                 return ResponseFactory<Response>.CreateFailureResponse(ex);
+            }
+        }
+
+        public async Task<SingleResponse<int>> InsertReturnId(Bairro bairro)
+        {
+            _db.Bairro.Add(bairro);
+            try
+            {                
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.SaveChangesAsync());
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
             }
         }
 

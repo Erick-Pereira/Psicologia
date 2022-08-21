@@ -16,10 +16,11 @@ namespace DataAcessLayer.Interfaces
 
         Task<Response> Delete(Cidade cidade);
 
-        Task<SingleResponse<Cidade >> GetByID(int id);
+        Task<SingleResponse<Cidade>> GetByID(int id);
 
         Task<DataResponse<Cidade>> GetAll();
 
         Task<SingleResponse<int>> Iniciar();
+        Task<SingleResponse<int>> InsertReturnId(Cidade cidade);
     }
 }

@@ -45,6 +45,11 @@ namespace BusinessLogicalLayer.BLL
             throw new NotImplementedException();
         }
 
+        public Task<SingleResponse<int>> InsertReturnId(Endereco endereco)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Response> Update(Endereco endereco)
         {
             throw new NotImplementedException();

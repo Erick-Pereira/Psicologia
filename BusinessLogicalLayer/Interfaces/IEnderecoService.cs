@@ -11,6 +11,6 @@ namespace BusinessLogicalLayer.Interfaces
         Task<Response> Update(Endereco endereco);
         Task<SingleResponse<bool>> Iniciar();
         Task<SingleResponse<Endereco>> GetByID(int id);
-        Task<SingleResponse<int>> InsertReturnId(Bairro bairro);
+        Task<SingleResponse<int>> InsertReturnId(Endereco endereco);
     }
 }

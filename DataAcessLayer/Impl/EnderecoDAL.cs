@@ -78,6 +78,19 @@ namespace DataAcessLayer.Impl
             }
         }
 
+        public async Task<SingleResponse<int>> InsertReturnId(Endereco endereco)
+        {
+            _db.Endereco.Add(endereco);
+            try
+            {
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.SaveChangesAsync());
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
+        }
+
         public async Task<Response> Update(Endereco endereco)
         {
             _db.Endereco.Update(endereco);
