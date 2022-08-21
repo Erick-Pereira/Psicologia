@@ -10,10 +10,12 @@ namespace BusinessLogicalLayer.BLL
     public class FuncionarioService : IFuncionarioService
     {
         private readonly IFuncionarioDAL _funcionarioDAL;
+        private readonly IInicioService _inicioService;
 
-        public FuncionarioService(IFuncionarioDAL ifuncionarioDAL)
+        public FuncionarioService(IFuncionarioDAL funcionarioDAL, IInicioService inicioService)
         {
-            _funcionarioDAL = ifuncionarioDAL;
+            _funcionarioDAL = funcionarioDAL;
+            _inicioService = inicioService;
         }
 
         public async Task<Response> Delete(Funcionario funcionario)
@@ -44,6 +46,7 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<bool> Logar(Funcionario funcionario)
         {
+            _inicioService.Iniciar();
             if (GetByLogin(funcionario).Result.Item == 1)
             {
                 return true;

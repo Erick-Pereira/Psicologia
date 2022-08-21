@@ -2,7 +2,7 @@
 
 namespace BusinessLogicalLayer.Interfaces
 {
-    internal interface IInicioService
+    public interface IInicioService
     {
         Task<Response> Iniciar();
     }
