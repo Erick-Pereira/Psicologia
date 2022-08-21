@@ -11,6 +11,11 @@ namespace DataAcessLayer
         public DbSet<Cargo> Cargo { get; set; }
         public DbSet<Compromisso> Compromisso { get; set; }
         public DbSet<Endereco> Endereco { get; set; }
+        public DbSet<Bairro> Bairro { get; set; }
+        public DbSet<Cidade> Cidade { get; set; }
+        public DbSet<Estado> Estado { get; set; }
+
+
 
         public DataBaseDbContext(DbContextOptions<DataBaseDbContext> options)
     : base(options)

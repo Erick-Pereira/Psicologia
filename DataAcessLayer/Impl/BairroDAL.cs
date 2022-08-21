@@ -2,21 +2,26 @@
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Shared;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DataAcessLayer.Impl
 {
-    public class EnderecoDAL : IEnderecoDAL
+    public class BairroDAL : IBairroDAL
     {
         private readonly DataBaseDbContext _db;
 
-        public EnderecoDAL(DataBaseDbContext db)
+        public BairroDAL(DataBaseDbContext db)
         {
             this._db = db;
         }
 
-        public async Task<Response> Delete(Endereco endereco)
+        public async Task<Response> Delete(Bairro bairro)
         {
-            _db.Endereco.Remove(endereco);
+            _db.Bairro.Remove(bairro);
             try
             {
                 await _db.SaveChangesAsync();
@@ -28,45 +33,38 @@ namespace DataAcessLayer.Impl
             }
         }
 
-        public async Task<DataResponse<Endereco>> GetAll()
+        public async Task<DataResponse<Bairro>> GetAll()
         {
             try
             {
-                return ResponseFactory<Endereco>.CreateSuccessDataResponse(await _db.Endereco.ToListAsync());
+                return ResponseFactory<Bairro>.CreateSuccessDataResponse(await _db.Bairro.ToListAsync());
             }
             catch (Exception ex)
             {
-                return ResponseFactory<Endereco>.CreateFailureDataResponse(ex);
+                return ResponseFactory<Bairro>.CreateFailureDataResponse(ex);
             }
         }
 
-        public async Task<SingleResponse<Endereco>> GetByID(int id)
+        public async Task<SingleResponse<Bairro>> GetByID(int id)
         {
             try
             {
-                return ResponseFactory<Endereco>.CreateSuccessItemResponse(await _db.Endereco.FindAsync(id));
+                return ResponseFactory<Bairro>.CreateSuccessItemResponse(await _db.Bairro.FindAsync(id));
             }
             catch (Exception ex)
             {
-                return ResponseFactory<Endereco>.CreateFailureItemResponse(ex);
+                return ResponseFactory<Bairro>.CreateFailureItemResponse(ex);
             }
         }
 
         public async Task<SingleResponse<int>> Iniciar()
         {
-            try
-            {
-                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Endereco.Where(e => e.CEP == "" && e.Rua == "" && e.Bairro.NomeBairro == "" && e.Bairro.Cidade.NomeCidade == "" && e.Bairro.Cidade.Estado.NomeEstado == "").CountAsync());
-            }
-            catch (Exception ex)
-            {
-                return ResponseFactory<int>.CreateFailureItemResponse(ex);
-            }
+            throw new NotImplementedException();
         }
 
-        public async Task<Response> Insert(Endereco endereco)
+        public async Task<Response> Insert(Bairro bairro)
         {
-            _db.Endereco.Add(endereco);
+            _db.Bairro.Add(bairro);
             try
             {
                 await _db.SaveChangesAsync();
@@ -78,9 +76,9 @@ namespace DataAcessLayer.Impl
             }
         }
 
-        public async Task<Response> Update(Endereco endereco)
+        public async Task<Response> Update(Bairro bairro)
         {
-            _db.Endereco.Update(endereco);
+            _db.Bairro.Update(bairro);
             try
             {
                 await _db.SaveChangesAsync();

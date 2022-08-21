@@ -36,7 +36,7 @@ namespace DataAcessLayer.Impl
             }
             catch (Exception ex)
             {
-                throw;
+                return ResponseFactory<Funcionario>.CreateFailureDataResponse(ex);
             }
         }
 

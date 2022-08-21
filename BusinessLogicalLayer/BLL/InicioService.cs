@@ -21,8 +21,7 @@ namespace BusinessLogicalLayer.BLL
             {
                 if (!_enderecoService.Iniciar().Result.Item)
                 {
-                    _enderecoService.Insert(new Endereco() { Bairro = new Bairro() { Cidade = new Cidade() { Estado = new Estado() } } });
-                    _funcionarioService.Insert(new Funcionario() { Nome = "ADMIN", Email = "admin@admin.com", Cpf = "", Salario = 0 });
+                    _enderecoService.Insert(new Endereco());
                 }
             }
             return new Response();
