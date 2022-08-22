@@ -10,7 +10,7 @@ namespace DataAcessLayer.Interfaces
         Task<Response> Insert(Cargo cargo);
         Task<Response> Update(Cargo cargo);
         Task<SingleResponse<Cargo>> GetByID(int id);
-        Task<SingleResponse<Cargo>> IniciarReturnId();
+        Task<SingleResponse<int>> IniciarReturnId();
         Task<SingleResponse<int>> Iniciar();
         Task<SingleResponse<int>> InsertReturnId(Cargo cargo);
     }

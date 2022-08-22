@@ -35,9 +35,10 @@ namespace BusinessLogicalLayer.BLL
             return ResponseFactory<bool>.CreateSuccessItemResponse(response.Item > 0);
         }
 
-        public Task<SingleResponse<int>> IniciarReturnId()
+        public async Task<SingleResponse<int>> IniciarReturnId()
         {
-            throw new NotImplementedException();
+            SingleResponse<int> response = await _cargoDAL.IniciarReturnId();
+            return ResponseFactory<int>.CreateSuccessItemResponse(response.Item);
         }
 
         public async Task<Response> Insert(Cargo cargo)
@@ -48,6 +49,11 @@ namespace BusinessLogicalLayer.BLL
         public async Task<SingleResponse<int>> InsertReturnId(Cargo cargo)
         {
             return await _cargoDAL.InsertReturnId(cargo);
+        }
+
+        public Task<SingleResponse<int>> InsertReturnId()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<Response> Update(Cargo cargo)

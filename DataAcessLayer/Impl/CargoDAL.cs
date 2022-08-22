@@ -116,5 +116,10 @@ namespace DataAcessLayer.Impl
                 return ResponseFactory<Response>.CreateFailureResponse(ex);
             }
         }
+
+        Task<SingleResponse<int>> ICargoDAL.IniciarReturnId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

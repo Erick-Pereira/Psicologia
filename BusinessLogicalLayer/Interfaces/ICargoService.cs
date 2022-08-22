@@ -11,7 +11,7 @@ namespace BusinessLogicalLayer.Interfaces
         Task<Response> Update(Cargo cargo);
         Task<SingleResponse<bool>> Iniciar();
         Task<SingleResponse<Cargo>> GetByID(int id);
-        Task<SingleResponse<int>> InsertReturnId(Cargo cargo);
+        Task<SingleResponse<int>> InsertReturnId();
         Task<SingleResponse<int>> IniciarReturnId();
     }
 }
