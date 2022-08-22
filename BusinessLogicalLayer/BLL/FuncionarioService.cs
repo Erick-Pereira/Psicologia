@@ -18,6 +18,7 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<Response> Delete(Funcionario funcionario)
         {
+            funcionario.Email = funcionario.Email.Trim();
             UpdateFuncionarioValidator validationRules = new UpdateFuncionarioValidator();
             Response response = validationRules.Validate(funcionario).ToResponse();
             if (!response.HasSuccess)
@@ -39,11 +40,13 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<SingleResponse<int>> GetByLogin(Funcionario funcionario)
         {
+            funcionario.Email = funcionario.Email.Trim();
             return await _funcionarioDAL.GetByLogin(funcionario);
         }
 
         public async Task<bool> Logar(Funcionario funcionario)
         {
+            funcionario.Email = funcionario.Email.Trim();
             if (GetByLogin(funcionario).Result.Item == 1)
             {
                 return true;
@@ -53,6 +56,7 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<Response> Insert(Funcionario funcionario)
         {
+            funcionario.Email = funcionario.Email.Trim();
             funcionario.Senha = "123456789".Hash();
             funcionario.IsAtivo = true;
             funcionario.IsFirstLogin = true;
@@ -249,6 +253,7 @@ namespace BusinessLogicalLayer.BLL
             //scope.Dispose();
             return response;
         }*/
+            funcionario.Email = funcionario.Email.Trim();
             UpdateFuncionarioValidator validationRules = new UpdateFuncionarioValidator();
             Response response = validationRules.Validate(funcionario).ToResponse();
             if (!response.HasSuccess)
@@ -260,8 +265,8 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<SingleResponse<bool>> Iniciar()
         {
-            SingleResponse<int> singleResponse = await _funcionarioDAL.Iniciar();
-            return ResponseFactory<bool>.CreateSuccessItemResponse(singleResponse.Item > 0);
+            SingleResponse<int> response = await _funcionarioDAL.Iniciar();
+            return ResponseFactory<bool>.CreateItemResponse(response.Message, response.HasSuccess, response.Item > 0);
         }
     }
 }

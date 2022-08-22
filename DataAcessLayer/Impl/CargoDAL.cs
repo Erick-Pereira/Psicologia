@@ -91,15 +91,16 @@ namespace DataAcessLayer.Impl
             }
         }
 
-        public async Task<SingleResponse<Cargo>> IniciarReturnId()
+        public async Task<SingleResponse<int>> IniciarReturnId()
         {
             try
             {
-                return ResponseFactory<Cargo>.CreateSuccessItemResponse(await _db.Cargo.FirstAsync(c => c.NivelPermissao == 0));
+                Cargo cargo = await _db.Cargo.FirstAsync(c => c.NivelPermissao == 0);
+                return ResponseFactory<int>.CreateSuccessItemResponse(cargo.ID);
             }
             catch (Exception ex)
             {
-                return ResponseFactory<Cargo>.CreateFailureItemResponse(ex);
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
             }
         }
 
@@ -115,11 +116,6 @@ namespace DataAcessLayer.Impl
             {
                 return ResponseFactory<Response>.CreateFailureResponse(ex);
             }
-        }
-
-        Task<SingleResponse<int>> ICargoDAL.IniciarReturnId()
-        {
-            throw new NotImplementedException();
         }
     }
 }

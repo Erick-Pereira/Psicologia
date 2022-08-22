@@ -11,6 +11,16 @@
             };
         }
 
+        public static SingleResponse<T> CreateItemResponse(string message, bool hasSuccess, T objeto)
+        {
+            return new SingleResponse<T>()
+            {
+                HasSuccess = hasSuccess,
+                Message = message,
+                Item = objeto
+            };
+        }
+
         public static SingleResponse<T> CreateSuccessItemResponse(T objeto)
         {
             return new SingleResponse<T>()

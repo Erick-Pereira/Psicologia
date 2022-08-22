@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BusinessLogicalLayer.BLL;
 using BusinessLogicalLayer.Extensions;
 using BusinessLogicalLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -40,9 +39,9 @@ namespace VisualLayer.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel login)
         {
+            login.Senha = login.Senha.Hash();
             _InicioService.Iniciar();
             Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(login);
-            funcionario.Senha = funcionario.Senha.Hash();
             if (await _FuncionarioService.Logar(funcionario))
             {
                 return RedirectToAction(actionName: "Index", controllerName: "Funcionario");

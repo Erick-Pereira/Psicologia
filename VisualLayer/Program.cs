@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IBairroDAL, BairroDAL>(); 
+builder.Services.AddTransient<IBairroDAL, BairroDAL>();
 builder.Services.AddTransient<IBairroService, BairroService>();
 builder.Services.AddTransient<ICargoDAL, CargoDAL>();
 builder.Services.AddTransient<ICargoService, CargoService>();

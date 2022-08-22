@@ -32,7 +32,7 @@ namespace BusinessLogicalLayer.BLL
         public async Task<SingleResponse<bool>> Iniciar()
         {
             SingleResponse<int> response = await _cidadeDAL.Iniciar();
-            return ResponseFactory<bool>.CreateSuccessItemResponse(response.Item > 0);
+            return ResponseFactory<bool>.CreateItemResponse(response.Message, response.HasSuccess, response.Item > 0);
         }
 
         public async Task<Response> Insert(Cidade cidade)
