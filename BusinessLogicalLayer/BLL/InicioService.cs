@@ -98,7 +98,201 @@ namespace BusinessLogicalLayer.BLL
                                     });
                                 }
                             }
+                            else
+                            {
+                                if (!_cargoService.Iniciar().Result.Item)
+                                {
+                                    _funcionarioService.Insert(new Funcionario()
+
+                                    {
+                                        Nome = "ADM",
+                                        Email = "admin@admin.com",
+                                        Cpf = "",
+                                        Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+                                        CargoID = _cargoService.InsertReturnId(new Cargo()
+
+                                        { Funcao = "ADMIN", NivelPermissao = 0 }).Result.Item,
+                                        EnderecoID = _enderecoService.InsertReturnId(new Endereco()
+                                        {
+                                            NumeroCasa = "",
+                                            Rua = "",
+                                            CEP = "",
+                                            Complemento = "",
+                                            BairroID = _bairroService.InsertReturnId(new Bairro()
+                                            {
+
+                                                NomeBairro = "",
+                                                CidadeId = _cidadeService.InsertReturnId(new Cidade()
+                                                {
+                                                    NomeCidade = "",
+                                                    EstadoId = _estadoService.IniciarReturnId().Result.Item
+                                                }).Result.Item
+                                            }).Result.Item
+                                        }).Result.Item
+                                    });
+                                }
+                                else
+                                {
+                                    _funcionarioService.Insert(new Funcionario()
+
+                                    {
+                                        Nome = "ADM",
+                                        Email = "admin@admin.com",
+                                        Cpf = "",
+                                        Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+                                        CargoID = _cargoService.IniciarReturnId().Result.Item,
+                                        EnderecoID = _enderecoService.InsertReturnId(new Endereco()
+                                        {
+                                            NumeroCasa = "",
+                                            Rua = "",
+                                            CEP = "",
+                                            Complemento = "",
+                                            BairroID = _bairroService.InsertReturnId(new Bairro()
+                                            {
+
+                                                NomeBairro = "",
+                                                CidadeId = _cidadeService.InsertReturnId(new Cidade()
+                                                {
+                                                    NomeCidade = "",
+                                                    EstadoId = _estadoService.IniciarReturnId().Result.Item
+                                                }).Result.Item
+                                            }).Result.Item
+                                        }).Result.Item
+                                    });
+                                }
+                            }
                         }
+                        else
+                        {
+                            if (!_cargoService.Iniciar().Result.Item)
+                            {
+                                _funcionarioService.Insert(new Funcionario()
+
+                                {
+                                    Nome = "ADM",
+                                    Email = "admin@admin.com",
+                                    Cpf = "",
+                                    Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+                                    CargoID = _cargoService.InsertReturnId(new Cargo()
+
+                                    { Funcao = "ADMIN", NivelPermissao = 0 }).Result.Item,
+                                    EnderecoID = _enderecoService.InsertReturnId(new Endereco()
+                                    {
+                                        NumeroCasa = "",
+                                        Rua = "",
+                                        CEP = "",
+                                        Complemento = "",
+                                        BairroID = _bairroService.InsertReturnId(new Bairro()
+                                        {
+
+                                            NomeBairro = "",
+                                            CidadeId = _cidadeService.IniciarReturnId().Result.Item
+                                        }).Result.Item
+                                    }).Result.Item
+                                });
+                            }
+                            else
+                            {
+                                _funcionarioService.Insert(new Funcionario()
+
+                                {
+                                    Nome = "ADM",
+                                    Email = "admin@admin.com",
+                                    Cpf = "",
+                                    Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+                                    CargoID = _cargoService.IniciarReturnId().Result.Item,
+                                    EnderecoID = _enderecoService.InsertReturnId(new Endereco()
+                                    {
+                                        NumeroCasa = "",
+                                        Rua = "",
+                                        CEP = "",
+                                        Complemento = "",
+                                        BairroID = _bairroService.InsertReturnId(new Bairro()
+                                        {
+
+                                            NomeBairro = "",
+                                            CidadeId = _cidadeService.IniciarReturnId().Result.Item
+                                        }).Result.Item
+                                    }).Result.Item
+                                });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!_cargoService.Iniciar().Result.Item)
+                        {
+                            _funcionarioService.Insert(new Funcionario()
+
+                            {
+                                Nome = "ADM",
+                                Email = "admin@admin.com",
+                                Cpf = "",
+                                Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+                                CargoID = _cargoService.InsertReturnId(new Cargo()
+
+                                { Funcao = "ADMIN", NivelPermissao = 0 }).Result.Item,
+                                EnderecoID = _enderecoService.InsertReturnId(new Endereco()
+                                {
+                                    NumeroCasa = "",
+                                    Rua = "",
+                                    CEP = "",
+                                    Complemento = "",
+                                    BairroID = _bairroService.IniciarReturnId().Result.Item
+                                }).Result.Item
+                            });
+                        }
+                        else
+                        {
+                            _funcionarioService.Insert(new Funcionario()
+
+                            {
+                                Nome = "ADM",
+                                Email = "admin@admin.com",
+                                Cpf = "",
+                                Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+                                CargoID = _cargoService.IniciarReturnId().Result.Item,
+                                EnderecoID = _enderecoService.InsertReturnId(new Endereco()
+                                {
+                                    NumeroCasa = "",
+                                    Rua = "",
+                                    CEP = "",
+                                    Complemento = "",
+                                    BairroID = _bairroService.IniciarReturnId().Result.Item
+                                }).Result.Item
+                            });
+                        }
+                    }
+                }
+                else
+                {
+                    if (!_cargoService.Iniciar().Result.Item)
+                    {
+                        _funcionarioService.Insert(new Funcionario()
+
+                        {
+                            Nome = "ADM",
+                            Email = "admin@admin.com",
+                            Cpf = "",
+                            Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+                            CargoID = _cargoService.InsertReturnId(new Cargo()
+
+                            { Funcao = "ADMIN", NivelPermissao = 0 }).Result.Item,
+                            EnderecoID = _enderecoService.IniciarReturnId().Result.Item
+                        });
+                    }
+                    else
+                    {
+                        _funcionarioService.Insert(new Funcionario()
+
+                        {
+                            Nome = "ADM",
+                            Email = "admin@admin.com",
+                            Cpf = "",
+                            Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+                            CargoID = _cargoService.IniciarReturnId().Result.Item,
+                            EnderecoID = _enderecoService.IniciarReturnId().Result.Item
+                        });
                     }
                 }
             }

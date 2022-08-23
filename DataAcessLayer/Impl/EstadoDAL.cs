@@ -64,6 +64,11 @@ namespace DataAcessLayer.Impl
             }
         }
 
+        public Task<SingleResponse<int>> IniciarReturnId()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Response> Insert(Estado estado)
         {
             _db.Estado.Add(estado);

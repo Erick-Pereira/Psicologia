@@ -37,8 +37,7 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<SingleResponse<int>> IniciarReturnId()
         {
-            SingleResponse<int> response = await _cargoDAL.IniciarReturnId();
-            return ResponseFactory<int>.CreateItemResponse(response.Message, response.HasSuccess, response.Item);
+            return await _cargoDAL.IniciarReturnId();
         }
 
         public async Task<Response> Insert(Cargo cargo)

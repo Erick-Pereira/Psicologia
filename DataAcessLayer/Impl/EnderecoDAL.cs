@@ -64,6 +64,11 @@ namespace DataAcessLayer.Impl
             }
         }
 
+        public Task<SingleResponse<int>> IniciarReturnId()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Response> Insert(Endereco endereco)
         {
             _db.Endereco.Add(endereco);

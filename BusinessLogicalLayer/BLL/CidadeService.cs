@@ -35,6 +35,11 @@ namespace BusinessLogicalLayer.BLL
             return ResponseFactory<bool>.CreateItemResponse(response.Message, response.HasSuccess, response.Item > 0);
         }
 
+        public async Task<SingleResponse<int>> IniciarReturnId()
+        {
+           return await _cidadeDAL.IniciarReturnId();
+        }
+
         public async Task<Response> Insert(Cidade cidade)
         {
             return await _cidadeDAL.Insert(cidade);

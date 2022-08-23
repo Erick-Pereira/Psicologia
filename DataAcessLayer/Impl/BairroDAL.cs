@@ -64,6 +64,20 @@ namespace DataAcessLayer.Impl
             }
         }
 
+        public Task<SingleResponse<int>> IniciarReturnId()
+        {
+            _db.Bairro.Add();
+            try
+            {
+                await _db.SaveChangesAsync();
+                return ResponseFactory<Response>.CreateSuccessResponse();
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
+            }
+        }
+
         public async Task<Response> Insert(Bairro bairro)
         {
             _db.Bairro.Add(bairro);
