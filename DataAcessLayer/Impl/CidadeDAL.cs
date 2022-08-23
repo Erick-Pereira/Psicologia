@@ -64,9 +64,17 @@ namespace DataAcessLayer.Impl
             }
         }
 
-        public Task<SingleResponse<int>> IniciarReturnId()
+        public async Task<SingleResponse<int>> IniciarReturnId()
         {
-            throw new NotImplementedException();
+            try
+            {
+                Cidade cidade = await _db.Cidade.FirstAsync(c => c.NomeCidade == "");
+                return ResponseFactory<int>.CreateSuccessItemResponse(cidade.ID);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
         }
 
         public async Task<Response> Insert(Cidade cidade)

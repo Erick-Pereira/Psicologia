@@ -64,9 +64,17 @@ namespace DataAcessLayer.Impl
             }
         }
 
-        public Task<SingleResponse<int>> IniciarReturnId()
+        public async Task<SingleResponse<int>> IniciarReturnId()
         {
-            throw new NotImplementedException();
+            try
+            {
+                Endereco endereco = await _db.Endereco.FirstAsync(e => e.CEP == "" && e.Rua == "");
+                return ResponseFactory<int>.CreateSuccessItemResponse(endereco.ID);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
         }
 
         public async Task<Response> Insert(Endereco endereco)

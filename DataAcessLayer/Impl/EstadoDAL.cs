@@ -64,11 +64,19 @@ namespace DataAcessLayer.Impl
             }
         }
 
-        public Task<SingleResponse<int>> IniciarReturnId()
+        public async Task<SingleResponse<int>> IniciarReturnId()
         {
-            throw new NotImplementedException();
+            try
+            {
+                Estado estado = await _db.Estado.FirstAsync(e => e.NomeEstado == "" && e.Sigla == "");
+                return ResponseFactory<int>.CreateSuccessItemResponse(estado.ID);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
         }
-
+            
         public async Task<Response> Insert(Estado estado)
         {
             _db.Estado.Add(estado);

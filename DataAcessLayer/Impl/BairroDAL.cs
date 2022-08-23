@@ -64,17 +64,16 @@ namespace DataAcessLayer.Impl
             }
         }
 
-        public Task<SingleResponse<int>> IniciarReturnId()
+        public async Task<SingleResponse<int>> IniciarReturnId()
         {
-            _db.Bairro.Add();
             try
             {
-                await _db.SaveChangesAsync();
-                return ResponseFactory<Response>.CreateSuccessResponse();
+                Bairro bairro = await _db.Bairro.FirstAsync(b => b.NomeBairro=="");
+                return ResponseFactory<int>.CreateSuccessItemResponse(bairro.ID);
             }
             catch (Exception ex)
             {
-                return ResponseFactory<Response>.CreateFailureResponse(ex);
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
             }
         }
 
