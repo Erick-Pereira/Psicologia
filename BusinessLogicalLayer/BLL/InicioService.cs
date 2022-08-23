@@ -64,7 +64,7 @@ namespace BusinessLogicalLayer.BLL
                                                             }).Result.Item
                                                     }).Result.Item
                                             }).Result.Item
-                                    }); ;
+                                    });
                                 }
                                 else
                                 {
