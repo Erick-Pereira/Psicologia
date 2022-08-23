@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\Funcionario\" />
     <Folder Include="wwwroot\js\Funcionario\" />
   </ItemGroup>
 

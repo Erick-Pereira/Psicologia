@@ -4,15 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 using Shared;
 using VisualLayer.Models.Funcionario;
 
-namespace VisualLayer.Controllers.Funcionario
+namespace VisualLayer.Controllers.Adm
 {
-    public class FuncionarioController : Controller
+    public class AdmController : Controller
     {
         private readonly IFuncionarioService _FuncionarioService;
         private readonly ICargoService _CargoService;
         private readonly IMapper _mapper;
 
-        public FuncionarioController(IFuncionarioService funcionarioService, IMapper mapper, ICargoService cargoService)
+        public AdmController(IFuncionarioService funcionarioService, IMapper mapper, ICargoService cargoService)
         {
             _CargoService = cargoService;
             _FuncionarioService = funcionarioService;

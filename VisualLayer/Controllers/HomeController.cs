@@ -44,7 +44,7 @@ namespace VisualLayer.Controllers
             Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(login);
             if (await _FuncionarioService.Logar(funcionario))
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
+                return RedirectToAction(actionName: "Index", controllerName: "Adm");
             }
             return View();
         }
