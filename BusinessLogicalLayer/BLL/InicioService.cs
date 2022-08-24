@@ -1,6 +1,8 @@
-﻿using BusinessLogicalLayer.Interfaces;
+﻿using BusinessLogicalLayer.Extensions;
+using BusinessLogicalLayer.Interfaces;
 using Entities;
 using Shared;
+using System;
 
 namespace BusinessLogicalLayer.BLL
 {
@@ -13,6 +15,11 @@ namespace BusinessLogicalLayer.BLL
         private readonly IEstadoService _estadoService;
         private readonly IFuncionarioService _funcionarioService;
         private static bool hasVerified;
+        private string nome = "ADM";
+        private string email = "admin@admin.com";
+        private string senha = "123456789".Hash();
+        private string funcao = "ADMIN";
+        private int nivelPermissao = 0;
 
         public InicioService(IBairroService bairroService, ICidadeService cidadeService, IEnderecoService enderecoService, IEstadoService estadoService, IFuncionarioService funcionarioService, ICargoService cargoService)
         {
@@ -43,27 +50,21 @@ namespace BusinessLogicalLayer.BLL
                                         _funcionarioService.InsertADM(
                                         new Funcionario()
                                         {
-                                            Nome = "ADM",
-                                            Email = "admin@admin.com",
-                                            Cpf = "",
-                                            Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+
+                                            Nome = nome,
+                                            Email = email,
+                                            Senha = senha,
                                             CargoID = _cargoService.IniciarReturnId().Result.Item,
                                             EnderecoID = _enderecoService.InsertReturnId(
                                                 new Endereco()
                                                 {
-                                                    NumeroCasa = "",
-                                                    Rua = "",
-                                                    CEP = "",
-                                                    Complemento = "",
                                                     BairroID = _bairroService.InsertReturnId(
                                                         new Bairro()
                                                         {
-                                                            NomeBairro = "",
                                                             CidadeId = _cidadeService.InsertReturnId(
                                                                 new Cidade
                                                                 {
-                                                                    NomeCidade = "",
-                                                                    EstadoId = _estadoService.InsertReturnId(new Estado() { Sigla = "", NomeEstado = "" }).Result.Item
+                                                                    EstadoId = _estadoService.InsertReturnId(new Estado()).Result.Item
                                                                 }).Result.Item
                                                         }).Result.Item
                                                 }).Result.Item
@@ -74,27 +75,21 @@ namespace BusinessLogicalLayer.BLL
                                         _funcionarioService.InsertADM(
                                         new Funcionario()
                                         {
-                                            Nome = "ADM",
-                                            Email = "admin@admin.com",
-                                            Cpf = "",
-                                            Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
-                                            CargoID = _cargoService.InsertReturnId(new Cargo() { Funcao = "ADMIN", NivelPermissao = 0 }).Result.Item,
+
+                                            Nome = nome,
+                                            Email = email,
+                                            Senha = senha,
+                                            CargoID = _cargoService.InsertReturnId(new Cargo() { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
                                             EnderecoID = _enderecoService.InsertReturnId(
                                                 new Endereco()
                                                 {
-                                                    NumeroCasa = "",
-                                                    Rua = "",
-                                                    CEP = "",
-                                                    Complemento = "",
                                                     BairroID = _bairroService.InsertReturnId(
                                                         new Bairro()
                                                         {
-                                                            NomeBairro = "",
                                                             CidadeId = _cidadeService.InsertReturnId(
                                                                 new Cidade
                                                                 {
-                                                                    NomeCidade = "",
-                                                                    EstadoId = _estadoService.InsertReturnId(new Estado() { Sigla = "", NomeEstado = "" }).Result.Item
+                                                                    EstadoId = _estadoService.InsertReturnId(new Estado()).Result.Item
                                                                 }).Result.Item
                                                         }).Result.Item
                                                 }).Result.Item
@@ -108,25 +103,19 @@ namespace BusinessLogicalLayer.BLL
                                         _funcionarioService.InsertADM(new Funcionario()
 
                                         {
-                                            Nome = "ADM",
-                                            Email = "admin@admin.com",
-                                            Cpf = "",
-                                            Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+
+                                            Nome = nome,
+                                            Email = email,
+                                            Senha = senha,
                                             CargoID = _cargoService.InsertReturnId(new Cargo()
 
-                                            { Funcao = "ADMIN", NivelPermissao = 0 }).Result.Item,
+                                            { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
                                             EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                             {
-                                                NumeroCasa = "",
-                                                Rua = "",
-                                                CEP = "",
-                                                Complemento = "",
                                                 BairroID = _bairroService.InsertReturnId(new Bairro()
                                                 {
-                                                    NomeBairro = "",
                                                     CidadeId = _cidadeService.InsertReturnId(new Cidade()
                                                     {
-                                                        NomeCidade = "",
                                                         EstadoId = _estadoService.IniciarReturnId().Result.Item
                                                     }).Result.Item
                                                 }).Result.Item
@@ -136,25 +125,18 @@ namespace BusinessLogicalLayer.BLL
                                     else
                                     {
                                         _funcionarioService.InsertADM(new Funcionario()
-
                                         {
-                                            Nome = "ADM",
-                                            Email = "admin@admin.com",
-                                            Cpf = "",
-                                            Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+
+                                            Nome = nome,
+                                            Email = email,
+                                            Senha = senha,
                                             CargoID = _cargoService.IniciarReturnId().Result.Item,
                                             EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                             {
-                                                NumeroCasa = "",
-                                                Rua = "",
-                                                CEP = "",
-                                                Complemento = "",
                                                 BairroID = _bairroService.InsertReturnId(new Bairro()
                                                 {
-                                                    NomeBairro = "",
                                                     CidadeId = _cidadeService.InsertReturnId(new Cidade()
                                                     {
-                                                        NomeCidade = "",
                                                         EstadoId = _estadoService.IniciarReturnId().Result.Item
                                                     }).Result.Item
                                                 }).Result.Item
@@ -168,24 +150,18 @@ namespace BusinessLogicalLayer.BLL
                                 if (!_cargoService.Iniciar().Result.Item)
                                 {
                                     _funcionarioService.InsertADM(new Funcionario()
-
                                     {
-                                        Nome = "ADM",
-                                        Email = "admin@admin.com",
-                                        Cpf = "",
-                                        Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+
+                                        Nome = nome,
+                                        Email = email,
+                                        Senha = senha,
                                         CargoID = _cargoService.InsertReturnId(new Cargo()
 
-                                        { Funcao = "ADMIN", NivelPermissao = 0 }).Result.Item,
+                                        { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
                                         EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                         {
-                                            NumeroCasa = "",
-                                            Rua = "",
-                                            CEP = "",
-                                            Complemento = "",
                                             BairroID = _bairroService.InsertReturnId(new Bairro()
                                             {
-                                                NomeBairro = "",
                                                 CidadeId = _cidadeService.IniciarReturnId().Result.Item
                                             }).Result.Item
                                         }).Result.Item
@@ -196,20 +172,15 @@ namespace BusinessLogicalLayer.BLL
                                     _funcionarioService.InsertADM(new Funcionario()
 
                                     {
-                                        Nome = "ADM",
-                                        Email = "admin@admin.com",
-                                        Cpf = "",
-                                        Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+
+                                        Nome = nome,
+                                        Email = email,
+                                        Senha = senha,
                                         CargoID = _cargoService.IniciarReturnId().Result.Item,
                                         EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                         {
-                                            NumeroCasa = "",
-                                            Rua = "",
-                                            CEP = "",
-                                            Complemento = "",
                                             BairroID = _bairroService.InsertReturnId(new Bairro()
                                             {
-                                                NomeBairro = "",
                                                 CidadeId = _cidadeService.IniciarReturnId().Result.Item
                                             }).Result.Item
                                         }).Result.Item
@@ -224,19 +195,15 @@ namespace BusinessLogicalLayer.BLL
                                 _funcionarioService.InsertADM(new Funcionario()
 
                                 {
-                                    Nome = "ADM",
-                                    Email = "admin@admin.com",
-                                    Cpf = "",
-                                    Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+
+                                    Nome = nome,
+                                    Email = email,
+                                    Senha = senha,
                                     CargoID = _cargoService.InsertReturnId(new Cargo()
 
-                                    { Funcao = "ADMIN", NivelPermissao = 0 }).Result.Item,
+                                    { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
                                     EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                     {
-                                        NumeroCasa = "",
-                                        Rua = "",
-                                        CEP = "",
-                                        Complemento = "",
                                         BairroID = _bairroService.IniciarReturnId().Result.Item
                                     }).Result.Item
                                 });
@@ -246,17 +213,13 @@ namespace BusinessLogicalLayer.BLL
                                 _funcionarioService.InsertADM(new Funcionario()
 
                                 {
-                                    Nome = "ADM",
-                                    Email = "admin@admin.com",
-                                    Cpf = "",
-                                    Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+
+                                    Nome = nome,
+                                    Email = email,
+                                    Senha = senha,
                                     CargoID = _cargoService.IniciarReturnId().Result.Item,
                                     EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                     {
-                                        NumeroCasa = "",
-                                        Rua = "",
-                                        CEP = "",
-                                        Complemento = "",
                                         BairroID = _bairroService.IniciarReturnId().Result.Item
                                     }).Result.Item
                                 });
@@ -268,15 +231,13 @@ namespace BusinessLogicalLayer.BLL
                         if (!_cargoService.Iniciar().Result.Item)
                         {
                             _funcionarioService.InsertADM(new Funcionario()
-
                             {
-                                Nome = "ADM",
-                                Email = "admin@admin.com",
-                                Cpf = "",
-                                Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+                                Nome = nome,
+                                Email = email,
+                                Senha = senha,
                                 CargoID = _cargoService.InsertReturnId(new Cargo()
 
-                                { Funcao = "ADMIN", NivelPermissao = 0 }).Result.Item,
+                                { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
                                 EnderecoID = _enderecoService.IniciarReturnId().Result.Item
                             });
                         }
@@ -285,10 +246,9 @@ namespace BusinessLogicalLayer.BLL
                             _funcionarioService.InsertADM(new Funcionario()
 
                             {
-                                Nome = "ADM",
-                                Email = "admin@admin.com",
-                                Cpf = "",
-                                Senha = "5457ed4c6b8c29269cc61916d001ab86fb65754b0278e6a2f184a4f9c5887991",
+                                Nome = nome,
+                                Email = email,
+                                Senha = senha,
                                 CargoID = _cargoService.IniciarReturnId().Result.Item,
                                 EnderecoID = _enderecoService.IniciarReturnId().Result.Item
                             });
