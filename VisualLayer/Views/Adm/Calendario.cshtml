@@ -1,4 +1,4 @@
-﻿<link rel="stylesheet" href="~/css/Calendario.css">
+﻿<link rel="stylesheet" href="~/css/Adm/Calendario.css">
 <div class="sidebar">
     <div class="logo-details">
         <i class='bx bxl-c-plus-plus'></i>
@@ -42,7 +42,7 @@
             </a>
         </li>
         <li>
-            <a asp-area="" asp-controller="Funcionario" asp-action="Funcionarios" class="active">
+            <a asp-area="" asp-controller="Adm" asp-action="Funcionarios" class="active">
                 <i class='bx bx-user'></i>
                 <span class="links_name">Funcionarios</span>
             </a>
@@ -73,6 +73,32 @@
         </li>
     </ul>
 </div>
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#calendar').fullCalendar({
+                theme: true,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+
+                defaultView: 'agendaDay',
+                editable: true,
+                allDaySlot: false,
+                selectable: true,
+                slotMinutes: 15,
+                events: "/home/getevents/"
+            });
+        });
+    </script>
+}
+<div class="jumbotron">
+    <h1>Full Calendar Demo</h1>
+</div>
+
 <div class="row">
     
     <div class="col-md-12">
@@ -80,4 +106,3 @@
     </div>
 
 </div>
-    <script src="~/js/Adm/Calendario.js"></script>
