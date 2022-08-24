@@ -37,7 +37,7 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<SingleResponse<int>> IniciarReturnId()
         {
-           return await _enderecoDAL.IniciarReturnId();
+            return await _enderecoDAL.IniciarReturnId();
         }
 
         public async Task<Response> Insert(Endereco endereco)

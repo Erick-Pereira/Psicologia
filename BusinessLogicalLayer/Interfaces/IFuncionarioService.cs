@@ -13,6 +13,8 @@ namespace BusinessLogicalLayer.Interfaces
 
         Task<Response> Insert(Funcionario funcionario);
 
+        Task<Response> InsertADM(Funcionario funcionario);
+
         Task<Response> Update(Funcionario funcionario);
 
         Task<SingleResponse<bool>> Iniciar();

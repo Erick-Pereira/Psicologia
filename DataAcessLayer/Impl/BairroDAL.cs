@@ -68,7 +68,7 @@ namespace DataAcessLayer.Impl
         {
             try
             {
-                Bairro bairro = await _db.Bairro.FirstAsync(b => b.NomeBairro=="");
+                Bairro bairro = await _db.Bairro.FirstAsync(b => b.NomeBairro == "");
                 return ResponseFactory<int>.CreateSuccessItemResponse(bairro.ID);
             }
             catch (Exception ex)

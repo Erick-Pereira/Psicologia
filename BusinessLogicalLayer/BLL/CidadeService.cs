@@ -37,7 +37,7 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<SingleResponse<int>> IniciarReturnId()
         {
-           return await _cidadeDAL.IniciarReturnId();
+            return await _cidadeDAL.IniciarReturnId();
         }
 
         public async Task<Response> Insert(Cidade cidade)

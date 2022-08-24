@@ -37,7 +37,7 @@ namespace BusinessLogicalLayer.BLL
                             {
                                 if (!_cargoService.Iniciar().Result.Item)
                                 {
-                                    _funcionarioService.Insert(
+                                    _funcionarioService.InsertADM(
                                     new Funcionario()
                                     {
                                         Nome = "ADM",
@@ -68,7 +68,7 @@ namespace BusinessLogicalLayer.BLL
                                 }
                                 else
                                 {
-                                    _funcionarioService.Insert(
+                                    _funcionarioService.InsertADM(
                                     new Funcionario()
                                     {
                                         Nome = "ADM",
@@ -102,7 +102,7 @@ namespace BusinessLogicalLayer.BLL
                             {
                                 if (!_cargoService.Iniciar().Result.Item)
                                 {
-                                    _funcionarioService.Insert(new Funcionario()
+                                    _funcionarioService.InsertADM(new Funcionario()
 
                                     {
                                         Nome = "ADM",
@@ -120,7 +120,6 @@ namespace BusinessLogicalLayer.BLL
                                             Complemento = "",
                                             BairroID = _bairroService.InsertReturnId(new Bairro()
                                             {
-
                                                 NomeBairro = "",
                                                 CidadeId = _cidadeService.InsertReturnId(new Cidade()
                                                 {
@@ -133,7 +132,7 @@ namespace BusinessLogicalLayer.BLL
                                 }
                                 else
                                 {
-                                    _funcionarioService.Insert(new Funcionario()
+                                    _funcionarioService.InsertADM(new Funcionario()
 
                                     {
                                         Nome = "ADM",
@@ -149,7 +148,6 @@ namespace BusinessLogicalLayer.BLL
                                             Complemento = "",
                                             BairroID = _bairroService.InsertReturnId(new Bairro()
                                             {
-
                                                 NomeBairro = "",
                                                 CidadeId = _cidadeService.InsertReturnId(new Cidade()
                                                 {
@@ -166,7 +164,7 @@ namespace BusinessLogicalLayer.BLL
                         {
                             if (!_cargoService.Iniciar().Result.Item)
                             {
-                                _funcionarioService.Insert(new Funcionario()
+                                _funcionarioService.InsertADM(new Funcionario()
 
                                 {
                                     Nome = "ADM",
@@ -184,7 +182,6 @@ namespace BusinessLogicalLayer.BLL
                                         Complemento = "",
                                         BairroID = _bairroService.InsertReturnId(new Bairro()
                                         {
-
                                             NomeBairro = "",
                                             CidadeId = _cidadeService.IniciarReturnId().Result.Item
                                         }).Result.Item
@@ -193,7 +190,7 @@ namespace BusinessLogicalLayer.BLL
                             }
                             else
                             {
-                                _funcionarioService.Insert(new Funcionario()
+                                _funcionarioService.InsertADM(new Funcionario()
 
                                 {
                                     Nome = "ADM",
@@ -209,7 +206,6 @@ namespace BusinessLogicalLayer.BLL
                                         Complemento = "",
                                         BairroID = _bairroService.InsertReturnId(new Bairro()
                                         {
-
                                             NomeBairro = "",
                                             CidadeId = _cidadeService.IniciarReturnId().Result.Item
                                         }).Result.Item
@@ -222,7 +218,7 @@ namespace BusinessLogicalLayer.BLL
                     {
                         if (!_cargoService.Iniciar().Result.Item)
                         {
-                            _funcionarioService.Insert(new Funcionario()
+                            _funcionarioService.InsertADM(new Funcionario()
 
                             {
                                 Nome = "ADM",
@@ -244,7 +240,7 @@ namespace BusinessLogicalLayer.BLL
                         }
                         else
                         {
-                            _funcionarioService.Insert(new Funcionario()
+                            _funcionarioService.InsertADM(new Funcionario()
 
                             {
                                 Nome = "ADM",
@@ -268,7 +264,7 @@ namespace BusinessLogicalLayer.BLL
                 {
                     if (!_cargoService.Iniciar().Result.Item)
                     {
-                        _funcionarioService.Insert(new Funcionario()
+                        _funcionarioService.InsertADM(new Funcionario()
 
                         {
                             Nome = "ADM",
@@ -283,7 +279,7 @@ namespace BusinessLogicalLayer.BLL
                     }
                     else
                     {
-                        _funcionarioService.Insert(new Funcionario()
+                        _funcionarioService.InsertADM(new Funcionario()
 
                         {
                             Nome = "ADM",

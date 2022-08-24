@@ -76,7 +76,7 @@ namespace DataAcessLayer.Impl
                 return ResponseFactory<int>.CreateFailureItemResponse(ex);
             }
         }
-            
+
         public async Task<Response> Insert(Estado estado)
         {
             _db.Estado.Add(estado);

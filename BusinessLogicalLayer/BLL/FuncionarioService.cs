@@ -268,5 +268,14 @@ namespace BusinessLogicalLayer.BLL
             SingleResponse<int> response = await _funcionarioDAL.Iniciar();
             return ResponseFactory<bool>.CreateItemResponse(response.Message, response.HasSuccess, response.Item > 0);
         }
+
+        public async Task<Response> InsertADM(Funcionario funcionario)
+        {
+            funcionario.Email = funcionario.Email.Trim();
+            funcionario.Senha = "123456789".Hash();
+            funcionario.IsAtivo = true;
+            funcionario.IsFirstLogin = true;
+            return await _funcionarioDAL.Insert(funcionario);
+        }
     }
 }
