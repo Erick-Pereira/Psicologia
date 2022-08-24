@@ -50,5 +50,10 @@ namespace VisualLayer.Controllers.Adm
             }
             return View(Funcionarios);
         }
+
+        public async Task<IActionResult> Calendario()
+        {
+            return View();
+        }
     }
 }

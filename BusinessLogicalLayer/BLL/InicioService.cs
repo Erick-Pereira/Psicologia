@@ -296,7 +296,7 @@ namespace BusinessLogicalLayer.BLL
                     }
                 }
                 hasVerified = true;
-            }            
+            }
             return new Response();
         }
     }

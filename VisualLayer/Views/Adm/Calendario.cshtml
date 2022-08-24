@@ -1,0 +1,83 @@
+﻿<link rel="stylesheet" href="~/css/Calendario.css">
+<div class="sidebar">
+    <div class="logo-details">
+        <i class='bx bxl-c-plus-plus'></i>
+        <span class="logo_name">Nossa Empresa</span>
+    </div>
+    <ul class="nav-links">
+        <li>
+            <a asp-area="" asp-controller="Adm" asp-action="Index">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Controle Empresa</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-box'></i>
+                <span class="links_name">Produtos</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-list-ul'></i>
+                <span class="links_name">Lista de Pedidos</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-pie-chart-alt-2'></i>
+                <span class="links_name">Análises</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-coin-stack'></i>
+                <span class="links_name">Estoque</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-book-alt'></i>
+                <span class="links_name">Total de Pedidos</span>
+            </a>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="Funcionario" asp-action="Funcionarios" class="active">
+                <i class='bx bx-user'></i>
+                <span class="links_name">Funcionarios</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-message'></i>
+                <span class="links_name">Messages</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-heart'></i>
+                <span class="links_name">Favrorites</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-cog'></i>
+                <span class="links_name">Setting</span>
+            </a>
+        </li>
+        <li class="log_out">
+            <a href="#">
+                <i class='bx bx-log-out'></i>
+                <span class="links_name">Log out</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="row">
+    
+    <div class="col-md-12">
+        <div id="calendar"></div>
+    </div>
+
+</div>
+    <script src="~/js/Adm/Calendario.js"></script>
