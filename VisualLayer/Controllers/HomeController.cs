@@ -39,10 +39,10 @@ namespace VisualLayer.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel login)
         {
-            login.Senha = login.Senha.Hash();
             _InicioService.Iniciar();
+            login.Senha = login.Senha.Hash();
             Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(login);
-            if (await _FuncionarioService.Logar(funcionario))
+           if (await _FuncionarioService.Logar(funcionario))
             {
                 return RedirectToAction(actionName: "Index", controllerName: "Adm");
             }

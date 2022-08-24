@@ -47,11 +47,7 @@ namespace BusinessLogicalLayer.BLL
         public async Task<bool> Logar(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
-            if (GetByLogin(funcionario).Result.Item == 1)
-            {
-                return true;
-            }
-            return false;
+            return GetByLogin(funcionario).Result.Item == 1;
         }
 
         public async Task<Response> Insert(Funcionario funcionario)

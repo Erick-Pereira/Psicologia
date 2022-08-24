@@ -40,7 +40,6 @@ namespace VisualLayer.Controllers.Adm
             ViewBag.Errors = response.Message;
             return View();
         }
-
         public async Task<IActionResult> Funcionarios()
         {
             DataResponse<Entities.Funcionario> dataResponse = await _FuncionarioService.GetAll();
