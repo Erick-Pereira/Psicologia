@@ -2,25 +2,31 @@
 using BusinessLogicalLayer.Interfaces;
 using Entities;
 using Shared;
-using System;
 
 namespace BusinessLogicalLayer.BLL
 {
     public class InicioService : IInicioService
     {
+        private static bool hasVerified;
         private readonly IBairroService _bairroService;
         private readonly ICargoService _cargoService;
         private readonly ICidadeService _cidadeService;
         private readonly IEnderecoService _enderecoService;
         private readonly IEstadoService _estadoService;
         private readonly IFuncionarioService _funcionarioService;
-        private static bool hasVerified;
-        private string nome = "ADM";
+        private string bairro = "";
+        private string cep = "";
+        private string cidade = "";
+        private string cpf = "";
         private string email = "admin@admin.com";
-        private string senha = "123456789".Hash();
+        private string estado = "";
         private string funcao = "ADMIN";
         private int nivelPermissao = 0;
-
+        private string nome = "ADM";
+        private string numCasa = "";
+        private string rua = "";
+        private string senha = "123456789".Hash();
+        private string sigla = "";
         public InicioService(IBairroService bairroService, ICidadeService cidadeService, IEnderecoService enderecoService, IEstadoService estadoService, IFuncionarioService funcionarioService, ICargoService cargoService)
         {
             _bairroService = bairroService;
@@ -47,76 +53,27 @@ namespace BusinessLogicalLayer.BLL
                                 {
                                     if (!_cargoService.Iniciar().Result.Item)
                                     {
-                                        _funcionarioService.InsertADM(
-                                        new Funcionario()
-                                        {
-
-                                            Nome = nome,
-                                            Email = email,
-                                            Senha = senha,
-                                            CargoID = _cargoService.IniciarReturnId().Result.Item,
-                                            EnderecoID = _enderecoService.InsertReturnId(
-                                                new Endereco()
-                                                {
-                                                    BairroID = _bairroService.InsertReturnId(
-                                                        new Bairro()
-                                                        {
-                                                            CidadeId = _cidadeService.InsertReturnId(
-                                                                new Cidade
-                                                                {
-                                                                    EstadoId = _estadoService.InsertReturnId(new Estado()).Result.Item
-                                                                }).Result.Item
-                                                        }).Result.Item
-                                                }).Result.Item
-                                        });
-                                    }
-                                    else
-                                    {
-                                        _funcionarioService.InsertADM(
-                                        new Funcionario()
-                                        {
-
-                                            Nome = nome,
-                                            Email = email,
-                                            Senha = senha,
-                                            CargoID = _cargoService.InsertReturnId(new Cargo() { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
-                                            EnderecoID = _enderecoService.InsertReturnId(
-                                                new Endereco()
-                                                {
-                                                    BairroID = _bairroService.InsertReturnId(
-                                                        new Bairro()
-                                                        {
-                                                            CidadeId = _cidadeService.InsertReturnId(
-                                                                new Cidade
-                                                                {
-                                                                    EstadoId = _estadoService.InsertReturnId(new Estado()).Result.Item
-                                                                }).Result.Item
-                                                        }).Result.Item
-                                                }).Result.Item
-                                        });
-                                    }
-                                }
-                                else
-                                {
-                                    if (!_cargoService.Iniciar().Result.Item)
-                                    {
                                         _funcionarioService.InsertADM(new Funcionario()
-
                                         {
-
+                                            Cpf = cpf,
                                             Nome = nome,
                                             Email = email,
                                             Senha = senha,
                                             CargoID = _cargoService.InsertReturnId(new Cargo()
-
                                             { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
                                             EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                             {
+                                                NumeroCasa = numCasa,
+                                                CEP = cep,
+                                                Rua = rua,
                                                 BairroID = _bairroService.InsertReturnId(new Bairro()
                                                 {
+                                                    NomeBairro = bairro,
                                                     CidadeId = _cidadeService.InsertReturnId(new Cidade()
                                                     {
-                                                        EstadoId = _estadoService.IniciarReturnId().Result.Item
+                                                        NomeCidade = cidade,
+                                                        EstadoId = _estadoService.InsertReturnId(new Estado()
+                                                        { NomeEstado = estado, Sigla = sigla }).Result.Item
                                                     }).Result.Item
                                                 }).Result.Item
                                             }).Result.Item
@@ -126,19 +83,63 @@ namespace BusinessLogicalLayer.BLL
                                     {
                                         _funcionarioService.InsertADM(new Funcionario()
                                         {
-
+                                            Cpf = cpf,
                                             Nome = nome,
                                             Email = email,
                                             Senha = senha,
                                             CargoID = _cargoService.IniciarReturnId().Result.Item,
                                             EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                             {
+                                                NumeroCasa = numCasa,
+                                                CEP = cep,
+                                                Rua = rua,
+                                                BairroID = _bairroService.InsertReturnId(new Bairro()
+                                                { NomeBairro = bairro, CidadeId = _cidadeService.InsertReturnId(new Cidade { NomeCidade = cidade, EstadoId = _estadoService.InsertReturnId(new Estado() { NomeEstado = estado, Sigla = sigla }).Result.Item }).Result.Item }).Result.Item
+                                            }).Result.Item
+                                        });
+                                    }
+                                }
+                                else
+                                {
+                                    if (!_cargoService.Iniciar().Result.Item)
+                                    {
+                                        _funcionarioService.InsertADM(new Funcionario()
+                                        {
+                                            Cpf = cpf,
+                                            Nome = nome,
+                                            Email = email,
+                                            Senha = senha,
+                                            CargoID = _cargoService.InsertReturnId(new Cargo()
+                                            { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
+                                            EnderecoID = _enderecoService.InsertReturnId(new Endereco()
+                                            {
+                                                NumeroCasa = numCasa,
+                                                CEP = cep,
+                                                Rua = rua,
+                                                BairroID = _bairroService.InsertReturnId(new Bairro()
+                                                { NomeBairro = bairro, CidadeId = _cidadeService.InsertReturnId(new Cidade() { NomeCidade = cidade, EstadoId = _estadoService.IniciarReturnId().Result.Item }).Result.Item }).Result.Item
+                                            }).Result.Item
+                                        });
+                                    }
+                                    else
+                                    {
+                                        _funcionarioService.InsertADM(new Funcionario()
+                                        {
+                                            Cpf = cpf,
+                                            Nome = nome,
+                                            Email = email,
+                                            Senha = senha,
+                                            CargoID = _cargoService.IniciarReturnId().Result.Item,
+                                            EnderecoID = _enderecoService.InsertReturnId(new Endereco()
+                                            {
+                                                NumeroCasa = numCasa,
+                                                CEP = cep,
+                                                Rua = rua,
                                                 BairroID = _bairroService.InsertReturnId(new Bairro()
                                                 {
+                                                    NomeBairro = bairro,
                                                     CidadeId = _cidadeService.InsertReturnId(new Cidade()
-                                                    {
-                                                        EstadoId = _estadoService.IniciarReturnId().Result.Item
-                                                    }).Result.Item
+                                                    { NomeCidade = cidade, EstadoId = _estadoService.IniciarReturnId().Result.Item }).Result.Item
                                                 }).Result.Item
                                             }).Result.Item
                                         });
@@ -151,38 +152,38 @@ namespace BusinessLogicalLayer.BLL
                                 {
                                     _funcionarioService.InsertADM(new Funcionario()
                                     {
-
+                                        Cpf = cpf,
                                         Nome = nome,
                                         Email = email,
                                         Senha = senha,
                                         CargoID = _cargoService.InsertReturnId(new Cargo()
-
                                         { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
                                         EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                         {
+                                            NumeroCasa = numCasa,
+                                            CEP = cep,
+                                            Rua = rua,
                                             BairroID = _bairroService.InsertReturnId(new Bairro()
-                                            {
-                                                CidadeId = _cidadeService.IniciarReturnId().Result.Item
-                                            }).Result.Item
+                                            { NomeBairro = bairro, CidadeId = _cidadeService.IniciarReturnId().Result.Item }).Result.Item
                                         }).Result.Item
                                     });
                                 }
                                 else
                                 {
                                     _funcionarioService.InsertADM(new Funcionario()
-
                                     {
-
+                                        Cpf = cpf,
                                         Nome = nome,
                                         Email = email,
                                         Senha = senha,
                                         CargoID = _cargoService.IniciarReturnId().Result.Item,
                                         EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                         {
+                                            NumeroCasa = numCasa,
+                                            CEP = cep,
+                                            Rua = rua,
                                             BairroID = _bairroService.InsertReturnId(new Bairro()
-                                            {
-                                                CidadeId = _cidadeService.IniciarReturnId().Result.Item
-                                            }).Result.Item
+                                            { NomeBairro = bairro, CidadeId = _cidadeService.IniciarReturnId().Result.Item }).Result.Item
                                         }).Result.Item
                                     });
                                 }
@@ -193,35 +194,28 @@ namespace BusinessLogicalLayer.BLL
                             if (!_cargoService.Iniciar().Result.Item)
                             {
                                 _funcionarioService.InsertADM(new Funcionario()
-
                                 {
-
+                                    Cpf = cpf,
                                     Nome = nome,
                                     Email = email,
                                     Senha = senha,
                                     CargoID = _cargoService.InsertReturnId(new Cargo()
-
                                     { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
                                     EnderecoID = _enderecoService.InsertReturnId(new Endereco()
-                                    {
-                                        BairroID = _bairroService.IniciarReturnId().Result.Item
-                                    }).Result.Item
+                                    { NumeroCasa = numCasa, CEP = cep, Rua = rua, BairroID = _bairroService.IniciarReturnId().Result.Item }).Result.Item
                                 });
                             }
                             else
                             {
                                 _funcionarioService.InsertADM(new Funcionario()
-
                                 {
-
+                                    Cpf = cpf,
                                     Nome = nome,
                                     Email = email,
                                     Senha = senha,
                                     CargoID = _cargoService.IniciarReturnId().Result.Item,
                                     EnderecoID = _enderecoService.InsertReturnId(new Endereco()
-                                    {
-                                        BairroID = _bairroService.IniciarReturnId().Result.Item
-                                    }).Result.Item
+                                    { NumeroCasa = numCasa, CEP = cep, Rua = rua, BairroID = _bairroService.IniciarReturnId().Result.Item }).Result.Item
                                 });
                             }
                         }
@@ -232,11 +226,11 @@ namespace BusinessLogicalLayer.BLL
                         {
                             _funcionarioService.InsertADM(new Funcionario()
                             {
+                                Cpf = cpf,
                                 Nome = nome,
                                 Email = email,
                                 Senha = senha,
                                 CargoID = _cargoService.InsertReturnId(new Cargo()
-
                                 { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
                                 EnderecoID = _enderecoService.IniciarReturnId().Result.Item
                             });
@@ -244,14 +238,7 @@ namespace BusinessLogicalLayer.BLL
                         else
                         {
                             _funcionarioService.InsertADM(new Funcionario()
-
-                            {
-                                Nome = nome,
-                                Email = email,
-                                Senha = senha,
-                                CargoID = _cargoService.IniciarReturnId().Result.Item,
-                                EnderecoID = _enderecoService.IniciarReturnId().Result.Item
-                            });
+                            { Cpf = cpf, Nome = nome, Email = email, Senha = senha, CargoID = _cargoService.IniciarReturnId().Result.Item, EnderecoID = _enderecoService.IniciarReturnId().Result.Item });
                         }
                     }
                 }

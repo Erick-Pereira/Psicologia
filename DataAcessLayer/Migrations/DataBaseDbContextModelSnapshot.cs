@@ -133,7 +133,6 @@ namespace DataAcessLayer.Migrations
                         .HasColumnType("varchar(max)");
 
                     b.Property<string>("Complemento")
-                        .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
