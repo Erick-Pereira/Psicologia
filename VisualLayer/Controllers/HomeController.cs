@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Extensions;
 using BusinessLogicalLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using VisualLayer.Models;
@@ -37,6 +38,8 @@ namespace VisualLayer.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel login)
         {
             _InicioService.Iniciar();
