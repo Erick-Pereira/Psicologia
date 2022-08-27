@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Extensions;
 using BusinessLogicalLayer.Interfaces;
+using Entities;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 using VisualLayer.Models;
 
 namespace VisualLayer.Controllers
@@ -13,25 +17,29 @@ namespace VisualLayer.Controllers
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IMapper _mapper;
         private readonly IInicioService _InicioService;
+        private readonly ICargoService _cargoService;
 
-        public HomeController(IFuncionarioService funcionarioService, IMapper mapper, IInicioService inicioService)
+        public HomeController(IFuncionarioService funcionarioService, IMapper mapper, IInicioService inicioService, ICargoService cargoService)
         {
             _FuncionarioService = funcionarioService;
             _mapper = mapper;
             _InicioService = inicioService;
+            _cargoService = cargoService;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
-
+        [AllowAnonymous]
         public IActionResult Membros()
         {
             return View();
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
@@ -43,13 +51,30 @@ namespace VisualLayer.Controllers
         public async Task<IActionResult> Login(LoginModel login)
         {
             _InicioService.Iniciar();
-            login.Senha = login.Senha.Hash();
+            login.Senha = login.Senha.Hash();            
             Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(login);
             if (await _FuncionarioService.Logar(funcionario))
             {
+                Logar(HttpContext, _FuncionarioService.GetByLogin(funcionario).Result.Item);
                 return RedirectToAction(actionName: "Index", controllerName: "Adm");
             }
             return View();
+        }
+        public async Task Logar(HttpContext context, Entities.Funcionario funcionario)
+        {
+            List<Claim> claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Name, funcionario.Nome));
+            claims.Add(new Claim(ClaimTypes.Email, funcionario.Email));
+            claims.Add(new Claim(ClaimTypes.Role, _cargoService.GetByID(funcionario.CargoID).Result.Item.Funcao));
+            ClaimsPrincipal claimsIdentity = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
+            AuthenticationProperties authProperties = new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddHours(10), IssuedUtc = DateTime.Now };
+            await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsIdentity, authProperties);
+        }
+        [Authorize]
+        public async Task<IActionResult> Logoff(HttpContext context)
+        {
+            await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -80,7 +80,7 @@ namespace DataAcessLayer.Impl
             }
         }
 
-        public async Task<SingleResponse<int>> GetByLogin(Funcionario funcionario)
+        public async Task<SingleResponse<int>> Logar(Funcionario funcionario)
         {
             try
             {
@@ -101,6 +101,18 @@ namespace DataAcessLayer.Impl
             catch (Exception ex)
             {
                 return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
+        }
+
+        public async Task<SingleResponse<Funcionario>> GetByLogin(Funcionario funcionario)
+        {
+            try
+            {
+                return ResponseFactory<Funcionario>.CreateSuccessItemResponse(await _db.Funcionario.FirstAsync(f => f.Email == funcionario.Email && f.Senha == funcionario.Senha));
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Funcionario>.CreateFailureItemResponse(ex);
             }
         }
     }

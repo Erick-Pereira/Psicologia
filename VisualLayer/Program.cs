@@ -3,6 +3,8 @@ using BusinessLogicalLayer.Interfaces;
 using DataAcessLayer;
 using DataAcessLayer.Impl;
 using DataAcessLayer.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -10,6 +12,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = new PathString("/Home/Index");
+        options.AccessDeniedPath = new PathString("/Home/Index");
+    });
 builder.Services.AddTransient<IBairroDAL, BairroDAL>();
 builder.Services.AddTransient<IBairroService, BairroService>();
 builder.Services.AddTransient<ICargoDAL, CargoDAL>();
@@ -45,6 +53,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCookiePolicy(new CookiePolicyOptions { MinimumSameSitePolicy = SameSiteMode.Strict, HttpOnly = HttpOnlyPolicy.Always });
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

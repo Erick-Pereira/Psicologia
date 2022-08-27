@@ -38,16 +38,11 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.GetByID(id);
         }
 
-        public async Task<SingleResponse<int>> GetByLogin(Funcionario funcionario)
-        {
-            funcionario.Email = funcionario.Email.Trim();
-            return await _funcionarioDAL.GetByLogin(funcionario);
-        }
-
         public async Task<bool> Logar(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
-            return GetByLogin(funcionario).Result.Item == 1;
+            SingleResponse<int> response = await _funcionarioDAL.Logar(funcionario);
+            return response.Item == 1;
         }
 
         public async Task<Response> Insert(Funcionario funcionario)
@@ -272,6 +267,11 @@ namespace BusinessLogicalLayer.BLL
             funcionario.IsAtivo = true;
             funcionario.IsFirstLogin = true;
             return await _funcionarioDAL.Insert(funcionario);
+        }
+
+        public async Task<SingleResponse<Funcionario>> GetByLogin(Funcionario funcionario)
+        {
+            return await _funcionarioDAL.GetByLogin(funcionario);
         }
     }
 }
