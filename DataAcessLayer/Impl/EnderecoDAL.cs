@@ -96,7 +96,8 @@ namespace DataAcessLayer.Impl
             _db.Endereco.Add(endereco);
             try
             {
-                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.SaveChangesAsync());
+                await _db.SaveChangesAsync();
+                return ResponseFactory<int>.CreateSuccessItemResponse(endereco.ID);
             }
             catch (Exception ex)
             {

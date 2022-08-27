@@ -96,7 +96,8 @@ namespace DataAcessLayer.Impl
             _db.Cidade.Add(cidade);
             try
             {
-                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.SaveChangesAsync());
+                await _db.SaveChangesAsync();
+                return ResponseFactory<int>.CreateSuccessItemResponse(cidade.ID);
             }
             catch (Exception ex)
             {

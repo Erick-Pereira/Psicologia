@@ -96,7 +96,8 @@ namespace DataAcessLayer.Impl
             _db.Bairro.Add(bairro);
             try
             {
-                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.SaveChangesAsync());
+                await _db.SaveChangesAsync();
+                return ResponseFactory<int>.CreateSuccessItemResponse(bairro.ID);
             }
             catch (Exception ex)
             {

@@ -83,7 +83,8 @@ namespace DataAcessLayer.Impl
             _db.Cargo.Add(cargo);
             try
             {
-                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.SaveChangesAsync());
+                await _db.SaveChangesAsync();
+                return ResponseFactory<int>.CreateSuccessItemResponse(cargo.ID);
             }
             catch (Exception ex)
             {
