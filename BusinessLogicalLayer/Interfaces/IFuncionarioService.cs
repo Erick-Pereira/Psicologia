@@ -20,6 +20,7 @@ namespace BusinessLogicalLayer.Interfaces
         Task<SingleResponse<bool>> Iniciar();
 
         Task<SingleResponse<Funcionario>> GetByID(int id);
+
         Task<SingleResponse<Funcionario>> GetByLogin(Funcionario funcionario);
     }
 }

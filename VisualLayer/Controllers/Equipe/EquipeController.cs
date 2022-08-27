@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VisualLayer.Models.Equipe;
 
@@ -17,18 +18,21 @@ namespace VisualLayer.Controllers.Equipe
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Equipes()
         {
             return View();
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Criar()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Criar(EquipeInsertViewModel equipeInsert)
         {
             return View();

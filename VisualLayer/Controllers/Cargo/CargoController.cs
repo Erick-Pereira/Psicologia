@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VisualLayer.Models.Cargo;
 
@@ -17,12 +18,14 @@ namespace VisualLayer.Controllers.Cargo
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Criar()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Criar(CargoInsertViewModel cargoInsert)
         {
             Entities.Cargo cargo = _mapper.Map<Entities.Cargo>(cargoInsert);

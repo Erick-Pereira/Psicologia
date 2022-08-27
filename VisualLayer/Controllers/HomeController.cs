@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Extensions;
 using BusinessLogicalLayer.Interfaces;
-using Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +31,7 @@ namespace VisualLayer.Controllers
         {
             return View();
         }
+
         [AllowAnonymous]
         public IActionResult Membros()
         {
@@ -51,7 +51,7 @@ namespace VisualLayer.Controllers
         public async Task<IActionResult> Login(LoginModel login)
         {
             _InicioService.Iniciar();
-            login.Senha = login.Senha.Hash();            
+            login.Senha = login.Senha.Hash();
             Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(login);
             if (await _FuncionarioService.Logar(funcionario))
             {
@@ -60,6 +60,7 @@ namespace VisualLayer.Controllers
             }
             return View();
         }
+
         public async Task Logar(HttpContext context, Entities.Funcionario funcionario)
         {
             List<Claim> claims = new List<Claim>();
@@ -70,6 +71,7 @@ namespace VisualLayer.Controllers
             AuthenticationProperties authProperties = new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddHours(10), IssuedUtc = DateTime.Now };
             await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsIdentity, authProperties);
         }
+
         [Authorize]
         public async Task<IActionResult> Logoff(HttpContext context)
         {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using VisualLayer.Models.Funcionario;
@@ -19,11 +20,13 @@ namespace VisualLayer.Controllers.Funcionario
             _mapper = mapper;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> Funcionarios()
         {
             DataResponse<Entities.Funcionario> dataResponse = await _FuncionarioService.GetAll();

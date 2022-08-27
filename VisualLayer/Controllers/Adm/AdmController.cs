@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using VisualLayer.Models.Funcionario;
@@ -19,12 +20,14 @@ namespace VisualLayer.Controllers.Adm
             _mapper = mapper;
         }
 
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View();
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Criar()
         {
             ViewBag.Cargos = _CargoService.GetAll().Result.Data;
@@ -32,6 +35,7 @@ namespace VisualLayer.Controllers.Adm
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Criar(FuncionarioInsertViewModel funcionarioInsert)
         {
             Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(funcionarioInsert);
@@ -41,6 +45,7 @@ namespace VisualLayer.Controllers.Adm
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> Funcionarios()
         {
             DataResponse<Entities.Funcionario> dataResponse = await _FuncionarioService.GetAll();
@@ -52,6 +57,7 @@ namespace VisualLayer.Controllers.Adm
             return View(Funcionarios);
         }
 
+        [Authorize]
         public async Task<IActionResult> Calendario()
         {
             return View();
