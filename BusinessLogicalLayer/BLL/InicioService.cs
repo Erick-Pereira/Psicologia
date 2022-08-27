@@ -27,6 +27,7 @@ namespace BusinessLogicalLayer.BLL
         private string rua = "";
         private string senha = "123456789".Hash();
         private string sigla = "";
+
         public InicioService(IBairroService bairroService, ICidadeService cidadeService, IEnderecoService enderecoService, IEstadoService estadoService, IFuncionarioService funcionarioService, ICargoService cargoService)
         {
             _bairroService = bairroService;

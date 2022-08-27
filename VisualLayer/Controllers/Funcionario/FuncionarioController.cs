@@ -18,10 +18,12 @@ namespace VisualLayer.Controllers.Funcionario
             _FuncionarioService = funcionarioService;
             _mapper = mapper;
         }
+
         public IActionResult Index()
         {
             return View();
         }
+
         public async Task<IActionResult> Funcionarios()
         {
             DataResponse<Entities.Funcionario> dataResponse = await _FuncionarioService.GetAll();
