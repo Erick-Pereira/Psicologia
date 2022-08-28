@@ -13,9 +13,9 @@ namespace BusinessLogicalLayer.Interfaces
 
         Task<Response> Update(Cidade cidade);
 
-        Task<SingleResponse<Cidade>> GetByID(int id);
-
         Task<SingleResponse<bool>> Iniciar();
+
+        Task<SingleResponse<Cidade>> GetByID(int id);
 
         Task<SingleResponse<int>> IniciarReturnId();
 

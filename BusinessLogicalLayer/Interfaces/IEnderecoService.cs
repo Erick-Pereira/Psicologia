@@ -13,9 +13,9 @@ namespace BusinessLogicalLayer.Interfaces
 
         Task<Response> Update(Endereco endereco);
 
-        Task<SingleResponse<Endereco>> GetByID(int id);
-
         Task<SingleResponse<bool>> Iniciar();
+
+        Task<SingleResponse<Endereco>> GetByID(int id);
 
         Task<SingleResponse<int>> IniciarReturnId();
 

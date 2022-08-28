@@ -8,9 +8,9 @@ namespace DataAcessLayer.Mapping
     {
         public void Configure(EntityTypeBuilder<Compromisso> builder)
         {
+            builder.Property(c => c.DataInicio).IsRequired();
+            builder.Property(c => c.DataInicio).IsRequired();
             builder.Property(c => c.Descricao).IsUnicode(false).IsRequired();
-            builder.Property(c => c.DataInicio).IsRequired();
-            builder.Property(c => c.DataInicio).IsRequired();
             builder.ToTable("COMPROMISSO");
         }
     }
