@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Diagnostics;
 using System.Security.Claims;
 using VisualLayer.Models;
@@ -58,13 +57,12 @@ namespace VisualLayer.Controllers
             {
                 funcionario = _FuncionarioService.GetByLogin(funcionario).Result.Item;
                 Logar(HttpContext, funcionario);
-                if(funcionario.IsFirstLogin)
-                return RedirectToAction(actionName: "Update", controllerName: "Funcionario", funcionario.ID);
+                if (funcionario.IsFirstLogin)
+                    return RedirectToAction(actionName: "Update", controllerName: "Funcionario", funcionario.ID);
                 if (funcionario.Cargo.NivelPermissao == 0)
-                return RedirectToAction(actionName: "Index", controllerName: "Adm");
-                if(funcionario.Cargo.NivelPermissao == 3)
-                return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
-
+                    return RedirectToAction(actionName: "Index", controllerName: "Adm");
+                if (funcionario.Cargo.NivelPermissao == 3)
+                    return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
             }
             return View();
         }

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Interfaces;
-using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
@@ -38,6 +37,7 @@ namespace VisualLayer.Controllers.Funcionario
             }
             return View(Funcionarios);
         }
+
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> Update(int id)
@@ -55,10 +55,10 @@ namespace VisualLayer.Controllers.Funcionario
             Response response = await _FuncionarioService.Update(funcionario);
             if (response.HasSuccess)
             {
-                if(funcionario.Cargo.NivelPermissao == 3)
-               return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
-                if(funcionario.Cargo.NivelPermissao == 0)
-               return RedirectToAction(actionName: "Index", controllerName: "Adm");
+                if (funcionario.Cargo.NivelPermissao == 3)
+                    return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
+                if (funcionario.Cargo.NivelPermissao == 0)
+                    return RedirectToAction(actionName: "Index", controllerName: "Adm");
             }
             return View();
         }
