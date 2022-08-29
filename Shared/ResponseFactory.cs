@@ -25,7 +25,7 @@
         {
             return new SingleResponse<T>()
             {
-                HasSuccess = false,
+                HasSuccess = true,
                 Message = "Operação realizada com sucesso.",
                 Item = objeto
             };
@@ -35,7 +35,7 @@
         {
             return new DataResponse<T>()
             {
-                HasSuccess = false,
+                HasSuccess = true,
                 Message = "Operação realizada com sucesso.",
                 Data = objetos
             };
@@ -78,6 +78,14 @@
                 HasSuccess = false,
                 Message = mensagem,
                 Exception = ex
+            };
+        }
+        public static Response CreateFailureResponse(string mensagem)
+        {
+            return new Response()
+            {
+                HasSuccess = false,
+                Message = mensagem,
             };
         }
 
