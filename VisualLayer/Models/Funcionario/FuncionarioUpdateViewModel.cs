@@ -1,21 +1,38 @@
 ﻿using Shared.Constants;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace VisualLayer.Models.Funcionario
 {
     public class FuncionarioUpdateViewModel
     {
-        [Required(ErrorMessage = "O Nome deve ser informado.")]
+        [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_NOME_OBRIGATORIO)]
         [StringLength(FuncionarioConstants.TAMANHO_MAXIMO_NOME, MinimumLength = FuncionarioConstants.TAMANHO_MINIMO_NOME, ErrorMessage = "O Nome deve conter entre 3 e 100 caracteres.")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "O CPF deve ser informado.")]
-        [StringLength(FuncionarioConstants.TAMANHO_CPF, ErrorMessage = "O CPF deve conter 11 caracteres.")]
+        [DisplayFormat()]
+        [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_CPF_OBRIGATORIO)]
+        [StringLength(FuncionarioConstants.TAMANHO_CPF, ErrorMessage = "CPF deve conter 11 caracteres.")]
         [Display(Name = "CPF")]
         public string Cpf { get; set; }
 
-        [Required(ErrorMessage = "O CEP deve ser informado.")]
+        [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_SENHA_OBRIGATORIA)]
+        [StringLength(FuncionarioConstants.TAMANHO_MAXIMO_SENHA, MinimumLength = FuncionarioConstants.TAMANHO_MINIMO_SENHA, ErrorMessage = "Senha deve conter entre 8 e 20 caracteres.")]
+        [DataType(DataType.Password)]
+        public string Senha { get; set; }
+
+        
+        [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_SENHA_OBRIGATORIA)]
+        [StringLength(FuncionarioConstants.TAMANHO_MAXIMO_SENHA, MinimumLength = FuncionarioConstants.TAMANHO_MINIMO_SENHA, ErrorMessage = "Senha deve conter entre 8 e 20 caracteres.")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmar Senha")]       
+
+        public string ConfirmarSenha { get; set; }
+
+        [DisplayFormat(DataFormatString = "{000000-000}")]
+        [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_CEP_OBRIGATORIO)]
         [Display(Name = "CEP")]
+        [StringLength(FuncionarioConstants.TAMANHO_CEP,ErrorMessage = "CEP deve conter 9 caracteres")]
         public string Cep { get; set; }
 
         [Required(ErrorMessage = "O Numero da casa deve ser informado.")]

@@ -19,7 +19,7 @@
         public const string MENSAGEM_ERRO_SENHA_OBRIGATORIA = "Senha deve ser informada.";
         public const string MENSAGEM_ERRO_TELEFONE_INVALIDO = "Telefone inválido.";
         public const string MENSAGEM_ERRO_TELEFONE_OBRIGATORIO = "Telefone deve ser informado.";
-        public const int TAMANHO_CEP = 8;
+        public const int TAMANHO_CEP = 9;
         public const int TAMANHO_CPF = 11;
         public const int TAMANHO_MAXIMO_EMAIL = 100;
         public const int TAMANHO_MAXIMO_NOME = 100;
@@ -33,7 +33,7 @@
         public static string MENSAGEM_ERRO_TELEFONE_COMPRIMENTO 
         { get { return $"Telefone deve conter entre {TAMANHO_MINIMO_TELEFONE} e {TAMANHO_MAXIMO_TELEFONE} dígitos."; } }
         public static string MENSAGEM_ERRO_CEP_COMPRIMENTO 
-        { get { return $"CEP deve conter {TAMANHO_CEP} dígitos (sem considerar hífen/ponto)."; }}
+        { get { return $"CEP deve conter {TAMANHO_CEP} caracteres."; }}
         public static string MENSAGEM_ERRO_CPF_COMPRIMENTO
         { get { return $"CPF deve conter {TAMANHO_CPF} caracteres"; } }
 

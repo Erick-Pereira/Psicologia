@@ -63,6 +63,7 @@ namespace BusinessLogicalLayer.BLL
         public async Task<Response> Update(Funcionario funcionario)
         {            
             funcionario.Email = funcionario.Email.Trim();
+            funcionario.IsFirstLogin = false;
             UpdateFuncionarioValidator validationRules = new UpdateFuncionarioValidator();
             Response response = validationRules.Validate(funcionario).ToResponse();
             if (!response.HasSuccess)
