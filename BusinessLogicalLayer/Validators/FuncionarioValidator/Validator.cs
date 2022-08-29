@@ -55,7 +55,7 @@ namespace BusinessLogicalLayer.Validators.FuncionarioValidator
         {
             if (string.IsNullOrWhiteSpace(senha))
             {
-                return ResponseFactory<string>.CreateFailureResponse("Senha deve ser informado.");
+                return ResponseFactory<string>.CreateFailureResponse(FuncionarioConstants.MENSAGEM_ERRO_SENHA_OBRIGATORIA) ;
             }
             if (senha.Contains(" "))
             {
@@ -63,11 +63,67 @@ namespace BusinessLogicalLayer.Validators.FuncionarioValidator
             }
             if (senha.Length < FuncionarioConstants.TAMANHO_MINIMO_SENHA)
             {
-                return ResponseFactory<string>.CreateFailureResponse("Senha deve conter no mínimo 8 caracteres.");
+                return ResponseFactory<string>.CreateFailureResponse(FuncionarioConstants.MENSAGEM_ERRO_SENHA_COMPRIMENTO);
             }
             if (senha.Length > FuncionarioConstants.TAMANHO_MAXIMO_SENHA)
             {
-                return ResponseFactory<string>.CreateFailureResponse("senha não pode conter mais que 20 caracteres.");
+                return ResponseFactory<string>.CreateFailureResponse(FuncionarioConstants.MENSAGEM_ERRO_SENHA_COMPRIMENTO);
+            }
+            return ResponseFactory<string>.CreateSuccessResponse();
+        }
+
+        /// <summary>
+        /// Verifica se o CEP esta dentro dos padrões
+        /// </summary>
+        /// <param name="cep">Senha a ser validada</param>
+        /// <returns>Retorna vazio "" caso o CEP esteja correto</returns>
+        public Response ValidateCEP(string cep)
+        {
+            if (string.IsNullOrWhiteSpace(cep))
+            {
+                return ResponseFactory<string>.CreateFailureResponse(FuncionarioConstants.MENSAGEM_ERRO_CEP_OBRIGATORIO);
+            }
+            cep = cep.Trim();
+            cep = cep.Replace("-", "").Replace(".", "");
+
+            if (cep.Length != FuncionarioConstants.TAMANHO_CEP)
+            {
+                return ResponseFactory<string>.CreateFailureResponse(FuncionarioConstants.MENSAGEM_ERRO_CEP_COMPRIMENTO);
+            }
+            int temp = 0;
+            if (!int.TryParse(cep, out temp))
+            {
+                return ResponseFactory<string>.CreateFailureResponse(FuncionarioConstants.MENSAGEM_ERRO_CEP_INVALIDO);
+            }
+            return ResponseFactory<string>.CreateSuccessResponse();
+        }
+
+        /// <summary>
+        /// Verifica se o telefone esta dentro dos padrões
+        /// </summary>
+        /// <param name="telefone">Senha a ser validada</param>
+        /// <returns>Retorna vazio "" caso o telefone esteja correto</returns>
+        public Response ValidateTelefone(string telefone)
+        {
+            if (string.IsNullOrWhiteSpace(telefone))
+            {
+                return ResponseFactory<string>.CreateFailureResponse(FuncionarioConstants.MENSAGEM_ERRO_TELEFONE_OBRIGATORIO);
+            }
+            telefone = telefone.Trim();
+            telefone = telefone.Replace("(", "")
+                               .Replace(")", "")
+                               .Replace("-", "")
+                               .Replace(" ", "")
+                               .Replace(".", "")
+                               .Replace("+", "");
+            if (telefone.Length != 8 && telefone.Length != 10 && telefone.Length != 11)
+            {
+                return ResponseFactory<string>.CreateFailureResponse("Telefone deve conter 8, 9, 11 ou 13 dígitos.");
+            }
+            long temp;
+            if (!long.TryParse(telefone, out temp))
+            {
+                return ResponseFactory<string>.CreateFailureResponse(FuncionarioConstants.MENSAGEM_ERRO_TELEFONE_INVALIDO);
             }
             return ResponseFactory<string>.CreateSuccessResponse();
         }
