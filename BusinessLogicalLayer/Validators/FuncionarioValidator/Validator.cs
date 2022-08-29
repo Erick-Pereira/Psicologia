@@ -118,7 +118,7 @@ namespace BusinessLogicalLayer.Validators.FuncionarioValidator
                                .Replace("+", "");
             if (telefone.Length != 8 && telefone.Length != 10 && telefone.Length != 11)
             {
-                return ResponseFactory<string>.CreateFailureResponse("Telefone deve conter 8, 9, 11 ou 13 dígitos.");
+                return ResponseFactory<string>.CreateFailureResponse(FuncionarioConstants.MENSAGEM_ERRO_TELEFONE_COMPRIMENTO);
             }
             long temp;
             if (!long.TryParse(telefone, out temp))

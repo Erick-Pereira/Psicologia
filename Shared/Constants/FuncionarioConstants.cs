@@ -27,6 +27,11 @@
         public const int TAMANHO_MINIMO_EMAIL = 5;
         public const int TAMANHO_MINIMO_NOME = 3;
         public const int TAMANHO_MINIMO_SENHA = 8;
+        public const int TAMANHO_MINIMO_TELEFONE = 8;
+        public const int TAMANHO_MAXIMO_TELEFONE = 11;
+
+        public static string MENSAGEM_ERRO_TELEFONE_COMPRIMENTO 
+        { get { return $"Telefone deve conter entre {TAMANHO_MINIMO_TELEFONE} e {TAMANHO_MAXIMO_TELEFONE} dígitos."; } }
         public static string MENSAGEM_ERRO_CEP_COMPRIMENTO 
         { get { return $"CEP deve conter {TAMANHO_CEP} dígitos (sem considerar hífen/ponto)."; }}
         public static string MENSAGEM_ERRO_CPF_COMPRIMENTO
