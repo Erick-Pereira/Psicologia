@@ -80,6 +80,7 @@
                 Exception = ex
             };
         }
+
         public static Response CreateFailureResponse(string mensagem)
         {
             return new Response()

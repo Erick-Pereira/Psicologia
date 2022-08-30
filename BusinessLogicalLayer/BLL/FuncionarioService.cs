@@ -61,7 +61,7 @@ namespace BusinessLogicalLayer.BLL
         }
 
         public async Task<Response> Update(Funcionario funcionario)
-        {            
+        {
             funcionario.Email = funcionario.Email.Trim();
             funcionario.IsFirstLogin = false;
             UpdateFuncionarioValidator validationRules = new UpdateFuncionarioValidator();

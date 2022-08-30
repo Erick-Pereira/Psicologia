@@ -1,5 +1,7 @@
-﻿@{
+﻿@using VisualLayer.Models.Funcionario
+@{
     ViewData["Title"] = "Nossa Empresa";
+    FuncionarioSelectViewModel funcionario = ViewBag.Funcionario;
 }
 <!DOCTYPE html>
 <!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
@@ -31,7 +33,7 @@
                 </div>
             </ul>
             <div class="nav-item">
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial",funcionario)
                 @*<a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>*@

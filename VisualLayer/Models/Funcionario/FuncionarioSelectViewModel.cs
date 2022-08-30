@@ -4,6 +4,7 @@ namespace VisualLayer.Models.Funcionario
 {
     public class FuncionarioSelectViewModel
     {
+        public int Id { get; set; }
         public string Nome { get; set; }
 
         [Display(Name = "CPF")]

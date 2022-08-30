@@ -3,6 +3,7 @@ using BusinessLogicalLayer.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
+using System.Security.Claims;
 using VisualLayer.Models.Funcionario;
 
 namespace VisualLayer.Controllers.Funcionario
@@ -12,6 +13,7 @@ namespace VisualLayer.Controllers.Funcionario
         private readonly IFuncionarioService _FuncionarioService;
         private readonly ICargoService _CargoService;
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public FuncionarioController(IFuncionarioService funcionarioService, IMapper mapper, ICargoService cargoService)
         {
@@ -40,8 +42,9 @@ namespace VisualLayer.Controllers.Funcionario
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Update(int id)
+        public async Task<IActionResult> Update()
         {
+            int id = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid));
             SingleResponse<Entities.Funcionario> response = await _FuncionarioService.GetByID(id);
             FuncionarioUpdateViewModel funcionario = _mapper.Map<FuncionarioUpdateViewModel>(response.Item);
             return View(funcionario);

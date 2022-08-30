@@ -55,7 +55,7 @@ namespace BusinessLogicalLayer.Validators.FuncionarioValidator
         {
             if (string.IsNullOrWhiteSpace(senha))
             {
-                return ResponseFactory<string>.CreateFailureResponse(FuncionarioConstants.MENSAGEM_ERRO_SENHA_OBRIGATORIA) ;
+                return ResponseFactory<string>.CreateFailureResponse(FuncionarioConstants.MENSAGEM_ERRO_SENHA_OBRIGATORIA);
             }
             if (senha.Contains(" "))
             {

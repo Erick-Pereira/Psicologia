@@ -1,11 +1,12 @@
 ﻿using Shared.Constants;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace VisualLayer.Models.Funcionario
 {
     public class FuncionarioUpdateViewModel
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_NOME_OBRIGATORIO)]
         [StringLength(FuncionarioConstants.TAMANHO_MAXIMO_NOME, MinimumLength = FuncionarioConstants.TAMANHO_MINIMO_NOME, ErrorMessage = "O Nome deve conter entre 3 e 100 caracteres.")]
         public string Nome { get; set; }
@@ -21,18 +22,16 @@ namespace VisualLayer.Models.Funcionario
         [DataType(DataType.Password)]
         public string Senha { get; set; }
 
-        
         [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_SENHA_OBRIGATORIA)]
         [StringLength(FuncionarioConstants.TAMANHO_MAXIMO_SENHA, MinimumLength = FuncionarioConstants.TAMANHO_MINIMO_SENHA, ErrorMessage = "Senha deve conter entre 8 e 20 caracteres.")]
         [DataType(DataType.Password)]
-        [Display(Name = "Confirmar Senha")]       
-
+        [Display(Name = "Confirmar Senha")]
         public string ConfirmarSenha { get; set; }
 
         [DisplayFormat(DataFormatString = "{000000-000}")]
         [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_CEP_OBRIGATORIO)]
         [Display(Name = "CEP")]
-        [StringLength(FuncionarioConstants.TAMANHO_CEP,ErrorMessage = "CEP deve conter 9 caracteres")]
+        [StringLength(FuncionarioConstants.TAMANHO_CEP, ErrorMessage = "CEP deve conter 9 caracteres")]
         public string Cep { get; set; }
 
         [Required(ErrorMessage = "O Numero da casa deve ser informado.")]

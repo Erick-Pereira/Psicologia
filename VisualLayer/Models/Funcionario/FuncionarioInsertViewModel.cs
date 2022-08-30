@@ -20,5 +20,8 @@ namespace VisualLayer.Models.Funcionario
 
         [Required(ErrorMessage = "O Cargo deve ser informado.")]
         public int CargoId { get; set; }
+
+        [Required(ErrorMessage = "O Salario deve ser informado.")]
+        public double Salario { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
 using VisualLayer.Models;
+using VisualLayer.Models.Funcionario;
 
 namespace VisualLayer.Controllers
 {
@@ -17,18 +18,26 @@ namespace VisualLayer.Controllers
         private readonly IMapper _mapper;
         private readonly IInicioService _InicioService;
         private readonly ICargoService _cargoService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public HomeController(IFuncionarioService funcionarioService, IMapper mapper, IInicioService inicioService, ICargoService cargoService)
+        public HomeController(IFuncionarioService funcionarioService, IMapper mapper, IInicioService inicioService, ICargoService cargoService, IHttpContextAccessor httpContextAccessor)
         {
             _FuncionarioService = funcionarioService;
             _mapper = mapper;
             _InicioService = inicioService;
             _cargoService = cargoService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [AllowAnonymous]
         public IActionResult Index()
         {
+            int id = 0;
+            if (_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid) != null)
+            {
+                id = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value);
+                ViewBag.Funcionario = _mapper.Map<FuncionarioSelectViewModel>(_FuncionarioService.GetByID(id).Result.Item);
+            }
             return View();
         }
 
@@ -67,11 +76,34 @@ namespace VisualLayer.Controllers
             return View();
         }
 
+        public async Task Logar()
+        {
+            int id = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value);
+            Entities.Funcionario funcionario = _FuncionarioService.GetByID(id).Result.Item;
+            if (await _FuncionarioService.Logar(funcionario))
+            {
+                funcionario = _FuncionarioService.GetByLogin(funcionario).Result.Item;
+                Logar(HttpContext, funcionario);
+                if (funcionario.IsFirstLogin)
+                    RedirectToAction(actionName: "Update", controllerName: "Funcionario", funcionario.ID);
+                else if (funcionario.Cargo.NivelPermissao == 0)
+                    RedirectToAction(actionName: "Index", controllerName: "Adm");
+                else if (funcionario.Cargo.NivelPermissao == 3)
+                    RedirectToAction(actionName: "Index", controllerName: "Funcionario");
+            }
+            else
+            {
+                RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
+        }
+
         public async Task Logar(HttpContext context, Entities.Funcionario funcionario)
         {
             List<Claim> claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Sid, funcionario.ID.ToString()));
             claims.Add(new Claim(ClaimTypes.Name, funcionario.Nome));
             claims.Add(new Claim(ClaimTypes.Email, funcionario.Email));
+            claims.Add(new Claim(ClaimTypes.Hash, funcionario.Senha));
             claims.Add(new Claim(ClaimTypes.Role, _cargoService.GetByID(funcionario.CargoID).Result.Item.Funcao));
             ClaimsPrincipal claimsIdentity = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
             AuthenticationProperties authProperties = new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddHours(10), IssuedUtc = DateTime.Now };

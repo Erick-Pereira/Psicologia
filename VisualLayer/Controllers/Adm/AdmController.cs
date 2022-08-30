@@ -34,6 +34,12 @@ namespace VisualLayer.Controllers.Adm
             return View();
         }
 
+        [Authorize]
+        public async Task<IActionResult> Edit(int id)
+        {
+            return View();
+        }
+
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Criar(FuncionarioInsertViewModel funcionarioInsert)
