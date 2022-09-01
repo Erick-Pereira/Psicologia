@@ -1,4 +1,4 @@
-﻿using BusinessLogicalLayer.Extensions;
+﻿using Shared.Extensions;
 using BusinessLogicalLayer.Interfaces;
 using Entities;
 using Shared;

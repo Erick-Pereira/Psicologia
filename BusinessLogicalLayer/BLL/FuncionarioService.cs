@@ -4,6 +4,7 @@ using BusinessLogicalLayer.Validators.FuncionarioValidator;
 using DataAcessLayer.Interfaces;
 using Entities;
 using Shared;
+using Shared.Extensions;
 
 namespace BusinessLogicalLayer.BLL
 {

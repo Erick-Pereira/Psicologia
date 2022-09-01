@@ -32,7 +32,7 @@ namespace DataAcessLayer.Impl
         {
             try
             {
-                return ResponseFactory<Funcionario>.CreateSuccessDataResponse(await _db.Funcionario.ToListAsync());
+                return ResponseFactory<Funcionario>.CreateSuccessDataResponse(await _db.Funcionario.Include(f => f.Cargo).ToListAsync());
             }
             catch (Exception ex)
             {

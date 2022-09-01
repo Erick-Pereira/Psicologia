@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Shared.Extensions;
 using BusinessLogicalLayer.Interfaces;
+using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
@@ -34,9 +36,25 @@ namespace VisualLayer.Controllers.Adm
             return View();
         }
 
+        [HttpGet]
         [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
+            ViewBag.Funcionario = _mapper.Map<FuncionarioUpdateAdmViewModel>(_FuncionarioService.GetByID(id).Result.Item);
+            ViewBag.Cargos = _CargoService.GetAll().Result.Data;
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(FuncionarioUpdateAdmViewModel model)
+        {
+            Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(model);
+            Response response = await _FuncionarioService.Update(funcionario);
+            if (!response.HasSuccess)
+            {
+                ViewBag.Erros = response.Message;
+            }
             return View();
         }
 

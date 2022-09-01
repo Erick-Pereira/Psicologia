@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BusinessLogicalLayer.Extensions;
+using Shared.Extensions;
 using BusinessLogicalLayer.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -76,25 +76,21 @@ namespace VisualLayer.Controllers
             return View();
         }
 
-        public async Task Logar()
+        public async Task<IActionResult> Logarr()
         {
-            int id = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value);
-            Entities.Funcionario funcionario = _FuncionarioService.GetByID(id).Result.Item;
+            Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value)).Result.Item;
             if (await _FuncionarioService.Logar(funcionario))
             {
                 funcionario = _FuncionarioService.GetByLogin(funcionario).Result.Item;
-                Logar(HttpContext, funcionario);
+                funcionario.Cargo = _cargoService.GetByID(funcionario.CargoID).Result.Item;
                 if (funcionario.IsFirstLogin)
-                    RedirectToAction(actionName: "Update", controllerName: "Funcionario", funcionario.ID);
-                else if (funcionario.Cargo.NivelPermissao == 0)
-                    RedirectToAction(actionName: "Index", controllerName: "Adm");
-                else if (funcionario.Cargo.NivelPermissao == 3)
-                    RedirectToAction(actionName: "Index", controllerName: "Funcionario");
+                    return RedirectToAction(actionName: "Update", controllerName: "Funcionario", funcionario.ID);
+                if (funcionario.Cargo.NivelPermissao == 0)
+                    return RedirectToAction(actionName: "Index", controllerName: "Adm");
+                 if (funcionario.Cargo.NivelPermissao == 3)
+                    return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
             }
-            else
-            {
-                RedirectToAction(actionName: "Index", controllerName: "Home");
-            }
+            return RedirectToAction(actionName: "Index", controllerName: "Home");
         }
 
         public async Task Logar(HttpContext context, Entities.Funcionario funcionario)
@@ -111,9 +107,9 @@ namespace VisualLayer.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Logoff(HttpContext context)
+        public async Task<IActionResult> Logoff()
         {
-            await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _httpContextAccessor.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index");
         }
 

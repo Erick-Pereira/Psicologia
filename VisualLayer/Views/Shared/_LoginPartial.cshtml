@@ -6,13 +6,13 @@
 }
 @if (funcionario != null)
 {
-    using (Html.BeginForm("LogOff", "Home", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("Logoff", "Home", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Hello " + funcionario.Nome + "!", "Logar", "Home")
+                @Html.ActionLink("Hello " + funcionario.Nome + "!", "Logarr", "Home")
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>

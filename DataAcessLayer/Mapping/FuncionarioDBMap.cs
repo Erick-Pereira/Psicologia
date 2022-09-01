@@ -21,6 +21,7 @@ namespace DataAcessLayer.Mapping
             builder.Property(f => f.IsFirstLogin).HasDefaultValue(true);
             builder.Property(f => f.Nome).HasMaxLength(FuncionarioConstants.TAMANHO_MAXIMO_NOME).IsUnicode(false).IsRequired();
             builder.Property(f => f.Senha).IsUnicode(false).IsRequired();
+            builder.Property(f => f.Salario).IsRequired();
             builder.ToTable("FUNCIONARIOS");
         }
     }
