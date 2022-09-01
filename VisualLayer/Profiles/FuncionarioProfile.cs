@@ -19,7 +19,6 @@ namespace VisualLayer.Profiles
             CreateMap<Funcionario, LoginModel>();
             CreateMap<Funcionario, FuncionarioUpdateAdmViewModel>();
             CreateMap<FuncionarioUpdateAdmViewModel, Funcionario>();
-
         }
     }
 }

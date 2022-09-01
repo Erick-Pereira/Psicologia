@@ -13,7 +13,7 @@ namespace VisualLayer.Models.Funcionario
 
         [DisplayFormat()]
         [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_CPF_OBRIGATORIO)]
-        [StringLength(FuncionarioConstants.TAMANHO_CPF+3, ErrorMessage = "CPF deve conter 11 caracteres.")]
+        [StringLength(FuncionarioConstants.TAMANHO_CPF + 3, ErrorMessage = "CPF deve conter 11 caracteres.")]
         [Display(Name = "CPF")]
         public string Cpf { get; set; }
 

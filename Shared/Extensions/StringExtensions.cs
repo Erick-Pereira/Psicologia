@@ -1,5 +1,5 @@
-﻿using System.Text;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
+using System.Text;
 
 namespace Shared.Extensions
 {
@@ -41,7 +41,7 @@ namespace Shared.Extensions
         public static string Encrypt(this string plainText, string passPhrase)
         {
             // Salt and IV is randomly generated each time, but is preprended to encrypted cipher text
-            // so that the same Salt and IV values can be used when decrypting.  
+            // so that the same Salt and IV values can be used when decrypting.
             var saltStringBytes = Generate256BitsOfRandomEntropy();
             var ivStringBytes = Generate256BitsOfRandomEntropy();
             var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
@@ -74,6 +74,7 @@ namespace Shared.Extensions
                 }
             }
         }
+
         public static string Decrypt(this string cipherText, string passPhrase)
         {
             // Get the complete stream of bytes that represent:
@@ -111,6 +112,7 @@ namespace Shared.Extensions
                 }
             }
         }
+
         private static byte[] Generate256BitsOfRandomEntropy()
         {
             var randomBytes = new byte[32]; // 32 Bytes will give us 256 bits.

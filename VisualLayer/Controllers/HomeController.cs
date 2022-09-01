@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Shared.Extensions;
 using BusinessLogicalLayer.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Extensions;
 using System.Diagnostics;
 using System.Security.Claims;
 using VisualLayer.Models;
@@ -87,7 +87,7 @@ namespace VisualLayer.Controllers
                     return RedirectToAction(actionName: "Update", controllerName: "Funcionario", funcionario.ID);
                 if (funcionario.Cargo.NivelPermissao == 0)
                     return RedirectToAction(actionName: "Index", controllerName: "Adm");
-                 if (funcionario.Cargo.NivelPermissao == 3)
+                if (funcionario.Cargo.NivelPermissao == 3)
                     return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
             }
             return RedirectToAction(actionName: "Index", controllerName: "Home");

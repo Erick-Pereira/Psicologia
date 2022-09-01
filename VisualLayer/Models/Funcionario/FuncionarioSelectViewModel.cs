@@ -15,6 +15,7 @@ namespace VisualLayer.Models.Funcionario
         [DataType(DataType.Date)]
         [Display(Name = "Data Nascimento")]
         public DateTime DataNascimento { get; set; }
+
         public double Salario { get; set; }
     }
 }

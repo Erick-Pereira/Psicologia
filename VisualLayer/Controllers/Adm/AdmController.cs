@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Shared.Extensions;
 using BusinessLogicalLayer.Interfaces;
-using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
