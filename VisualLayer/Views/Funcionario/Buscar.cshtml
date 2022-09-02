@@ -1,0 +1,19 @@
+﻿@using BusinessLogicalLayer.API
+@{
+    CepAPI a = ViewBag.Endereco;
+}
+
+<pre style="word-wrap: break-word; white-space: pre-wrap;">{"code":"@a.CEP","state":"@a.Estado","city":"@a.Cidade","district":"@a.Bairro","address":"@a.Endereco"}</pre>
+<script type="text/javascript">
+    let Endereco=
+    [
+        {
+            "Cep": @a.CEP,
+            "Bairro": @a.Bairro,
+            "Cidade": @a.Cidade,
+            "Endereco": @a.Endereco,
+            "Estado": @a.Estado
+        }
+    ]
+    console.log(Endereco)
+</script>
