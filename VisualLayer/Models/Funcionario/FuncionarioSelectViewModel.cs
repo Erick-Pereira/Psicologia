@@ -4,7 +4,7 @@ namespace VisualLayer.Models.Funcionario
 {
     public class FuncionarioSelectViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Nome { get; set; }
 
         [Display(Name = "CPF")]
@@ -15,6 +15,9 @@ namespace VisualLayer.Models.Funcionario
         [DataType(DataType.Date)]
         [Display(Name = "Data Nascimento")]
         public DateTime DataNascimento { get; set; }
+
+        [Display(Name = "Ativo")]
+        public bool IsAtivo { get; set; }
 
         public double Salario { get; set; }
     }

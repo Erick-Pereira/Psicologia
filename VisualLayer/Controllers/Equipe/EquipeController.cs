@@ -19,13 +19,6 @@ namespace VisualLayer.Controllers.Equipe
 
         [HttpGet]
         [Authorize]
-        public IActionResult Equipes()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        [Authorize]
         public IActionResult Criar()
         {
             return View();
@@ -34,6 +27,13 @@ namespace VisualLayer.Controllers.Equipe
         [HttpPost]
         [Authorize]
         public IActionResult Criar(EquipeInsertViewModel equipeInsert)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Equipes()
         {
             return View();
         }

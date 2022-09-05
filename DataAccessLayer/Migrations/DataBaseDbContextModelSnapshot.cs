@@ -94,11 +94,11 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("Entities.Compromisso", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<DateTime>("DataFim")
                         .HasColumnType("datetime2");
@@ -111,7 +111,7 @@ namespace DataAccessLayer.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("COMPROMISSO", (string)null);
                 });
@@ -252,10 +252,6 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<int>("EstadoCivil")
                         .HasColumnType("int");
-
-                    b.Property<string>("Foto")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
 
                     b.Property<int>("Genero")
                         .HasColumnType("int");

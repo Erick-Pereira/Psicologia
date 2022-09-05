@@ -1,0 +1,87 @@
+﻿<link rel="stylesheet" href="~/css/Adm/Analise.css">
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title> Análises </title>
+    <link rel="stylesheet" href="~/css/Adm/IndexAdm.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <i class='bx bxl-c-plus-plus'></i>
+            <a asp-area="" asp-controller="Home" asp-action="Index">
+                <span class="logo_name">Nossa Empresa</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a asp-area="" asp-controller="Adm" asp-action="Index">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Controle Empresa</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Adm" asp-action="Analises" class="active">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">Análises</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Adm" asp-action="Funcionarios">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Funcionarios</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-test-tube'></i>
+                    <span class="links_name">Resultado Teste</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-message'></i>
+                    <span class="links_name">Mensagens</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-calendar'></i>
+                    <span class="links_name">Calendário</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Adm" asp-action="Configuracao">
+                    <i class='bx bx-cog'></i>
+                    <span class="links_name">Configurações</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a asp-area="" asp-controller="Home" asp-action="Logoff">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+<dl>
+  <dt>
+    Browser market share June 2015
+  </dt>
+  <dd class="percentage percentage-11"><span class="text">IE 11: 11.33%</span></dd>
+  <dd class="percentage percentage-49"><span class="text">Chrome: 49.77%</span></dd>
+  <dd class="percentage percentage-16"><span class="text">Firefox: 16.09%</span></dd>
+  <dd class="percentage percentage-5"><span class="text">Safari: 5.41%</span></dd>
+  <dd class="percentage percentage-2"><span class="text">Opera: 1.62%</span></dd>
+  <dd class="percentage percentage-2"><span class="text">Android 4.4: 2%</span></dd>
+</dl>
+    </section>
+</body>
+</html>
+

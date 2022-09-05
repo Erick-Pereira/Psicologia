@@ -5,7 +5,7 @@ namespace VisualLayer.Models.Funcionario
 {
     public class FuncionarioUpdateViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_NOME_OBRIGATORIO)]
         [StringLength(FuncionarioConstants.TAMANHO_MAXIMO_NOME, MinimumLength = FuncionarioConstants.TAMANHO_MINIMO_NOME, ErrorMessage = "O Nome deve conter entre 3 e 100 caracteres.")]
@@ -16,17 +16,6 @@ namespace VisualLayer.Models.Funcionario
         [StringLength(FuncionarioConstants.TAMANHO_CPF, ErrorMessage = "CPF deve conter 14 caracteres.")]
         [Display(Name = "CPF")]
         public string Cpf { get; set; }
-
-        [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_SENHA_OBRIGATORIA)]
-        [StringLength(FuncionarioConstants.TAMANHO_MAXIMO_SENHA, MinimumLength = FuncionarioConstants.TAMANHO_MINIMO_SENHA, ErrorMessage = "Senha deve conter entre 8 e 20 caracteres.")]
-        [DataType(DataType.Password)]
-        public string Senha { get; set; }
-
-        [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_SENHA_OBRIGATORIA)]
-        [StringLength(FuncionarioConstants.TAMANHO_MAXIMO_SENHA, MinimumLength = FuncionarioConstants.TAMANHO_MINIMO_SENHA, ErrorMessage = "Senha deve conter entre 8 e 20 caracteres.")]
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirmar Senha")]
-        public string ConfirmarSenha { get; set; }
 
         [DisplayFormat(DataFormatString = "{000000-000}")]
         [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_CEP_OBRIGATORIO)]
@@ -40,9 +29,8 @@ namespace VisualLayer.Models.Funcionario
 
         [Required(ErrorMessage = "A Rua deve ser informada.")]
         public string Rua { get; set; }
-
-        [Required(AllowEmptyStrings = true)]
-        public string Complemento { get; set; }
+               
+        public string? Complemento { get; set; }
 
         [Required(ErrorMessage = "O Bairro deve ser informado.")]
         public string Bairro { get; set; }
@@ -51,10 +39,13 @@ namespace VisualLayer.Models.Funcionario
         public string Cidade { get; set; }
 
         [Required(ErrorMessage = "O Estao deve ser informado.")]
-        public string Estado { get; set; }
+        public int EstadoId { get; set; }
 
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "A data de nascimento deve ser informada.")]
+        [Display(Name = "Data Nascimento")]
         public DateTime DataNascimento { get; set; }
+
+        public IFormFile Image { get; set; }
     }
 }

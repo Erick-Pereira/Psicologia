@@ -5,20 +5,24 @@ namespace DataAccessLayer.Interfaces
 {
     public interface IBairroDAL
     {
-        Task<DataResponse<Bairro>> GetAll();
-
         Task<Response> Delete(Bairro bairro);
 
-        Task<Response> Insert(Bairro bairro);
+        Task<Response> Delete(int id);
 
-        Task<Response> Update(Bairro bairro);
+        Task<DataResponse<Bairro>> GetAll();
 
         Task<SingleResponse<Bairro>> GetByID(int id);
+
+        Task<SingleResponse<Bairro>> GetByNameAndCidadeId(Bairro bairro);
 
         Task<SingleResponse<int>> Iniciar();
 
         Task<SingleResponse<int>> IniciarReturnId();
 
+        Task<Response> Insert(Bairro bairro);
+
         Task<SingleResponse<int>> InsertReturnId(Bairro bairro);
+
+        Task<Response> Update(Bairro bairro);
     }
 }

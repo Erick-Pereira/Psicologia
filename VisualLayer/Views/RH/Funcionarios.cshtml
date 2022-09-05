@@ -1,0 +1,139 @@
+﻿@model IEnumerable<VisualLayer.Models.Funcionario.FuncionarioSelectViewModel>
+@using Shared.Extensions;
+
+@{
+    ViewData["Title"] = "Funcionarios";
+}
+<link rel="stylesheet" href="~/css/Adm/Funcionarios.css">
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<head>
+    <title> Funcionarios </title>
+</head>
+<div class="sidebar">
+    <div class="logo-details">
+        <i class='bx bxl-c-plus-plus'></i>
+        <a asp-area="" asp-controller="Home" asp-action="Index">
+            <span class="logo_name">Nossa Empresa</span>
+        </a>
+    </div>
+    <ul class="nav-links">
+        <li>
+            <a asp-area="" asp-controller="Adm" asp-action="Index">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Controle Empresa</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-pie-chart-alt-2'></i>
+                <span class="links_name">Análises</span>
+            </a>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="Adm" asp-action="Funcionarios" class="active">
+                <i class='bx bx-user'></i>
+                <span class="links_name">Funcionarios</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-test-tube'></i>
+                <span class="links_name">Resultado Teste</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-message'></i>
+                <span class="links_name">Mensagens</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bxs-calendar'></i>
+                <span class="links_name">Calendário</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-cog'></i>
+                <span class="links_name">Configurações</span>
+            </a>
+        </li>
+        <li class="log_out">
+            <a asp-area="" asp-controller="Home" asp-action="Logoff">
+                <i class='bx bx-log-out'></i>
+                <span class="links_name">Log out</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<section class="home-section">
+    <h1>Funcionarios</h1>
+
+    <p>
+        <a asp-action="Criar">Create New</a>
+    </p>
+    @*<div class="cabecalho">*@
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cpf)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataNascimento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cargo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Salario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsAtivo)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cpf)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataNascimento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cargo.Funcao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Salario)
+                    </td>
+                     <td>
+                        @Html.DisplayFor(modelItem => item.IsAtivo)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Editar", new {  id= item.Id}) |
+                        @Html.ActionLink("Details", "Detalhar", new {  id= item.Id }) |
+                        @Html.ActionLink("Requisitar Update","RequisitarUpdate", new {id = item.Id}) |
+                        @if(item.IsAtivo)
+                        @Html.ActionLink("Desativar","Desativar", new {id = item.Id})
+                        @if(!item.IsAtivo)
+                        @Html.ActionLink("Ativar","Ativar", new {id = item.Id}) |                        
+                        @Html.ActionLink("Delete", "Delete", new {  id=item.Id   })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*</div>*@
+</section>

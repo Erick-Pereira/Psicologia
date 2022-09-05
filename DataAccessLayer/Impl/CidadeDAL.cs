@@ -28,6 +28,20 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        public async Task<Response> Delete(int id)
+        {
+            _db.Cidade.Remove(new Cidade() { ID = id });
+            try
+            {
+                await _db.SaveChangesAsync();
+                return ResponseFactory<Response>.CreateSuccessResponse();
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
+            }
+        }
+
         public async Task<DataResponse<Cidade>> GetAll()
         {
             try
@@ -52,6 +66,18 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        public async Task<SingleResponse<Cidade>> GetByNameAndEstadoId(Cidade cidade)
+        {
+            try
+            {
+                return ResponseFactory<Cidade>.CreateSuccessItemResponse(await _db.Cidade.FirstOrDefaultAsync(c => c.NomeCidade == cidade.NomeCidade && c.EstadoId == cidade.EstadoId));
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Cidade>.CreateFailureItemResponse(ex);
+            }
+        }
+
         public async Task<SingleResponse<int>> Iniciar()
         {
             try
@@ -68,7 +94,7 @@ namespace DataAccessLayer.Impl
         {
             try
             {
-                Cidade cidade = await _db.Cidade.FirstAsync(c => c.NomeCidade == "");
+                Cidade cidade = await _db.Cidade.FirstOrDefaultAsync(c => c.NomeCidade == "");
                 return ResponseFactory<int>.CreateSuccessItemResponse(cidade.ID);
             }
             catch (Exception ex)

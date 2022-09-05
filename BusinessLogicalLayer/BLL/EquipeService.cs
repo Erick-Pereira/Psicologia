@@ -19,6 +19,11 @@ namespace BusinessLogicalLayer.BLL
             return await _equipeDAL.Delete(equipe);
         }
 
+        public async Task<Response> Delete(int id)
+        {
+            return await _equipeDAL.Delete(id);
+        }
+
         public async Task<DataResponse<Equipe>> GetAll()
         {
             return await _equipeDAL.GetAll();

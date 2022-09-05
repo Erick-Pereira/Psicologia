@@ -1,8 +1,11 @@
 ﻿@model VisualLayer.Models.Funcionario.FuncionarioUpdateViewModel
 @using BusinessLogicalLayer.API
+@using Entities
 @{
     ViewData["Title"] = "Update";
     string procurar = "";
+    var a = "89015-360";
+    List<Estado> estados = ViewBag.Estados;
 }
 <h1>Update</h1>
 
@@ -26,18 +29,8 @@
                 <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Senha" class="control-label"></label>
-                <input asp-for="Senha" class="form-control" />
-                <span asp-validation-for="Senha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ConfirmarSenha" class="control-label"></label>
-                <input asp-for="ConfirmarSenha" class="form-control" />
-                <span asp-validation-for="ConfirmarSenha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Cep" class="control-label"></label>
-                <input asp-for="Cep" name="Cep" class="form-control" />
+                <input asp-for="Cep" onchange="buscar(this.value)" name="Cep" class="form-control" />
                 <span asp-validation-for="Cep" class="text-danger"></span>
 
             </div>
@@ -48,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Rua" class="control-label"></label>
-                <input asp-for="Rua" name="Rua" class="form-control" />
+                <input asp-for="Rua" class="form-control" />
                 <span asp-validation-for="Rua" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -58,55 +51,66 @@
             </div>
             <div class="form-group">
                 <label asp-for="Bairro" class="control-label"></label>
-                <input asp-for="Bairro" name="Bairro" class="form-control" />
+                <input asp-for="Bairro" class="form-control" />
                 <span asp-validation-for="Bairro" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Cidade" class="control-label"></label>
-                <input asp-for="Cidade" name="Cidade" class="form-control" />
+                <input asp-for="Cidade" class="form-control" />
                 <span asp-validation-for="Cidade" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" name="Estado" class="form-control" />
-                <span asp-validation-for="Estado" class="text-danger"></span>
+                <label asp-for="EstadoId" class="control-label">Estado</label>
+                <select asp-for="EstadoId" class="form-control">
+                    @for (int i = 0; i < estados.Count; i++)
+                    {
+                        @if (@estados[i].ID == Model.EstadoId)
+                        {
+                            <option value="@estados[i].ID" selected>@estados[i].Sigla</option>
+                        }
+                        else
+                        {
+                            <option value="@estados[i].ID">@estados[i].Sigla</option>
+                        }
+                        
+                    }
+                </select>
+                <span asp-validation-for="EstadoId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DataNascimento" class="control-label"></label>
                 <input asp-for="DataNascimento" class="form-control" />
                 <span asp-validation-for="DataNascimento" class="text-danger"></span>
             </div>
+             <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input type="file" enctype="multipart/form-data" name="Image" class="form-control" id="Image"/>  
+                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            </div>
+
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
+        @if (ViewBag.Errors != null)
+        {
+            <div class="form-group">
+                <p class="bg-warning">
+                    @ViewBag.Errors
+                </p>
+            </div>
+        }
     </div>
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<script>
 
-<script type="text/javascript">
-    jQuery(function($) {
-        $("input[name='Cep']").change(function () {
-            var cep_code = $(this).val();
-            if (cep_code.length <= 0) return;
-            $.get("https://apps.widenet.com.br/busca-cep/api/cep.json", { code: cep_code }, function (result) {
-                if(result.status !=1){
-                    alert(result.message || "houve um erro");
-                    return;
-                }
-                $("input[name='Cep']").val(result.code);
-                $("input[name='Estado']").val(result.code);
-                $("input[name='Bairro']").val(result.code);
-                $("input[name='Cidade']").val(result.code);
-                $("input[name='Rua']").val(result.code);
-            });
-         });
-    });
 </script>
 @section Scripts {
+         
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+           
     }
     }

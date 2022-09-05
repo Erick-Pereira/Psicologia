@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Funcionarios";
 }
-<link rel="stylesheet" href="~/css/Funcionario/Funcionarios.css">
+<link rel="stylesheet" href="~/css/Adm/Funcionarios.css">
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 <head>
     <title> Funcionarios </title>
@@ -12,8 +12,8 @@
 <div class="sidebar">
     <div class="logo-details">
         <i class='bx bxl-c-plus-plus'></i>
-         <a asp-area="" asp-controller="Home" asp-action="Index">
-        <span class="logo_name">Nossa Empresa</span>
+        <a asp-area="" asp-controller="Home" asp-action="Index">
+            <span class="logo_name">Nossa Empresa</span>
         </a>
     </div>
     <ul class="nav-links">
@@ -24,61 +24,43 @@
             </a>
         </li>
         <li>
-            <a href="#">
-                <i class='bx bx-box'></i>
-                <span class="links_name">Produtos</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-list-ul'></i>
-                <span class="links_name">Lista de Pedidos</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
+            <a asp-area="" asp-controller="Adm" asp-action="Analises">
                 <i class='bx bx-pie-chart-alt-2'></i>
                 <span class="links_name">Análises</span>
             </a>
         </li>
         <li>
-            <a href="#">
-                <i class='bx bx-coin-stack'></i>
-                <span class="links_name">Estoque</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-book-alt'></i>
-                <span class="links_name">Total de Pedidos</span>
-            </a>
-        </li>
-        <li>
-            <a asp-area="" asp-controller="Funcionario" asp-action="Funcionarios" class="active">
+            <a asp-area="" asp-controller="Adm" asp-action="Funcionarios" class="active">
                 <i class='bx bx-user'></i>
                 <span class="links_name">Funcionarios</span>
             </a>
         </li>
         <li>
             <a href="#">
+                <i class='bx bx-test-tube'></i>
+                <span class="links_name">Resultado Teste</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
                 <i class='bx bx-message'></i>
-                <span class="links_name">Messages</span>
+                <span class="links_name">Mensagens</span>
             </a>
         </li>
         <li>
             <a href="#">
-                <i class='bx bx-heart'></i>
-                <span class="links_name">Favrorites</span>
+                <i class='bx bxs-calendar'></i>
+                <span class="links_name">Calendário</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a asp-area="" asp-controller="Adm" asp-action="Configuracao">
                 <i class='bx bx-cog'></i>
-                <span class="links_name">Setting</span>
+                <span class="links_name">Configurações</span>
             </a>
         </li>
         <li class="log_out">
-            <a href="#">
+            <a asp-area="" asp-controller="Home" asp-action="Logoff">
                 <i class='bx bx-log-out'></i>
                 <span class="links_name">Log out</span>
             </a>
@@ -89,7 +71,7 @@
     <h1>Funcionarios</h1>
 
     <p>
-        <a asp-action="Criar">Create New</a>
+        <a asp-action="Cadastrar">Cadastrar novo Funcionario</a>
     </p>
     @*<div class="cabecalho">*@
     <table>
@@ -109,6 +91,9 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Salario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsAtivo)
                 </th>
             </tr>
         </thead>
@@ -133,10 +118,17 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Salario)
                     </td>
+                     <td>
+                        @Html.DisplayFor(modelItem => item.IsAtivo)
+                    </td>
                     <td>
-                        @Html.ActionLink("Edit", "Editar", new {  id= item.Id }) |
+                        @Html.ActionLink("Edit", "Editar", new {  id= item.Id}) |
                         @Html.ActionLink("Details", "Detalhar", new {  id= item.Id }) |
-                        @Html.ActionLink("Requisitar Update","RequisitarUpdate", new {id = item.Id})
+                        @Html.ActionLink("Requisitar Update","RequisitarUpdate", new {id = item.Id}) |
+                        @if(item.IsAtivo)
+                        @Html.ActionLink("Desativar","Desativar", new {id = item.Id})
+                        @if(!item.IsAtivo)
+                        @Html.ActionLink("Ativar","Ativar", new {id = item.Id}) |                        
                         @Html.ActionLink("Delete", "Delete", new {  id=item.Id   })
                     </td>
                 </tr>
@@ -144,4 +136,15 @@
         </tbody>
     </table>
     @*</div>*@
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
 </section>

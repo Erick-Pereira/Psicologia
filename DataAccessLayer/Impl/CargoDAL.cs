@@ -28,6 +28,20 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        public async Task<Response> Delete(int id)
+        {
+            _db.Cargo.Remove(new Cargo() { ID = id });
+            try
+            {
+                await _db.SaveChangesAsync();
+                return ResponseFactory<Response>.CreateSuccessResponse();
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
+            }
+        }
+
         public async Task<DataResponse<Cargo>> GetAll()
         {
             try
@@ -64,6 +78,19 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        public async Task<SingleResponse<int>> IniciarReturnId()
+        {
+            try
+            {
+                Cargo cargo = await _db.Cargo.FirstOrDefaultAsync(c => c.NivelPermissao == 0);
+                return ResponseFactory<int>.CreateSuccessItemResponse(cargo.ID);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
+        }
+
         public async Task<Response> Insert(Cargo cargo)
         {
             _db.Cargo.Add(cargo);
@@ -84,19 +111,6 @@ namespace DataAccessLayer.Impl
             try
             {
                 await _db.SaveChangesAsync();
-                return ResponseFactory<int>.CreateSuccessItemResponse(cargo.ID);
-            }
-            catch (Exception ex)
-            {
-                return ResponseFactory<int>.CreateFailureItemResponse(ex);
-            }
-        }
-
-        public async Task<SingleResponse<int>> IniciarReturnId()
-        {
-            try
-            {
-                Cargo cargo = await _db.Cargo.FirstAsync(c => c.NivelPermissao == 0);
                 return ResponseFactory<int>.CreateSuccessItemResponse(cargo.ID);
             }
             catch (Exception ex)
