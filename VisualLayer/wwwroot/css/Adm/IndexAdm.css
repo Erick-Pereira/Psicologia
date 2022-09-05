@@ -7,8 +7,142 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
+<<<<<<< HEAD
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
 .sidebar {
+=======
+
+.lateral {
+>>>>>>> dd8ac33fdb2785fd3fce235d801a7f40d4d0b8bc
+    position: fixed;
+    top: 0;
+    left:0;
+    height: 100%;
+    width: 245px;
+    background: #023E7d;
+    padding: 6px 14px;
+}
+.sidebar .logo-detalhes{
+    color: #FFF;
+    display:flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+}
+.logo-detalhes .logo-name {
+    font-size: 28px;
+    margin-right: 5px;
+}
+.sidebar #btn{
+    position: absolute;
+    color: #FFF;
+    left: 90%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+}
+.sidebar ul{
+    margin-top: 20px;
+}
+.sidebar ul li{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    list-style: none
+}
+    .sidebar ul li a{
+        color: #FFF;
+        display:flex;
+        align-items: center;
+        text-decoration: none;
+    }
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    left:0;
+    height: 100%;
+    width: 245px;
+    background: #023E7d;
+    padding: 6px 14px;
+}
+.sidebar .logo-detalhes{
+    color: #FFF;
+    display:flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+}
+.logo-detalhes .logo-name {
+    font-size: 28px;
+    margin-right: 5px;
+}
+.sidebar #btn{
+    position: absolute;
+    color: #FFF;
+    left: 90%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+}
+.sidebar ul{
+    margin-top: 20px;
+}
+.sidebar ul li{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    list-style: none;
+    line-height: 50px;
+    
+}
+    .sidebar ul li a {
+        color: #FFF;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        transition: all 0.5s ease;
+        border-radius: 12px;
+    }
+    .sidebar ul li a i{
+        height: 50px;
+        min-width: 50px;
+        border-radius: 12px;
+        line-height: 50px;
+        text-align: center;
+    }
+        .sidebar ul li a:hover {
+            color: #023E7d;
+            background: #FFF;
+        }
+
+/*.lateral {
     position: fixed;
     height: 100%;
     width: 240px;
@@ -16,17 +150,21 @@
     transition: all 0.5s ease;
 }
 
-    .sidebar.active {
+<<<<<<< HEAD
+    .lateral.btn-nome-emp {
+=======
+    .sidebar.btn-nome-emp {
+>>>>>>> dd8ac33fdb2785fd3fce235d801a7f40d4d0b8bc
         width: 60px;
     }
 
-    .sidebar .logo-details {
+    .lateral .logo-detalhes {
         height: 80px;
         display: flex;
         align-items: center;
     }
 
-        .sidebar .logo-details i {
+        .lateral .logo-detalhes i {
             font-size: 28px;
             font-weight: 500;
             color: #fff;
@@ -34,60 +172,100 @@
             text-align: center
         }
 
-        .sidebar .logo-details .logo_name {
+        .lateral .logo-detalhes .logo_name {
             color: #fff;
             font-size: 24px;
             font-weight: 500;
         }
 
-    .sidebar .nav-links {
+    .lateral .nav-links {
         margin-top: 10px;
     }
 
-        .sidebar .nav-links li {
+        .lateral .nav-links li {
             position: relative;
             list-style: none;
-            height: 50px;
+<<<<<<< HEAD
+            height: ;50px
         }
 
-            .sidebar .nav-links li a {
+            .lateral .nav-links li a {
                 height: 100%;
                 width: 100%;
                 display: flex;
                 align-items: center;
                 text-decoration: none;
                 transition: all 0.4s ease;
+=======
+            height:50px;   
+        }
+            .sidebar .nav-links li .tooltip{
+                position: absolute;
+                left: 115px;
+                top: 50%;
+                transform: translateY(-50%);
+                border-radius: 10px;
+                height: 30px;
+                width:120px;
+                background: #FFF;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 5);
+                opacity: 0;
+                transition: 0s;
+>>>>>>> dd8ac33fdb2785fd3fce235d801a7f40d4d0b8bc
             }
+                .sidebar .nav-links li:hover .tooltip{
+                    transition: all 0.5s ease;
+                    top:50%;
+                    opacity:1;
+                }
 
-                .sidebar .nav-links li a.active {
+<<<<<<< HEAD
+=======
+                .sidebar .nav-links li a {
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                    transition: all 0.4s ease;
+                }
+
+>>>>>>> dd8ac33fdb2785fd3fce235d801a7f40d4d0b8bc
+                .lateral .nav-links li a.active {
                     background: #081D45;
                 }
 
-                .sidebar .nav-links li a:hover {
+                .lateral .nav-links li a:hover {
                     background: #081D45;
+                    border-radius: 26px;
                 }
 
-            .sidebar .nav-links li i {
+            .lateral .nav-links li i {
                 min-width: 60px;
                 text-align: center;
                 font-size: 18px;
                 color: #fff;
             }
 
-            .sidebar .nav-links li a .links_name {
+            .lateral .nav-links li a .links_name {
                 color: #fff;
                 font-size: 15px;
                 font-weight: 400;
                 white-space: nowrap;
             }
 
-        .sidebar .nav-links .log_out {
+<<<<<<< HEAD
+        .lateral .nav-links .sair {
+=======
+        .sidebar .nav-links .sair {
+>>>>>>> dd8ac33fdb2785fd3fce235d801a7f40d4d0b8bc
             position: absolute;
             bottom: 0;
             width: 100%;
         }
 
-.home-section {
+.corpo-topo {
     position: relative;
     background: #f5f5f5;
     min-height: 100vh;
@@ -96,12 +274,12 @@
     transition: all 0.5s ease;
 }
 
-.sidebar.active ~ .home-section {
+.lateral.active ~ .corpo-topo {
     width: calc(100% - 60px);
     left: 60px;
 }
 
-.home-section nav {
+.corpo-topo nav {
     display: flex;
     justify-content: space-between;
     height: 80px;
@@ -117,24 +295,24 @@
     transition: all 0.5s ease;
 }
 
-.sidebar.active ~ .home-section nav {
+.lateral.active ~ .corpo-topo nav {
     left: 60px;
     width: calc(100% - 60px);
 }
 
-.home-section nav .sidebar-button {
+.corpo-topo nav .lateral-button {
     display: flex;
     align-items: center;
     font-size: 24px;
     font-weight: 500;
 }
 
-nav .sidebar-button i {
+nav .lateral-button i {
     font-size: 35px;
     margin-right: 10px;
 }
 
-.home-section nav .search-box {
+.corpo-topo nav .caixa-procura {
     position: relative;
     height: 50px;
     max-width: 550px;
@@ -142,7 +320,7 @@ nav .sidebar-button i {
     margin: 0 20px;
 }
 
-nav .search-box input {
+nav .caixa-procura input {
     height: 100%;
     width: 100%;
     outline: none;
@@ -153,7 +331,7 @@ nav .search-box input {
     padding: 0 15px;
 }
 
-nav .search-box .bx-search {
+nav .caixa-procura .bx-search {
     position: absolute;
     height: 40px;
     width: 40px;
@@ -169,7 +347,7 @@ nav .search-box .bx-search {
     transition: all 0.4 ease;
 }
 
-.home-section nav .profile-details {
+.corpo-topo nav .perfil-detalhes {
     display: flex;
     align-items: center;
     background: #F5F6FA;
@@ -180,14 +358,14 @@ nav .search-box .bx-search {
     padding: 0 15px 0 2px;
 }
 
-nav .profile-details img {
+nav .perfil-detalhes img {
     height: 40px;
     width: 40px;
     border-radius: 6px;
     object-fit: cover;
 }
 
-nav .profile-details .admin_name {
+nav .perfil-detalhes .nome-adm {
     font-size: 15px;
     font-weight: 500;
     color: #333;
@@ -195,31 +373,107 @@ nav .profile-details .admin_name {
     white-space: nowrap;
 }
 
-nav .profile-details i {
+nav .perfil-detalhes i {
     font-size: 25px;
     color: #333;
 }
 
-
-
-.home-section nav .perfil{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0 20px;
-    margin-bottom: 26px;
+.corpo-topo .corpo {
+    position: relative;
+    padding-top: 104px;
+    width: 75%;
 }
 
-.perfil .box {
+.corpo .box-geral {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px 20px;
+    margin: 5% 0;
+    height: 650px;
+}
+
+.box-geral .box {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 350px;
-    height: 250px;
-    margin: 15px;
-    background: #fff;
-    padding: 15px 14px;
+    width: calc(75% / 2);
+    background: #FFF;
+    padding: 10px;
+    margin: 10px;
+    height:250px;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
+
+.box .name-box {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.corpo-topo .box .numero {
+    display: inline-block;
+    font-size: 35px;
+    margin-top: -6px;
+    font-weight: 500;
+}
+
+.corpo-topo .box .indicador {
+    display: flex;
+    align-items: center;
+}
+
+    .corpo-topo .box .indicador i {
+        height: 20px;
+        width: 20px;
+        background: #124EAB;
+        line-height: 20px;
+        text-align: center;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 20px;
+        margin-right: 5px;
+    }
+        .corpo-topo .box .indicador i .text {
+            font-size: 12px;
+        }
+
+<<<<<<< HEAD
+.lateral-site{
+    background-color: #000000;
+}*/
+=======
+.box .name-box {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.corpo-lateral {
+    position: relative;
+    padding-top: 104px;
+}
+    .corpo-lateral .box-geral-lateral {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        margin-bottom: 26px;
+        height: 1050px;
+    }
+    .box-geral-lateral .box-lateral {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(85% / 2);
+    background: #FFF;
+    padding: 10px;
+    margin: 10px;
+    height: 250px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+
+.avisos{
+    display:flex;
+}
+>>>>>>> dd8ac33fdb2785fd3fce235d801a7f40d4d0b8bc
