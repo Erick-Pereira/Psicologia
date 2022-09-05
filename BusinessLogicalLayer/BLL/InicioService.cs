@@ -6,7 +6,8 @@ using Shared.Extensions;
 namespace BusinessLogicalLayer.BLL
 {
     public class InicioService : IInicioService
-    {        
+    {
+        private static bool hasVerified;
         private readonly IBairroService _bairroService;
         private readonly ICargoService _cargoService;
         private readonly ICidadeService _cidadeService;
