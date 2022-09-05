@@ -8,7 +8,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.sidebar {
+.lateral {
     position: fixed;
     height: 100%;
     width: 240px;
@@ -16,17 +16,17 @@
     transition: all 0.5s ease;
 }
 
-    .sidebar.active {
+    .lateral.btn-nome-emp {
         width: 60px;
     }
 
-    .sidebar .logo-details {
+    .lateral .logo-detalhes {
         height: 80px;
         display: flex;
         align-items: center;
     }
 
-        .sidebar .logo-details i {
+        .lateral .logo-detalhes i {
             font-size: 28px;
             font-weight: 500;
             color: #fff;
@@ -34,23 +34,23 @@
             text-align: center
         }
 
-        .sidebar .logo-details .logo_name {
+        .lateral .logo-detalhes .logo_name {
             color: #fff;
             font-size: 24px;
             font-weight: 500;
         }
 
-    .sidebar .nav-links {
+    .lateral .nav-links {
         margin-top: 10px;
     }
 
-        .sidebar .nav-links li {
+        .lateral .nav-links li {
             position: relative;
             list-style: none;
-            height: 50px;
+            height: ;50px
         }
 
-            .sidebar .nav-links li a {
+            .lateral .nav-links li a {
                 height: 100%;
                 width: 100%;
                 display: flex;
@@ -59,35 +59,35 @@
                 transition: all 0.4s ease;
             }
 
-                .sidebar .nav-links li a.active {
+                .lateral .nav-links li a.active {
                     background: #081D45;
                 }
 
-                .sidebar .nav-links li a:hover {
+                .lateral .nav-links li a:hover {
                     background: #081D45;
                 }
 
-            .sidebar .nav-links li i {
+            .lateral .nav-links li i {
                 min-width: 60px;
                 text-align: center;
                 font-size: 18px;
                 color: #fff;
             }
 
-            .sidebar .nav-links li a .links_name {
+            .lateral .nav-links li a .links_name {
                 color: #fff;
                 font-size: 15px;
                 font-weight: 400;
                 white-space: nowrap;
             }
 
-        .sidebar .nav-links .log_out {
+        .lateral .nav-links .sair {
             position: absolute;
             bottom: 0;
             width: 100%;
         }
 
-.home-section {
+.corpo-topo {
     position: relative;
     background: #f5f5f5;
     min-height: 100vh;
@@ -96,12 +96,12 @@
     transition: all 0.5s ease;
 }
 
-.sidebar.active ~ .home-section {
+.lateral.active ~ .corpo-topo {
     width: calc(100% - 60px);
     left: 60px;
 }
 
-.home-section nav {
+.corpo-topo nav {
     display: flex;
     justify-content: space-between;
     height: 80px;
@@ -117,24 +117,24 @@
     transition: all 0.5s ease;
 }
 
-.sidebar.active ~ .home-section nav {
+.lateral.active ~ .corpo-topo nav {
     left: 60px;
     width: calc(100% - 60px);
 }
 
-.home-section nav .sidebar-button {
+.corpo-topo nav .lateral-button {
     display: flex;
     align-items: center;
     font-size: 24px;
     font-weight: 500;
 }
 
-nav .sidebar-button i {
+nav .lateral-button i {
     font-size: 35px;
     margin-right: 10px;
 }
 
-.home-section nav .search-box {
+.corpo-topo nav .caixa-procura {
     position: relative;
     height: 50px;
     max-width: 550px;
@@ -142,7 +142,7 @@ nav .sidebar-button i {
     margin: 0 20px;
 }
 
-nav .search-box input {
+nav .caixa-procura input {
     height: 100%;
     width: 100%;
     outline: none;
@@ -153,7 +153,7 @@ nav .search-box input {
     padding: 0 15px;
 }
 
-nav .search-box .bx-search {
+nav .caixa-procura .bx-search {
     position: absolute;
     height: 40px;
     width: 40px;
@@ -169,7 +169,7 @@ nav .search-box .bx-search {
     transition: all 0.4 ease;
 }
 
-.home-section nav .profile-details {
+.corpo-topo nav .perfil-detalhes {
     display: flex;
     align-items: center;
     background: #F5F6FA;
@@ -180,14 +180,14 @@ nav .search-box .bx-search {
     padding: 0 15px 0 2px;
 }
 
-nav .profile-details img {
+nav .perfil-detalhes img {
     height: 40px;
     width: 40px;
     border-radius: 6px;
     object-fit: cover;
 }
 
-nav .profile-details .admin_name {
+nav .perfil-detalhes .nome-adm {
     font-size: 15px;
     font-weight: 500;
     color: #333;
@@ -195,31 +195,97 @@ nav .profile-details .admin_name {
     white-space: nowrap;
 }
 
-nav .profile-details i {
+nav .perfil-detalhes i {
     font-size: 25px;
     color: #333;
 }
 
-
-
-.home-section nav .perfil{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0 20px;
-    margin-bottom: 26px;
+.corpo-topo .corpo {
+    position: relative;
+    padding-top: 104px;
+    width: 75%;
 }
 
-.perfil .box {
+.corpo .box-geral {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px 20px;
+    margin: 5% 0;
+    height: 650px;
+}
+
+.box-geral .box {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 350px;
-    height: 250px;
-    margin: 15px;
-    background: #fff;
-    padding: 15px 14px;
+    width: calc(75% / 2);
+    background: #FFF;
+    padding: 10px;
+    margin: 10px;
+    height:250px;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.box .name-box {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.corpo-topo .box .numero {
+    display: inline-block;
+    font-size: 35px;
+    margin-top: -6px;
+    font-weight: 500;
+}
+
+.corpo-topo .box .indicador {
+    display: flex;
+    align-items: center;
+}
+
+    .corpo-topo .box .indicador i {
+        height: 20px;
+        width: 20px;
+        background: #124EAB;
+        line-height: 20px;
+        text-align: center;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 20px;
+        margin-right: 5px;
+    }
+        .corpo-topo .box .indicador i .text {
+            font-size: 12px;
+        }
+
+
+.corpo-lateral {
+    position: relative;
+    padding-top: 104px;
+}
+    .corpo-lateral .box-geral-lateral {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        margin-bottom: 26px;
+        height: 1050px;
+    }
+    .box-geral-lateral .box-lateral {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(85% / 2);
+    background: #FFF;
+    padding: 10px;
+    margin: 10px;
+    height: 250px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+
+.avisos{
+    display:flex;
 }

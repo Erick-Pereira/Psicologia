@@ -10,14 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="sidebar">
-        <div class="logo-details">
+    <div class="lateral">
+        <div class="logo-detalhes">
             <i class='bx bxl-c-plus-plus'></i>
             <span class="logo_name">Nossa Empresa</span>
         </div>
         <ul class="nav-links">
             <li>
-                <a href="#" class="active">
+                <a href="#" class="btn-nome-emp">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Controle Empresa</span>
                 </a>
@@ -83,7 +83,7 @@
                     <span class="links_name">Setting</span>
                 </a>
             </li>
-            <li class="log_out">
+            <li class="sair">
                 <a href="#">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
@@ -91,49 +91,82 @@
             </li>
         </ul>
     </div>
-    <section class="home-section">
+    <section class="corpo-topo">
         <nav>
-            <div class="sidebar-button">
+            <div class="lateral-button">
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="dashboard">Menu</span>
             </div>
-            <div class="search-box">
+            <div class="caixa-procura">
                 <input type="text" placeholder="Procurar...">
                 <i class='bx bx-search'></i>
             </div>
-            <div class="profile-details">
+            <div class="perfil-detalhes">
                 <!--<img src="images/profile.jpg" alt="">-->
-                <span class="admin_name">Douglas</span>
+                <span class="nome-adm">Douglas</span>
                 <i class='bx bx-chevron-down'></i>
             </div>
         </nav>
-        <nav>
-            <div class="perfil">
-            <div class="box">
-                <div class="nome-box">Horas Trabalhadas</div>
-                <div class="numero"> <!-- c# --></div>
-                <div class="indicator">
-                      <i class='bx bxs-watch'></i>
+
+        <div class="corpo">
+            <div class="box-geral">
+                <div class="box">
+                    <div class="lado-direito">
+                        <div class="name-box"> Carga Horaria </div>
+                        <time class="numero">00:00</time>
+                        <div class="indicador">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            <span class="text">Iniciar</span>
+                        </div>   
+                    </div>
                 </div>
-                
-            </div>
-            <div class="box">
-                <div class="nome-box">Dia da Semana</div>
-
-
-            </div>
-            <div class="box">
-                <div class="nome-box">Equipe</div>
-
+                <div class="box">
+                    <div class="lado-direito">
+                        <div class="name-box">Ausências do Time</div>
+                        <div>Ver com erick</div>
+                        <div class="indicador">
+                            <i class='bx bx-right-arrow-alt'></i>
+                            <span class="text">Ver histórico de ausências</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="lado-direito">
+                        <div class="name-box">Reuniões</div>
+                        <div>Ver com erick</div>
+                        <div class="indicador">
+                            <i class='bx bx-camera-home'></i>
+                            <span class="text">Ingressar na reunião</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="lado-direito">
+                        <div class="name-box">Próximos Eventos</div>
+                        <div>Ver com erick</div>
+                        <div class="indicador">
+                            <i class='bx bxs-calendar-minus'></i>
+                            <span class="text">Ver Calendário</span>
+                        </div>
+                    </div>
+                </div>                
+            </div> 
+            <div class="corpo-lateral">
+                <div class="box-geral-lateral">
+                    <div class="box-lateral">
+                    <div class="lado-direito-lateral">   
+                        <div class="name-box">Avisos Gerais</div>
+                        <div>Temos que terminar logo</div>
+                        <div class="indicador">
+                            <i class='bx bx-list-ul'></i>
+                            <span class="text">Ver avisos</span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
-        </nav>
-
-
-
-
-
-
+        
 
         @*<div class="home-content">
             <div class="overview-boxes">
@@ -182,7 +215,7 @@
                     <i class='bx bxs-cart-download cart four'></i>
                 </div>
             </div>*@
-
+@*
             <div class="sales-boxes">
                 <div class="recent-sales box">
                     <div class="title">Recent Sales</div>
@@ -299,7 +332,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>*@
     </section>
 
     <script>
