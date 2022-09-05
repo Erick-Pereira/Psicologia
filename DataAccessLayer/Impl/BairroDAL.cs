@@ -28,6 +28,20 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        public async Task<Response> Delete(int id)
+        {
+            _db.Bairro.Remove(new Bairro() { ID = id });
+            try
+            {
+                await _db.SaveChangesAsync();
+                return ResponseFactory<Response>.CreateSuccessResponse();
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
+            }
+        }
+
         public async Task<DataResponse<Bairro>> GetAll()
         {
             try
@@ -45,6 +59,18 @@ namespace DataAccessLayer.Impl
             try
             {
                 return ResponseFactory<Bairro>.CreateSuccessItemResponse(await _db.Bairro.FindAsync(id));
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Bairro>.CreateFailureItemResponse(ex);
+            }
+        }
+
+        public async Task<SingleResponse<Bairro>> GetByNameAndCidadeId(Bairro bairro)
+        {
+            try
+            {
+                return ResponseFactory<Bairro>.CreateSuccessItemResponse(await _db.Bairro.FirstOrDefaultAsync(b => b.NomeBairro == bairro.NomeBairro && b.CidadeId == bairro.CidadeId));
             }
             catch (Exception ex)
             {

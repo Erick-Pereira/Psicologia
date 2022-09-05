@@ -14,25 +14,28 @@ namespace BusinessLogicalLayer.API
 
         public static CepAPI Busca(string cep)
         {
-            var cepObj = new CepAPI();
-            var url = "https://apps.widenet.com.br/busca-cep/api/cep.json?code=" + cep.StringCleaner();
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.AutomaticDecompression = DecompressionMethods.GZip;
-
-            string json = String.Empty;
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
+            if (!string.IsNullOrWhiteSpace(cep))
             {
-                json = reader.ReadToEnd();
+                var cepObj = new CepAPI();
+                var url = "https://apps.widenet.com.br/busca-cep/api/cep.json?code=" + cep.StringCleaner();
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.AutomaticDecompression = DecompressionMethods.GZip;
+                string json = String.Empty;
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                using (Stream stream = response.GetResponseStream())
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    json = reader.ReadToEnd();
+                }
+                JsonCepObject cepJson = JsonConvert.DeserializeObject<JsonCepObject>(json);
+                cepObj.CEP = cepJson.code;
+                cepObj.Cidade = cepJson.city;
+                cepObj.Endereco = cepJson.address;
+                cepObj.Bairro = cepJson.district;
+                cepObj.Estado = cepJson.state;
+                return cepObj;
             }
-            JsonCepObject cepJson = JsonConvert.DeserializeObject<JsonCepObject>(json);
-            cepObj.CEP = cepJson.code;
-            cepObj.Cidade = cepJson.city;
-            cepObj.Endereco = cepJson.address;
-            cepObj.Bairro = cepJson.district;
-            cepObj.Estado = cepJson.state;
-            return cepObj;
+            return new CepAPI();
         }
     }
 

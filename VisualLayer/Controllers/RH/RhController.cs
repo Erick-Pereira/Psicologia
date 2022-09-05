@@ -7,26 +7,21 @@ using Shared.Extensions;
 using System.Security.Claims;
 using VisualLayer.Models.Funcionario;
 
-namespace VisualLayer.Controllers.Adm
+namespace VisualLayer.Controllers.RH
 {
-    public class AdmController : Controller
+    public class RhController : Controller
     {
         private readonly ICargoService _CargoService;
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
 
-        public AdmController(IFuncionarioService funcionarioService, ICargoService cargoService, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public RhController(IFuncionarioService funcionarioService, ICargoService cargoService, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _FuncionarioService = funcionarioService;
             _CargoService = cargoService;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
-        }
-
-        public async Task<IActionResult> Analises()
-        {
-            return View();
         }
 
         public async Task<IActionResult> Ativar(string id)
@@ -37,9 +32,15 @@ namespace VisualLayer.Controllers.Adm
             return RedirectToAction(actionName: "Funcionarios", controllerName: "Adm");
         }
 
+        [Authorize]
+        public async Task<IActionResult> Calendario()
+        {
+            return View();
+        }
+
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Cadastrar()
+        public async Task<IActionResult> Criar()
         {
             ViewBag.Cargos = _CargoService.GetAll().Result.Data;
             return View();
@@ -47,23 +48,12 @@ namespace VisualLayer.Controllers.Adm
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Cadastrar(FuncionarioInsertViewModel funcionarioInsert)
+        public async Task<IActionResult> Criar(FuncionarioInsertViewModel funcionarioInsert)
         {
             Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(funcionarioInsert);
             Response response = await _FuncionarioService.Insert(funcionario);
             ViewBag.Cargos = _CargoService.GetAll().Result.Data;
             ViewBag.Errors = response.Message;
-            return View();
-        }
-
-        [Authorize]
-        public async Task<IActionResult> Calendario()
-        {
-            return View();
-        }
-
-        public async Task<IActionResult> Cargo()
-        {
             return View();
         }
 
@@ -93,17 +83,9 @@ namespace VisualLayer.Controllers.Adm
 
         public async Task<IActionResult> Detalhar(string id)
         {
-            Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt("ID"))).Result.Item;
-            FuncionarioDetailViewModel funcionarioDetail = _mapper.Map<FuncionarioDetailViewModel>(funcionario);
-            funcionarioDetail.Id = funcionarioDetail.Id.Encrypt("ID");
-            funcionarioDetail.Cep = funcionario.Endereco.CEP;
-            funcionarioDetail.NumeroCasa = funcionario.Endereco.NumeroCasa;
-            funcionarioDetail.Rua = funcionario.Endereco.Rua;
-            funcionarioDetail.Complemento = funcionario.Endereco.Complemento;
-            funcionarioDetail.Bairro = funcionario.Endereco.Bairro.NomeBairro;
-            funcionarioDetail.Cidade = funcionario.Endereco.Bairro.Cidade.NomeCidade;
-            funcionarioDetail.Estado = funcionario.Endereco.Bairro.Cidade.Estado.NomeEstado;
-            return View(funcionarioDetail);
+            FuncionarioDetailViewModel funcionario = _mapper.Map<FuncionarioDetailViewModel>(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt("ID"))).Result.Item);
+            funcionario.Id = funcionario.Id.Encrypt("ID");
+            return View(funcionario);
         }
 
         [HttpGet]
@@ -121,20 +103,13 @@ namespace VisualLayer.Controllers.Adm
         [Authorize]
         public async Task<IActionResult> Editar(FuncionarioUpdateAdmViewModel model)
         {
-            model.Id = model.Id.Decrypt("ID");
             Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(model);
             Response response = await _FuncionarioService.UpdateAdm(funcionario);
-            if (response.HasSuccess)
+            if (!response.HasSuccess)
             {
-                return RedirectToAction(actionName: "Funcionarios", controllerName: "Adm");
-            }
-            else
-            {
-                ViewBag.Funcionario = funcionario;
-                ViewBag.Cargos = _CargoService.GetAll().Result.Data;
                 ViewBag.Erros = response.Message;
-                return View();
             }
+            return View();
         }
 
         [Authorize]
@@ -162,7 +137,7 @@ namespace VisualLayer.Controllers.Adm
         public async Task<IActionResult> RequisitarUpdate(string id)
         {
             Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt("ID"))).Result.Item;
-            Response response = await _FuncionarioService.RequistarUpdate(funcionario);
+            Response response = await _FuncionarioService.ResetarSenha(funcionario);
             return RedirectToAction(actionName: "Funcionarios", controllerName: "Adm");
         }
 

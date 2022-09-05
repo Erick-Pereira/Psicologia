@@ -19,9 +19,19 @@ namespace BusinessLogicalLayer.BLL
             return await _enderecoDAL.Delete(endereco);
         }
 
+        public async Task<Response> Delete(int id)
+        {
+            return await _enderecoDAL.Delete(id);
+        }
+
         public async Task<DataResponse<Endereco>> GetAll()
         {
             return await _enderecoDAL.GetAll();
+        }
+
+        public async Task<SingleResponse<Endereco>> GetByEndereco(Endereco endereco)
+        {
+            return await _enderecoDAL.GetByEndereco(endereco);
         }
 
         public async Task<SingleResponse<Endereco>> GetByID(int id)

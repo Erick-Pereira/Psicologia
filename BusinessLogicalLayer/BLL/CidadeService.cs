@@ -19,6 +19,11 @@ namespace BusinessLogicalLayer.BLL
             return await _cidadeDAL.Delete(cidade);
         }
 
+        public async Task<Response> Delete(int id)
+        {
+            return await _cidadeDAL.Delete(id);
+        }
+
         public async Task<DataResponse<Cidade>> GetAll()
         {
             return await _cidadeDAL.GetAll();
@@ -27,6 +32,11 @@ namespace BusinessLogicalLayer.BLL
         public async Task<SingleResponse<Cidade>> GetByID(int id)
         {
             return await _cidadeDAL.GetByID(id);
+        }
+
+        public async Task<SingleResponse<Cidade>> GetByNameAndEstadoId(Cidade cidade)
+        {
+            return await _cidadeDAL.GetByNameAndEstadoId(cidade);
         }
 
         public async Task<SingleResponse<bool>> Iniciar()

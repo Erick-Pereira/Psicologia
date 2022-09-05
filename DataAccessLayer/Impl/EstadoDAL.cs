@@ -28,11 +28,25 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        public async Task<Response> Delete(int id)
+        {
+            _db.Estado.Remove(new Estado() { ID = id });
+            try
+            {
+                await _db.SaveChangesAsync();
+                return ResponseFactory<Response>.CreateSuccessResponse();
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
+            }
+        }
+
         public async Task<DataResponse<Estado>> GetAll()
         {
             try
             {
-                return ResponseFactory<Estado>.CreateSuccessDataResponse(await _db.Estado.ToListAsync());
+                return ResponseFactory<Estado>.CreateSuccessDataResponse(await _db.Estado.Where(e => e.NomeEstado != "").ToListAsync());
             }
             catch (Exception ex)
             {
@@ -68,7 +82,7 @@ namespace DataAccessLayer.Impl
         {
             try
             {
-                Estado estado = await _db.Estado.FirstAsync(e => e.NomeEstado == "" && e.Sigla == "");
+                Estado estado = await _db.Estado.FirstOrDefaultAsync(e => e.NomeEstado == "" && e.Sigla == "");
                 return ResponseFactory<int>.CreateSuccessItemResponse(estado.ID);
             }
             catch (Exception ex)

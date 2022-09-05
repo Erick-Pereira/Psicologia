@@ -28,6 +28,20 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        public async Task<Response> Delete(int id)
+        {
+            _db.Endereco.Remove(new Endereco() { ID = id });
+            try
+            {
+                await _db.SaveChangesAsync();
+                return ResponseFactory<Response>.CreateSuccessResponse();
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
+            }
+        }
+
         public async Task<DataResponse<Endereco>> GetAll()
         {
             try
@@ -37,6 +51,18 @@ namespace DataAccessLayer.Impl
             catch (Exception ex)
             {
                 return ResponseFactory<Endereco>.CreateFailureDataResponse(ex);
+            }
+        }
+
+        public async Task<SingleResponse<Endereco>> GetByEndereco(Endereco endereco)
+        {
+            try
+            {
+                return ResponseFactory<Endereco>.CreateSuccessItemResponse(_db.Endereco.FirstOrDefaultAsync(e => e.Rua == endereco.Rua && e.NumeroCasa == endereco.NumeroCasa && e.CEP == endereco.CEP && e.BairroID == endereco.BairroID).Result);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Endereco>.CreateFailureItemResponse(ex);
             }
         }
 
@@ -68,7 +94,7 @@ namespace DataAccessLayer.Impl
         {
             try
             {
-                Endereco endereco = await _db.Endereco.FirstAsync(e => e.CEP == "" && e.Rua == "");
+                Endereco endereco = await _db.Endereco.FirstOrDefaultAsync(e => e.CEP == "" && e.Rua == "");
                 return ResponseFactory<int>.CreateSuccessItemResponse(endereco.ID);
             }
             catch (Exception ex)

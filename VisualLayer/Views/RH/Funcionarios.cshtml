@@ -71,7 +71,7 @@
     <h1>Funcionarios</h1>
 
     <p>
-        <a asp-action="Cadastrar">Cadastrar novo Funcionario</a>
+        <a asp-action="Criar">Create New</a>
     </p>
     @*<div class="cabecalho">*@
     <table>
@@ -136,15 +136,4 @@
         </tbody>
     </table>
     @*</div>*@
-    <script>
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".sidebarBtn");
-        sidebarBtn.onclick = function () {
-            sidebar.classList.toggle("active");
-            if (sidebar.classList.contains("active")) {
-                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-            } else
-                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-        }
-    </script>
 </section>

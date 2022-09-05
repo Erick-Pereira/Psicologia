@@ -28,6 +28,20 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        public async Task<Response> Delete(int id)
+        {
+            _db.Compromisso.Remove(new Compromisso() { ID = id });
+            try
+            {
+                await _db.SaveChangesAsync();
+                return ResponseFactory<Response>.CreateSuccessResponse();
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Response>.CreateFailureResponse(ex);
+            }
+        }
+
         public async Task<DataResponse<Compromisso>> GetAll()
         {
             try

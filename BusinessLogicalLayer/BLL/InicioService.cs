@@ -27,7 +27,6 @@ namespace BusinessLogicalLayer.BLL
         private string rua = "";
         private string senha = "123456789".Hash();
         private string sigla = "";
-        private static bool hasVerified;
 
         public InicioService(IBairroService bairroService, ICidadeService cidadeService, IEnderecoService enderecoService, IEstadoService estadoService, IFuncionarioService funcionarioService, ICargoService cargoService)
         {
@@ -62,7 +61,10 @@ namespace BusinessLogicalLayer.BLL
                                             Email = email,
                                             Senha = senha,
                                             CargoID = _cargoService.InsertReturnId(new Cargo()
-                                            { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
+                                            {
+                                                Funcao = funcao,
+                                                NivelPermissao = nivelPermissao
+                                            }).Result.Item,
                                             EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                             {
                                                 NumeroCasa = numCasa,
@@ -75,7 +77,10 @@ namespace BusinessLogicalLayer.BLL
                                                     {
                                                         NomeCidade = cidade,
                                                         EstadoId = _estadoService.InsertReturnId(new Estado()
-                                                        { NomeEstado = estado, Sigla = sigla }).Result.Item
+                                                        {
+                                                            NomeEstado = estado,
+                                                            Sigla = sigla
+                                                        }).Result.Item
                                                     }).Result.Item
                                                 }).Result.Item
                                             }).Result.Item
@@ -96,7 +101,18 @@ namespace BusinessLogicalLayer.BLL
                                                 CEP = cep,
                                                 Rua = rua,
                                                 BairroID = _bairroService.InsertReturnId(new Bairro()
-                                                { NomeBairro = bairro, CidadeId = _cidadeService.InsertReturnId(new Cidade { NomeCidade = cidade, EstadoId = _estadoService.InsertReturnId(new Estado() { NomeEstado = estado, Sigla = sigla }).Result.Item }).Result.Item }).Result.Item
+                                                {
+                                                    NomeBairro = bairro,
+                                                    CidadeId = _cidadeService.InsertReturnId(new Cidade()
+                                                    {
+                                                        NomeCidade = cidade,
+                                                        EstadoId = _estadoService.InsertReturnId(new Estado()
+                                                        {
+                                                            NomeEstado = estado,
+                                                            Sigla = sigla
+                                                        }).Result.Item
+                                                    }).Result.Item
+                                                }).Result.Item
                                             }).Result.Item
                                         });
                                     }
@@ -112,14 +128,24 @@ namespace BusinessLogicalLayer.BLL
                                             Email = email,
                                             Senha = senha,
                                             CargoID = _cargoService.InsertReturnId(new Cargo()
-                                            { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
+                                            {
+                                                Funcao = funcao,
+                                                NivelPermissao = nivelPermissao
+                                            }).Result.Item,
                                             EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                             {
                                                 NumeroCasa = numCasa,
                                                 CEP = cep,
                                                 Rua = rua,
                                                 BairroID = _bairroService.InsertReturnId(new Bairro()
-                                                { NomeBairro = bairro, CidadeId = _cidadeService.InsertReturnId(new Cidade() { NomeCidade = cidade, EstadoId = _estadoService.IniciarReturnId().Result.Item }).Result.Item }).Result.Item
+                                                {
+                                                    NomeBairro = bairro,
+                                                    CidadeId = _cidadeService.InsertReturnId(new Cidade()
+                                                    {
+                                                        NomeCidade = cidade,
+                                                        EstadoId = _estadoService.IniciarReturnId().Result.Item
+                                                    }).Result.Item
+                                                }).Result.Item
                                             }).Result.Item
                                         });
                                     }
@@ -141,7 +167,10 @@ namespace BusinessLogicalLayer.BLL
                                                 {
                                                     NomeBairro = bairro,
                                                     CidadeId = _cidadeService.InsertReturnId(new Cidade()
-                                                    { NomeCidade = cidade, EstadoId = _estadoService.IniciarReturnId().Result.Item }).Result.Item
+                                                    {
+                                                        NomeCidade = cidade,
+                                                        EstadoId = _estadoService.IniciarReturnId().Result.Item
+                                                    }).Result.Item
                                                 }).Result.Item
                                             }).Result.Item
                                         });
@@ -159,14 +188,20 @@ namespace BusinessLogicalLayer.BLL
                                         Email = email,
                                         Senha = senha,
                                         CargoID = _cargoService.InsertReturnId(new Cargo()
-                                        { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
+                                        {
+                                            Funcao = funcao,
+                                            NivelPermissao = nivelPermissao
+                                        }).Result.Item,
                                         EnderecoID = _enderecoService.InsertReturnId(new Endereco()
                                         {
                                             NumeroCasa = numCasa,
                                             CEP = cep,
                                             Rua = rua,
                                             BairroID = _bairroService.InsertReturnId(new Bairro()
-                                            { NomeBairro = bairro, CidadeId = _cidadeService.IniciarReturnId().Result.Item }).Result.Item
+                                            {
+                                                NomeBairro = bairro,
+                                                CidadeId = _cidadeService.IniciarReturnId().Result.Item
+                                            }).Result.Item
                                         }).Result.Item
                                     });
                                 }
@@ -185,7 +220,10 @@ namespace BusinessLogicalLayer.BLL
                                             CEP = cep,
                                             Rua = rua,
                                             BairroID = _bairroService.InsertReturnId(new Bairro()
-                                            { NomeBairro = bairro, CidadeId = _cidadeService.IniciarReturnId().Result.Item }).Result.Item
+                                            {
+                                                NomeBairro = bairro,
+                                                CidadeId = _cidadeService.IniciarReturnId().Result.Item
+                                            }).Result.Item
                                         }).Result.Item
                                     });
                                 }
@@ -204,7 +242,12 @@ namespace BusinessLogicalLayer.BLL
                                     CargoID = _cargoService.InsertReturnId(new Cargo()
                                     { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
                                     EnderecoID = _enderecoService.InsertReturnId(new Endereco()
-                                    { NumeroCasa = numCasa, CEP = cep, Rua = rua, BairroID = _bairroService.IniciarReturnId().Result.Item }).Result.Item
+                                    {
+                                        NumeroCasa = numCasa,
+                                        CEP = cep,
+                                        Rua = rua,
+                                        BairroID = _bairroService.IniciarReturnId().Result.Item
+                                    }).Result.Item
                                 });
                             }
                             else
@@ -217,7 +260,12 @@ namespace BusinessLogicalLayer.BLL
                                     Senha = senha,
                                     CargoID = _cargoService.IniciarReturnId().Result.Item,
                                     EnderecoID = _enderecoService.InsertReturnId(new Endereco()
-                                    { NumeroCasa = numCasa, CEP = cep, Rua = rua, BairroID = _bairroService.IniciarReturnId().Result.Item }).Result.Item
+                                    {
+                                        NumeroCasa = numCasa,
+                                        CEP = cep,
+                                        Rua = rua,
+                                        BairroID = _bairroService.IniciarReturnId().Result.Item
+                                    }).Result.Item
                                 });
                             }
                         }
@@ -232,15 +280,26 @@ namespace BusinessLogicalLayer.BLL
                                 Nome = nome,
                                 Email = email,
                                 Senha = senha,
-                                CargoID = _cargoService.InsertReturnId(new Cargo()
-                                { Funcao = funcao, NivelPermissao = nivelPermissao }).Result.Item,
+                                CargoID = _cargoService.InsertReturnId(
+                                                                        new Cargo()
+                                                                        {
+                                                                            Funcao = funcao,
+                                                                            NivelPermissao = nivelPermissao
+                                                                        }).Result.Item,
                                 EnderecoID = _enderecoService.IniciarReturnId().Result.Item
                             });
                         }
                         else
                         {
                             _funcionarioService.InsertADM(new Funcionario()
-                            { Cpf = cpf, Nome = nome, Email = email, Senha = senha, CargoID = _cargoService.IniciarReturnId().Result.Item, EnderecoID = _enderecoService.IniciarReturnId().Result.Item });
+                            {
+                                Cpf = cpf,
+                                Nome = nome,
+                                Email = email,
+                                Senha = senha,
+                                CargoID = _cargoService.IniciarReturnId().Result.Item,
+                                EnderecoID = _enderecoService.IniciarReturnId().Result.Item
+                            });
                         }
                     }
                 }

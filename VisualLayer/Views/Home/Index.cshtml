@@ -19,21 +19,20 @@
         <div class="navbar">
             <div class="logo"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Nossa Empresa</a></div>
             <ul class="menu">
-                <li class="nav-item">
+               <li class="nav-item">
                     <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Membros">Membros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                    @Html.Partial("_LoginPartial",funcionario)
                 </li>
                 <div class="cancel-btn">
                     <i class="fas fa-times"></i>
                 </div>
             </ul>
             <div class="nav-item">
-                @Html.Partial("_LoginPartial",funcionario)
                 @*<a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>*@

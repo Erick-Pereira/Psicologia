@@ -5,7 +5,7 @@ namespace VisualLayer.Models.Funcionario
 {
     public class FuncionarioUpdateAdmViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required(ErrorMessage = FuncionarioConstants.MENSAGEM_ERRO_NOME_OBRIGATORIO)]
         [StringLength(FuncionarioConstants.TAMANHO_MAXIMO_NOME, MinimumLength = FuncionarioConstants.TAMANHO_MINIMO_NOME, ErrorMessage = "O Nome deve conter entre 3 e 100 caracteres.")]
