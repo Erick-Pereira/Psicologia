@@ -16,7 +16,7 @@
     transition: all 0.5s ease;
 }
 
-    .lateral.btn-nome-emp {
+    .sidebar.btn-nome-emp {
         width: 60px;
     }
 
@@ -47,17 +47,36 @@
         .lateral .nav-links li {
             position: relative;
             list-style: none;
-            height: ;50px
+            height:50px;   
         }
-
-            .lateral .nav-links li a {
-                height: 100%;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                text-decoration: none;
-                transition: all 0.4s ease;
+            .sidebar .nav-links li .tooltip{
+                position: absolute;
+                left: 115px;
+                top: 50%;
+                transform: translateY(-50%);
+                border-radius: 10px;
+                height: 30px;
+                width:120px;
+                background: #FFF;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 5);
+                opacity: 0;
+                transition: 0s;
             }
+                .sidebar .nav-links li:hover .tooltip{
+                    transition: all 0.5s ease;
+                    top:50%;
+                    opacity:1;
+                }
+
+                .sidebar .nav-links li a {
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                    transition: all 0.4s ease;
+                }
 
                 .lateral .nav-links li a.active {
                     background: #081D45;
@@ -65,6 +84,7 @@
 
                 .lateral .nav-links li a:hover {
                     background: #081D45;
+                    border-radius: 26px;
                 }
 
             .lateral .nav-links li i {
@@ -81,7 +101,7 @@
                 white-space: nowrap;
             }
 
-        .lateral .nav-links .sair {
+        .sidebar .nav-links .sair {
             position: absolute;
             bottom: 0;
             width: 100%;
@@ -260,6 +280,10 @@ nav .perfil-detalhes i {
             font-size: 12px;
         }
 
+.box .name-box {
+    font-size: 25px;
+    font-weight: 500;
+}
 
 .corpo-lateral {
     position: relative;
