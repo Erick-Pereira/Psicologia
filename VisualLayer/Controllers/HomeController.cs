@@ -100,6 +100,7 @@ namespace VisualLayer.Controllers
             claims.Add(new Claim(ClaimTypes.Sid, funcionario.ID.ToString()));
             claims.Add(new Claim(ClaimTypes.Name, funcionario.Nome));
             claims.Add(new Claim(ClaimTypes.Email, funcionario.Email));
+            claims.Add(new Claim(ClaimTypes.Hash, funcionario.Senha));
             claims.Add(new Claim(ClaimTypes.Role, _cargoService.GetByID(funcionario.CargoID).Result.Item.Funcao));
             ClaimsPrincipal claimsIdentity = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
             AuthenticationProperties authProperties = new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddHours(10), IssuedUtc = DateTime.Now };
