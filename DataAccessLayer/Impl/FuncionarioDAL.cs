@@ -119,7 +119,7 @@ namespace DataAccessLayer.Impl
             _db.Funcionario.Add(funcionario);
             try
             {
-                await _db.SaveChangesAsync();
+                _db.SaveChangesAsync();
                 return ResponseFactory<Response>.CreateSuccessResponse();
             }
             catch (Exception ex)
@@ -137,6 +137,18 @@ namespace DataAccessLayer.Impl
             catch (Exception ex)
             {
                 return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
+        }
+
+        public async Task<SingleResponse<Funcionario>> GetInformationToVerify(int id)
+        {
+            try
+            {
+                return ResponseFactory<Funcionario>.CreateSuccessItemResponse(await _db.Funcionario.Include(f => f.Cargo).Select(f => new Funcionario { ID = f.ID, IsFirstLogin = f.IsFirstLogin, HasRequiredTest = f.HasRequiredTest, Cargo = new Cargo { NivelPermissao = f.Cargo.NivelPermissao } }).FirstOrDefaultAsync(f => f.ID == id));
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Funcionario>.CreateFailureItemResponse(ex);
             }
         }
 

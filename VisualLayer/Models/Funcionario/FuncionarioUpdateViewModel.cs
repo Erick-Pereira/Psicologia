@@ -30,8 +30,7 @@ namespace VisualLayer.Models.Funcionario
         [Required(ErrorMessage = "A Rua deve ser informada.")]
         public string Rua { get; set; }
 
-        [Required(AllowEmptyStrings = true)]
-        public string Complemento { get; set; }
+        public string? Complemento { get; set; }
 
         [Required(ErrorMessage = "O Bairro deve ser informado.")]
         public string Bairro { get; set; }
@@ -44,6 +43,9 @@ namespace VisualLayer.Models.Funcionario
 
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "A data de nascimento deve ser informada.")]
+        [Display(Name = "Data Nascimento")]
         public DateTime DataNascimento { get; set; }
+
+        public IFormFile Image { get; set; }
     }
 }

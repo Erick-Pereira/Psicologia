@@ -27,6 +27,8 @@ namespace BusinessLogicalLayer.Interfaces
 
         Task<Response> InsertADM(Funcionario funcionario);
 
+        Task<SingleResponse<Funcionario>> GetInformationToVerify(int id);
+
         Task<bool> Logar(Funcionario funcionario);
 
         Task<Response> RequistarUpdate(Funcionario funcionario);

@@ -14,7 +14,6 @@ namespace Entities
         public Cargo Cargo { get; set; }
         public int CargoID { get; set; }
         public string Celular { get; set; }
-        public string Foto { get; set; }
         public DateTime DataNascimento { get; set; }
         public Endereco Endereco { get; set; }
         public int EnderecoID { get; set; }

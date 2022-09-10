@@ -14,6 +14,7 @@ namespace VisualLayer.Controllers
 {
     public class HomeController : Controller
     {
+        private const string ENCRYPT = "ID";
         private readonly ICargoService _cargoService;
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -41,7 +42,7 @@ namespace VisualLayer.Controllers
             int id = 0;
             if (_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid) != null)
             {
-                id = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value);
+                id = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT));
                 ViewBag.Funcionario = _mapper.Map<FuncionarioSelectViewModel>(_FuncionarioService.GetByID(id).Result.Item);
             }
             return View();
@@ -50,7 +51,7 @@ namespace VisualLayer.Controllers
         public async Task Logar(Entities.Funcionario funcionario)
         {
             List<Claim> claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.Sid, funcionario.ID.ToString()));
+            claims.Add(new Claim(ClaimTypes.Sid, funcionario.ID.ToString().Encrypt(ENCRYPT)));
             claims.Add(new Claim(ClaimTypes.Name, funcionario.Nome));
             claims.Add(new Claim(ClaimTypes.Email, funcionario.Email));
             claims.Add(new Claim(ClaimTypes.Hash, funcionario.Senha));
@@ -62,7 +63,7 @@ namespace VisualLayer.Controllers
 
         public async Task<IActionResult> Logarr()
         {
-            Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value)).Result.Item;
+            Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
             if (await _FuncionarioService.Logar(funcionario))
             {
                 funcionario = _FuncionarioService.GetByLogin(funcionario).Result.Item;
@@ -123,7 +124,7 @@ namespace VisualLayer.Controllers
             int id = 0;
             if (_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid) != null)
             {
-                id = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value);
+                id = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT));
                 ViewBag.Funcionario = _mapper.Map<FuncionarioSelectViewModel>(_FuncionarioService.GetByID(id).Result.Item);
             }
             return View();
