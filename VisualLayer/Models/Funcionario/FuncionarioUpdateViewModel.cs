@@ -29,7 +29,7 @@ namespace VisualLayer.Models.Funcionario
 
         [Required(ErrorMessage = "A Rua deve ser informada.")]
         public string Rua { get; set; }
-               
+
         public string? Complemento { get; set; }
 
         [Required(ErrorMessage = "O Bairro deve ser informado.")]

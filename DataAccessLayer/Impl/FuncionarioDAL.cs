@@ -105,7 +105,7 @@ namespace DataAccessLayer.Impl
         public async Task<SingleResponse<int>> Iniciar()
         {
             try
-            {                
+            {
                 return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Funcionario.Where(f => f.Cargo.NivelPermissao == 0).CountAsync());
             }
             catch (Exception ex)
@@ -113,13 +113,13 @@ namespace DataAccessLayer.Impl
                 return ResponseFactory<int>.CreateFailureItemResponse(ex);
             }
         }
-    
+
         public async Task<Response> Insert(Funcionario funcionario)
         {
             _db.Funcionario.Add(funcionario);
             try
             {
-                _db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 return ResponseFactory<Response>.CreateSuccessResponse();
             }
             catch (Exception ex)
@@ -139,11 +139,12 @@ namespace DataAccessLayer.Impl
                 return ResponseFactory<int>.CreateFailureItemResponse(ex);
             }
         }
+
         public async Task<SingleResponse<Funcionario>> GetInformationToVerify(int id)
         {
             try
-            {                
-                return ResponseFactory<Funcionario>.CreateSuccessItemResponse(await _db.Funcionario.Include(f => f.Cargo).Select(f=> new Funcionario{ID = f.ID, IsFirstLogin = f.IsFirstLogin,HasRequiredTest = f.HasRequiredTest,Cargo = new Cargo { NivelPermissao = f.Cargo.NivelPermissao } }).FirstOrDefaultAsync(f=>f.ID== id));
+            {
+                return ResponseFactory<Funcionario>.CreateSuccessItemResponse(await _db.Funcionario.Include(f => f.Cargo).Select(f => new Funcionario { ID = f.ID, IsFirstLogin = f.IsFirstLogin, HasRequiredTest = f.HasRequiredTest, Cargo = new Cargo { NivelPermissao = f.Cargo.NivelPermissao } }).FirstOrDefaultAsync(f => f.ID == id));
             }
             catch (Exception ex)
             {

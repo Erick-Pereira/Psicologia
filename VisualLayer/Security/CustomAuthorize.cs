@@ -5,10 +5,9 @@ using System.Security.Claims;
 
 namespace VisualLayer.Security
 {
-    [AttributeUsage(AttributeTargets.Class| AttributeTargets.Method)]
-    class CustomAuthorizeAttribute : Attribute, IAuthorizationFilter
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    internal class CustomAuthorizeAttribute : Attribute, IAuthorizationFilter
     {
-
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
 

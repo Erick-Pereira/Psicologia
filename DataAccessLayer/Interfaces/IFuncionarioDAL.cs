@@ -16,6 +16,7 @@ namespace DataAccessLayer.Interfaces
         Task<SingleResponse<int>> GetAllByEnderecoId(int id);
 
         Task<SingleResponse<Funcionario>> GetByID(int id);
+
         Task<SingleResponse<Funcionario>> GetInformationToVerify(int id);
 
         Task<SingleResponse<Funcionario>> GetByLogin(Funcionario funcionario);
