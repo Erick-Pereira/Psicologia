@@ -119,7 +119,7 @@ namespace DataAccessLayer.Impl
             _db.Funcionario.Add(funcionario);
             try
             {
-                await _db.SaveChangesAsync();
+                _db.SaveChangesAsync();
                 return ResponseFactory<Response>.CreateSuccessResponse();
             }
             catch (Exception ex)
