@@ -5,10 +5,7 @@ namespace VisualLayer.Models.Funcionario
     public class FuncionarioDetailViewModel
     {
         public string Id { get; set; }
-
-        [DataType(DataType.ImageUrl)]
-        public string Foto { get; set; }
-
+        public IFormFile Foto { get; set; }
         public string Nome { get; set; }
 
         [DataType(DataType.EmailAddress)]

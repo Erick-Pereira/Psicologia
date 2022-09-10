@@ -1,16 +1,31 @@
-﻿
-            @RenderBody()
-@*        </main>
-    </div>*@
+﻿<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 
-@*    <footer>
-        <div class="text">
-            <span>Created By <a asp-area="" asp-controller="Home" asp-action="Index">Nossa Empresa</a> | &#169; 2022 All Rights Reserved</span>
-        </div>
-    </footer>*@
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/Index.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-@*</body>
-</html>*@
+    <link rel="stylesheet" href="~/css/sidebar.css" />
+    <link rel="stylesheet" href="~/css/topbar.css" />           <!--TopBar css e SideBar css-->
+    <link rel="stylesheet" href="~/Icons/icon.css" />          <!--TopBar css e SideBar css-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> <!--Icone-->
+    <!--z-iNDEX RESPONSAVEL POR DEFINIR COM A ORDEM (ARRASTAR PRA FRENTE)-->
+    <!--fIXED PARA TOPBAR E SIDEBAR-->
+
+</head>
+            @RenderBody()
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<script type="text/javascript" src="~/lib/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+<script>$('#input_cpf').mask('000.000.000-00');</script>
+<script>$('#input_tel_1').mask('(00)00000-0000');</script>
+<script>$('#input_tel_2').mask('(00)00000-0000');</script>
+<script>$('#input_cep').mask('00000-000', { placeholder: "" });</script>
+<script>$('#input_numero_residencia').mask('0000');</script>
+<script>$('#input_altura').mask('000');</script>
+<script>$('#input_comprimento').mask('000');</script>
+
+@await RenderSectionAsync("Scripts", required: false)

@@ -140,6 +140,18 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        public async Task<SingleResponse<Funcionario>> GetInformationToVerify(int id)
+        {
+            try
+            {
+                return ResponseFactory<Funcionario>.CreateSuccessItemResponse(await _db.Funcionario.Include(f => f.Cargo).Select(f => new Funcionario { ID = f.ID, IsFirstLogin = f.IsFirstLogin, HasRequiredTest = f.HasRequiredTest, Cargo = new Cargo { NivelPermissao = f.Cargo.NivelPermissao } }).FirstOrDefaultAsync(f => f.ID == id));
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Funcionario>.CreateFailureItemResponse(ex);
+            }
+        }
+
         public async Task<Response> Update(Funcionario funcionario)
         {
             _db.Update(funcionario);

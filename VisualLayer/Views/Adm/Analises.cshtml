@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<link rel="stylesheet" href="~/css/Adm/Analise.css">
+<!DOCTYPE html>
 <!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
 <html lang="en" dir="ltr">
 <head>
@@ -19,13 +20,13 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="#">
+                <a asp-area="" asp-controller="Adm" asp-action="Index">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Controle Empresa</span>
                 </a>
             </li>
             <li>
-                <a asp-area="" asp-controller="Home" asp-action="Analises" class="active">
+                <a asp-area="" asp-controller="Adm" asp-action="Analises" class="active">
                     <i class='bx bx-pie-chart-alt-2'></i>
                     <span class="links_name">Análises</span>
                 </a>
@@ -55,7 +56,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a asp-area="" asp-controller="Adm" asp-action="Configuracao">
                     <i class='bx bx-cog'></i>
                     <span class="links_name">Configurações</span>
                 </a>
@@ -68,6 +69,19 @@
             </li>
         </ul>
     </div>
+    <section class="home-section">
+<dl>
+  <dt>
+    Browser market share June 2015
+  </dt>
+  <dd class="percentage percentage-11"><span class="text">IE 11: 11.33%</span></dd>
+  <dd class="percentage percentage-49"><span class="text">Chrome: 49.77%</span></dd>
+  <dd class="percentage percentage-16"><span class="text">Firefox: 16.09%</span></dd>
+  <dd class="percentage percentage-5"><span class="text">Safari: 5.41%</span></dd>
+  <dd class="percentage percentage-2"><span class="text">Opera: 1.62%</span></dd>
+  <dd class="percentage percentage-2"><span class="text">Android 4.4: 2%</span></dd>
+</dl>
+    </section>
 </body>
 </html>
 
