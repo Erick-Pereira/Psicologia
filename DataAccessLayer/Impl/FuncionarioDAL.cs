@@ -86,7 +86,13 @@ namespace DataAccessLayer.Impl
             }
             catch (Exception ex)
             {
+
+
+
                 return ResponseFactory<Funcionario>.CreateFailureItemResponse(ex);
+
+
+                //comentario só pra testar
             }
         }
          
