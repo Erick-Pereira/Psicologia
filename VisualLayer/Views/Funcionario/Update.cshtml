@@ -82,6 +82,13 @@
                 <input asp-for="DataNascimento" class="form-control" />
                 <span asp-validation-for="DataNascimento" class="text-danger"></span>
             </div>
+             <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input type="file" enctype="multipart/form-data" name="Image" class="form-control" id="Image"/>  
+                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            </div>
+
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -96,30 +103,14 @@
         }
     </div>
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 <script>
-                    return;
-            else {
-            @a = cep_code;
-            @{
-            CepAPI b = CepAPI.Busca(a);
-            }
-            var cep = @b.CEP;
-            var estado = @b.Estado;
-            var cidade = @b.Cidade;
-            var bairro = @b.Bairro;
-            var rua = @b.Endereco;
-             $("input [asp-for='Cep']").val(cep);
-             $("input [asp-for='Estado']").val(estado);
-             $("input [asp-for='Cidade']").val(cidade);
-             $("input [asp-for='Bairro']").val(bairro);
-             $("input [asp-for='Rua']").val(rua);
-                }
+
 </script>
 @section Scripts {
+         
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+           
     }
     }

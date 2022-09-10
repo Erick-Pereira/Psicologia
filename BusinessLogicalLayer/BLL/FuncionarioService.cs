@@ -72,6 +72,11 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.GetByLogin(funcionario);
         }
 
+        public async Task<SingleResponse<Funcionario>> GetInformationToVerify(int id)
+        {
+            return await _funcionarioDAL.GetInformationToVerify(id);
+        }
+
         public async Task<SingleResponse<bool>> Iniciar()
         {
             SingleResponse<int> response = await _funcionarioDAL.Iniciar();
