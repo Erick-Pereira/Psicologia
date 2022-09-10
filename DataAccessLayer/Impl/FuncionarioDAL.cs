@@ -89,7 +89,7 @@ namespace DataAccessLayer.Impl
                 return ResponseFactory<Funcionario>.CreateFailureItemResponse(ex);
             }
         }
-
+         
         public async Task<SingleResponse<Funcionario>> GetByLogin(Funcionario funcionario)
         {
             try
