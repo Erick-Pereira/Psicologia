@@ -11,43 +11,42 @@
     <title> Login </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- ===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="~/css/Home/Login.css">
-         
+
     <!--<title>Login & Registration Form</title>-->
 </head>
 <body>
-      <header>
-              <nav>
+    <header>
+        <nav>
             <div class="navbar">
-                <div class="logo"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Nossa Empresa</a></div>
+                <div class="logo">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Nossa Empresa</a>
+                </div>
                 <ul class="menu">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Membros">Membros</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Membros">Membros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Log in</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Login">Log in</a>
                     </li>
                     <div class="cancel-btn">
                         <i class="fas fa-times"></i>
                     </div>
                 </ul>
-                <div class="media-icons">
-
-                </div>
             </div>
             <div class="menu-btn">
                 <i class="fas fa-bars"></i>
             </div>
         </nav>
-  </header>
+    </header>
     <div class="container">
         <div class="forms">
             <div class="form login">
@@ -56,38 +55,38 @@
                 <form asp-action="Login">
                     <div class="input-field">
                         <div class="form-group">
-                        <input asp-for="Email" id="Email" class="form-control" placeholder="Enter your email" required/>
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                     </div>
+                            <input asp-for="Email" id="Email" class="form-control" placeholder="Enter your email" required />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
                         @*<input type="text" placeholder="Enter your email" required>*@
                         <i class="uil uil-envelope icon"></i>
 
                     </div>
                     <div class="input-field">
-                         <div class="form-group">
-                        <input asp-for="Senha" type="password"  class="password" placeholder="Enter your password" required/>
-                        <!-- <span asp-validation-for="Senha"  class="password"></span> -->
-                          </div>
-                          
+                        <div class="form-group">
+                            <input asp-for="Senha" type="password" class="password" placeholder="Enter your password" required />
+                            <!-- <span asp-validation-for="Senha"  class="password"></span> -->
+                        </div>
+
                         @*<input type="password" class="password" placeholder="Enter your password" required>*@
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
-                    </div>                   
+                    </div>
 
                     <div class="input-field button">
-                       <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </div>
+                        <div class="form-group">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-        <footer>
+    <footer>
         <div class="text">
             <span>Created By <a asp-area="" asp-controller="Home" asp-action="Index">Nossa Empresa</a> | &#169; 2022 All Rights Reserved</span>
         </div>
     </footer>
-   <script src="~/js/Home/Login.js"></script>
+    <script src="~/js/Home/Login.js"></script>
 </body>
 </html>

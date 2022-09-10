@@ -13,10 +13,10 @@
                 <div class="logo"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Nossa Empresa</a></div>
                 <ul class="menu">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Membros">Membros</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Membros">Membros</a>
                     </li>
                     <li class="nav-item">
                     @Html.Partial("_LoginPartial",funcionario)

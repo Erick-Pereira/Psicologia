@@ -73,6 +73,17 @@ nav.open .sidebar {
     list-style: none;
 }
 
+.Senha .Senha-content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 16px;
+}
+
+.Senha-content .list {
+    list-style: none;
+}
 .list .nav-link {
     display: flex;
     align-items: center;

@@ -14,6 +14,7 @@ namespace VisualLayer.Controllers.Funcionario
     public class FuncionarioController : Controller
     {
         private const string ENCRYPT = "ID";
+        private const int NIVEL_PERMISSAO = 3;
         private readonly IEstadoService _estadoService;
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -36,15 +37,45 @@ namespace VisualLayer.Controllers.Funcionario
             ViewBag.Endereco = a;
             return View();
         }
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Configuracao()
+        {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
+            Entities.Funcionario funcionario = _FuncionarioService.GetByID(verify.ID).Result.Item;
+            FuncionarioDetailViewModel funcionarioDetail = _mapper.Map<FuncionarioDetailViewModel>(funcionario);
+            funcionarioDetail.Id = funcionarioDetail.Id.Encrypt(ENCRYPT);
+            funcionarioDetail.Cep = funcionario.Endereco.CEP;
+            funcionarioDetail.NumeroCasa = funcionario.Endereco.NumeroCasa;
+            funcionarioDetail.Rua = funcionario.Endereco.Rua;
+            funcionarioDetail.Complemento = funcionario.Endereco.Complemento;
+            funcionarioDetail.Bairro = funcionario.Endereco.Bairro.NomeBairro;
+            funcionarioDetail.Cidade = funcionario.Endereco.Bairro.Cidade.NomeCidade;
+            funcionarioDetail.Estado = funcionario.Endereco.Bairro.Cidade.Estado.NomeEstado;
+            return View(funcionarioDetail);
+        }
 
         [Authorize]
         public async Task<IActionResult> Funcionarios()
         {
-            DataResponse<Entities.Funcionario> dataResponse = await _FuncionarioService.GetAll();
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
+            DataResponse<Entities.Funcionario> dataResponse = await _FuncionarioService.GetAllAtivos();
             List<FuncionarioSelectViewModel> Funcionarios = new List<FuncionarioSelectViewModel>();
             for (int i = 0; i < dataResponse.Data.Count; i++)
             {
                 Funcionarios.Add(_mapper.Map<FuncionarioSelectViewModel>(dataResponse.Data[i]));
+            }
+            for (int i = 0; i < Funcionarios.Count; i++)
+            {
+                Funcionarios[i].Id = Funcionarios[i].Id.Encrypt(ENCRYPT);
             }
             return View(Funcionarios);
         }
@@ -52,6 +83,11 @@ namespace VisualLayer.Controllers.Funcionario
         [Authorize]
         public IActionResult Index()
         {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
             return View();
         }
 
@@ -116,7 +152,6 @@ namespace VisualLayer.Controllers.Funcionario
                 }
 
                 string path = webHostEnvironment.ContentRootPath + "\\SystemImg\\Funcionarios\\";
-
                 using (FileStream fs = new FileStream(path + funcionarioUpdate.Cpf.StringCleaner() + ".jpg", FileMode.Create))
                 {
                     await funcionarioUpdate.Image.CopyToAsync(fs);
