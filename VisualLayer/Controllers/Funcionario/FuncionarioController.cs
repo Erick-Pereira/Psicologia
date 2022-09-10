@@ -9,11 +9,11 @@ using Shared.Extensions;
 using System.Security.Claims;
 using VisualLayer.Models.Funcionario;
 
-
 namespace VisualLayer.Controllers.Funcionario
 {
     public class FuncionarioController : Controller
     {
+        private const string ENCRYPT = "ID";
         private readonly IEstadoService _estadoService;
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -65,21 +65,21 @@ namespace VisualLayer.Controllers.Funcionario
         [Authorize]
         public async Task<IActionResult> Update()
         {
-            
-            int id = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt("ID"));
+            int id = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT));
             SingleResponse<Entities.Funcionario> response = await _FuncionarioService.GetByID(id);
-            if (response.Item.IsFirstLogin) { 
-            FuncionarioUpdateViewModel funcionario = _mapper.Map<FuncionarioUpdateViewModel>(response.Item);
-            funcionario.EstadoId = response.Item.Endereco.Bairro.Cidade.EstadoId;
-            funcionario.Cep = response.Item.Endereco.CEP;
-            funcionario.NumeroCasa = response.Item.Endereco.NumeroCasa;
-            funcionario.Rua = response.Item.Endereco.Rua;
-            funcionario.Complemento = response.Item.Endereco.Complemento;
-            funcionario.Bairro = response.Item.Endereco.Bairro.NomeBairro;
-            funcionario.Cidade = response.Item.Endereco.Bairro.Cidade.NomeCidade;
-            List<Estado> estados = _estadoService.GetAll().Result.Data;
-            ViewBag.Estados = estados;
-            return View(funcionario);
+            if (response.Item.IsFirstLogin)
+            {
+                FuncionarioUpdateViewModel funcionario = _mapper.Map<FuncionarioUpdateViewModel>(response.Item);
+                funcionario.EstadoId = response.Item.Endereco.Bairro.Cidade.EstadoId;
+                funcionario.Cep = response.Item.Endereco.CEP;
+                funcionario.NumeroCasa = response.Item.Endereco.NumeroCasa;
+                funcionario.Rua = response.Item.Endereco.Rua;
+                funcionario.Complemento = response.Item.Endereco.Complemento;
+                funcionario.Bairro = response.Item.Endereco.Bairro.NomeBairro;
+                funcionario.Cidade = response.Item.Endereco.Bairro.Cidade.NomeCidade;
+                List<Estado> estados = _estadoService.GetAll().Result.Data;
+                ViewBag.Estados = estados;
+                return View(funcionario);
             }
             return RedirectToAction(actionName: "Index", controllerName: "Home");
         }

@@ -63,7 +63,6 @@ dt {
 {
     background-color: #aaa;
 }
-
 }
 }
 
@@ -79,7 +78,6 @@ dt {
     $value: ($i * 1%);
     width: $value;
 }
-
 }
 }
 
