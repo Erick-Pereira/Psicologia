@@ -17,13 +17,15 @@ namespace VisualLayer.Controllers.Adm
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment hostEnvironment;
 
-        public AdmController(IFuncionarioService funcionarioService, ICargoService cargoService, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public AdmController(ICargoService cargoService, IFuncionarioService funcionarioService, IHttpContextAccessor httpContextAccessor, IMapper mapper, IWebHostEnvironment hostEnvironment)
         {
-            _FuncionarioService = funcionarioService;
             _CargoService = cargoService;
-            _mapper = mapper;
+            _FuncionarioService = funcionarioService;
             _httpContextAccessor = httpContextAccessor;
+            _mapper = mapper;
+            this.hostEnvironment = hostEnvironment;
         }
 
         [Authorize]
@@ -178,7 +180,9 @@ namespace VisualLayer.Controllers.Adm
             funcionarioDetail.Bairro = funcionario.Endereco.Bairro.NomeBairro;
             funcionarioDetail.Cidade = funcionario.Endereco.Bairro.Cidade.NomeCidade;
             funcionarioDetail.Estado = funcionario.Endereco.Bairro.Cidade.Estado.NomeEstado;
-            funcionarioDetail.Foto = $"~/SystemImg/{funcionario.Cpf.StringCleaner()}.jpg" ;
+            string caminho_WebRoot = hostEnvironment.WebRootPath;
+            string path = Path.Combine(caminho_WebRoot, $"SystemImg\\Funcionarios\\{funcionario.Cpf.StringCleaner()}");
+            funcionarioDetail.Foto = $"/SystemImg/Funcionarios/{funcionario.Cpf.StringCleaner()}.jpg";
             return View(funcionarioDetail);
         }
 

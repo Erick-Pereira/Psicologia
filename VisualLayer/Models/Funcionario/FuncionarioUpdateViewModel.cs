@@ -47,6 +47,7 @@ namespace VisualLayer.Models.Funcionario
         [Display(Name = "Data Nascimento")]
         public DateTime DataNascimento { get; set; }
 
+        public string Foto { get; set; }
         [DataType(DataType.Upload)]  
         public IFormFile Image { get; set; }
     }

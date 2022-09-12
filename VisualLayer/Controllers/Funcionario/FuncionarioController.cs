@@ -19,15 +19,15 @@ namespace VisualLayer.Controllers.Funcionario
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
-        private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly IWebHostEnvironment hostEnvironment;
 
-        public FuncionarioController(IWebHostEnvironment webHostEnvironment, IFuncionarioService funcionarioService, IEstadoService estadoService, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public FuncionarioController(IWebHostEnvironment hostEnvironment, IFuncionarioService funcionarioService, IEstadoService estadoService, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _FuncionarioService = funcionarioService;
             _estadoService = estadoService;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
-            this.webHostEnvironment = webHostEnvironment;
+            this.hostEnvironment = hostEnvironment;
         }
 
         [HttpGet]
@@ -113,6 +113,9 @@ namespace VisualLayer.Controllers.Funcionario
                 funcionario.Complemento = response.Item.Endereco.Complemento;
                 funcionario.Bairro = response.Item.Endereco.Bairro.NomeBairro;
                 funcionario.Cidade = response.Item.Endereco.Bairro.Cidade.NomeCidade;
+                string caminho_WebRoot = hostEnvironment.WebRootPath;
+                string path = Path.Combine(caminho_WebRoot, $"SystemImg\\Funcionarios\\{funcionario.Cpf.StringCleaner()}");
+                funcionario.Foto = $"/SystemImg/Funcionarios/{funcionario.Cpf.StringCleaner()}.jpg";
                 List<Estado> estados = _estadoService.GetAll().Result.Data;
                 ViewBag.Estados = estados;
                 return View(funcionario);
@@ -140,23 +143,23 @@ namespace VisualLayer.Controllers.Funcionario
             Response response = await _FuncionarioService.UpdateFuncionario(funcionario2);
             if (response.HasSuccess)
             {
-                if (funcionarioUpdate.Image.Length == 0)
+                if(funcionarioUpdate.Image.Length != 0)
                 {
-                    ViewBag.Errors = "imagem deve ser informada";
-                }
-
-                string ext = Path.GetExtension(funcionarioUpdate.Image.FileName);
-                if (ext != ".jpg")
-                {
-                    ViewBag.Erros = "imagem deve ter as extensões .jpg, .png";
-                }
-
-                string path = webHostEnvironment.ContentRootPath + "\\SystemImg\\Funcionarios\\";
-                using (FileStream fs = new FileStream(path + funcionarioUpdate.Cpf.StringCleaner() + ".jpg", FileMode.Create))
-                {
-                    await funcionarioUpdate.Image.CopyToAsync(fs);
-                }
-
+                    string ext = Path.GetExtension(funcionarioUpdate.Image.FileName);
+                    if (ext != ".jpg" && ext != ".png")
+                    {
+                        ViewBag.Erros = "imagem deve ter as extensões .jpg, .png";
+                        List<Estado> estados = _estadoService.GetAll().Result.Data;
+                        ViewBag.Estados = estados;
+                        return RedirectToAction(actionName: "Update");
+                    }
+                    string caminho_WebRoot = hostEnvironment.WebRootPath;
+                    string path = Path.Combine(caminho_WebRoot, "SystemImg\\Funcionarios\\");
+                    using (FileStream fs = new FileStream(path + funcionarioUpdate.Cpf.StringCleaner() + ".jpg", FileMode.Create))
+                    {
+                        await funcionarioUpdate.Image.CopyToAsync(fs);
+                    }
+                }   
                 if (funcionario2.Cargo.NivelPermissao == 3)
                     return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
                 if (funcionario2.Cargo.NivelPermissao == 1)
