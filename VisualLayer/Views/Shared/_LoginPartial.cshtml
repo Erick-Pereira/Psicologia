@@ -6,24 +6,17 @@
 }
 @if (funcionario != null)
 {
-    using (Html.BeginForm("Logoff", "Home", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
         @Html.AntiForgeryToken()
-        <ul class="menu">
-            <li class="nav-item">
-                @Html.ActionLink("Hello " + funcionario.Nome + "!", "Logarr", "Home")
-            </li>
-            <li class="nav-item">
-                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-            </li>
-        </ul>
-    }
+        <li class="nav-item">
+            @Html.ActionLink("Hello " + funcionario.Nome + "!", "Logarr", "Home")
+        </li>
+        <li class="nav-item">
+        @Html.ActionLink("Log off", "LogOff", "Home")
+        </li>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
         <li class="nav-item">
             @Html.ActionLink("Log in", "Login", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
-            </li>
-    </ul>
+        </li>
 }

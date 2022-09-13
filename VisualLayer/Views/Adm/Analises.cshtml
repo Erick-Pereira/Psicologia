@@ -11,77 +11,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="sidebar">
-        <div class="logo-details">
-            <i class='bx bxl-c-plus-plus'></i>
-            <a asp-area="" asp-controller="Home" asp-action="Index">
-                <span class="logo_name">Nossa Empresa</span>
-            </a>
+    <nav>
+        <div class="logo">
+            <i class="bx bx-menu menu-icon"></i>
+            <span class="logo-name">Open Minds</span>
         </div>
-        <ul class="nav-links">
-            <li>
-                <a asp-area="" asp-controller="Adm" asp-action="Index">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Controle Empresa</span>
-                </a>
-            </li>
-            <li>
-                <a asp-area="" asp-controller="Adm" asp-action="Analises" class="active">
-                    <i class='bx bx-pie-chart-alt-2'></i>
-                    <span class="links_name">Análises</span>
-                </a>
-            </li>
-            <li>
-                <a asp-area="" asp-controller="Adm" asp-action="Funcionarios">
-                    <i class='bx bx-user'></i>
-                    <span class="links_name">Funcionarios</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-test-tube'></i>
-                    <span class="links_name">Resultado Teste</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-message'></i>
-                    <span class="links_name">Mensagens</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bxs-calendar'></i>
-                    <span class="links_name">Calendário</span>
-                </a>
-            </li>
-            <li>
-                <a asp-area="" asp-controller="Adm" asp-action="Configuracao">
-                    <i class='bx bx-cog'></i>
-                    <span class="links_name">Configurações</span>
-                </a>
-            </li>
-            <li class="log_out">
-                <a asp-area="" asp-controller="Home" asp-action="Logoff">
-                    <i class='bx bx-log-out'></i>
-                    <span class="links_name">Log out</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+        <div class="sidebar">
+            <div class="logo">
+                <i class="bx bx-menu menu-icon"></i>
+                <span class="logo-name">Open Minds</span>
+            </div>
+            <div class="sidebar-content">
+                <ul class="lists">
+                    <li class="list">
+                        <a class="nav-link" asp-area="" asp-controller="Adm" asp-action="Index">
+                            <i class='bx bx-grid-alt icon'></i>
+                            <span class="link">Empresa</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a class="nav-link" asp-area="" asp-controller="Adm" asp-action="Funcionarios">
+                            <i class='bx bx-user icon'></i>
+                            <span class="link">Funcionarios</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a class="nav-link" asp-area="" asp-controller="Adm" asp-action="Analises">
+                            <i class='bx bx-pie-chart-alt-2 icon'></i>
+                            <span class="link">Análises</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a class="nav-link" asp-area="" asp-controller="Adm" asp-action="Configuracao">
+                            <i class='bx bx-cog icon'></i>
+                            <span class="link">Configurações</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="bottom-cotent">
+                    <li class="list">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LogOff">
+                            <i class="bx bx-log-out icon"></i>
+                            <span class="link">Log-out</span>
+                        </a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="overlay"></section>
     <section class="home-section">
-<dl>
-  <dt>
-    Browser market share June 2015
-  </dt>
-  <dd class="percentage percentage-11"><span class="text">IE 11: 11.33%</span></dd>
-  <dd class="percentage percentage-49"><span class="text">Chrome: 49.77%</span></dd>
-  <dd class="percentage percentage-16"><span class="text">Firefox: 16.09%</span></dd>
-  <dd class="percentage percentage-5"><span class="text">Safari: 5.41%</span></dd>
-  <dd class="percentage percentage-2"><span class="text">Opera: 1.62%</span></dd>
-  <dd class="percentage percentage-2"><span class="text">Android 4.4: 2%</span></dd>
-</dl>
+        <dl>
+            <dt>
+                Browser market share June 2015
+            </dt>
+            <dd class="percentage percentage-11"><span class="text">IE 11: 11.33%</span></dd>
+            <dd class="percentage percentage-49"><span class="text">Chrome: 49.77%</span></dd>
+            <dd class="percentage percentage-16"><span class="text">Firefox: 16.09%</span></dd>
+            <dd class="percentage percentage-5"><span class="text">Safari: 5.41%</span></dd>
+            <dd class="percentage percentage-2"><span class="text">Opera: 1.62%</span></dd>
+            <dd class="percentage percentage-2"><span class="text">Android 4.4: 2%</span></dd>
+        </dl>
     </section>
+    <script>
+        const navBar = document.querySelector("nav"),
+            menuBtns = document.querySelectorAll(".menu-icon"),
+            overlay = document.querySelector(".overlay");
+
+        menuBtns.forEach((menuBtn) => {
+            menuBtn.addEventListener("click", () => {
+                navBar.classList.toggle("open");
+            });
+        });
+
+        overlay.addEventListener("click", () => {
+            navBar.classList.remove("open");
+        });
+    </script>
 </body>
+
 </html>
 

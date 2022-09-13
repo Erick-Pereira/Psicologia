@@ -8,14 +8,12 @@
     List<Estado> estados = ViewBag.Estados;
 }
 <h1>Update</h1>
-
-<h4>FuncionarioUpdateViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Update">
+        <form enctype="multipart/form-data" asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">                
+            <div class="form-group">
                 <input asp-for="Id" type="hidden" class="form-control" />
             </div>
             <div class="form-group">
@@ -30,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Cep" class="control-label"></label>
-                <input asp-for="Cep" onchange="buscar(this.value)" name="Cep" class="form-control" />
+                <input asp-for="Cep" onblur="buscaCep()" id="Cep" name="Cep" class="form-control" />
                 <span asp-validation-for="Cep" class="text-danger"></span>
 
             </div>
@@ -72,7 +70,7 @@
                         {
                             <option value="@estados[i].ID">@estados[i].Sigla</option>
                         }
-                        
+
                     }
                 </select>
                 <span asp-validation-for="EstadoId" class="text-danger"></span>
@@ -82,10 +80,11 @@
                 <input asp-for="DataNascimento" class="form-control" />
                 <span asp-validation-for="DataNascimento" class="text-danger"></span>
             </div>
-             <div class="form-group">
+            <div class="form-group">
+                <img src="@Model.Foto" alt=""
                 <label asp-for="Image" class="control-label"></label>
-                <input type="file" enctype="multipart/form-data" name="Image" class="form-control" id="Image"/>  
-                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", @type="file"} })
+                <span asp-validation-for="Image" class="text-danger"></span>
             </div>
 
 
@@ -103,14 +102,57 @@
         }
     </div>
 </div>
-<script>
+@section Scripts
+{
 
-</script>
-@section Scripts {
-         
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+<script>
+    function limpa_formulario_cep(){
+        $("#Estado").removeAttr("disabled");
+        $("#Estado option[selected]").removeAttr("selected");
+        $("#Estado #empty").attr("selected", "");
+        $("#Cidade").val("");
+        $("#Cidade").removeAttr("disabled");
+        $("#Bairro").val("");
+        $("#Bairro").removeAttr("disabled");
+        $("#Rua").val("");
+        $("#Rua").removeAttr("disabled");
+    };
+    function buscaCep(){
+        var code = $("#Cep").val().replace(/\D/g, '');
+        if(code.length === 8){
+            var url = "https://viacep.com.br/ws/" + code + "/json/";
+            $.getJSON(url, function (dados){
+                if(!("erro" in dados)){
+                    $("#Cep").removeClass("is-invalid");
+                    var option = $("option[value = "+dados.uf +"]");
+                    option.attr("selected", "");
+                    $("#Estado").attr("disabled", "");
+                    $("#Cidade").val(dados.localidade);                    
+                    $("#Cidade").attr("disabled", "");
+                    if(dados.bairro !== ""){
+                        document.getElementById("Bairro").value = dados.bairro;
+                        $("#Bairro").attr("disabled", "");
+                    }else{
+                        document.getElementById("Bairro").value = "";
+                         $("#Bairro").removeAttr("disabled");
+                    }
+                    if(dados.logradouro !== ""){
+                        $("#Rua").val(dados.logradouro);
+                        $("#Rua").attr("disabled", "");
+                    }else{
+                         $("#Rua").val("");
+                         $("#Rua").removeAttr("disabled");
+                    }
+                    }
+                else{
+                    limpa_formulario_cep();
+                    Cep.addClass("is-invalid");
+                }
+            });
+        }else{
+            limpa_formulario_cep();
         }
-           
-    }
-    }
+        }
+</script>
+}

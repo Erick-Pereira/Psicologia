@@ -148,7 +148,7 @@ nav.open ~ .overlay {
 
 .box-contains .box {
     flex: 1 1 350px;
-    margin: 15px;
+    margin: 15px;;
     align-items: center;
     justify-content: center;
     width: calc(100% / 4 - 15px);
@@ -190,3 +190,8 @@ nav .box .indicador {
         nav .box .indicador i .text {
             font-size: 12px;
         }
+
+.flex .avisos {
+    margin: 5px;
+    position: relative;
+}

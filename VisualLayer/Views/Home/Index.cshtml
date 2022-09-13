@@ -20,10 +20,10 @@
             <div class="logo"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Nossa Empresa</a></div>
             <ul class="menu">
                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a  asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Membros">Membros</a>
+                    <a  asp-area="" asp-controller="Home" asp-action="Membros">Membros</a>
                 </li>
                 <li class="nav-item">
                     @Html.Partial("_LoginPartial",funcionario)
@@ -56,11 +56,8 @@
                 <div class="text-one">Olá,</div>
                 <div class="text-two">Somos a Nossa Empresa</div>
                 <div class="text-three">Desenvolvimento C#</div>
-                <!-- <div class="text-four">From Nepal</div> -->
             </div>
-            <!--<div class="button">
-              <button>Hire Me</button>
-            </div>-->
+
         </div>
     </section>
 
@@ -75,9 +72,6 @@
                 <div class="right">
                     <div class="topic">Desenvolvimento é nossa paixão</div>
                     <p>Nós desenvolvemos por paixão</p>
-                    <!-- <div class="button">
-                       <button>Membros</button>
-                     </div>-->
                 </div>
             </div>
         </div>
@@ -118,68 +112,15 @@
             </div>
         </div>
     </section>
-
-    <!-- My Services Section Start -->
-    <!--
-     <section class="services" id="services">
-       <div class="content">
-         <div class="title"><span>Nossos Serviços</span></div>
-         <div class="boxes">
-           <div class="box">
-             <div class="icon">
-               <i class="fas fa-desktop"></i>
-           </div>
-           <div class="topic">Web Devlopment</div>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quam odio, qui voluptatem eligendi?</p>
-         </div>
-           <div class="box">
-             <div class="icon">
-               <i class="fas fa-paint-brush"></i>
-           </div>
-           <div class="topic">Graphic Design</div>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quam odio, qui voluptatem eligendi?</p>
-         </div>
-           <div class="box">
-             <div class="icon">
-               <i class="fas fa-chart-line"></i>
-           </div>
-           <div class="topic">Digital Marketing</div>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quam odio, qui voluptatem eligendi?</p>
-         </div>
-           <div class="box">
-             <div class="icon">
-               <i class="fab fa-android"></i>
-           </div>
-           <div class="topic">Icon Design</div>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quam odio, qui voluptatem eligendi?</p>
-         </div>
-           <div class="box">
-             <div class="icon">
-               <i class="fas fa-camera-retro"></i>
-           </div>
-           <div class="topic">Photography</div>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quam odio, qui voluptatem eligendi?</p>
-         </div>
-           <div class="box">
-             <div class="icon">
-               <i class="fas fa-tablet-alt"></i>
-           </div>
-           <div class="topic">Apps Devlopment</div>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quam odio, qui voluptatem eligendi?</p>
-         </div>
-       </div>
-       </div>
-     </section>
-     -->
     <!-- Contact Me section Start -->
     <section class="contact" id="contact">
         <div class="content">
             <div class="title"><span>Nos Contate</span></div>
             <div class="text">
                 <div class="topic">Esta interessado em um de nós?</div>
-                <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam neque ipsum corrupti dolores, facere numquam voluptate aspernatur sit perferendis qui nisi modi! Recusandae deserunt consequatur voluptatibus alias repellendus nobis eligendi.</p>-->
-                <div class="button" >
-                    <button asp-area="" asp-controller="Home" asp-action="Login">Membros</button>
+                
+                <div class="button">
+                    <button onclick="@("window.location.href='" + @Url.Action("Membros", "Home") + "'");">Membros</button>
                 </div>
             </div>
         </div>
