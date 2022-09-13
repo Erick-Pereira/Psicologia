@@ -11,19 +11,21 @@ namespace VisualLayer.Controllers.Adm
 {
     public class AdmController : Controller
     {
-        private const string ENCRYPT = "ID";
         private const int NIVEL_PERMISSAO = 0;
+        private const string ENCRYPT = "ID";
         private readonly ICargoService _CargoService;
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment hostEnvironment;
 
-        public AdmController(IFuncionarioService funcionarioService, ICargoService cargoService, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public AdmController(ICargoService cargoService, IFuncionarioService funcionarioService, IHttpContextAccessor httpContextAccessor, IMapper mapper, IWebHostEnvironment hostEnvironment)
         {
-            _FuncionarioService = funcionarioService;
             _CargoService = cargoService;
-            _mapper = mapper;
+            _FuncionarioService = funcionarioService;
             _httpContextAccessor = httpContextAccessor;
+            _mapper = mapper;
+            this.hostEnvironment = hostEnvironment;
         }
 
         [Authorize]
@@ -178,6 +180,9 @@ namespace VisualLayer.Controllers.Adm
             funcionarioDetail.Bairro = funcionario.Endereco.Bairro.NomeBairro;
             funcionarioDetail.Cidade = funcionario.Endereco.Bairro.Cidade.NomeCidade;
             funcionarioDetail.Estado = funcionario.Endereco.Bairro.Cidade.Estado.NomeEstado;
+            string caminho_WebRoot = hostEnvironment.WebRootPath;
+            string path = Path.Combine(caminho_WebRoot, $"SystemImg\\Funcionarios\\{funcionario.Cpf.StringCleaner()}");
+            funcionarioDetail.Foto = $"/SystemImg/Funcionarios/{funcionario.Cpf.StringCleaner()}.jpg";
             return View(funcionarioDetail);
         }
 
@@ -258,7 +263,7 @@ namespace VisualLayer.Controllers.Adm
             {
                 return RedirectToAction(actionName: "Index", controllerName: "Home");
             }
-            Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(verify.ID)).Result.Item;
+            Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item;
             Response response = await _FuncionarioService.RequistarUpdate(funcionario);
             return RedirectToAction(actionName: "Funcionarios", controllerName: "Adm");
         }

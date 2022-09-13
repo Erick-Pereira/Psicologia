@@ -11,6 +11,9 @@ namespace VisualLayer.Controllers.RH
 {
     public class RhController : Controller
     {
+
+        private const int NIVEL_PERMISSAO = 1;
+        private const string ENCRYPT = "ID";
         private readonly ICargoService _CargoService;
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -26,6 +29,11 @@ namespace VisualLayer.Controllers.RH
 
         public async Task<IActionResult> Ativar(string id)
         {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
             Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt("ID"))).Result.Item;
             funcionario.IsAtivo = false;
             Response response = await _FuncionarioService.Ativar(funcionario);
@@ -35,6 +43,11 @@ namespace VisualLayer.Controllers.RH
         [Authorize]
         public async Task<IActionResult> Calendario()
         {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
             return View();
         }
 
@@ -42,6 +55,11 @@ namespace VisualLayer.Controllers.RH
         [Authorize]
         public async Task<IActionResult> Criar()
         {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
             ViewBag.Cargos = _CargoService.GetAll().Result.Data;
             return View();
         }
@@ -59,6 +77,11 @@ namespace VisualLayer.Controllers.RH
 
         public async Task<IActionResult> Deletar(string id)
         {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
             int userId = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value);
             if (Convert.ToInt32(id.Decrypt("ID")) == userId)
             {
@@ -69,6 +92,11 @@ namespace VisualLayer.Controllers.RH
 
         public async Task<IActionResult> Desativar(string id)
         {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
             int identity = Convert.ToInt32(id.Decrypt("ID"));
             int userId = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value);
             if (identity == userId)
@@ -83,6 +111,11 @@ namespace VisualLayer.Controllers.RH
 
         public async Task<IActionResult> Detalhar(string id)
         {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
             FuncionarioDetailViewModel funcionario = _mapper.Map<FuncionarioDetailViewModel>(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt("ID"))).Result.Item);
             funcionario.Id = funcionario.Id.Encrypt("ID");
             return View(funcionario);
@@ -92,6 +125,11 @@ namespace VisualLayer.Controllers.RH
         [Authorize]
         public async Task<IActionResult> Editar(string id)
         {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
             FuncionarioUpdateAdmViewModel funcionario = _mapper.Map<FuncionarioUpdateAdmViewModel>(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt("ID"))).Result.Item);
             funcionario.Id = funcionario.Id.Encrypt("ID");
             ViewBag.Funcionario = funcionario;
@@ -115,6 +153,11 @@ namespace VisualLayer.Controllers.RH
         [Authorize]
         public async Task<IActionResult> Funcionarios()
         {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
             DataResponse<Entities.Funcionario> dataResponse = await _FuncionarioService.GetAll();
             List<FuncionarioSelectViewModel> Funcionarios = new List<FuncionarioSelectViewModel>();
             for (int i = 0; i < dataResponse.Data.Count; i++)
@@ -131,11 +174,21 @@ namespace VisualLayer.Controllers.RH
         [Authorize]
         public async Task<IActionResult> Index()
         {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
             return View();
         }
 
         public async Task<IActionResult> RequisitarUpdate(string id)
         {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
             Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt("ID"))).Result.Item;
             Response response = await _FuncionarioService.ResetarSenha(funcionario);
             return RedirectToAction(actionName: "Funcionarios", controllerName: "Adm");
@@ -143,6 +196,11 @@ namespace VisualLayer.Controllers.RH
 
         public async Task<IActionResult> ResetarSenha(string id)
         {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
+            }
             _FuncionarioService.ResetarSenha(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt("ID"))).Result.Item);
             ViewBag.Funcionario = _mapper.Map<FuncionarioUpdateAdmViewModel>(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt("ID"))).Result.Item);
             ViewBag.Cargos = _CargoService.GetAll().Result.Data;
