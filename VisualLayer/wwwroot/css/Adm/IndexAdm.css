@@ -135,6 +135,10 @@ nav.open ~ .overlay {
         margin: 5px;
         position: relative;
     }
+    .flex .avisos {
+        margin: 5px;
+     position: relative;
+    }
 
 .contains .box-contains {
     display: flex;
@@ -145,13 +149,36 @@ nav.open ~ .overlay {
     padding: 0 20px;
     margin-bottom: 26px;
 }
+.avisos .contains-dois {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    margin-bottom: 26px;
+}
+
 
 .box-contains .box {
     flex: 1 1 350px;
-    margin: 15px;;
+    margin: 15px;
     align-items: center;
     justify-content: center;
     width: calc(100% / 4 - 15px);
+    background: #fff;
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.contains-dois .containers {
+    flex: 1 1 350px;
+    margin: 15px;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 4 - 15px);
+    height: 400px;
     background: #fff;
     padding: 15px 14px;
     border-radius: 12px;
@@ -163,10 +190,19 @@ nav.open ~ .overlay {
     font-weight: 500;
 }
 
-nav .box .numero {
-    display: inline-block;
-    font-size: 35px;
-    margin-top: -6px;
+.containers .box-dois {
+    flex: 1 1 350px;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 4 - 15px);
+    height: 370px;
+    background: #fff;
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.box-dois .name-box {
+    font-size: 25px;
     font-weight: 500;
 }
 
@@ -191,7 +227,6 @@ nav .box .indicador {
             font-size: 12px;
         }
 
-.flex .avisos {
-    margin: 5px;
-    position: relative;
-}
+
+
+
