@@ -17,6 +17,8 @@ namespace BusinessLogicalLayer.Interfaces
 
         Task<DataResponse<Funcionario>> GetAllAtivos();
 
+        Task<Response> AlterarSenha(Funcionario funcionario);
+
         Task<SingleResponse<Funcionario>> GetByID(int id);
 
         Task<SingleResponse<Funcionario>> GetByLogin(Funcionario funcionario);
@@ -32,6 +34,8 @@ namespace BusinessLogicalLayer.Interfaces
         Task<bool> Logar(Funcionario funcionario);
 
         Task<Response> RequistarUpdate(Funcionario funcionario);
+
+        Task<Response> RequistarTeste(Funcionario funcionario);
 
         Task<Response> ResetarSenha(Funcionario funcionario);
 

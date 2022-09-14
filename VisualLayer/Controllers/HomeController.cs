@@ -70,6 +70,8 @@ namespace VisualLayer.Controllers
                 funcionario.Cargo = _cargoService.GetByID(funcionario.CargoID).Result.Item;
                 if (funcionario.IsFirstLogin)
                     return RedirectToAction(actionName: "Update", controllerName: "Funcionario", funcionario.ID);
+                if (funcionario.HasRequiredTest)
+                    return RedirectToAction(actionName: "Teste", controllerName: "Funcionario", funcionario.ID);
                 if (funcionario.Cargo.NivelPermissao == 0)
                     return RedirectToAction(actionName: "Index", controllerName: "Adm");
                 if (funcionario.Cargo.NivelPermissao == 1)

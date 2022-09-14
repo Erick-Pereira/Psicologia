@@ -23,6 +23,11 @@ namespace BusinessLogicalLayer.BLL
             _enderecoService = enderecoService;
         }
 
+        public async Task<Response> AlterarSenha(Funcionario funcionario)
+        {
+            return await _funcionarioDAL.Update(funcionario);
+        }
+
         public async Task<Response> Ativar(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
@@ -114,6 +119,13 @@ namespace BusinessLogicalLayer.BLL
             funcionario.Email = funcionario.Email.Trim();
             SingleResponse<int> response = await _funcionarioDAL.Logar(funcionario);
             return response.Item == 1;
+        }
+
+        public async Task<Response> RequistarTeste(Funcionario funcionario)
+        {
+            funcionario.Email = funcionario.Email.Trim();
+            funcionario.HasRequiredTest = true;
+            return await _funcionarioDAL.Update(funcionario);
         }
 
         public async Task<Response> RequistarUpdate(Funcionario funcionario)

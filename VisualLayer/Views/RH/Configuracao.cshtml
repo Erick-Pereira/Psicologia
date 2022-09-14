@@ -1,18 +1,7 @@
-﻿@using AutoMapper
-@using BusinessLogicalLayer.Interfaces
-@using Shared
-@using VisualLayer.Controllers.Funcionario
-@model VisualLayer.Models.Funcionario.FuncionarioDetailViewModel
+﻿@model VisualLayer.Models.Funcionario.FuncionarioDetailViewModel
 
 @{
     ViewData["Title"] = "Configuracao";
-    IFuncionarioService _funcionarioService = ViewBag.Service;
-    IEstadoService _estadoService = ViewBag.EstadoService;
-    IHttpContextAccessor _httpContextAccessor = ViewBag.Context;
-    IMapper _mapper = ViewBag.Mapper;
-    IWebHostEnvironment _hostEnvironment = ViewBag.HostEnvironment;
-    FuncionarioController funcionarioController = new FuncionarioController(_hostEnvironment, _funcionarioService, _estadoService, _mapper, _httpContextAccessor);
-    var senha = "";
 }
 <!DOCTYPE html>
 <!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
@@ -40,19 +29,25 @@
             <div class="sidebar-content">
                 <ul class="lists">
                     <li class="list">
-                        <a class="nav-link" asp-area="" asp-controller="Funcionario" asp-action="Index">
+                        <a class="nav-link" asp-area="" asp-controller="Rh" asp-action="Index">
                             <i class='bx bx-grid-alt icon'></i>
                             <span class="link">Empresa</span>
                         </a>
                     </li>
                     <li class="list">
-                        <a class="nav-link" asp-area="" asp-controller="Funcionario" asp-action="Funcionarios">
+                        <a class="nav-link" asp-area="" asp-controller="Rh" asp-action="Funcionarios">
                             <i class='bx bx-user icon'></i>
                             <span class="link">Funcionarios</span>
                         </a>
                     </li>
                     <li class="list">
-                        <a class="nav-link" asp-area="" asp-controller="Funcionario" asp-action="Configuracao">
+                        <a class="nav-link" asp-area="" asp-controller="Rh" asp-action="Analises">
+                            <i class='bx bx-pie-chart-alt-2 icon'></i>
+                            <span class="link">Análises</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a class="nav-link" asp-area="" asp-controller="Rh" asp-action="Configuracao">
                             <i class='bx bx-cog icon'></i>
                             <span class="link">Configurações</span>
                         </a>
@@ -60,7 +55,7 @@
                 </ul>
                 <div class="bottom-cotent">
                     <li class="list">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LogOff">
+                        <a asp-area="" asp-controller="Home" asp-action="LogOff" class="nav-link">
                             <i class="bx bx-log-out icon"></i>
                             <span class="link">Log-out</span>
                         </a>
@@ -150,7 +145,7 @@
                 </dd>
             </dl>
         </div>
-
+        
         <div class="Senha">
             <input type="button" class="botao" value="Senha" class="form-control" />
             <div class="Senha-content">
@@ -159,19 +154,20 @@
                     <input type="password" class="Senha" />
                     <label>Confirmar Senha</label>
                     <input type="password" class="ConfirmarSenha" />
-                    <div class="form-group">
-                        <button onclick="alterarSenha();">AlterarSenha</button>
+                    <div class="form-group" type="hidden">
+                        <button onclick="@("window.location.href='" + @Url.Action("AlterarSenha", "Adm") + "'");">AlterarSenha</button>
                     </div>
-                    <label></label>
-                    <label class="Erros">@ViewBag.Erros</label>
+                    <label>@ViewBag.Erros</label>
                 </div>
             </div>
         </div>
         <section class="SenhaSection"></section>
+        
+
+
+
     </section>
-
     <script>
-
         const navBar = document.querySelector("nav"),
             menuBtns = document.querySelectorAll(".menu-icon"),
             overlay = document.querySelector(".overlay");
@@ -187,57 +183,19 @@
         });
 
 
-        //const navSenha = document.querySelector("div"),
-        //    senhaBtns = document.querySelectorAll(".Senha"),
-        //    senha = document.querySelector(".SenhaSection");
+        const navSenha = document.querySelector("div"),
+            senhaBtns = document.querySelectorAll(".Senha"),
+            senha = document.querySelector(".SenhaSection");
 
-        //senhaBtns.forEach((senhaBtn) => {
-        //    senhaBtn.addEventListener("click", () => {
-        //        navSenha.classList.toggle("open");
-        //    });
-        //});
+        senhaBtns.forEach((senhaBtn) => {
+            senhaBtn.addEventListener("click", () => {
+                navSenha.classList.toggle("open");
+            });
+        });
 
-        //senha.addEventListener("click", () => {
-        //    navSenha.classList.remove("open");
-        //});
-
-
+        senha.addEventListener("click", () => {
+            navSenha.classList.remove("open");
+        });
     </script>
-
 </body>
 </html>
-@section Scripts
-{
-
-<script>
-                function alterarSenha() {
-                    var erros = document.getElementById("Erros");
-                    var senha1 = document.getElementById("Senha");
-                    var senha2 = document.getElementById("ConfirmarSenha");
-                    if(senha1 !== ""){
-    if (senha1 === senha2) {
-                        if (senha1.length === 8) {
-                @senha = senha1;
-                @{
-                    Response response = funcionarioController.AlterarSenha(senha).Result;
-                }
-                                erros.innerHTML = @response.Message;
-                        }
-                        else {
-                            erros.innerHTML = "Senha deve conter pelo menos 8 digitos";
-                        }
-                    }
-                    else {
-                        erros.innerHTML = "Senhas devem ser iguais";
-                    }
-
-                }
-                else{
-                    erros.innerHTML = "Senha deve ser informada";
-                }
-                    }
-
-
-</script>
-    }
-}
