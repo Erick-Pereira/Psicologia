@@ -1,6 +1,5 @@
 ﻿using Shared.Constants;
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
 
 namespace VisualLayer.Models.Funcionario
 {
@@ -47,7 +46,9 @@ namespace VisualLayer.Models.Funcionario
         [Display(Name = "Data Nascimento")]
         public DateTime DataNascimento { get; set; }
 
-        [DataType(DataType.Upload)]  
+        public string Foto { get; set; }
+
+        [DataType(DataType.Upload)]
         public IFormFile Image { get; set; }
     }
 }
