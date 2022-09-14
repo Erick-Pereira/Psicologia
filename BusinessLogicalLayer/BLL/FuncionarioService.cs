@@ -23,6 +23,11 @@ namespace BusinessLogicalLayer.BLL
             _enderecoService = enderecoService;
         }
 
+        public async Task<Response> AlterarSenha(Funcionario funcionario)
+        {
+            return await _funcionarioDAL.Update(funcionario);
+        }
+
         public async Task<Response> Ativar(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
