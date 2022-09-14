@@ -1,7 +1,17 @@
-﻿@model VisualLayer.Models.Funcionario.FuncionarioDetailViewModel
+﻿@using AutoMapper
+@using BusinessLogicalLayer.Interfaces
+@using Shared
+@using VisualLayer.Controllers.Funcionario
+@model VisualLayer.Models.Funcionario.FuncionarioDetailViewModel
 
 @{
     ViewData["Title"] = "Configuracao";
+    IFuncionarioService _funcionarioService = ViewBag.Service;
+    IEstadoService _estadoService = ViewBag.EstadoService;
+    IHttpContextAccessor _httpContextAccessor = ViewBag.Context;
+    IMapper _mapper = ViewBag.Mapper;
+    IWebHostEnvironment _hostEnvironment = ViewBag.HostEnvironment;
+    var senha = "";
 }
 <!DOCTYPE html>
 <!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
@@ -49,7 +59,7 @@
                 </ul>
                 <div class="bottom-cotent">
                     <li class="list">
-                        <a href="#" class="nav-link">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LogOff">
                             <i class="bx bx-log-out icon"></i>
                             <span class="link">Log-out</span>
                         </a>
@@ -139,7 +149,7 @@
                 </dd>
             </dl>
         </div>
-        
+
         <div class="Senha">
             <input type="button" class="botao" value="Senha" class="form-control" />
             <div class="Senha-content">
@@ -148,20 +158,19 @@
                     <input type="password" class="Senha" />
                     <label>Confirmar Senha</label>
                     <input type="password" class="ConfirmarSenha" />
-                    <div class="form-group" type="hidden">
-                        <button onclick="@("window.location.href='" + @Url.Action("AlterarSenha", "Adm") + "'");">AlterarSenha</button>
+                    <div class="form-group">
+                        <button onclick="alterarSenha();">AlterarSenha</button>
                     </div>
-                    <label>@ViewBag.Erros</label>
+                    <label></label>
+                    <label class="Erros">@ViewBag.Erros</label>
                 </div>
             </div>
         </div>
         <section class="SenhaSection"></section>
-        
-
-
-
     </section>
+
     <script>
+
         const navBar = document.querySelector("nav"),
             menuBtns = document.querySelectorAll(".menu-icon"),
             overlay = document.querySelector(".overlay");
@@ -177,19 +186,26 @@
         });
 
 
-        const navSenha = document.querySelector("div"),
-            senhaBtns = document.querySelectorAll(".Senha"),
-            senha = document.querySelector(".SenhaSection");
+        //const navSenha = document.querySelector("div"),
+        //    senhaBtns = document.querySelectorAll(".Senha"),
+        //    senha = document.querySelector(".SenhaSection");
 
-        senhaBtns.forEach((senhaBtn) => {
-            senhaBtn.addEventListener("click", () => {
-                navSenha.classList.toggle("open");
-            });
-        });
+        //senhaBtns.forEach((senhaBtn) => {
+        //    senhaBtn.addEventListener("click", () => {
+        //        navSenha.classList.toggle("open");
+        //    });
+        //});
 
-        senha.addEventListener("click", () => {
-            navSenha.classList.remove("open");
-        });
+        //senha.addEventListener("click", () => {
+        //    navSenha.classList.remove("open");
+        //});
+
+
     </script>
+
 </body>
 </html>
+@section Scripts
+{
+   
+}

@@ -19,24 +19,19 @@ namespace VisualLayer.Controllers.Funcionario
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
-        private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly IWebHostEnvironment hostEnvironment;
+        private readonly ISF36Service _sf36Service;
 
-        public FuncionarioController(IWebHostEnvironment webHostEnvironment, IFuncionarioService funcionarioService, IEstadoService estadoService, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public FuncionarioController(IWebHostEnvironment hostEnvironment, IFuncionarioService funcionarioService, IEstadoService estadoService, IMapper mapper, IHttpContextAccessor httpContextAccessor, ISF36Service sf36Service)
         {
             _FuncionarioService = funcionarioService;
             _estadoService = estadoService;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
-            this.webHostEnvironment = webHostEnvironment;
+            this.hostEnvironment = hostEnvironment;
+            _sf36Service = sf36Service;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Buscar(string cep)
-        {
-            CepAPI a = CepAPI.Busca(cep);
-            ViewBag.Endereco = a;
-            return View();
-        }
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> Configuracao()
@@ -44,7 +39,7 @@ namespace VisualLayer.Controllers.Funcionario
             Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
             if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Home");
+                return RedirectToAction(actionName: "Logarr", controllerName: "Home");
             }
             Entities.Funcionario funcionario = _FuncionarioService.GetByID(verify.ID).Result.Item;
             FuncionarioDetailViewModel funcionarioDetail = _mapper.Map<FuncionarioDetailViewModel>(funcionario);
@@ -56,8 +51,49 @@ namespace VisualLayer.Controllers.Funcionario
             funcionarioDetail.Bairro = funcionario.Endereco.Bairro.NomeBairro;
             funcionarioDetail.Cidade = funcionario.Endereco.Bairro.Cidade.NomeCidade;
             funcionarioDetail.Estado = funcionario.Endereco.Bairro.Cidade.Estado.NomeEstado;
+            ViewBag.FuncionarioService = _FuncionarioService;
+            ViewBag.EstadoService = _estadoService;
+            ViewBag.Context = _httpContextAccessor;
+            ViewBag.Mapper = _mapper;
+            ViewBag.HostEnvironment = hostEnvironment;
             return View(funcionarioDetail);
         }
+        public async Task<Response> AlterarSenha(string senha)
+        {
+            if (senha != "")
+            {
+                Entities.Funcionario funcionario = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+                funcionario.Senha = senha.Hash();
+                return await _FuncionarioService.AlterarSenha(funcionario);
+            }
+            return null;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Buscar(string cep)
+        {
+            CepAPI a = CepAPI.Busca(cep);
+            ViewBag.Endereco = a;
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> SF36()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> SF36(FuncionarioRespostasQuestionarioSf36 respostas)
+        {
+            Response response = await _sf36Service.CalcularScore(respostas);
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
 
         [Authorize]
         public async Task<IActionResult> Funcionarios()
@@ -65,7 +101,7 @@ namespace VisualLayer.Controllers.Funcionario
             Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
             if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Home");
+                return RedirectToAction(actionName: "Logarr", controllerName: "Home");
             }
             DataResponse<Entities.Funcionario> dataResponse = await _FuncionarioService.GetAllAtivos();
             List<FuncionarioSelectViewModel> Funcionarios = new List<FuncionarioSelectViewModel>();
@@ -86,7 +122,7 @@ namespace VisualLayer.Controllers.Funcionario
             Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
             if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Home");
+                return RedirectToAction(actionName: "Logarr", controllerName: "Home");
             }
             return View();
         }
@@ -113,6 +149,9 @@ namespace VisualLayer.Controllers.Funcionario
                 funcionario.Complemento = response.Item.Endereco.Complemento;
                 funcionario.Bairro = response.Item.Endereco.Bairro.NomeBairro;
                 funcionario.Cidade = response.Item.Endereco.Bairro.Cidade.NomeCidade;
+                string caminho_WebRoot = hostEnvironment.WebRootPath;
+                string path = Path.Combine(caminho_WebRoot, $"SystemImg\\Funcionarios\\{funcionario.Cpf.StringCleaner()}");
+                funcionario.Foto = $"/SystemImg/Funcionarios/{funcionario.Cpf.StringCleaner()}.jpg";
                 List<Estado> estados = _estadoService.GetAll().Result.Data;
                 ViewBag.Estados = estados;
                 return View(funcionario);
@@ -140,23 +179,23 @@ namespace VisualLayer.Controllers.Funcionario
             Response response = await _FuncionarioService.UpdateFuncionario(funcionario2);
             if (response.HasSuccess)
             {
-                if (funcionarioUpdate.Image.Length == 0)
+                if (funcionarioUpdate.Image.Length != 0)
                 {
-                    ViewBag.Errors = "imagem deve ser informada";
+                    string ext = Path.GetExtension(funcionarioUpdate.Image.FileName);
+                    if (ext != ".jpg" && ext != ".png")
+                    {
+                        ViewBag.Erros = "imagem deve ter as extensões .jpg, .png";
+                        List<Estado> estados = _estadoService.GetAll().Result.Data;
+                        ViewBag.Estados = estados;
+                        return RedirectToAction(actionName: "Update");
+                    }
+                    string caminho_WebRoot = hostEnvironment.WebRootPath;
+                    string path = Path.Combine(caminho_WebRoot, "SystemImg\\Funcionarios\\");
+                    using (FileStream fs = new FileStream(path + funcionarioUpdate.Cpf.StringCleaner() + ".jpg", FileMode.Create))
+                    {
+                        await funcionarioUpdate.Image.CopyToAsync(fs);
+                    }
                 }
-
-                string ext = Path.GetExtension(funcionarioUpdate.Image.FileName);
-                if (ext != ".jpg")
-                {
-                    ViewBag.Erros = "imagem deve ter as extensões .jpg, .png";
-                }
-
-                string path = webHostEnvironment.ContentRootPath + "\\SystemImg\\Funcionarios\\";
-                using (FileStream fs = new FileStream(path + funcionarioUpdate.Cpf.StringCleaner() + ".jpg", FileMode.Create))
-                {
-                    await funcionarioUpdate.Image.CopyToAsync(fs);
-                }
-
                 if (funcionario2.Cargo.NivelPermissao == 3)
                     return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
                 if (funcionario2.Cargo.NivelPermissao == 1)

@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class Inicio : Migration
+    public partial class inicio : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,7 +27,7 @@ namespace DataAccessLayer.Migrations
                 name: "COMPROMISSO",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DataFim = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DataInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -34,7 +35,7 @@ namespace DataAccessLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_COMPROMISSO", x => x.Id);
+                    table.PrimaryKey("PK_COMPROMISSO", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -140,14 +141,14 @@ namespace DataAccessLayer.Migrations
                     Senha = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
                     CargoID = table.Column<int>(type: "int", nullable: false),
                     Celular = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
-                    Foto = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EnderecoID = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
                     EstadoCivil = table.Column<int>(type: "int", nullable: false),
                     Genero = table.Column<int>(type: "int", nullable: false),
                     HasRequiredTest = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     IsAtivo = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
-                    IsFirstLogin = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
+                    IsFirstLogin = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+                    SF36ScoreID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -184,6 +185,33 @@ namespace DataAccessLayer.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EQUIPE_FUNCIONARIO_FUNCIONARIOS_FuncionarioID",
+                        column: x => x.FuncionarioID,
+                        principalTable: "FUNCIONARIOS",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SF36_Score",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CapacidadeFuncional = table.Column<double>(type: "float", nullable: false),
+                    LimitacaoAspectosFisicos = table.Column<double>(type: "float", nullable: false),
+                    Dor = table.Column<double>(type: "float", nullable: false),
+                    EstadoSaude = table.Column<double>(type: "float", nullable: false),
+                    Vitalidade = table.Column<double>(type: "float", nullable: false),
+                    AspectosSociais = table.Column<double>(type: "float", nullable: false),
+                    AspectosEmocionais = table.Column<double>(type: "float", nullable: false),
+                    SaudeMental = table.Column<double>(type: "float", nullable: false),
+                    FuncionarioID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SF36_Score", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_SF36_Score_FUNCIONARIOS_FuncionarioID",
                         column: x => x.FuncionarioID,
                         principalTable: "FUNCIONARIOS",
                         principalColumn: "ID",
@@ -249,6 +277,12 @@ namespace DataAccessLayer.Migrations
                 table: "FUNCIONARIOS",
                 column: "Email",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SF36_Score_FuncionarioID",
+                table: "SF36_Score",
+                column: "FuncionarioID",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -258,6 +292,9 @@ namespace DataAccessLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "EQUIPE_FUNCIONARIO");
+
+            migrationBuilder.DropTable(
+                name: "SF36_Score");
 
             migrationBuilder.DropTable(
                 name: "EQUIPES");

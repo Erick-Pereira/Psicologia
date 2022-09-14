@@ -14,6 +14,7 @@ namespace DataAccessLayer
         public DbSet<Bairro> Bairro { get; set; }
         public DbSet<Cidade> Cidade { get; set; }
         public DbSet<Estado> Estado { get; set; }
+        public DbSet<SF36Score> Score { get; set; }
 
         public DataBaseDbContext(DbContextOptions<DataBaseDbContext> options)
     : base(options)
@@ -24,6 +25,7 @@ namespace DataAccessLayer
             modelBuilder.Entity<EquipeFuncionario>().HasKey(ef => new { ef.EquipeID, ef.FuncionarioID });
             modelBuilder.Entity<EquipeFuncionario>().HasOne(E => E.Equipe).WithMany(E => E.Funcionarios).HasForeignKey(E => E.EquipeID);
             modelBuilder.Entity<EquipeFuncionario>().HasOne(F => F.Funcionario).WithMany(F => F.Equipes).HasForeignKey(F => F.FuncionarioID);
+            modelBuilder.Entity<SF36Score>().HasOne(c => c.FuncionarioSF36).WithOne(c => c.SfScore).HasForeignKey<SF36Score>(c => c.FuncionarioID);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
