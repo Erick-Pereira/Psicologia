@@ -104,7 +104,8 @@ namespace VisualLayer.Controllers
                 Logar(funcionario);
                 if (funcionario.IsFirstLogin)
                     return RedirectToAction(actionName: "Update", controllerName: "Funcionario", funcionario.ID);
-                if (funcionario.HasRequiredTest) { }
+                if (funcionario.HasRequiredTest)
+                    return RedirectToAction(actionName: "Sf36 ", controllerName: "Funcionario", funcionario.ID);
                 if (funcionario.Cargo.NivelPermissao == 0)
                     return RedirectToAction(actionName: "Index", controllerName: "Adm");
                 if (funcionario.Cargo.NivelPermissao == 3)

@@ -197,7 +197,7 @@ namespace VisualLayer.Controllers.Adm
             if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
             {
                 return RedirectToAction(actionName: "Logarr", controllerName: "Home");
-            }            
+            }
             FuncionarioUpdateAdmViewModel funcionario = _mapper.Map<FuncionarioUpdateAdmViewModel>(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item);
             if (verify.ID.ToString() == funcionario.Id)
             {

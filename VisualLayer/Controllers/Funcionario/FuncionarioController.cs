@@ -76,14 +76,18 @@ namespace VisualLayer.Controllers.Funcionario
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Teste()
+        public async Task<IActionResult> SF36()
         {
             return View();
         }
 
 
-
-       
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> SF36(FuncionarioRespostasQUestionarioSf36 respostas)
+        {
+            return View();
+        }      
 
         [Authorize]
         public async Task<IActionResult> Funcionarios()
