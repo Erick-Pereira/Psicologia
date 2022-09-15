@@ -165,12 +165,15 @@ namespace VisualLayer.Controllers.Adm
         [HttpGet]
         public async Task<IActionResult> Detalhar(string id)
         {
+            string con = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value;
+            int identity = Convert.ToInt32(id.Decrypt(ENCRYPT));
             Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
             if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
             {
                 return RedirectToAction(actionName: "Logarr", controllerName: "Home");
             }
-            Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item;
+            SingleResponse<Entities.Funcionario> response = await _FuncionarioService.GetByID(identity);
+            Entities.Funcionario funcionario = response.Item;
             FuncionarioDetailViewModel funcionarioDetail = _mapper.Map<FuncionarioDetailViewModel>(funcionario);
             funcionarioDetail.Id = funcionarioDetail.Id.Encrypt(ENCRYPT);
             funcionarioDetail.Cep = funcionario.Endereco.CEP;
@@ -196,7 +199,11 @@ namespace VisualLayer.Controllers.Adm
                 return RedirectToAction(actionName: "Logarr", controllerName: "Home");
             }
             FuncionarioUpdateAdmViewModel funcionario = _mapper.Map<FuncionarioUpdateAdmViewModel>(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item);
-            funcionario.Id = funcionario.Id.Encrypt(ENCRYPT);
+            if (verify.ID.ToString() == funcionario.Id)
+            {
+                return RedirectToAction(actionName: "Funcionarios", controllerName: "Adm");
+            }
+                funcionario.Id = funcionario.Id.Encrypt(ENCRYPT);
             ViewBag.Funcionario = funcionario;
             ViewBag.Cargos = _CargoService.GetAll().Result.Data;
             return View();
@@ -240,6 +247,7 @@ namespace VisualLayer.Controllers.Adm
             {
                 Funcionarios[i].Id = Funcionarios[i].Id.Encrypt(ENCRYPT);
             }
+            ViewBag.ID = verify.ID.ToString().Encrypt(ENCRYPT) ;
             return View(Funcionarios);
         }
 
