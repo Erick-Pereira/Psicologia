@@ -44,5 +44,6 @@ namespace BusinessLogicalLayer.Interfaces
         Task<Response> UpdateAdm(Funcionario funcionario);
 
         Task<Response> UpdateFuncionario(Funcionario funcionario);
+
     }
 }

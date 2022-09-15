@@ -11,7 +11,6 @@ namespace VisualLayer.Controllers.RH
 {
     public class RhController : Controller
     {
-
         private const int NIVEL_PERMISSAO = 1;
         private const string controllerName = "Rh";
         private const string ENCRYPT = "ID";

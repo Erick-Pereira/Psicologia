@@ -4,10 +4,12 @@ using BusinessLogicalLayer.Interfaces;
 using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Shared;
 using Shared.Extensions;
 using System.Security.Claims;
 using VisualLayer.Models.Funcionario;
+using VisualLayer.Models.Json;
 
 namespace VisualLayer.Controllers.Funcionario
 {
@@ -48,22 +50,17 @@ namespace VisualLayer.Controllers.Funcionario
             funcionarioDetail.Bairro = funcionario.Endereco.Bairro.NomeBairro;
             funcionarioDetail.Cidade = funcionario.Endereco.Bairro.Cidade.NomeCidade;
             funcionarioDetail.Estado = funcionario.Endereco.Bairro.Cidade.Estado.NomeEstado;
-            ViewBag.FuncionarioService = _FuncionarioService;
-            ViewBag.EstadoService = _estadoService;
-            ViewBag.Context = _httpContextAccessor;
-            ViewBag.Mapper = _mapper;
-            ViewBag.HostEnvironment = hostEnvironment;
             return View(funcionarioDetail);
         }
-        public async Task<Response> AlterarSenha(string senha)
+
+        [HttpPost]
+        public async Task<IActionResult> AlterarSenha(string senha) 
         {
-            if (senha != "")
-            {
-                Entities.Funcionario funcionario = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
-                funcionario.Senha = senha.Hash();
-                return await _FuncionarioService.AlterarSenha(funcionario);
-            }
-            return null;
+            Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            funcionario.Senha = senha.Hash();
+            Response response = await _FuncionarioService.AlterarSenha(funcionario);
+            JsonResult result = Json(response);
+            return Json(response);
         }
 
         [HttpGet]
@@ -76,14 +73,18 @@ namespace VisualLayer.Controllers.Funcionario
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Teste()
+        public async Task<IActionResult> SF36()
         {
             return View();
         }
 
 
-
-       
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> SF36(FuncionarioRespostasQUestionarioSf36 respostas)
+        {
+            return View();
+        }
 
         [Authorize]
         public async Task<IActionResult> Funcionarios()
