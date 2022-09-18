@@ -277,6 +277,9 @@ namespace DataAccessLayer.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<int>("SF36ScoreID")
+                        .HasColumnType("int");
+
                     b.Property<double>("Salario")
                         .HasColumnType("float");
 
@@ -300,6 +303,49 @@ namespace DataAccessLayer.Migrations
                     b.HasIndex("EnderecoID");
 
                     b.ToTable("FUNCIONARIOS", (string)null);
+                });
+
+            modelBuilder.Entity("Entities.SF36Score", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<double>("AspectosEmocionais")
+                        .HasColumnType("float");
+
+                    b.Property<double>("AspectosSociais")
+                        .HasColumnType("float");
+
+                    b.Property<double>("CapacidadeFuncional")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Dor")
+                        .HasColumnType("float");
+
+                    b.Property<double>("EstadoSaude")
+                        .HasColumnType("float");
+
+                    b.Property<int>("FuncionarioID")
+                        .HasColumnType("int");
+
+                    b.Property<double>("LimitacaoAspectosFisicos")
+                        .HasColumnType("float");
+
+                    b.Property<double>("SaudeMental")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Vitalidade")
+                        .HasColumnType("float");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("FuncionarioID")
+                        .IsUnique();
+
+                    b.ToTable("SF36_Score", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Bairro", b =>
@@ -373,6 +419,17 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Endereco");
                 });
 
+            modelBuilder.Entity("Entities.SF36Score", b =>
+                {
+                    b.HasOne("Entities.Funcionario", "FuncionarioSF36")
+                        .WithOne("SfScore")
+                        .HasForeignKey("Entities.SF36Score", "FuncionarioID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FuncionarioSF36");
+                });
+
             modelBuilder.Entity("Entities.Equipe", b =>
                 {
                     b.Navigation("Funcionarios");
@@ -381,6 +438,9 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("Entities.Funcionario", b =>
                 {
                     b.Navigation("Equipes");
+
+                    b.Navigation("SfScore")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

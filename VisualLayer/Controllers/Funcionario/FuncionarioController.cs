@@ -11,6 +11,7 @@ using System.Security.Claims;
 using VisualLayer.Models.Funcionario;
 using VisualLayer.Models.Json;
 
+
 namespace VisualLayer.Controllers.Funcionario
 {
     public class FuncionarioController : Controller
@@ -22,14 +23,16 @@ namespace VisualLayer.Controllers.Funcionario
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment hostEnvironment;
+        private readonly ISF36Service _sf36Service;
 
-        public FuncionarioController(IWebHostEnvironment hostEnvironment, IFuncionarioService funcionarioService, IEstadoService estadoService, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public FuncionarioController(IWebHostEnvironment hostEnvironment, IFuncionarioService funcionarioService, IEstadoService estadoService, IMapper mapper, IHttpContextAccessor httpContextAccessor, ISF36Service sf36Service)
         {
             _FuncionarioService = funcionarioService;
             _estadoService = estadoService;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
             this.hostEnvironment = hostEnvironment;
+            _sf36Service = sf36Service;
         }
         [Authorize]
         [HttpGet]
@@ -78,12 +81,12 @@ namespace VisualLayer.Controllers.Funcionario
             return View();
         }
 
-
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> SF36(FuncionarioRespostasQUestionarioSf36 respostas)
+        public async Task<IActionResult> SF36(FuncionarioRespostasQuestionarioSf36 respostas)
         {
-            return View();
+            Response response = await _sf36Service.CalcularScore(respostas);
+            return RedirectToAction("Index", "Home");
         }
 
         [Authorize]
