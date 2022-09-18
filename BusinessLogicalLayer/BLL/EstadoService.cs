@@ -34,6 +34,11 @@ namespace BusinessLogicalLayer.BLL
             return await _estadoDAL.GetByID(id);
         }
 
+        public async Task<SingleResponse<Estado>> GetByUF(string uf)
+        {
+            return await _estadoDAL.GetByUF(uf);
+        }
+
         public async Task<SingleResponse<bool>> Iniciar()
         {
             SingleResponse<int> response = await _estadoDAL.Iniciar();

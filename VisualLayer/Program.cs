@@ -35,6 +35,8 @@ builder.Services.AddTransient<IEstadoService, EstadoService>();
 builder.Services.AddTransient<IFuncionarioDAL, FuncionarioDAL>();
 builder.Services.AddTransient<IFuncionarioService, FuncionarioService>();
 builder.Services.AddTransient<IInicioService, InicioService>();
+builder.Services.AddTransient<ISFScoreDAL, SF36ScoreDAL>();
+builder.Services.AddTransient<ISF36Service, SF36Service>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddDbContext<DataBaseDbContext>(options => options.UseSqlServer("name=ConnectionStrings:SqlServerFuncionarioConnection"));

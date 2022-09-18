@@ -135,19 +135,22 @@ nav.open ~ .overlay {
     .flex .contains {
         margin: 5px;
         position: relative;
-        z-index: -1;
         width: 100%;
     }
+
 .contains .box-contains {
     display: flex;
     margin-top: 80px;
     align-items: center;
     width: 100%;
-    z-index: -1;
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 0 20px;
     margin-bottom: 26px;
+}
+
+.contains {
+    z-index: -1;
 }
 
 .box-contains .box {
@@ -162,15 +165,25 @@ nav.open ~ .overlay {
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
+.contains a {
+    z-index: +1;
+}
+
+.contains p {
+    z-index: +1;
+}
+
 .box h1 {
     font-size: 35px;
     font-weight: 500;
-    text-align:center;
+    text-align: center;
 }
-.box p{
+
+.box p {
     text-align: center;
     color: #333;
 }
+
 .box a {
     font-size: 25px;
     font-weight: 500;
@@ -183,21 +196,6 @@ nav.open ~ .overlay {
         padding: 5px;
     }
 
-.content {
-    display: flex;
-    margin: auto;
-}
-.flex {
-    z-index: -1;
-    display: flex;
-    margin: auto;
-}
-
-.contains {
-    z-index: -1;
-    display: flex;
-    margin: auto;
-}
 .rTable {
     width: 100%;
     text-align: center;
@@ -221,9 +219,11 @@ nav.open ~ .overlay {
     .content {
         width: 94%;
     }
+
     .contains {
         width: 94%;
     }
+
     .rTable thead {
         display: none;
     }
@@ -238,9 +238,11 @@ nav.open ~ .overlay {
     .content {
         width: 100%;
     }
+
     .contains {
         width: 94%;
-    }    
+    }
+
     .rTable tbody tr td:nth-child(1) {
         width: 15%;
     }
@@ -260,6 +262,7 @@ nav.open ~ .overlay {
     .rTable tbody tr td:nth-child(5) {
         width: 5%;
     }
+
     .rTable tbody tr td:nth-child(6) {
         width: 5%;
     }

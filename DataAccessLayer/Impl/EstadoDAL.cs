@@ -66,6 +66,18 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        public async Task<SingleResponse<Estado>> GetByUF(string uf)
+        {
+            try
+            {
+                return ResponseFactory<Estado>.CreateSuccessItemResponse(await _db.Estado.FirstOrDefaultAsync(e => e.Sigla == uf));
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Estado>.CreateFailureItemResponse(ex);
+            }
+        }
+
         public async Task<SingleResponse<int>> Iniciar()
         {
             try
