@@ -11,7 +11,6 @@
     IHttpContextAccessor _httpContextAccessor = ViewBag.Context;
     IMapper _mapper = ViewBag.Mapper;
     IWebHostEnvironment _hostEnvironment = ViewBag.HostEnvironment;
-    FuncionarioController funcionarioController = new FuncionarioController(_hostEnvironment, _funcionarioService, _estadoService, _mapper, _httpContextAccessor);
     var senha = "";
 }
 <!DOCTYPE html>
@@ -208,35 +207,4 @@
 </html>
 @section Scripts
 {
-<script>
-                function alterarSenha() {
-                    var erros = document.getElementById("Erros");
-                    var senha1 = document.getElementById("Senha");
-                    var senha2 = document.getElementById("ConfirmarSenha");
-                    if(senha1 !== ""){
-    if (senha1 === senha2) {
-                        if (senha1.length === 8) {
-                @senha = senha1;
-                @{
-                    Response response = funcionarioController.AlterarSenha(senha).Result;
-                }
-                                erros.innerHTML = @response.Message;
-                        }
-                        else {
-                            erros.innerHTML = "Senha deve conter pelo menos 8 digitos";
-                        }
-                    }
-                    else {
-                        erros.innerHTML = "Senhas devem ser iguais";
-                    }
-
-                }
-                else{
-                    erros.innerHTML = "Senha deve ser informada";
-                }
-                    }
-
-
-</script>
-    }
 }
