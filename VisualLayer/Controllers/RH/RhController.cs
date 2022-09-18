@@ -288,6 +288,7 @@ namespace VisualLayer.Controllers.RH
             Response response = await _FuncionarioService.RequistarTeste(funcionario);
             return RedirectToAction(actionName: "Funcionarios", controllerName: controllerName);
         }
+
         [Authorize]
         public async Task<IActionResult> ResetarSenha(string id)
         {

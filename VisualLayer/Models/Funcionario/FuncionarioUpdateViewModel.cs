@@ -39,7 +39,7 @@ namespace VisualLayer.Models.Funcionario
         public string Cidade { get; set; }
 
         [Required(ErrorMessage = "O Estao deve ser informado.")]
-        public int EstadoId { get; set; }
+        public string EstadoUf { get; set; }
 
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "A data de nascimento deve ser informada.")]

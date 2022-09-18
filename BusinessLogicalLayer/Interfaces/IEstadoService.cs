@@ -13,6 +13,8 @@ namespace BusinessLogicalLayer.Interfaces
 
         Task<SingleResponse<Estado>> GetByID(int id);
 
+        Task<SingleResponse<Estado>> GetByUF(string uf);
+
         Task<SingleResponse<bool>> Iniciar();
 
         Task<SingleResponse<int>> IniciarReturnId();

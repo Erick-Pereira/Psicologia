@@ -1,7 +1,6 @@
 ﻿@{
     
 }
-
 <!doctype html>
 <html>
 
@@ -11,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/teste.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/css/Funcionario/SF-36.css" media="screen">
 
     <!-- Título da página (aparece na aba) -->
     <title>Questionário</title>
@@ -44,7 +43,7 @@
         </div>
 
         <!-- Início do formulário -->
-        <form>
+        <form method="post" action="/Funcionario/SF36">
                 <div class="form-label">
                     <label align="left"><strong>1- Em geral você diria que sua saúde é: </strong></label>
                 </div>
@@ -550,7 +549,7 @@
                     </tbody>
                 </table>
                 <div>
-                <button class="botao" type="submit" onsubmit="">Concluído</button> 
+                   <input type="submit" class="botao" value="Concluido" />
                 </div>
             </form>
 </body>

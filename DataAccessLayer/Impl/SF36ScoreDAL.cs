@@ -1,6 +1,5 @@
 ﻿using DataAccessLayer.Interfaces;
 using Entities;
-using Microsoft.EntityFrameworkCore;
 using Shared;
 
 namespace DataAccessLayer.Impl
@@ -13,6 +12,7 @@ namespace DataAccessLayer.Impl
         {
             this._db = db;
         }
+
         public async Task<Response> Insert(SF36Score score)
         {
             _db.Score.Add(score);

@@ -110,7 +110,6 @@ namespace BusinessLogicalLayer.BLL
             funcionario.Email = funcionario.Email.Trim();
             funcionario.Senha = "123456789".Hash();
             funcionario.IsAtivo = true;
-            funcionario.IsFirstLogin = true;
             return await _funcionarioDAL.Insert(funcionario);
         }
 

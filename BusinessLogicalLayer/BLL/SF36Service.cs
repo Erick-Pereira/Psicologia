@@ -2,19 +2,11 @@
 using DataAccessLayer.Interfaces;
 using Entities;
 using Shared;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogicalLayer.BLL
 {
     public class SF36Service : ISF36Service
     {
-
         private readonly ISFScoreDAL _scoreDAL;
 
         public SF36Service(ISFScoreDAL scoreDAL)
@@ -22,10 +14,9 @@ namespace BusinessLogicalLayer.BLL
             _scoreDAL = scoreDAL;
         }
 
-
         public async Task<Response> CalcularScore(FuncionarioRespostasQuestionarioSf36 sf36scoretotal)
         {
-            double[] constructs = new double[8];
+            double[] constructs = new double[9];
             string comparacaoSaude = "";
             switch (sf36scoretotal.Question1)
             {
@@ -33,18 +24,22 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 5;
                     constructs[4] += 5;
                     break;
+
                 case 2:
                     constructs[0] += 4.4;
                     constructs[4] += 4.4;
                     break;
+
                 case 3:
                     constructs[0] += 3.4;
                     constructs[4] += 3.4;
                     break;
+
                 case 4:
                     constructs[0] += 2;
                     constructs[4] += 2;
                     break;
+
                 case 5:
                     constructs[0]++;
                     constructs[4]++;
@@ -56,15 +51,19 @@ namespace BusinessLogicalLayer.BLL
                 case "1":
                     comparacaoSaude = "Muito Melhor";
                     break;
+
                 case "2":
                     comparacaoSaude = "Um Pouco Melhor";
                     break;
+
                 case "3":
                     comparacaoSaude = "Quase a Mesma";
                     break;
+
                 case "4":
                     comparacaoSaude = "Um Pouco Pior";
                     break;
+
                 case "5":
                     comparacaoSaude = "Muito Pior";
                     break;
@@ -99,7 +98,6 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 2;
                     constructs[6] += 2;
                 }
-
             }
             for (int i = 0; i < 3; i++)
             {
@@ -113,7 +111,6 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 2;
                     constructs[5] += 2;
                 }
-
             }
             switch (sf36scoretotal.Question6)
             {
@@ -121,18 +118,22 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 5;
                     constructs[1] += 5;
                     break;
+
                 case 2:
                     constructs[0] += 4;
                     constructs[1] += 4;
                     break;
+
                 case 3:
                     constructs[0] += 3;
                     constructs[1] += 3;
                     break;
+
                 case 4:
                     constructs[0] += 2;
                     constructs[1] += 2;
                     break;
+
                 case 5:
                     constructs[0] += 1;
                     constructs[1] += 1;
@@ -144,22 +145,27 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 6;
                     constructs[3] += 6;
                     break;
+
                 case 2:
                     constructs[0] += 5.4;
                     constructs[3] += 5.4;
                     break;
+
                 case 3:
                     constructs[0] += 4.2;
                     constructs[3] += 4.2;
                     break;
+
                 case 4:
                     constructs[0] += 3.1;
                     constructs[3] += 3.1;
                     break;
+
                 case 5:
                     constructs[0] += 2;
                     constructs[3] += 2;
                     break;
+
                 case 6:
                     constructs[0]++;
                     constructs[3]++;
@@ -205,22 +211,27 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 6;
                     constructs[8] += 6;
                     break;
+
                 case 2:
                     constructs[0] += 5;
                     constructs[8] += 5;
                     break;
+
                 case 3:
                     constructs[0] += 4;
                     constructs[8] += 4;
                     break;
+
                 case 4:
                     constructs[0] += 3;
                     constructs[8] += 3;
                     break;
+
                 case 5:
                     constructs[0] += 2;
                     constructs[8] += 2;
                     break;
+
                 case 6:
                     constructs[0]++;
                     constructs[8]++;
@@ -232,22 +243,27 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0]++;
                     constructs[7]++;
                     break;
+
                 case 2:
                     constructs[0] += 2;
                     constructs[7] += 2;
                     break;
+
                 case 3:
                     constructs[0] += 3;
                     constructs[7] += 3;
                     break;
+
                 case 4:
                     constructs[0] += 4;
                     constructs[7] += 4;
                     break;
+
                 case 5:
                     constructs[0] += 5;
                     constructs[7] += 5;
                     break;
+
                 case 6:
                     constructs[0] += 6;
                     constructs[7] += 6;
@@ -259,22 +275,27 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0]++;
                     constructs[7]++;
                     break;
+
                 case 2:
                     constructs[0] += 2;
                     constructs[7] += 2;
                     break;
+
                 case 3:
                     constructs[0] += 3;
                     constructs[7] += 3;
                     break;
+
                 case 4:
                     constructs[0] += 4;
                     constructs[7] += 4;
                     break;
+
                 case 5:
                     constructs[0] += 5;
                     constructs[7] += 5;
                     break;
+
                 case 6:
                     constructs[0] += 6;
                     constructs[7] += 6;
@@ -286,22 +307,27 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 6;
                     constructs[7] += 6;
                     break;
+
                 case 2:
                     constructs[0] += 5;
                     constructs[7] += 5;
                     break;
+
                 case 3:
                     constructs[0] += 4;
                     constructs[7] += 4;
                     break;
+
                 case 4:
                     constructs[0] += 3;
                     constructs[7] += 3;
                     break;
+
                 case 5:
                     constructs[0] += 2;
                     constructs[7] += 2;
                     break;
+
                 case 6:
                     constructs[0]++;
                     constructs[7]++;
@@ -313,22 +339,27 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 6;
                     constructs[8] += 6;
                     break;
+
                 case 2:
                     constructs[0] += 5;
                     constructs[8] += 5;
                     break;
+
                 case 3:
                     constructs[0] += 4;
                     constructs[8] += 4;
                     break;
+
                 case 4:
                     constructs[0] += 3;
                     constructs[8] += 3;
                     break;
+
                 case 5:
                     constructs[0] += 2;
                     constructs[8] += 2;
                     break;
+
                 case 6:
                     constructs[0]++;
                     constructs[8]++;
@@ -340,22 +371,27 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0]++;
                     constructs[7]++;
                     break;
+
                 case 2:
                     constructs[0] += 2;
                     constructs[7] += 2;
                     break;
+
                 case 3:
                     constructs[0] += 3;
                     constructs[7] += 3;
                     break;
+
                 case 4:
                     constructs[0] += 4;
                     constructs[7] += 4;
                     break;
+
                 case 5:
                     constructs[0] += 5;
                     constructs[7] += 5;
                     break;
+
                 case 6:
                     constructs[0] += 6;
                     constructs[7] += 6;
@@ -367,22 +403,27 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0]++;
                     constructs[8]++;
                     break;
+
                 case 2:
                     constructs[0] += 2;
                     constructs[8] += 2;
                     break;
+
                 case 3:
                     constructs[0] += 3;
                     constructs[8] += 3;
                     break;
+
                 case 4:
                     constructs[0] += 4;
                     constructs[8] += 4;
                     break;
+
                 case 5:
                     constructs[0] += 5;
                     constructs[8] += 5;
                     break;
+
                 case 6:
                     constructs[0] += 6;
                     constructs[8] += 6;
@@ -394,22 +435,27 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 6;
                     constructs[7] += 6;
                     break;
+
                 case 2:
                     constructs[0] += 5;
                     constructs[7] += 5;
                     break;
+
                 case 3:
                     constructs[0] += 4;
                     constructs[7] += 4;
                     break;
+
                 case 4:
                     constructs[0] += 3;
                     constructs[7] += 3;
                     break;
+
                 case 5:
                     constructs[0] += 2;
                     constructs[7] += 2;
                     break;
+
                 case 6:
                     constructs[0]++;
                     constructs[7]++;
@@ -421,22 +467,27 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0]++;
                     constructs[8]++;
                     break;
+
                 case 2:
                     constructs[0] += 2;
                     constructs[8] += 2;
                     break;
+
                 case 3:
                     constructs[0] += 3;
                     constructs[8] += 3;
                     break;
+
                 case 4:
                     constructs[0] += 4;
                     constructs[8] += 4;
                     break;
+
                 case 5:
                     constructs[0] += 5;
                     constructs[8] += 5;
                     break;
+
                 case 6:
                     constructs[0] += 6;
                     constructs[8] += 6;
@@ -448,18 +499,22 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 5;
                     constructs[1] += 5;
                     break;
+
                 case 2:
                     constructs[0] += 4;
                     constructs[1] += 4;
                     break;
+
                 case 3:
                     constructs[0] += 3;
                     constructs[1] += 3;
                     break;
+
                 case 4:
                     constructs[0] += 2;
                     constructs[1] += 2;
                     break;
+
                 case 5:
                     constructs[0] += 1;
                     constructs[1] += 1;
@@ -492,10 +547,6 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 5;
                     constructs[4] += 5;
                 }
-
-
-
-
             }
             switch (sf36scoretotal.Question11b)
             {
@@ -503,23 +554,26 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 5;
                     constructs[4] += 5;
                     break;
+
                 case 2:
                     constructs[0] += 4;
                     constructs[4] += 4;
                     break;
+
                 case 3:
                     constructs[0] += 3;
                     constructs[4] += 3;
                     break;
+
                 case 4:
                     constructs[0] += 2;
                     constructs[4] += 2;
                     break;
+
                 case 5:
                     constructs[0] += 1;
                     constructs[4] += 1;
                     break;
-
             }
             switch (sf36scoretotal.Question11d)
             {
@@ -527,23 +581,26 @@ namespace BusinessLogicalLayer.BLL
                     constructs[0] += 5;
                     constructs[4] += 5;
                     break;
+
                 case 2:
                     constructs[0] += 4;
                     constructs[4] += 4;
                     break;
+
                 case 3:
                     constructs[0] += 3;
                     constructs[4] += 3;
                     break;
+
                 case 4:
                     constructs[0] += 2;
                     constructs[4] += 2;
                     break;
+
                 case 5:
                     constructs[0] += 1;
                     constructs[4] += 1;
                     break;
-
             }
             constructs[1] = CalcularScoreAspectosSociais(sf36scoretotal).Result;
             constructs[2] = CalcularScoreCapacidadeFuncional(sf36scoretotal).Result;
@@ -563,14 +620,11 @@ namespace BusinessLogicalLayer.BLL
                 EstadoSaude = constructs[4],
                 AspectosEmocionais = constructs[5],
                 LimitacaoAspectosFisicos = constructs[6],
-                SaudeMental= constructs[7],
-                Vitalidade= constructs[8],
-
-
+                SaudeMental = constructs[7],
+                Vitalidade = constructs[8],
             };
 
             return await _scoreDAL.Insert(score);
-
         }
 
         public async Task<double> CalcularScoreAspectosSociais(FuncionarioRespostasQuestionarioSf36 sf36scoreAspectosSociais)
@@ -583,15 +637,19 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     aspectosSociais += 5;
                     break;
+
                 case 2:
                     aspectosSociais += 4;
                     break;
+
                 case 3:
                     aspectosSociais += 3;
                     break;
+
                 case 4:
                     aspectosSociais += 2;
                     break;
+
                 case 5:
                     aspectosSociais += 1;
                     break;
@@ -601,15 +659,19 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     aspectosSociais += 5;
                     break;
+
                 case 2:
                     aspectosSociais += 4;
                     break;
+
                 case 3:
                     aspectosSociais += 3;
                     break;
+
                 case 4:
                     aspectosSociais += 2;
                     break;
+
                 case 5:
                     aspectosSociais += 1;
                     break;
@@ -651,18 +713,23 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     dor7 += 6;
                     break;
+
                 case 2:
                     dor7 += 5.4;
                     break;
+
                 case 3:
                     dor7 += 4.2;
                     break;
+
                 case 4:
                     dor7 += 3.1;
                     break;
+
                 case 5:
                     dor7 += 2;
                     break;
+
                 case 6:
                     dor7 += 1;
                     break;
@@ -696,7 +763,6 @@ namespace BusinessLogicalLayer.BLL
                 dor8++;
             }
             return (dor8 + dor7 - limiteInferior) * 100 / variacao;
-
         }
 
         public async Task<double> CalcularScoreEstadoSaude(FuncionarioRespostasQuestionarioSf36 sf36scoreEstadoSaude)
@@ -710,15 +776,19 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     estadoSaude1 += 5;
                     break;
+
                 case 2:
                     estadoSaude1 += 4.4;
                     break;
+
                 case 3:
                     estadoSaude1 += 3.4;
                     break;
+
                 case 4:
                     estadoSaude1 += 2;
                     break;
+
                 case 5:
                     estadoSaude1 += 1;
                     break;
@@ -745,48 +815,50 @@ namespace BusinessLogicalLayer.BLL
                 {
                     estadoSaude11 += 5;
                 }
-
-
-
-
             }
             switch (sf36scoreEstadoSaude.Question11b)
             {
                 case 1:
                     estadoSaude11 += 5;
                     break;
+
                 case 2:
                     estadoSaude11 += 4;
                     break;
+
                 case 3:
                     estadoSaude11 += 3;
                     break;
+
                 case 4:
                     estadoSaude11 += 2;
                     break;
+
                 case 5:
                     estadoSaude11 += 1;
                     break;
-
             }
             switch (sf36scoreEstadoSaude.Question11d)
             {
                 case 1:
                     estadoSaude11 += 5;
                     break;
+
                 case 2:
                     estadoSaude11 += 4;
                     break;
+
                 case 3:
                     estadoSaude11 += 3;
                     break;
+
                 case 4:
                     estadoSaude11 += 2;
                     break;
+
                 case 5:
                     estadoSaude11 += 1;
                     break;
-
             }
             return (estadoSaude1 + estadoSaude11 - limiteInferior) * 100 / variacao;
         }
@@ -807,7 +879,6 @@ namespace BusinessLogicalLayer.BLL
                 }
             }
             return (limitacaoEmocional - limiteInferior) * 100 / variacao;
-
         }
 
         public async Task<double> CalcularScoreLimitacaoFisica(FuncionarioRespostasQuestionarioSf36 sf36scoreLimitacaoFisica)
@@ -839,18 +910,23 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     saudeMental += 1;
                     break;
+
                 case 2:
                     saudeMental += 2;
                     break;
+
                 case 3:
                     saudeMental += 3;
                     break;
+
                 case 4:
                     saudeMental += 4;
                     break;
+
                 case 5:
                     saudeMental += 5;
                     break;
+
                 case 6:
                     saudeMental += 6;
                     break;
@@ -860,18 +936,23 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     saudeMental += 1;
                     break;
+
                 case 2:
                     saudeMental += 2;
                     break;
+
                 case 3:
                     saudeMental += 3;
                     break;
+
                 case 4:
                     saudeMental += 4;
                     break;
+
                 case 5:
                     saudeMental += 5;
                     break;
+
                 case 6:
                     saudeMental += 6;
                     break;
@@ -881,18 +962,23 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     saudeMental += 6;
                     break;
+
                 case 2:
                     saudeMental += 5;
                     break;
+
                 case 3:
                     saudeMental += 4;
                     break;
+
                 case 4:
                     saudeMental += 3;
                     break;
+
                 case 5:
                     saudeMental += 2;
                     break;
+
                 case 6:
                     saudeMental++;
                     break;
@@ -902,18 +988,23 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     saudeMental += 1;
                     break;
+
                 case 2:
                     saudeMental += 2;
                     break;
+
                 case 3:
                     saudeMental += 3;
                     break;
+
                 case 4:
                     saudeMental += 4;
                     break;
+
                 case 5:
                     saudeMental += 5;
                     break;
+
                 case 6:
                     saudeMental += 6;
                     break;
@@ -923,18 +1014,23 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     saudeMental += 6;
                     break;
+
                 case 2:
                     saudeMental += 5;
                     break;
+
                 case 3:
                     saudeMental += 4;
                     break;
+
                 case 4:
                     saudeMental += 3;
                     break;
+
                 case 5:
                     saudeMental += 2;
                     break;
+
                 case 6:
                     saudeMental++;
                     break;
@@ -952,18 +1048,23 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     vitalidade += 6;
                     break;
+
                 case 2:
                     vitalidade += 5;
                     break;
+
                 case 3:
                     vitalidade += 4;
                     break;
+
                 case 4:
                     vitalidade += 3;
                     break;
+
                 case 5:
                     vitalidade += 2;
                     break;
+
                 case 6:
                     vitalidade++;
                     break;
@@ -973,18 +1074,23 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     vitalidade += 6;
                     break;
+
                 case 2:
                     vitalidade += 5;
                     break;
+
                 case 3:
                     vitalidade += 4;
                     break;
+
                 case 4:
                     vitalidade += 3;
                     break;
+
                 case 5:
                     vitalidade += 2;
                     break;
+
                 case 6:
                     vitalidade++;
                     break;
@@ -994,18 +1100,23 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     vitalidade += 1;
                     break;
+
                 case 2:
                     vitalidade += 2;
                     break;
+
                 case 3:
                     vitalidade += 3;
                     break;
+
                 case 4:
                     vitalidade += 4;
                     break;
+
                 case 5:
                     vitalidade += 5;
                     break;
+
                 case 6:
                     vitalidade += 6;
                     break;
@@ -1015,25 +1126,30 @@ namespace BusinessLogicalLayer.BLL
                 case 1:
                     vitalidade++;
                     break;
+
                 case 2:
                     vitalidade += 2;
                     break;
+
                 case 3:
                     vitalidade += 3;
                     break;
+
                 case 4:
                     vitalidade += 4;
                     break;
+
                 case 5:
                     vitalidade += 5;
                     break;
+
                 case 6:
                     vitalidade += 6;
                     break;
             }
             return (vitalidade - limiteInferior) * 100 / variacao;
-
         }
+
         public async Task<string> CopararSaude(FuncionarioRespostasQuestionarioSf36 sf36scoreSaudeComparada)
         {
             {
@@ -1042,26 +1158,28 @@ namespace BusinessLogicalLayer.BLL
                 switch ((sf36scoreSaudeComparada.Question2)
 )
                 {
-
                     case "1":
                         comparacaoSaude = "Muito Melhor";
                         break;
+
                     case "2":
                         comparacaoSaude = "Um Pouco Melhor";
                         break;
+
                     case "3":
                         comparacaoSaude = "Quase a Mesma";
                         break;
+
                     case "4":
                         comparacaoSaude = "Um Pouco Pior";
                         break;
+
                     case "5":
                         comparacaoSaude = "Muito Pior";
                         break;
                 }
                 return comparacaoSaude;
             }
-
         }
     }
 }

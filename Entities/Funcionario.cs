@@ -24,7 +24,6 @@ namespace Entities
         public bool IsAtivo { get; set; }
         public bool IsFirstLogin { get; set; }
         public int SF36ScoreID { get; set; }
-        public SF36Score SfScore{ get; set; }
-
+        public SF36Score SfScore { get; set; }
     }
 }
