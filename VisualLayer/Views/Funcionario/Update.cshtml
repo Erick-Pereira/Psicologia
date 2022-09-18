@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Cep" class="control-label"></label>
-                <input asp-for="Cep" onblur="buscaCep()" id="Cep" name="Cep" class="form-control" />
+                <input asp-for="Cep" onblur="buscaCep()" name="Cep" class="form-control" />
                 <span asp-validation-for="Cep" class="text-danger"></span>
 
             </div>
@@ -58,22 +58,22 @@
                 <span asp-validation-for="Cidade" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EstadoId" class="control-label">Estado</label>
-                <select asp-for="EstadoId" class="form-control">
+                <label asp-for="EstadoUf" class="control-label">Estado</label>
+                <select asp-for="EstadoUf" class="form-control">
                     @for (int i = 0; i < estados.Count; i++)
                     {
-                        @if (@estados[i].ID == Model.EstadoId)
+                        @if (@estados[i].Sigla == Model.EstadoUf)
                         {
-                            <option value="@estados[i].ID" selected>@estados[i].Sigla</option>
+                            <option value="@estados[i].Sigla" selected>@estados[i].Sigla</option>
                         }
                         else
                         {
-                            <option value="@estados[i].ID">@estados[i].Sigla</option>
+                            <option value="@estados[i].Sigla">@estados[i].Sigla</option>
                         }
 
                     }
                 </select>
-                <span asp-validation-for="EstadoId" class="text-danger"></span>
+                <span asp-validation-for="EstadoUf" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DataNascimento" class="control-label"></label>
@@ -81,7 +81,7 @@
                 <span asp-validation-for="DataNascimento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <img src="@Model.Foto" alt=""
+                <img src="@Model.Foto" alt="" />
                 <label asp-for="Image" class="control-label"></label>
                 @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", @type="file"} })
                 <span asp-validation-for="Image" class="text-danger"></span>
@@ -104,13 +104,11 @@
 </div>
 @section Scripts
 {
-
-
 <script>
     function limpa_formulario_cep(){
-        $("#Estado").removeAttr("disabled");
-        $("#Estado option[selected]").removeAttr("selected");
-        $("#Estado #empty").attr("selected", "");
+        $("#EstadoId").removeAttr("disabled");
+        $("#EstadoId option[selected]").removeAttr("selected");
+        $("#EstadoId #empty").attr("selected", "");
         $("#Cidade").val("");
         $("#Cidade").removeAttr("disabled");
         $("#Bairro").val("");
@@ -127,22 +125,22 @@
                     $("#Cep").removeClass("is-invalid");
                     var option = $("option[value = "+dados.uf +"]");
                     option.attr("selected", "");
-                    $("#Estado").attr("disabled", "");
+                    //$("#EstadoId").attr("disabled", "");
                     $("#Cidade").val(dados.localidade);                    
-                    $("#Cidade").attr("disabled", "");
+                    //$("#Cidade").attr("disabled", "");
                     if(dados.bairro !== ""){
-                        document.getElementById("Bairro").value = dados.bairro;
-                        $("#Bairro").attr("disabled", "");
+                        $("#Bairro").val(dados.bairro);
+                        //$("#Bairro").attr("disabled", "");
                     }else{
-                        document.getElementById("Bairro").value = "";
-                         $("#Bairro").removeAttr("disabled");
+                         $("#Bairro").val("");
+                         //$("#Bairro").removeAttr("disabled");
                     }
                     if(dados.logradouro !== ""){
                         $("#Rua").val(dados.logradouro);
-                        $("#Rua").attr("disabled", "");
+                        //$("#Rua").attr("disabled", "");
                     }else{
                          $("#Rua").val("");
-                         $("#Rua").removeAttr("disabled");
+                         //$("#Rua").removeAttr("disabled");
                     }
                     }
                 else{

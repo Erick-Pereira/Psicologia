@@ -28,6 +28,18 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        public async Task<SingleResponse<int>> GetAllByCidadeId(int id)
+        {
+            try
+            {
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Bairro.Where(e => e.CidadeId == id).CountAsync());
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
+        }
+
         public async Task<Response> Delete(int id)
         {
             _db.Bairro.Remove(new Bairro() { ID = id });

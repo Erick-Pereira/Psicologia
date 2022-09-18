@@ -64,7 +64,6 @@
             </div>
         </div>
     </nav>
-
     <section class="overlay"></section>
     <section class="home-section">
         <h1>Configuracao</h1>
@@ -75,7 +74,7 @@
                     @Html.DisplayNameFor(model => model.Foto)
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Foto)
+                    <img src="@Model.Foto" alt="" />
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Nome)

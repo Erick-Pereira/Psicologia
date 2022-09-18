@@ -72,12 +72,16 @@
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
-
                     <div class="input-field button">
+                        
                         <div class="form-group">
                             <input type="submit" value="Login" class="btn btn-primary" />
-                        </div>
+                        </div>                        
                     </div>
+                    @if (!string.IsNullOrWhiteSpace(ViewBag.Erro))
+                    {
+                         <label>@ViewBag.Erro</label>
+                    }                   
                 </form>
             </div>
         </div>

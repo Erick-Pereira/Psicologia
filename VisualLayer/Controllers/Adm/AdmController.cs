@@ -5,14 +5,15 @@ using Microsoft.AspNetCore.Mvc;
 using Shared;
 using Shared.Extensions;
 using System.Security.Claims;
+using VisualLayer.Models.Cargo;
 using VisualLayer.Models.Funcionario;
 
 namespace VisualLayer.Controllers.Adm
 {
     public class AdmController : Controller
     {
-        private const int NIVEL_PERMISSAO = 0;
         private const string ENCRYPT = "ID";
+        private const int NIVEL_PERMISSAO = 0;
         private readonly ICargoService _CargoService;
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -62,7 +63,8 @@ namespace VisualLayer.Controllers.Adm
             {
                 return RedirectToAction(actionName: "Logarr", controllerName: "Home");
             }
-            ViewBag.Cargos = _CargoService.GetAll().Result.Data;
+            List<Entities.Cargo> cargos = _CargoService.GetAll().Result.Data;
+            ViewBag.Cargos = cargos;
             return View();
         }
 
@@ -93,6 +95,8 @@ namespace VisualLayer.Controllers.Adm
             return View();
         }
 
+        [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Cargo()
         {
             Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
@@ -103,19 +107,13 @@ namespace VisualLayer.Controllers.Adm
             return View();
         }
 
+        [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Deletar(string id)
+        public async Task<IActionResult> Cargo(CargoInsertViewModel cargoViewModel)
         {
-            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
-            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
-            {
-                return RedirectToAction(actionName: "Logarr", controllerName: "Home");
-            }
-            int userId = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value);
-            if (Convert.ToInt32(id.Decrypt(ENCRYPT)) == userId)
-            {
-                ViewBag.Erros = "Você não pode se deletar";
-            }
+            Entities.Cargo cargo = _mapper.Map<Entities.Cargo>(cargoViewModel);
+            Response response = _CargoService.Insert(cargo).Result;
+            ViewBag.Erros = response.Message;
             return View();
         }
 
@@ -138,7 +136,26 @@ namespace VisualLayer.Controllers.Adm
             funcionarioDetail.Bairro = funcionario.Endereco.Bairro.NomeBairro;
             funcionarioDetail.Cidade = funcionario.Endereco.Bairro.Cidade.NomeCidade;
             funcionarioDetail.Estado = funcionario.Endereco.Bairro.Cidade.Estado.NomeEstado;
+            string caminho_WebRoot = hostEnvironment.WebRootPath;
+            string path = Path.Combine(caminho_WebRoot, $"SystemImg\\Funcionarios\\{funcionario.Cpf.StringCleaner()}");
+            funcionarioDetail.Foto = $"/SystemImg/Funcionarios/{funcionario.Cpf.StringCleaner()}.jpg";
             return View(funcionarioDetail);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Deletar(string id)
+        {
+            Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
+            if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
+            {
+                return RedirectToAction(actionName: "Logarr", controllerName: "Home");
+            }
+            int userId = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value);
+            if (Convert.ToInt32(id.Decrypt(ENCRYPT)) == userId)
+            {
+                ViewBag.Erros = "Você não pode se deletar";
+            }
+            return View();
         }
 
         [Authorize]
@@ -203,7 +220,7 @@ namespace VisualLayer.Controllers.Adm
             {
                 return RedirectToAction(actionName: "Funcionarios", controllerName: "Adm");
             }
-                funcionario.Id = funcionario.Id.Encrypt(ENCRYPT);
+            funcionario.Id = funcionario.Id.Encrypt(ENCRYPT);
             ViewBag.Funcionario = funcionario;
             ViewBag.Cargos = _CargoService.GetAll().Result.Data;
             return View();
@@ -247,7 +264,7 @@ namespace VisualLayer.Controllers.Adm
             {
                 Funcionarios[i].Id = Funcionarios[i].Id.Encrypt(ENCRYPT);
             }
-            ViewBag.ID = verify.ID.ToString().Encrypt(ENCRYPT) ;
+            ViewBag.ID = verify.ID.ToString().Encrypt(ENCRYPT);
             return View(Funcionarios);
         }
 

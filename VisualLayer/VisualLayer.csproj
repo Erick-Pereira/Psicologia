@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Json\**" />
+    <Content Remove="Models\Json\**" />
+    <EmbeddedResource Remove="Models\Json\**" />
+    <None Remove="Models\Json\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Models\Funcionario\oabgdpzr.wch~" />
   </ItemGroup>
 

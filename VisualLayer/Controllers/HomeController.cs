@@ -93,7 +93,7 @@ namespace VisualLayer.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel login)
-        {
+        { 
             _InicioService.Iniciar();
             login.Senha = login.Senha.Hash();
             Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(login);
@@ -111,6 +111,7 @@ namespace VisualLayer.Controllers
                 if (funcionario.Cargo.NivelPermissao == 3)
                     return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
             }
+            ViewBag.Erro = "Email ou senha invalidos";
             return View();
         }
 

@@ -24,6 +24,11 @@ namespace BusinessLogicalLayer.BLL
             return await _bairroDAL.GetAll();
         }
 
+        public async Task<SingleResponse<int>> GetAllByCidadeId(int id)
+        {
+            return await _bairroDAL.GetAllByCidadeId(id);
+        }
+
         public async Task<SingleResponse<Bairro>> GetByID(int id)
         {
             return await _bairroDAL.GetByID(id);

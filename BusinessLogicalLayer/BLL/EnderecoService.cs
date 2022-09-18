@@ -29,6 +29,11 @@ namespace BusinessLogicalLayer.BLL
             return await _enderecoDAL.GetAll();
         }
 
+        public async Task<SingleResponse<int>> GetAllByBairroId(int id)
+        {
+            return await _enderecoDAL.GetAllByBairroId(id);
+        }
+
         public async Task<SingleResponse<Endereco>> GetByEndereco(Endereco endereco)
         {
             return await _enderecoDAL.GetByEndereco(endereco);

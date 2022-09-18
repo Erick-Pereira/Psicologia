@@ -2,6 +2,7 @@
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Shared;
+using Shared.Extensions;
 
 namespace DataAccessLayer.Impl
 {
@@ -30,7 +31,7 @@ namespace DataAccessLayer.Impl
 
         public async Task<Response> Delete(int id)
         {
-            _db.Endereco.Remove(new Endereco() { ID = id });
+            _db.Endereco.Remove(GetByID(id).Result.Item) ;
             try
             {
                 await _db.SaveChangesAsync();
@@ -53,7 +54,17 @@ namespace DataAccessLayer.Impl
                 return ResponseFactory<Endereco>.CreateFailureDataResponse(ex);
             }
         }
-
+        public async Task<SingleResponse<int>> GetAllByBairroId(int id)
+        {
+            try
+            {
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Endereco.Where(e => e.BairroID == id).CountAsync());
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
+        }
         public async Task<SingleResponse<Endereco>> GetByEndereco(Endereco endereco)
         {
             try
