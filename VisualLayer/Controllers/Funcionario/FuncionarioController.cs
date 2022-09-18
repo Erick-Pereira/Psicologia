@@ -31,7 +31,6 @@ namespace VisualLayer.Controllers.Funcionario
             this.hostEnvironment = hostEnvironment;
             _sf36Service = sf36Service;
         }
-
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> Configuracao()
@@ -91,9 +90,6 @@ namespace VisualLayer.Controllers.Funcionario
             Response response = await _sf36Service.CalcularScore(respostas);
             return RedirectToAction("Index", "Home");
         }
-
-
-
 
         [Authorize]
         public async Task<IActionResult> Funcionarios()

@@ -121,6 +121,13 @@ namespace BusinessLogicalLayer.BLL
             return response.Item == 1;
         }
 
+        public async Task<Response> RequistarTeste(Funcionario funcionario)
+        {
+            funcionario.Email = funcionario.Email.Trim();
+            funcionario.HasRequiredTest = true;
+            return await _funcionarioDAL.Update(funcionario);
+        }
+
         public async Task<Response> RequistarUpdate(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();

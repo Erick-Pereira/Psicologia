@@ -2,14 +2,18 @@
 @model VisualLayer.Models.Funcionario.FuncionarioInsertViewModel
 @{
     List<Cargo> cargos = ViewBag.Cargos;
-    ViewData["Title"] = "Criar";
+    ViewData["Title"] = "Cadastrar";
 }
-
-<h1>Criar</h1>
+<head>
+    <title>
+        Cadastro
+    </title>
+</head>
+<h1>Cadastro</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Criar">
+        <form asp-action="Cadastrar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
@@ -48,7 +52,7 @@
                 <input type="submit" value="Cadastrar" class="btn btn-primary" />
             </div>
             <div>
-                <a asp-controller="Cargo" asp-action="Criar">Cadastrar Cargo</a>
+                <a asp-action="Cargo">Cadastrar Cargo</a>
             </div>
         </form>
     </div>

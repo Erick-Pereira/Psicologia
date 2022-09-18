@@ -3,132 +3,151 @@
 
 @{
     ViewData["Title"] = "Funcionarios";
+    string id = ViewBag.ID;
 }
 <link rel="stylesheet" href="~/css/Adm/Funcionarios.css">
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 <head>
     <title> Funcionarios </title>
 </head>
-    <nav>
+<nav>
+    <div class="logo">
+        <i class="bx bx-menu menu-icon"></i>
+        <span class="logo-name">Open Minds</span>
+    </div>
+    <div class="sidebar">
         <div class="logo">
             <i class="bx bx-menu menu-icon"></i>
             <span class="logo-name">Open Minds</span>
         </div>
-        <div class="sidebar">
-            <div class="logo">
-                <i class="bx bx-menu menu-icon"></i>
-                <span class="logo-name">Open Minds</span>
-            </div>
 
-            <div class="sidebar-content">
-                <ul class="lists">
-                    <li class="list">
-                        <a class="nav-link" asp-area="" asp-controller="Adm" asp-action="Index">
-                            <i class='bx bx-grid-alt icon'></i>
-                            <span class="link">Empresa</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a class="nav-link" asp-area="" asp-controller="Adm" asp-action="Funcionarios">
-                            <i class='bx bx-user icon'></i>
-                            <span class="link">Funcionarios</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a class="nav-link" asp-area="" asp-controller="Adm" asp-action="Analises">
-                            <i class='bx bx-pie-chart-alt-2 icon'></i>
-                            <span class="link">Análises</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a class="nav-link" asp-area="" asp-controller="Adm" asp-action="Configuracao">
-                            <i class='bx bx-cog icon'></i>
-                            <span class="link">Configurações</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="bottom-cotent">
-                    <li class="list">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LogOff">
-                            <i class="bx bx-log-out icon"></i>
-                            <span class="link">Log-out</span>
-                        </a>
-                    </li>
+        <div class="sidebar-content">
+            <ul class="lists">
+                <li class="list">
+                    <a class="nav-link" asp-area="" asp-controller="Adm" asp-action="Index">
+                        <i class='bx bx-grid-alt icon'></i>
+                        <span class="link">Empresa</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a class="nav-link" asp-area="" asp-controller="Adm" asp-action="Funcionarios">
+                        <i class='bx bx-user icon'></i>
+                        <span class="link">Funcionarios</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a class="nav-link" asp-area="" asp-controller="Adm" asp-action="Analises">
+                        <i class='bx bx-pie-chart-alt-2 icon'></i>
+                        <span class="link">Análises</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a class="nav-link" asp-area="" asp-controller="Adm" asp-action="Configuracao">
+                        <i class='bx bx-cog icon'></i>
+                        <span class="link">Configurações</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="bottom-cotent">
+                <li class="list">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LogOff">
+                        <i class="bx bx-log-out icon"></i>
+                        <span class="link">Log-out</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="overlay"></section>
+<section class="home-section">
+    <div class="flex">
+        <div class="contains">
+            <div class="box-contains">
+                <div class="box">
+                    <h1>Funcionarios</h1>
+                    <p>
+                        <a asp-action="Cadastrar">Cadastrar novo Funcionario</a>
+                    </p>
                 </div>
             </div>
         </div>
-    </nav>
-
-    <section class="overlay"></section>
-<section class="home-section">
-    <h1>Funcionarios</h1>
-
-    <p>
-        <a asp-action="Cadastrar">Cadastrar novo Funcionario</a>
-    </p>
-    @*<div class="cabecalho">*@
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nome)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cpf)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DataNascimento)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cargo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Salario)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IsAtivo)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var item in Model)
-            {
-
+    </div>
+    @*https://www.webdesignemfoco.com/cursos/css/tabelas-responsivas-em-html5-e-css        Link site css*@
+    <div class="content">
+        <table class="rTable">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cpf)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataNascimento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cargo.Funcao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Salario)
-                    </td>
-                     <td>
-                        @Html.DisplayFor(modelItem => item.IsAtivo)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Editar", new {  id= item.Id}) |
-                        @Html.ActionLink("Details", "Detalhar", new {  id= item.Id }) |
-                        @Html.ActionLink("Requisitar Update","RequisitarUpdate", new {id = item.Id}) |
-                        @if(item.IsAtivo)
-                        @Html.ActionLink("Desativar","Desativar", new {id = item.Id})
-                        @if(!item.IsAtivo)
-                        @Html.ActionLink("Ativar","Ativar", new {id = item.Id}) |                        
-                        @Html.ActionLink("Delete", "Delete", new {  id=item.Id   })
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cpf)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DataNascimento)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cargo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Salario)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsAtivo)
+                    </th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    @*</div>*@
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cpf)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataNascimento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cargo.Funcao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Salario)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsAtivo)
+                        </td>
+                        <td>
+                            @if (id != item.Id)
+                            {
+                                @Html.ActionLink("Editar", "Editar", new {  id= item.Id})
+                            }
+                            @Html.ActionLink("Detalhar", "Detalhar", new {  id= item.Id })
+                            @Html.ActionLink("Requisitar Update","RequisitarUpdate", new {id = item.Id})
+                            @if (id != item.Id)
+                            {
+                                @if (item.IsAtivo)
+                                    @Html.ActionLink("Desativar","Desativar", new {id = item.Id})
+
+
+
+                                @if (!item.IsAtivo)
+                                    @Html.ActionLink("Ativar","Ativar", new {id = item.Id})
+
+
+
+                                @Html.ActionLink("Delete", "Delete", new {  id=item.Id   })
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
     <script>
         const navBar = document.querySelector("nav"),
             menuBtns = document.querySelectorAll(".menu-icon"),
