@@ -432,77 +432,77 @@ namespace BusinessLogicalLayer.BLL
             switch (sf36scoretotal.Question9h)
             {
                 case 1:
-                    constructs[0] += 6;
-                    constructs[7] += 6;
+                    constructs[0] ++;
+                    constructs[7] ++;
                     break;
 
                 case 2:
-                    constructs[0] += 5;
-                    constructs[7] += 5;
-                    break;
-
-                case 3:
-                    constructs[0] += 4;
-                    constructs[7] += 4;
-                    break;
-
-                case 4:
-                    constructs[0] += 3;
-                    constructs[7] += 3;
-                    break;
-
-                case 5:
                     constructs[0] += 2;
                     constructs[7] += 2;
                     break;
 
+                case 3:
+                    constructs[0] += 3;
+                    constructs[7] += 3;
+                    break;
+
+                case 4:
+                    constructs[0] += 4;
+                    constructs[7] += 4;
+                    break;
+
+                case 5:
+                    constructs[0] += 5;
+                    constructs[7] += 5;
+                    break;
+
                 case 6:
-                    constructs[0]++;
-                    constructs[7]++;
+                    constructs[0]+=6;
+                    constructs[7]+=6;
                     break;
             }
             switch (sf36scoretotal.Question9i)
             {
                 case 1:
-                    constructs[0]++;
-                    constructs[8]++;
+                    constructs[0]+=6;
+                    constructs[8]+=6;
                     break;
 
                 case 2:
-                    constructs[0] += 2;
-                    constructs[8] += 2;
-                    break;
-
-                case 3:
-                    constructs[0] += 3;
-                    constructs[8] += 3;
-                    break;
-
-                case 4:
-                    constructs[0] += 4;
-                    constructs[8] += 4;
-                    break;
-
-                case 5:
                     constructs[0] += 5;
                     constructs[8] += 5;
                     break;
 
-                case 6:
+                case 3:
+                    constructs[0] += 4;
+                    constructs[8] += 4;
+                    break;
+
+                case 4:
+                    constructs[0] += 5;
+                    constructs[8] += 5;
+                    break;
+
+                case 5:
                     constructs[0] += 6;
                     constructs[8] += 6;
+                    break;
+
+                case 6:
+                    constructs[0] ++;
+                    constructs[8] ++;
                     break;
             }
             switch (sf36scoretotal.Question10)
             {
                 case 1:
-                    constructs[0] += 5;
-                    constructs[1] += 5;
+                    constructs[0] += 1;
+                    constructs[1] += 1;
                     break;
 
                 case 2:
-                    constructs[0] += 4;
-                    constructs[1] += 4;
+                    constructs[0] += 2;
+                    constructs[1] += 2;
                     break;
 
                 case 3:
@@ -511,42 +511,41 @@ namespace BusinessLogicalLayer.BLL
                     break;
 
                 case 4:
-                    constructs[0] += 2;
-                    constructs[1] += 2;
+                    constructs[0] += 4;
+                    constructs[1] += 4;
                     break;
 
                 case 5:
-                    constructs[0] += 1;
-                    constructs[1] += 1;
+                    constructs[0] += 5;
+                    constructs[1] += 5;
                     break;
             }
-            for (int i = 0; i < 2; i++)
+            switch (sf36scoretotal.Question11a)
             {
-                if (sf36scoretotal.Question11 == 1)
-                {
-                    constructs[0]++;
-                    constructs[4]++;
-                }
-                else if (sf36scoretotal.Question11 == 2)
-                {
+                case 1:
+                    constructs[0] ++;
+                    constructs[4] ++;
+                    break;
+
+                case 2:
                     constructs[0] += 2;
                     constructs[4] += 2;
-                }
-                else if (sf36scoretotal.Question11 == 3)
-                {
+                    break;
+
+                case 3:
                     constructs[0] += 3;
                     constructs[4] += 3;
-                }
-                else if (sf36scoretotal.Question11 == 4)
-                {
-                    constructs[0] += 2;
-                    constructs[4] += 2;
-                }
-                else
-                {
+                    break;
+
+                case 4:
+                    constructs[0] += 4;
+                    constructs[4] += 4;
+                    break;
+
+                case 5:
                     constructs[0] += 5;
                     constructs[4] += 5;
-                }
+                    break;
             }
             switch (sf36scoretotal.Question11b)
             {
@@ -575,6 +574,33 @@ namespace BusinessLogicalLayer.BLL
                     constructs[4] += 1;
                     break;
             }
+            switch (sf36scoretotal.Question11c)
+            {
+                case 1:
+                    constructs[0] ++;
+                    constructs[4] ++;
+                    break;
+
+                case 2:
+                    constructs[0] += 2;
+                    constructs[4] += 2;
+                    break;
+
+                case 3:
+                    constructs[0] += 3;
+                    constructs[4] += 3;
+                    break;
+
+                case 4:
+                    constructs[0] += 4;
+                    constructs[4] += 4;
+                    break;
+
+                case 5:
+                    constructs[0] += 5;
+                    constructs[4] += 5;
+                    break;
+            }
             switch (sf36scoretotal.Question11d)
             {
                 case 1:
@@ -598,8 +624,8 @@ namespace BusinessLogicalLayer.BLL
                     break;
 
                 case 5:
-                    constructs[0] += 1;
-                    constructs[4] += 1;
+                    constructs[0] ++;
+                    constructs[4] ++;
                     break;
             }
             constructs[1] = CalcularScoreAspectosSociais(sf36scoretotal).Result;
@@ -625,7 +651,7 @@ namespace BusinessLogicalLayer.BLL
             };
 
             return await _scoreDAL.Insert(score);
-        }
+           }
 
         public async Task<double> CalcularScoreAspectosSociais(FuncionarioRespostasQuestionarioSf36 sf36scoreAspectosSociais)
         {
@@ -657,11 +683,11 @@ namespace BusinessLogicalLayer.BLL
             switch (sf36scoreAspectosSociais.Question10)
             {
                 case 1:
-                    aspectosSociais += 5;
+                    aspectosSociais += 1;
                     break;
 
                 case 2:
-                    aspectosSociais += 4;
+                    aspectosSociais += 2;
                     break;
 
                 case 3:
@@ -669,11 +695,11 @@ namespace BusinessLogicalLayer.BLL
                     break;
 
                 case 4:
-                    aspectosSociais += 2;
+                    aspectosSociais += 4;
                     break;
 
                 case 5:
-                    aspectosSociais += 1;
+                    aspectosSociais += 5;
                     break;
             }
             return (aspectosSociais - limiteInferior) * 100 / variacao;
@@ -705,7 +731,7 @@ namespace BusinessLogicalLayer.BLL
         public async Task<double> CalcularScoreDor(FuncionarioRespostasQuestionarioSf36 sf36scoreDor)
         {
             double dor7 = 0;
-            double dor8 = 0; ;
+            double dor8 = 0; 
             double limiteInferior = 2;
             double variacao = 10;
             switch (sf36scoreDor.Question7)
@@ -793,28 +819,27 @@ namespace BusinessLogicalLayer.BLL
                     estadoSaude1 += 1;
                     break;
             }
-            for (int i = 0; i < 2; i++)
+            switch (sf36scoreEstadoSaude.Question11a)
             {
-                if (sf36scoreEstadoSaude.Question11 == 1)
-                {
-                    estadoSaude11++;
-                }
-                else if (sf36scoreEstadoSaude.Question11 == 2)
-                {
+                case 1:
+                    estadoSaude11 ++;
+                    break;
+
+                case 2:
                     estadoSaude11 += 2;
-                }
-                else if (sf36scoreEstadoSaude.Question11 == 3)
-                {
+                    break;
+
+                case 3:
                     estadoSaude11 += 3;
-                }
-                else if (sf36scoreEstadoSaude.Question11 == 4)
-                {
-                    estadoSaude11 += 2;
-                }
-                else
-                {
+                    break;
+
+                case 4:
+                    estadoSaude11 += 4;
+                    break;
+
+                case 5:
                     estadoSaude11 += 5;
-                }
+                    break;
             }
             switch (sf36scoreEstadoSaude.Question11b)
             {
@@ -835,7 +860,29 @@ namespace BusinessLogicalLayer.BLL
                     break;
 
                 case 5:
-                    estadoSaude11 += 1;
+                    estadoSaude11 ++;
+                    break;
+            }
+            switch (sf36scoreEstadoSaude.Question11c)
+            {
+                case 1:
+                    estadoSaude11 ++;
+                    break;
+
+                case 2:
+                    estadoSaude11 +=2;
+                    break;
+
+                case 3:
+                    estadoSaude11 += 3;
+                    break;
+
+                case 4:
+                    estadoSaude11 += 4;
+                    break;
+
+                case 5:
+                    estadoSaude11+= 5;
                     break;
             }
             switch (sf36scoreEstadoSaude.Question11d)
@@ -869,14 +916,18 @@ namespace BusinessLogicalLayer.BLL
             double limiteInferior = 3;
             double variacao = 3;
             {
-                if (sf36scoreLimitacaoEmocional.Question5 == 1)
+                for (int i = 0; i < 3; i++)
                 {
-                    limitacaoEmocional++;
+                    if (sf36scoreLimitacaoEmocional.Question5 == 1)
+                    {
+                        limitacaoEmocional++;
+                    }
+                    else 
+                    {
+                        limitacaoEmocional += 2;
+                    }
                 }
-                else
-                {
-                    limitacaoEmocional += 2;
-                }
+               
             }
             return (limitacaoEmocional - limiteInferior) * 100 / variacao;
         }
@@ -1012,27 +1063,27 @@ namespace BusinessLogicalLayer.BLL
             switch (sf36scoreSaudeMental.Question9h)
             {
                 case 1:
-                    saudeMental += 6;
+                    saudeMental ++;
                     break;
 
                 case 2:
-                    saudeMental += 5;
-                    break;
-
-                case 3:
-                    saudeMental += 4;
-                    break;
-
-                case 4:
-                    saudeMental += 3;
-                    break;
-
-                case 5:
                     saudeMental += 2;
                     break;
 
+                case 3:
+                    saudeMental += 3;
+                    break;
+
+                case 4:
+                    saudeMental += 4;
+                    break;
+
+                case 5:
+                    saudeMental += 5;
+                    break;
+
                 case 6:
-                    saudeMental++;
+                    saudeMental += 6;
                     break;
             }
             return (saudeMental - limiteInferior) * 100 / variacao;
@@ -1098,53 +1149,53 @@ namespace BusinessLogicalLayer.BLL
             switch (sf36scoreVitalidade.Question9g)
             {
                 case 1:
-                    vitalidade += 1;
+                    vitalidade += 6;
                     break;
 
                 case 2:
-                    vitalidade += 2;
-                    break;
-
-                case 3:
-                    vitalidade += 3;
-                    break;
-
-                case 4:
-                    vitalidade += 4;
-                    break;
-
-                case 5:
                     vitalidade += 5;
                     break;
 
+                case 3:
+                    vitalidade += 4;
+                    break;
+
+                case 4:
+                    vitalidade += 3;
+                    break;
+
+                case 5:
+                    vitalidade += 2;
+                    break;
+
                 case 6:
-                    vitalidade += 6;
+                    vitalidade ++;
                     break;
             }
             switch (sf36scoreVitalidade.Question9i)
             {
                 case 1:
-                    vitalidade++;
+                    vitalidade += 6;
                     break;
 
                 case 2:
-                    vitalidade += 2;
-                    break;
-
-                case 3:
-                    vitalidade += 3;
-                    break;
-
-                case 4:
-                    vitalidade += 4;
-                    break;
-
-                case 5:
                     vitalidade += 5;
                     break;
 
+                case 3:
+                    vitalidade += 4;
+                    break;
+
+                case 4:
+                    vitalidade += 3;
+                    break;
+
+                case 5:
+                    vitalidade += 2;
+                    break;
+
                 case 6:
-                    vitalidade += 6;
+                    vitalidade++;
                     break;
             }
             return (vitalidade - limiteInferior) * 100 / variacao;
