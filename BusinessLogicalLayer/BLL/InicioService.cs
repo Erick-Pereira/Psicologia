@@ -28,6 +28,7 @@ namespace BusinessLogicalLayer.BLL
         private string senha = "123456789".Hash();
         private string sigla = "";
 
+        //Construtor
         public InicioService(IBairroService bairroService, ICidadeService cidadeService, IEnderecoService enderecoService, IEstadoService estadoService, IFuncionarioService funcionarioService, ICargoService cargoService)
         {
             _bairroService = bairroService;
@@ -38,7 +39,13 @@ namespace BusinessLogicalLayer.BLL
             _cargoService = cargoService;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+
         public async Task<Response> Iniciar()
+
         {
             if (!hasVerified)
             {
@@ -54,7 +61,7 @@ namespace BusinessLogicalLayer.BLL
                                 {
                                     if (!_cargoService.Iniciar().Result.Item)
                                     {
-                                        _funcionarioService.InsertADM(new Funcionario()
+                                        await _funcionarioService.InsertADM(new Funcionario()
                                         {
                                             Cpf = cpf,
                                             Nome = nome,
@@ -88,7 +95,7 @@ namespace BusinessLogicalLayer.BLL
                                     }
                                     else
                                     {
-                                        _funcionarioService.InsertADM(new Funcionario()
+                                        await _funcionarioService.InsertADM(new Funcionario()
                                         {
                                             Cpf = cpf,
                                             Nome = nome,
@@ -121,7 +128,7 @@ namespace BusinessLogicalLayer.BLL
                                 {
                                     if (!_cargoService.Iniciar().Result.Item)
                                     {
-                                        _funcionarioService.InsertADM(new Funcionario()
+                                        await _funcionarioService.InsertADM(new Funcionario()
                                         {
                                             Cpf = cpf,
                                             Nome = nome,
@@ -151,7 +158,7 @@ namespace BusinessLogicalLayer.BLL
                                     }
                                     else
                                     {
-                                        _funcionarioService.InsertADM(new Funcionario()
+                                        await _funcionarioService.InsertADM(new Funcionario()
                                         {
                                             Cpf = cpf,
                                             Nome = nome,
@@ -181,7 +188,7 @@ namespace BusinessLogicalLayer.BLL
                             {
                                 if (!_cargoService.Iniciar().Result.Item)
                                 {
-                                    _funcionarioService.InsertADM(new Funcionario()
+                                    await _funcionarioService.InsertADM(new Funcionario()
                                     {
                                         Cpf = cpf,
                                         Nome = nome,
@@ -207,7 +214,7 @@ namespace BusinessLogicalLayer.BLL
                                 }
                                 else
                                 {
-                                    _funcionarioService.InsertADM(new Funcionario()
+                                    await _funcionarioService.InsertADM(new Funcionario()
                                     {
                                         Cpf = cpf,
                                         Nome = nome,
@@ -233,7 +240,7 @@ namespace BusinessLogicalLayer.BLL
                         {
                             if (!_cargoService.Iniciar().Result.Item)
                             {
-                                _funcionarioService.InsertADM(new Funcionario()
+                                await _funcionarioService.InsertADM(new Funcionario()
                                 {
                                     Cpf = cpf,
                                     Nome = nome,
@@ -252,7 +259,7 @@ namespace BusinessLogicalLayer.BLL
                             }
                             else
                             {
-                                _funcionarioService.InsertADM(new Funcionario()
+                                await _funcionarioService.InsertADM(new Funcionario()
                                 {
                                     Cpf = cpf,
                                     Nome = nome,
@@ -274,24 +281,24 @@ namespace BusinessLogicalLayer.BLL
                     {
                         if (!_cargoService.Iniciar().Result.Item)
                         {
-                            _funcionarioService.InsertADM(new Funcionario()
+                            await _funcionarioService.InsertADM(new Funcionario()
                             {
                                 Cpf = cpf,
                                 Nome = nome,
                                 Email = email,
                                 Senha = senha,
                                 CargoID = _cargoService.InsertReturnId(
-                                                                        new Cargo()
-                                                                        {
-                                                                            Funcao = funcao,
-                                                                            NivelPermissao = nivelPermissao
-                                                                        }).Result.Item,
+                                    new Cargo()
+                                    {
+                                        Funcao = funcao,
+                                        NivelPermissao = nivelPermissao
+                                    }).Result.Item,
                                 EnderecoID = _enderecoService.IniciarReturnId().Result.Item
                             });
                         }
                         else
                         {
-                            _funcionarioService.InsertADM(new Funcionario()
+                            await _funcionarioService.InsertADM(new Funcionario()
                             {
                                 Cpf = cpf,
                                 Nome = nome,

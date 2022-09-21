@@ -12,7 +12,9 @@ namespace DataAccessLayer.Interfaces
         Task<DataResponse<Bairro>> GetAll();
 
         Task<SingleResponse<Bairro>> GetByID(int id);
+
         Task<SingleResponse<int>> GetAllByCidadeId(int id);
+
         Task<SingleResponse<Bairro>> GetByNameAndCidadeId(Bairro bairro);
 
         Task<SingleResponse<int>> Iniciar();

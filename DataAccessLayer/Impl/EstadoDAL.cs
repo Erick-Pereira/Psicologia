@@ -14,6 +14,11 @@ namespace DataAccessLayer.Impl
             _db = db;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="estado"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(Estado estado)
         {
             _db.Estado.Remove(estado);
@@ -28,6 +33,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(int id)
         {
             _db.Estado.Remove(new Estado() { ID = id });
@@ -42,6 +52,10 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataResponse<Estado>> GetAll()
         {
             try
@@ -54,6 +68,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Estado>> GetByID(int id)
         {
             try
@@ -66,6 +85,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="uf"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Estado>> GetByUF(string uf)
         {
             try
@@ -78,6 +102,10 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> Iniciar()
         {
             try
@@ -90,11 +118,16 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> IniciarReturnId()
         {
             try
             {
                 Estado estado = await _db.Estado.FirstOrDefaultAsync(e => e.NomeEstado == "" && e.Sigla == "");
+
                 return ResponseFactory<int>.CreateSuccessItemResponse(estado.ID);
             }
             catch (Exception ex)
@@ -103,6 +136,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="estado"></param>
+        /// <returns></returns>
         public async Task<Response> Insert(Estado estado)
         {
             _db.Estado.Add(estado);
@@ -117,6 +155,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="estado"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> InsertReturnId(Estado estado)
         {
             _db.Estado.Add(estado);
@@ -131,6 +174,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="estado"></param>
+        /// <returns></returns>
         public async Task<Response> Update(Estado estado)
         {
             _db.Estado.Update(estado);

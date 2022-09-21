@@ -28,9 +28,17 @@ namespace VisualLayer.Controllers.Cargo
         [Authorize]
         public IActionResult Criar(CargoInsertViewModel cargoInsert)
         {
-            Entities.Cargo cargo = _mapper.Map<Entities.Cargo>(cargoInsert);
-            _cargoService.Insert(cargo);
-            return View();
+            try
+            {
+                Entities.Cargo cargo = _mapper.Map<Entities.Cargo>(cargoInsert);
+                _cargoService.Insert(cargo);
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+            }
+
         }
     }
 }

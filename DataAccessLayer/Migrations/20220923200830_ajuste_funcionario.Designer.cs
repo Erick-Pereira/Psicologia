@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(DataBaseDbContext))]
-    [Migration("20220916202855_inicio")]
-    partial class inicio
+    [Migration("20220923200830_ajuste_funcionario")]
+    partial class ajuste_funcionario
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -259,19 +259,13 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("HasRequiredTest")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsAtivo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsFirstLogin")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -344,10 +338,9 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("FuncionarioID")
-                        .IsUnique();
+                    b.HasIndex("FuncionarioID");
 
-                    b.ToTable("SF36_Score", (string)null);
+                    b.ToTable("SF36_SCORE", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Bairro", b =>
@@ -423,13 +416,13 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("Entities.SF36Score", b =>
                 {
-                    b.HasOne("Entities.Funcionario", "FuncionarioSF36")
-                        .WithOne("SfScore")
-                        .HasForeignKey("Entities.SF36Score", "FuncionarioID")
+                    b.HasOne("Entities.Funcionario", "Funcionario")
+                        .WithMany("Sf36Score")
+                        .HasForeignKey("FuncionarioID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FuncionarioSF36");
+                    b.Navigation("Funcionario");
                 });
 
             modelBuilder.Entity("Entities.Equipe", b =>
@@ -441,8 +434,7 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Navigation("Equipes");
 
-                    b.Navigation("SfScore")
-                        .IsRequired();
+                    b.Navigation("Sf36Score");
                 });
 #pragma warning restore 612, 618
         }

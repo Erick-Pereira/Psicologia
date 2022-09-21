@@ -14,6 +14,11 @@ namespace DataAccessLayer.Impl
             _db = db;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="compromisso"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(Compromisso compromisso)
         {
             _db.Compromisso.Remove(compromisso);
@@ -28,6 +33,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(int id)
         {
             _db.Compromisso.Remove(new Compromisso() { ID = id });
@@ -42,6 +52,10 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataResponse<Compromisso>> GetAll()
         {
             try
@@ -58,6 +72,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Compromisso>> GetByID(int id)
         {
             try
@@ -74,6 +93,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="compromisso"></param>
+        /// <returns></returns>
         public async Task<Response> Insert(Compromisso compromisso)
         {
             _db.Compromisso.Add(compromisso);
@@ -88,6 +112,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="compromisso"></param>
+        /// <returns></returns>
         public async Task<Response> Update(Compromisso compromisso)
         {
             _db.Compromisso.Update(compromisso);

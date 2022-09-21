@@ -12,6 +12,6 @@
         public double AspectosEmocionais { get; set; }
         public double SaudeMental { get; set; }
         public int FuncionarioID { get; set; }
-        public Funcionario FuncionarioSF36 { get; set; }
+        public Funcionario Funcionario { get; set; }
     }
 }

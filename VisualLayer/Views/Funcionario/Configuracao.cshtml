@@ -141,6 +141,18 @@
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.Estado)
                 </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Genero)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Genero)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.EstadoCivil)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.EstadoCivil)
+                </dd>
             </dl>
         </div>
 
@@ -219,16 +231,9 @@
                     type: "POST", //HTTP POST Method
                     url: "/Funcionario/AlterarSenha", // Controller/View
                     data: { senha: senha1 },
-                    success: function (response) 
+                    success: function (result) 
                     {
-                      if(response.Value.HasSuccess) 
-                      {
-                        erros.innerHTML = "Sucesso";
-                      }
-                      else if(!response.Value.HasSuccess) 
-                      {
-                           erros.innerHTML = "Erro catastrofico";
-                      }
+                      erros.innerHTML = result.Message;
                     }            
                 });
             }

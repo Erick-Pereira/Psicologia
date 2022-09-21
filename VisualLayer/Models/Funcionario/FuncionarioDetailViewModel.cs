@@ -1,11 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Entities.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace VisualLayer.Models.Funcionario
 {
     public class FuncionarioDetailViewModel
     {
         public string Id { get; set; }
+
         public string Foto { get; set; }
+
         public string Nome { get; set; }
 
         [DataType(DataType.EmailAddress)]
@@ -37,5 +40,9 @@ namespace VisualLayer.Models.Funcionario
         public string Cidade { get; set; }
 
         public string Estado { get; set; }
+
+        public Genero Genero { get; set; }
+        [Display(Name = "Estado Civil")]
+        public EstadoCivil EstadoCivil { get; set; }
     }
 }

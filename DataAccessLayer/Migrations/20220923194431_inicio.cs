@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -191,7 +192,7 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SF36_Score",
+                name: "SF36_SCORE",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -208,9 +209,9 @@ namespace DataAccessLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SF36_Score", x => x.ID);
+                    table.PrimaryKey("PK_SF36_SCORE", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_SF36_Score_FUNCIONARIOS_FuncionarioID",
+                        name: "FK_SF36_SCORE_FUNCIONARIOS_FuncionarioID",
                         column: x => x.FuncionarioID,
                         principalTable: "FUNCIONARIOS",
                         principalColumn: "ID",
@@ -278,10 +279,9 @@ namespace DataAccessLayer.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_SF36_Score_FuncionarioID",
-                table: "SF36_Score",
-                column: "FuncionarioID",
-                unique: true);
+                name: "IX_SF36_SCORE_FuncionarioID",
+                table: "SF36_SCORE",
+                column: "FuncionarioID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -293,7 +293,7 @@ namespace DataAccessLayer.Migrations
                 name: "EQUIPE_FUNCIONARIO");
 
             migrationBuilder.DropTable(
-                name: "SF36_Score");
+                name: "SF36_SCORE");
 
             migrationBuilder.DropTable(
                 name: "EQUIPES");

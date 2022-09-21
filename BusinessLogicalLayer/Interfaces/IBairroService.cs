@@ -14,6 +14,7 @@ namespace BusinessLogicalLayer.Interfaces
         Task<SingleResponse<Bairro>> GetByNameAndCidadeId(Bairro bairro);
 
         Task<SingleResponse<bool>> Iniciar();
+
         Task<SingleResponse<int>> GetAllByCidadeId(int id);
 
         Task<SingleResponse<int>> IniciarReturnId();

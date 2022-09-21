@@ -3,17 +3,22 @@ using BusinessLogicalLayer.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VisualLayer.Models.Equipe;
+using VisualLayer.Security;
 
 namespace VisualLayer.Controllers.Equipe
 {
-    public class EquipeController : Controller
+    public class EquipeController : CustomController
     {
         private readonly IEquipeService _EquipeService;
+        private readonly IFuncionarioService _funcionarioService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
 
-        public EquipeController(IEquipeService equipeService, IMapper mapper)
+        public EquipeController(IEquipeService equipeService, IFuncionarioService funcionarioService, IHttpContextAccessor httpContextAccessor, IMapper mapper) : base(funcionarioService, httpContextAccessor)
         {
             _EquipeService = equipeService;
+            _funcionarioService = funcionarioService;
+            _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
         }
 
@@ -21,21 +26,45 @@ namespace VisualLayer.Controllers.Equipe
         [Authorize]
         public IActionResult Criar()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+            }
+            
         }
 
         [HttpPost]
         [Authorize]
         public IActionResult Criar(EquipeInsertViewModel equipeInsert)
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+            }
+            
         }
 
         [HttpGet]
         [Authorize]
         public IActionResult Equipes()
         {
-            return View();
+            try
+            {
+                return View();
+
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+            }
         }
     }
 }

@@ -9,57 +9,97 @@ namespace BusinessLogicalLayer.BLL
     {
         private readonly IBairroDAL _bairroDAL;
 
+        /// <summary>
+        /// </summary>
+        /// <param name="bairroDAL"></param>
         public BairroService(IBairroDAL bairroDAL)
         {
             _bairroDAL = bairroDAL;
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="bairro"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(Bairro bairro)
         {
             return await _bairroDAL.Delete(bairro);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataResponse<Bairro>> GetAll()
         {
             return await _bairroDAL.GetAll();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> GetAllByCidadeId(int id)
         {
             return await _bairroDAL.GetAllByCidadeId(id);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Bairro>> GetByID(int id)
         {
             return await _bairroDAL.GetByID(id);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="bairro"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Bairro>> GetByNameAndCidadeId(Bairro bairro)
         {
             return await _bairroDAL.GetByNameAndCidadeId(bairro);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public async Task<SingleResponse<bool>> Iniciar()
         {
             SingleResponse<int> response = await _bairroDAL.Iniciar();
             return ResponseFactory<bool>.CreateItemResponse(response.Message, response.HasSuccess, response.Item > 0);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> IniciarReturnId()
         {
             return await _bairroDAL.IniciarReturnId();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="bairro"></param>
+        /// <returns></returns>
         public async Task<Response> Insert(Bairro bairro)
         {
             return await _bairroDAL.Insert(bairro);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="bairro"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> InsertReturnId(Bairro bairro)
         {
             return await _bairroDAL.InsertReturnId(bairro);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="bairro"></param>
+        /// <returns></returns>
         public async Task<Response> Update(Bairro bairro)
         {
             return await _bairroDAL.Update(bairro);

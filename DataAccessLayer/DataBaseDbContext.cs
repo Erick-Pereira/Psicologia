@@ -25,7 +25,7 @@ namespace DataAccessLayer
             modelBuilder.Entity<EquipeFuncionario>().HasKey(ef => new { ef.EquipeID, ef.FuncionarioID });
             modelBuilder.Entity<EquipeFuncionario>().HasOne(E => E.Equipe).WithMany(E => E.Funcionarios).HasForeignKey(E => E.EquipeID);
             modelBuilder.Entity<EquipeFuncionario>().HasOne(F => F.Funcionario).WithMany(F => F.Equipes).HasForeignKey(F => F.FuncionarioID);
-            modelBuilder.Entity<SF36Score>().HasOne(c => c.FuncionarioSF36).WithOne(c => c.SfScore).HasForeignKey<SF36Score>(c => c.FuncionarioID);
+            modelBuilder.Entity<SF36Score>().HasOne(c => c.Funcionario).WithMany(f => f.Sf36Score);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }

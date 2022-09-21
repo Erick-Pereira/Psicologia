@@ -84,6 +84,12 @@
                     @Html.DisplayNameFor(model => model.Cargo)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Genero)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EstadoCivil)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Salario)
                 </th>
                 <th>
@@ -108,6 +114,12 @@
                         @Html.DisplayFor(modelItem => item.Cargo.Funcao) 
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.Genero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EstadoCivil)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Salario) 
                     </td>
                     <td>
@@ -127,7 +139,6 @@
                             @Html.ActionLink("Desativar","Desativar", new {id = item.Id})
                             @if (!item.IsAtivo)
                             @Html.ActionLink("Ativar","Ativar", new {id = item.Id})
-                            @Html.ActionLink("Delete", "Delete", new {  id=item.Id   })
                         }
                     </td>
                 </tr>

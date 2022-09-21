@@ -1,4 +1,5 @@
-﻿using Shared.Constants;
+﻿using Entities.Enums;
+using Shared.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace VisualLayer.Models.Funcionario
@@ -39,6 +40,7 @@ namespace VisualLayer.Models.Funcionario
         public string Cidade { get; set; }
 
         [Required(ErrorMessage = "O Estao deve ser informado.")]
+        [Display(Name = "Estado")]
         public string EstadoUf { get; set; }
 
         [DataType(DataType.Date)]
@@ -50,5 +52,11 @@ namespace VisualLayer.Models.Funcionario
 
         [DataType(DataType.Upload)]
         public IFormFile Image { get; set; }
+
+        public string Celular { get; set; }
+
+        [Display(Name = "Estado Civil")]
+        public EstadoCivil EstadoCivil { get; set; }
+        public Genero Genero { get; set; }
     }
 }

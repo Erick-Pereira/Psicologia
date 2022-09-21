@@ -20,12 +20,27 @@
 <script src="~/js/site.js" asp-append-version="true"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <script type="text/javascript" src="~/lib/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.js"></script>
 <script>$('#input_cpf').mask('000.000.000-00');</script>
 <script>$('#input_tel_1').mask('(00)00000-0000');</script>
-<script>$('#input_tel_2').mask('(00)00000-0000');</script>
+<script>$('#input_celular').mask('(00)00000-0000');</script>
 <script>$('#input_cep').mask('00000-000', { placeholder: "" });</script>
 <script>$('#input_numero_residencia').mask('0000');</script>
 <script>$('#input_altura').mask('000');</script>
 <script>$('#input_comprimento').mask('000');</script>
+<script>$(document).ready(
+    function () {
+        $("#Telefone").inputmask("mask", { "mask": "(99) 9999-99999" });
+        $("#Celular").inputmask("mask", { "mask": "(99) 9999-99999" });
+        $("#Cpf").inputmask("mask", { "mask": "999.999.999-99" }, { reverse: true });
+        $("#Cep").inputmask("mask", { "mask": "99999-999" });
+        $("#Nascimento").inputmask("mask", { "mask": "99/99/9999" });
+        $("#Preco").inputmask("mask", { "mask": "999.999,99" }, { reverse: true });
+        $("#Valor").inputmask("mask", { "mask": "#.##9,99" }, { reverse: true });
+        $("#Ip").inputmask("mask", { "mask": "999.999.999.999" });
+    });
+</script>
+
 
 @await RenderSectionAsync("Scripts", required: false)

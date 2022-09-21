@@ -14,6 +14,11 @@ namespace DataAccessLayer.Impl
             this._db = db;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(Funcionario funcionario)
         {
             _db.Funcionario.Remove(funcionario);
@@ -28,6 +33,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(int id)
         {
             _db.Funcionario.Remove(new Funcionario() { ID = id });
@@ -42,11 +52,15 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataResponse<Funcionario>> GetAll()
         {
             try
             {
-                return ResponseFactory<Funcionario>.CreateSuccessDataResponse(await _db.Funcionario.Include(f => f.Cargo).ToListAsync());
+                return ResponseFactory<Funcionario>.CreateSuccessDataResponse(await _db.Funcionario.AsNoTracking().Include(f => f.Cargo).ToListAsync());
             }
             catch (Exception ex)
             {
@@ -54,11 +68,15 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataResponse<Funcionario>> GetAllAtivos()
         {
             try
             {
-                return ResponseFactory<Funcionario>.CreateSuccessDataResponse(await _db.Funcionario.Where(f => f.IsAtivo == true).Include(f => f.Cargo).ToListAsync());
+                return ResponseFactory<Funcionario>.CreateSuccessDataResponse(await _db.Funcionario.AsNoTracking().Where(f => f.IsAtivo == true).Include(f => f.Cargo).ToListAsync());
             }
             catch (Exception ex)
             {
@@ -66,11 +84,16 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> GetAllByEnderecoId(int id)
         {
             try
             {
-                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Funcionario.Where(f => f.EnderecoID == id).CountAsync());
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Funcionario.AsNoTracking().Where(f => f.EnderecoID == id).CountAsync());
             }
             catch (Exception ex)
             {
@@ -78,11 +101,16 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Funcionario>> GetByID(int id)
         {
             try
             {
-                return ResponseFactory<Funcionario>.CreateSuccessItemResponse(await _db.Funcionario.Include(f => f.Cargo).Include(f => f.Endereco).Include(f => f.Endereco.Bairro).Include(f => f.Endereco.Bairro.Cidade).Include(f => f.Endereco.Bairro.Cidade.Estado).FirstOrDefaultAsync(f => f.ID == id));
+                return ResponseFactory<Funcionario>.CreateSuccessItemResponse(await _db.Funcionario.AsNoTracking().Include(f => f.Cargo).Include(f => f.Endereco).Include(f => f.Endereco.Bairro).Include(f => f.Endereco.Bairro.Cidade).Include(f => f.Endereco.Bairro.Cidade.Estado).FirstOrDefaultAsync(f => f.ID == id));
             }
             catch (Exception ex)
             {
@@ -90,11 +118,16 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Funcionario>> GetByLogin(Funcionario funcionario)
         {
             try
             {
-                return ResponseFactory<Funcionario>.CreateSuccessItemResponse(await _db.Funcionario.FirstAsync(f => f.Email == funcionario.Email && f.Senha == funcionario.Senha));
+                return ResponseFactory<Funcionario>.CreateSuccessItemResponse(await _db.Funcionario.AsNoTracking().FirstAsync(f => f.Email == funcionario.Email && f.Senha == funcionario.Senha));
             }
             catch (Exception ex)
             {
@@ -102,6 +135,10 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> Iniciar()
         {
             try
@@ -114,6 +151,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> Insert(Funcionario funcionario)
         {
             _db.Funcionario.Add(funcionario);
@@ -128,11 +170,16 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> Logar(Funcionario funcionario)
         {
             try
             {
-                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Funcionario.Where(f => f.Email == funcionario.Email && f.Senha == funcionario.Senha && f.IsAtivo == true).CountAsync());
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Funcionario.AsNoTracking().Where(f => f.Email == funcionario.Email && f.Senha == funcionario.Senha && f.IsAtivo == true).CountAsync());
             }
             catch (Exception ex)
             {
@@ -140,11 +187,16 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Funcionario>> GetInformationToVerify(int id)
         {
             try
             {
-                return ResponseFactory<Funcionario>.CreateSuccessItemResponse(await _db.Funcionario.Include(f => f.Cargo).Select(f => new Funcionario { ID = f.ID, IsFirstLogin = f.IsFirstLogin, HasRequiredTest = f.HasRequiredTest, Cargo = new Cargo { NivelPermissao = f.Cargo.NivelPermissao } }).FirstOrDefaultAsync(f => f.ID == id));
+                return ResponseFactory<Funcionario>.CreateSuccessItemResponse(await _db.Funcionario.AsNoTracking().Include(f => f.Cargo).Select(f => new Funcionario { ID = f.ID, IsFirstLogin = f.IsFirstLogin, HasRequiredTest = f.HasRequiredTest, Cargo = new Cargo { NivelPermissao = f.Cargo.NivelPermissao } }).FirstOrDefaultAsync(f => f.ID == id));
             }
             catch (Exception ex)
             {
@@ -152,6 +204,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> Update(Funcionario funcionario)
         {
             _db.Update(funcionario);
