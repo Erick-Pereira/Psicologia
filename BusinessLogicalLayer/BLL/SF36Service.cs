@@ -432,65 +432,65 @@ namespace BusinessLogicalLayer.BLL
             switch (sf36scoretotal.Question9h)
             {
                 case 1:
-                    constructs[0] ++;
-                    constructs[7] ++;
+                    constructs[0] += 6;
+                    constructs[7] += 6;
                     break;
 
                 case 2:
-                    constructs[0] += 2;
-                    constructs[7] += 2;
-                    break;
-
-                case 3:
-                    constructs[0] += 3;
-                    constructs[7] += 3;
-                    break;
-
-                case 4:
-                    constructs[0] += 4;
-                    constructs[7] += 4;
-                    break;
-
-                case 5:
                     constructs[0] += 5;
                     constructs[7] += 5;
                     break;
 
+                case 3:
+                    constructs[0] += 4;
+                    constructs[7] += 4;
+                    break;
+
+                case 4:
+                    constructs[0] += 3;
+                    constructs[7] += 3;
+                    break;
+
+                case 5:
+                    constructs[0] += 2;
+                    constructs[7] += 2;
+                    break;
+
                 case 6:
-                    constructs[0]+=6;
-                    constructs[7]+=6;
+                    constructs[0]++;
+                    constructs[7]++;
                     break;
             }
             switch (sf36scoretotal.Question9i)
             {
                 case 1:
-                    constructs[0]+=6;
-                    constructs[8]+=6;
+                    constructs[0]++;
+                    constructs[8]++;
                     break;
 
                 case 2:
-                    constructs[0] += 5;
-                    constructs[8] += 5;
+                    constructs[0] += 2;
+                    constructs[8] += 2;
                     break;
 
                 case 3:
+                    constructs[0] += 3;
+                    constructs[8] += 3;
+                    break;
+
+                case 4:
                     constructs[0] += 4;
                     constructs[8] += 4;
                     break;
 
-                case 4:
+                case 5:
                     constructs[0] += 5;
                     constructs[8] += 5;
                     break;
 
-                case 5:
-                    constructs[0] += 6;
-                    constructs[8] += 6;
-                    break;
-
                 case 6:
-                    constructs[0] ++;
-                    constructs[8] ++;
+                    constructs[0] =6;
+                    constructs[8] =6;
                     break;
             }
             switch (sf36scoretotal.Question10)
@@ -705,24 +705,161 @@ namespace BusinessLogicalLayer.BLL
             return (aspectosSociais - limiteInferior) * 100 / variacao;
         }
 
-        public async Task<double> CalcularScoreCapacidadeFuncional(FuncionarioRespostasQuestionarioSf36 sf36scoreCapacidadeFuncional)
+        public async Task<double> CalcularScoreCapacidadeFuncional(FuncionarioRespostasQuestionarioSf36 sf36scoreCapacidadeFuncional) //WRONG
         {
             double capaficadeFuncional = 0;
             double limiteInferior = 10;
             double variacao = 20;
-            for (int i = 0; i < 10; i++)
             {
-                if (sf36scoreCapacidadeFuncional.Question3 == 1)
+                switch (sf36scoreCapacidadeFuncional.Question3a)
                 {
-                    capaficadeFuncional++;
+                    case 1:
+                        capaficadeFuncional ++;
+                        break;
+
+                    case 2:
+                        capaficadeFuncional+=2;
+                        break;
+
+                    case 3:
+                        capaficadeFuncional += 3;
+                        break;
+
                 }
-                else if (sf36scoreCapacidadeFuncional.Question3 == 2)
+                switch (sf36scoreCapacidadeFuncional.Question3b)
                 {
-                    capaficadeFuncional += 2;
+                    case 1:
+                        capaficadeFuncional++;
+                        break;
+
+                    case 2:
+                        capaficadeFuncional += 2;
+                        break;
+
+                    case 3:
+                        capaficadeFuncional += 3;
+                        break;
+
                 }
-                else
+                switch (sf36scoreCapacidadeFuncional.Question3c)
                 {
-                    capaficadeFuncional += 3;
+                    case 1:
+                        capaficadeFuncional++;
+                        break;
+
+                    case 2:
+                        capaficadeFuncional += 2;
+                        break;
+
+                    case 3:
+                        capaficadeFuncional += 3;
+                        break;
+
+                }
+                switch (sf36scoreCapacidadeFuncional.Question3d)
+                {
+                    case 1:
+                        capaficadeFuncional++;
+                        break;
+
+                    case 2:
+                        capaficadeFuncional += 2;
+                        break;
+
+                    case 3:
+                        capaficadeFuncional += 3;
+                        break;
+
+                }
+                switch (sf36scoreCapacidadeFuncional.Question3e)
+                {
+                    case 1:
+                        capaficadeFuncional++;
+                        break;
+
+                    case 2:
+                        capaficadeFuncional += 2;
+                        break;
+
+                    case 3:
+                        capaficadeFuncional += 3;
+                        break;
+
+                }
+                switch (sf36scoreCapacidadeFuncional.Question3f)
+                {
+                    case 1:
+                        capaficadeFuncional++;
+                        break;
+
+                    case 2:
+                        capaficadeFuncional += 2;
+                        break;
+
+                    case 3:
+                        capaficadeFuncional += 3;
+                        break;
+
+                }
+                switch (sf36scoreCapacidadeFuncional.Question3g)
+                {
+                    case 1:
+                        capaficadeFuncional++;
+                        break;
+
+                    case 2:
+                        capaficadeFuncional += 2;
+                        break;
+
+                    case 3:
+                        capaficadeFuncional += 3;
+                        break;
+
+                }
+                switch (sf36scoreCapacidadeFuncional.Question3h)
+                {
+                    case 1:
+                        capaficadeFuncional++;
+                        break;
+
+                    case 2:
+                        capaficadeFuncional += 2;
+                        break;
+
+                    case 3:
+                        capaficadeFuncional += 3;
+                        break;
+
+                }
+                switch (sf36scoreCapacidadeFuncional.Question3i)
+                {
+                    case 1:
+                        capaficadeFuncional++;
+                        break;
+
+                    case 2:
+                        capaficadeFuncional += 2;
+                        break;
+
+                    case 3:
+                        capaficadeFuncional += 3;
+                        break;
+
+                }
+                switch (sf36scoreCapacidadeFuncional.Question3j)
+                {
+                    case 1:
+                        capaficadeFuncional++;
+                        break;
+
+                    case 2:
+                        capaficadeFuncional += 2;
+                        break;
+
+                    case 3:
+                        capaficadeFuncional += 3;
+                        break;
+
                 }
             }
             return (capaficadeFuncional - limiteInferior) * 100 / variacao;
@@ -760,34 +897,71 @@ namespace BusinessLogicalLayer.BLL
                     dor7 += 1;
                     break;
             }
-            if (sf36scoreDor.Question7 == 1 && sf36scoreDor.Question8 == 1)
+            switch (sf36scoreDor.Question8)
             {
-                dor8 += 6;
+                case 1:
+                    if (sf36scoreDor.Question7 == 1)
+                    {
+                        dor8 += 6;
+                    }
+                    else
+                    {
+                        dor8+=5;
+                    }
+                    break;
+
+                case 2:
+                    if (sf36scoreDor.Question7 !=1)
+                    {
+                        dor8 += 4;
+                    }
+                    else
+                    {
+                        dor8 += 4.75;
+                    }
+                    
+                    break;
+
+                case 3:
+                    if (sf36scoreDor.Question7 != 1)
+                    {
+                        dor8 += 3;
+                        
+                    }
+                    else
+                    {
+                        dor8 += 3.5;
+                    }
+
+                    break;
+
+                case 4:
+                    if (sf36scoreDor.Question7 != 1)
+                    {
+                        dor8 += 2;
+                    }
+                    else
+                    {
+                        dor8 += 2.25;
+                    }
+
+                    break;
+
+                case 5:
+                    if (sf36scoreDor.Question7 !=1)
+                    {
+                        dor8 += 1;
+                    }
+                    else
+                    {
+                        dor8 += 1;
+                    }
+
+                    break;
+
+          
             }
-            else if (sf36scoreDor.Question7 == 2 || sf36scoreDor.Question7 == 3
-                || sf36scoreDor.Question7 == 4 || sf36scoreDor.Question7 == 5 && sf36scoreDor.Question8 == 1)
-            {
-                dor8 += 5;
-            }
-            else if (sf36scoreDor.Question7 == 2 || sf36scoreDor.Question7 == 3
-                || sf36scoreDor.Question7 == 4 || sf36scoreDor.Question7 == 5 && sf36scoreDor.Question8 == 2)
-            {
-                dor8 += 4;
-            }
-            else if (sf36scoreDor.Question7 == 2 || sf36scoreDor.Question7 == 3
-                || sf36scoreDor.Question7 == 4 || sf36scoreDor.Question7 == 5 && sf36scoreDor.Question8 == 3)
-            {
-                dor8 += 3;
-            }
-            else if (sf36scoreDor.Question7 == 2 || sf36scoreDor.Question7 == 3
-                || sf36scoreDor.Question7 == 4 || sf36scoreDor.Question7 == 5 && sf36scoreDor.Question8 == 4)
-            {
-                dor8 += 2;
-            }
-            else
-            {
-                dor8++;
-            }
+           
             return (dor8 + dor7 - limiteInferior) * 100 / variacao;
         }
 
@@ -918,13 +1092,16 @@ namespace BusinessLogicalLayer.BLL
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    if (sf36scoreLimitacaoEmocional.Question5 == 1)
+                    switch (sf36scoreLimitacaoEmocional.Question5)
                     {
-                        limitacaoEmocional++;
-                    }
-                    else 
-                    {
-                        limitacaoEmocional += 2;
+                        case 1:
+                            limitacaoEmocional ++;
+                            break;
+
+                        case 2:
+                            limitacaoEmocional += 2 ;
+                            break;
+
                     }
                 }
                
@@ -939,13 +1116,16 @@ namespace BusinessLogicalLayer.BLL
             double variacao = 4;
             for (int i = 0; i < 4; i++)
             {
-                if (sf36scoreLimitacaoFisica.Question4 == 1)
+                switch (sf36scoreLimitacaoFisica.Question4)
                 {
-                    limitacaoFisica++;
-                }
-                else
-                {
-                    limitacaoFisica += 2;
+                    case 1:
+                        limitacaoFisica++;
+                        break;
+
+                    case 2:
+                        limitacaoFisica += 2;
+                        break;
+
                 }
             }
             return (limitacaoFisica - limiteInferior) * 100 / variacao;
@@ -1037,7 +1217,7 @@ namespace BusinessLogicalLayer.BLL
             switch (sf36scoreSaudeMental.Question9f)
             {
                 case 1:
-                    saudeMental += 1;
+                    saudeMental ++;
                     break;
 
                 case 2:
@@ -1063,27 +1243,27 @@ namespace BusinessLogicalLayer.BLL
             switch (sf36scoreSaudeMental.Question9h)
             {
                 case 1:
-                    saudeMental ++;
+                    saudeMental +=6;
                     break;
 
                 case 2:
-                    saudeMental += 2;
-                    break;
-
-                case 3:
-                    saudeMental += 3;
-                    break;
-
-                case 4:
-                    saudeMental += 4;
-                    break;
-
-                case 5:
                     saudeMental += 5;
                     break;
 
+                case 3:
+                    saudeMental += 4;
+                    break;
+
+                case 4:
+                    saudeMental += 3;
+                    break;
+
+                case 5:
+                    saudeMental += 2;
+                    break;
+
                 case 6:
-                    saudeMental += 6;
+                    saudeMental++;
                     break;
             }
             return (saudeMental - limiteInferior) * 100 / variacao;
@@ -1149,53 +1329,53 @@ namespace BusinessLogicalLayer.BLL
             switch (sf36scoreVitalidade.Question9g)
             {
                 case 1:
-                    vitalidade += 6;
+                    vitalidade ++;
                     break;
 
                 case 2:
-                    vitalidade += 5;
-                    break;
-
-                case 3:
-                    vitalidade += 4;
-                    break;
-
-                case 4:
-                    vitalidade += 3;
-                    break;
-
-                case 5:
                     vitalidade += 2;
                     break;
 
+                case 3:
+                    vitalidade += 3;
+                    break;
+
+                case 4:
+                    vitalidade += 4;
+                    break;
+
+                case 5:
+                    vitalidade += 5;
+                    break;
+
                 case 6:
-                    vitalidade ++;
+                    vitalidade +=6;
                     break;
             }
             switch (sf36scoreVitalidade.Question9i)
             {
                 case 1:
-                    vitalidade += 6;
+                    vitalidade ++;
                     break;
 
                 case 2:
-                    vitalidade += 5;
-                    break;
-
-                case 3:
-                    vitalidade += 4;
-                    break;
-
-                case 4:
-                    vitalidade += 3;
-                    break;
-
-                case 5:
                     vitalidade += 2;
                     break;
 
+                case 3:
+                    vitalidade += 3;
+                    break;
+
+                case 4:
+                    vitalidade += 4;
+                    break;
+
+                case 5:
+                    vitalidade += 5;
+                    break;
+
                 case 6:
-                    vitalidade++;
+                    vitalidade+=6;
                     break;
             }
             return (vitalidade - limiteInferior) * 100 / variacao;
