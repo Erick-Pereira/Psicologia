@@ -6,6 +6,11 @@ namespace BusinessLogicalLayer.Extensions
 {
     internal static class ResponseExtensions
     {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
         public static Response ToResponse(this ValidationResult result)
         {
             StringBuilder sb = new StringBuilder();

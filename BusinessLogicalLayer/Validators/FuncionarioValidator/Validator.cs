@@ -47,10 +47,10 @@ namespace BusinessLogicalLayer.Validators.FuncionarioValidator
         }
 
         /// <summary>
-        /// Verifica se a senha esta dentro dos padrões
+        ///
         /// </summary>
-        /// <param name="senha">Senha a ser validada</param>
-        /// <returns>Retorna vazio "" caso a senha esteja correta</returns>
+        /// <param name="senha"></param>
+        /// <returns></returns>
         public static Response ValidateSenha(string senha)
         {
             if (string.IsNullOrWhiteSpace(senha))
@@ -73,10 +73,10 @@ namespace BusinessLogicalLayer.Validators.FuncionarioValidator
         }
 
         /// <summary>
-        /// Verifica se o CEP esta dentro dos padrões
+        ///
         /// </summary>
-        /// <param name="cep">Senha a ser validada</param>
-        /// <returns>Retorna vazio "" caso o CEP esteja correto</returns>
+        /// <param name="cep"></param>
+        /// <returns></returns>
         public Response ValidateCEP(string cep)
         {
             if (string.IsNullOrWhiteSpace(cep))
@@ -102,7 +102,7 @@ namespace BusinessLogicalLayer.Validators.FuncionarioValidator
         /// Verifica se o CEP esta dentro dos padrões
         /// </summary>
         /// <param name="cep">Senha a ser validada</param>
-        /// <returns>Retorna vazio "" caso o CEP esteja correto</returns>
+        /// <returns>Retorna um boolean com true caso o CEP esteja correto</returns>
         public static bool isCEP(string cep)
         {
             if (string.IsNullOrWhiteSpace(cep))
@@ -125,10 +125,10 @@ namespace BusinessLogicalLayer.Validators.FuncionarioValidator
         }
 
         /// <summary>
-        /// Verifica se o telefone esta dentro dos padrões
+        ///
         /// </summary>
-        /// <param name="telefone">Senha a ser validada</param>
-        /// <returns>Retorna vazio "" caso o telefone esteja correto</returns>
+        /// <param name="telefone"></param>
+        /// <returns></returns>
         public Response ValidateTelefone(string telefone)
         {
             if (string.IsNullOrWhiteSpace(telefone))

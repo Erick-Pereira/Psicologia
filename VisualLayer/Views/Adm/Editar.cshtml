@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Cpf" class="control-label"></label>
-                <input asp-for="Cpf" value="@funcionario.Cpf"  class="form-control" />
+                <input asp-for="Cpf" value="@funcionario.Cpf" class="form-control" />
                 <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -79,7 +79,17 @@
 <div>
     <a asp-action="Funcionarios">Back to List</a>
 </div>
-
 @section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#telefone").inputmask("mask", { "mask": "(99) 9999-99999" });
+            $("#cpf").inputmask("mask", { "mask": "999.999.999-99" }, { reverse: true });
+            $("#cep").inputmask("mask", { "mask": "99999-999" });
+            $("#nascimento").inputmask("mask", { "mask": "99/99/9999" });
+            $("#preco").inputmask("mask", { "mask": "999.999,99" }, { reverse: true });
+            $("#valor").inputmask("mask", { "mask": "#.##9,99" }, { reverse: true });
+            $("#ip").inputmask("mask", { "mask": "999.999.999.999" });
+        });
+    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

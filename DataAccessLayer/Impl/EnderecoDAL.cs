@@ -2,7 +2,6 @@
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Shared;
-using Shared.Extensions;
 
 namespace DataAccessLayer.Impl
 {
@@ -15,6 +14,11 @@ namespace DataAccessLayer.Impl
             this._db = db;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="endereco"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(Endereco endereco)
         {
             _db.Endereco.Remove(endereco);
@@ -29,9 +33,14 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(int id)
         {
-            _db.Endereco.Remove(GetByID(id).Result.Item) ;
+            _db.Endereco.Remove(GetByID(id).Result.Item);
             try
             {
                 await _db.SaveChangesAsync();
@@ -43,33 +52,51 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataResponse<Endereco>> GetAll()
         {
             try
             {
-                return ResponseFactory<Endereco>.CreateSuccessDataResponse(await _db.Endereco.ToListAsync());
+                return ResponseFactory<Endereco>.CreateSuccessDataResponse(await _db.Endereco.AsNoTracking().ToListAsync());
             }
             catch (Exception ex)
             {
                 return ResponseFactory<Endereco>.CreateFailureDataResponse(ex);
             }
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> GetAllByBairroId(int id)
         {
             try
             {
-                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Endereco.Where(e => e.BairroID == id).CountAsync());
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Endereco.AsNoTracking().Where(e => e.BairroID == id).CountAsync());
             }
             catch (Exception ex)
             {
                 return ResponseFactory<int>.CreateFailureItemResponse(ex);
             }
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="endereco"></param>
+        /// <returns></returns>
+
         public async Task<SingleResponse<Endereco>> GetByEndereco(Endereco endereco)
+
         {
             try
             {
-                return ResponseFactory<Endereco>.CreateSuccessItemResponse(_db.Endereco.FirstOrDefaultAsync(e => e.Rua == endereco.Rua && e.NumeroCasa == endereco.NumeroCasa && e.CEP == endereco.CEP && e.BairroID == endereco.BairroID).Result);
+                return ResponseFactory<Endereco>.CreateSuccessItemResponse(_db.Endereco.AsNoTracking().FirstOrDefaultAsync(e => e.Rua == endereco.Rua && e.NumeroCasa == endereco.NumeroCasa && e.CEP == endereco.CEP && e.BairroID == endereco.BairroID).Result);
             }
             catch (Exception ex)
             {
@@ -77,11 +104,16 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Endereco>> GetByID(int id)
         {
             try
             {
-                return ResponseFactory<Endereco>.CreateSuccessItemResponse(await _db.Endereco.FindAsync(id));
+                return ResponseFactory<Endereco>.CreateSuccessItemResponse(await _db.Endereco.AsNoTracking().FirstOrDefaultAsync(e => e.ID == id));
             }
             catch (Exception ex)
             {
@@ -89,6 +121,10 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> Iniciar()
         {
             try
@@ -101,11 +137,16 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> IniciarReturnId()
         {
             try
             {
                 Endereco endereco = await _db.Endereco.FirstOrDefaultAsync(e => e.CEP == "" && e.Rua == "");
+
                 return ResponseFactory<int>.CreateSuccessItemResponse(endereco.ID);
             }
             catch (Exception ex)
@@ -114,6 +155,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="endereco"></param>
+        /// <returns></returns>
         public async Task<Response> Insert(Endereco endereco)
         {
             _db.Endereco.Add(endereco);
@@ -128,6 +174,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="endereco"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> InsertReturnId(Endereco endereco)
         {
             _db.Endereco.Add(endereco);
@@ -142,6 +193,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="endereco"></param>
+        /// <returns></returns>
         public async Task<Response> Update(Endereco endereco)
         {
             _db.Endereco.Update(endereco);

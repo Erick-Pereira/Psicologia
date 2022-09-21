@@ -23,6 +23,7 @@ nav {
     align-items: center;
     background: #fff;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+    z-index: +1;
 }
 
     nav .logo {
@@ -54,6 +55,7 @@ nav .sidebar {
     background-color: #fff;
     box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
     transition: all 0.4s ease;
+    z-index: +1;
 }
 
 nav.open .sidebar {
@@ -116,42 +118,35 @@ nav.open .sidebar {
     pointer-events: none;
     transition: all 0.4s ease;
     background: rgba(0, 0, 0, 0.3);
+    z-index: +1;
 }
 
 nav.open ~ .overlay {
     opacity: 1;
     left: 260px;
     pointer-events: auto;
-}
-
-.flex {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 100%;
-    margin: 0 auto;
-    z-index: -1;
-}
-
-    .flex .contains {
-        margin: 5px;
-        position: relative;
-        width: 100%;
-    }
-
-.contains .box-contains {
-    display: flex;
-    margin-top: 80px;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0 20px;
-    margin-bottom: 26px;
+    transition: all 0.4s ease;
 }
 
 .contains {
-    z-index: -1;
+    margin: 5px;
+    position: relative;
+    flex-wrap: wrap;
+    display: flex;
+    max-width: 100%;
+    margin: 0 auto;
+    min-width: 570px;
 }
+
+    .contains .box-contains {
+        display: flex;
+        margin-top: 80px;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        padding: 0 20px;
+        margin-bottom: 26px;
+    }
 
 .box-contains .box {
     flex: 1 1 350px;
@@ -159,19 +154,84 @@ nav.open ~ .overlay {
     align-items: center;
     justify-content: center;
     width: 100%;
+    height: 180px;
     background: #fff;
     padding: 15px 14px;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
-.contains a {
-    z-index: +1;
+/*.search-box {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    height: 35px;
+    padding: 10px;
+    border-radius: 45px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.contains p {
-    z-index: +1;
+    .search-box .search-txt {
+        background: none;
+        outline: none;
+        padding: 3px;
+        margin: 10px;
+        width: 400px;
+        color: #333;
+        font-size: 16px;
+        line-height: 35px;
+        border-radius: 25px;
+        transition: 0.5s ease;
+    }
+
+ .search-box .submit-lent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    border: none;
+    background: transparent;
+    outline: none;
+}*/
+
+.form {
+    position: relative;
 }
+
+    .form .input {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        padding: 0 35px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        border-bottom: 2px solid #ccc;
+        border-top: 2px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    .form .icon {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: #9ca3af;
+    }
+
+.form-input {
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px;
+}
+
+    .form-input:focus {
+        box-shadow: none;
+        border: none;
+    }
 
 .box h1 {
     font-size: 35px;

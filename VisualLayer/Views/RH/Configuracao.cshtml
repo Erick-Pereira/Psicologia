@@ -75,7 +75,7 @@
                     @Html.DisplayNameFor(model => model.Foto)
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Foto)
+                    <img src="@Model.Foto" alt="" />
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Nome)
@@ -88,6 +88,12 @@
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.Email)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Celular)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Celular)
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Cpf)
@@ -143,9 +149,21 @@
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.Estado)
                 </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Genero)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Genero)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.EstadoCivil)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.EstadoCivil)
+                </dd>
             </dl>
         </div>
-        
+
         <div class="Senha">
             <input type="button" class="botao" value="Senha" class="form-control" />
             <div class="Senha-content">
@@ -162,7 +180,7 @@
             </div>
         </div>
         <section class="SenhaSection"></section>
-        
+
 
 
 

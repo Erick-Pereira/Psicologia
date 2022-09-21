@@ -5,7 +5,6 @@ using DataAccessLayer.Interfaces;
 using Entities;
 using Shared;
 using Shared.Extensions;
-using System.Reflection;
 
 namespace BusinessLogicalLayer.BLL
 {
@@ -16,6 +15,7 @@ namespace BusinessLogicalLayer.BLL
         private readonly IEnderecoService _enderecoService;
         private readonly IFuncionarioDAL _funcionarioDAL;
 
+        //Construtor
         public FuncionarioService(IFuncionarioDAL funcionarioDAL, ICidadeService cidadeService, IBairroService bairroService, IEnderecoService enderecoService)
         {
             _funcionarioDAL = funcionarioDAL;
@@ -24,11 +24,19 @@ namespace BusinessLogicalLayer.BLL
             _enderecoService = enderecoService;
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> AlterarSenha(Funcionario funcionario)
         {
             return await _funcionarioDAL.Update(funcionario);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> Ativar(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
@@ -36,16 +44,28 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.Update(funcionario);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(Funcionario funcionario)
         {
             return await _funcionarioDAL.Delete(funcionario);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(int id)
         {
             return await _funcionarioDAL.Delete(id);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> Desativar(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
@@ -53,42 +73,71 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.Update(funcionario);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataResponse<Funcionario>> GetAll()
         {
             return await _funcionarioDAL.GetAll();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataResponse<Funcionario>> GetAllAtivos()
         {
             return await _funcionarioDAL.GetAllAtivos();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> GetAllByEnderecoId(int id)
         {
             return await _funcionarioDAL.GetAllByEnderecoId(id);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Funcionario>> GetByID(int id)
         {
             return await _funcionarioDAL.GetByID(id);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Funcionario>> GetByLogin(Funcionario funcionario)
         {
             return await _funcionarioDAL.GetByLogin(funcionario);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Funcionario>> GetInformationToVerify(int id)
         {
             return await _funcionarioDAL.GetInformationToVerify(id);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public async Task<SingleResponse<bool>> Iniciar()
         {
             SingleResponse<int> response = await _funcionarioDAL.Iniciar();
             return ResponseFactory<bool>.CreateItemResponse(response.Message, response.HasSuccess, response.Item > 0);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> Insert(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
@@ -106,6 +155,10 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.Insert(funcionario);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> InsertADM(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
@@ -116,6 +169,10 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.Insert(funcionario);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<bool> Logar(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
@@ -123,6 +180,10 @@ namespace BusinessLogicalLayer.BLL
             return response.Item == 1;
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> RequistarTeste(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
@@ -130,6 +191,10 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.Update(funcionario);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> RequistarUpdate(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
@@ -137,6 +202,10 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.Update(funcionario);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> ResetarSenha(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
@@ -144,6 +213,10 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.Update(funcionario);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> Update(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
@@ -157,6 +230,10 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.Update(funcionario);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> UpdateAdm(Funcionario funcionario)
         {
             funcionario.Email = funcionario.Email.Trim();
@@ -176,10 +253,16 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.Update(funcionario2);
         }
 
-        public async Task<Response> UpdateFuncionario(Funcionario funcionario)
+        /// <summary>
+        /// </summary>
+        /// <param name="funcionarioUpdate"></param>
+        /// <returns></returns>
+        public async Task<Response> UpdateFuncionario(Funcionario funcionarioUpdate)
         {
+            Funcionario funcionario = ObjectCloner<Funcionario, Funcionario>.To(funcionarioUpdate);
             funcionario.Email = funcionario.Email.Trim();
             funcionario.IsFirstLogin = false;
+            funcionarioUpdate.IsFirstLogin = false;
             UpdateFuncionarioValidator validationRules = new UpdateFuncionarioValidator();
             Response response = validationRules.Validate(funcionario).ToResponse();
             if (!response.HasSuccess)
@@ -202,8 +285,8 @@ namespace BusinessLogicalLayer.BLL
                     if (responseBairro.HasSuccess && responseBairro.Item != null)
                     {
                         //Se tiver um bairro com mesmo nome e cidade, ele entra no if
-                        funcionario.Endereco.Bairro = responseBairro.Item;
                         funcionario.Endereco.BairroID = responseBairro.Item.ID;
+                        funcionario.Endereco.Bairro = responseBairro.Item;
                         SingleResponse<Endereco> responseEndereco = await _enderecoService.GetByEndereco(funcionario.Endereco);
                         if (responseEndereco.HasSuccess && responseEndereco.Item != null)
                         {
@@ -217,69 +300,111 @@ namespace BusinessLogicalLayer.BLL
                         {
                             //se ele acessou o banco de dados, mas não achou nenhum Endereço igual, ele entra no if
                             // e faz o cadastro do Endereço e faz o update do funcionario
-                            funcionario.EnderecoID = 0;
-                            funcionario.Endereco.ID = 0;
                             Endereco copyOfEndereco = ObjectCloner<Endereco, Endereco>.To(funcionario.Endereco);
+                            copyOfEndereco.ID = 0;
+
+                            copyOfEndereco.Bairro = null;
+
                             response = await _enderecoService.Insert(copyOfEndereco);
+                            if (!response.HasSuccess)
+                            {
+                                return response;
+                            }
                             funcionario.EnderecoID = copyOfEndereco.ID;
-                            funcionario.Endereco = copyOfEndereco;
+
+                            funcionario.Endereco = null;
+
                             response = await _funcionarioDAL.Update(funcionario);
                         }
                         else
                         {
                             //se ele não conseguiu acessar o banco de dados, retorna o erro
-                            response = responseEndereco;
-                            return response;
+                            return responseEndereco;
                         }
                     }
                     else if (responseBairro.HasSuccess && responseBairro.Item == null)
                     {
                         //se ele conseguiu acessar o banco de dados, mas não achou nenhum Bairro igual
                         //Cadastra o bairro e o endereço e faz o update do funcionario
-                        funcionario.EnderecoID = 0;
-                        funcionario.Endereco.ID = 0;
-                        Bairro copyOfBairro = ObjectCloner<Bairro,Bairro>.To(funcionario.Endereco.Bairro);
-                        response = await _bairroService.Insert(copyOfBairro);
-                        funcionario.Endereco.Bairro = copyOfBairro;
-                        funcionario.Endereco.BairroID = copyOfBairro.ID;
+                        Bairro copyOfBairro = ObjectCloner<Bairro, Bairro>.To(funcionario.Endereco.Bairro);
                         Endereco copyOfEndereco = ObjectCloner<Endereco, Endereco>.To(funcionario.Endereco);
+                        copyOfBairro.ID = 0;
+
+                        copyOfBairro.Cidade = null;
+
+                        response = await _bairroService.Insert(copyOfBairro);
+                        if (!response.HasSuccess)
+                        {
+                            return response;
+                        }
+                        copyOfEndereco.BairroID = copyOfBairro.ID;
+
+                        copyOfEndereco.Bairro = null;
+
+                        copyOfEndereco.ID = 0;
                         response = await _enderecoService.Insert(copyOfEndereco);
+                        if (!response.HasSuccess)
+                        {
+                            return response;
+                        }
                         funcionario.EnderecoID = copyOfEndereco.ID;
-                        funcionario.Endereco = copyOfEndereco;
+
+                        funcionario.Endereco = null;
+
                         response = await _funcionarioDAL.Update(funcionario);
                     }
                     else
                     {
                         //se ele não conseguiu acessar o banco de dados, retorna o erro
-                        response = responseBairro;
-                        return response;
+                        return responseBairro;
                     }
                 }
                 else if (responseCidade.HasSuccess && responseCidade.Item == null)
                 {
                     //Se conseguiu acessar o banco de dados, mas não achou nenhuma cidade igual
                     //cadastra Cidade,Bairro,Endereço e faz o update do funcionario
-                    funcionario.EnderecoID = 0;
-                    funcionario.Endereco.ID = 0;
-                    Cidade copyOfCidade = ObjectCloner<Cidade,Cidade>.To(funcionario.Endereco.Bairro.Cidade);
+                    Cidade copyOfCidade = ObjectCloner<Cidade, Cidade>.To(funcionario.Endereco.Bairro.Cidade);
+                    Bairro copyOfBairro = ObjectCloner<Bairro, Bairro>.To(funcionario.Endereco.Bairro);
+                    Endereco copyOfEndereco = ObjectCloner<Endereco, Endereco>.To(funcionario.Endereco);
+                    copyOfCidade.ID = 0;
+
+                    copyOfCidade.Estado = null;
+
                     response = await _cidadeService.Insert(copyOfCidade);
-                    funcionario.Endereco.Bairro.Cidade = copyOfCidade;
-                    funcionario.Endereco.Bairro.CidadeId = copyOfCidade.ID;
-                    Bairro copyOfBairro = ObjectCloner<Bairro,Bairro>.To(funcionario.Endereco.Bairro);
+                    if (!response.HasSuccess)
+                    {
+                        return response;
+                    }
+                    copyOfBairro.CidadeId = copyOfCidade.ID;
+
+                    copyOfBairro.Cidade = null;
+
+                    copyOfBairro.ID = 0;
                     response = await _bairroService.Insert(funcionario.Endereco.Bairro);
-                    funcionario.Endereco.Bairro = copyOfBairro;
-                    funcionario.Endereco.BairroID = copyOfBairro.ID;
-                    Endereco copyOfEndereco = ObjectCloner<Endereco,Endereco>.To(funcionario.Endereco);
+                    if (!response.HasSuccess)
+                    {
+                        return response;
+                    }
+                    copyOfEndereco.BairroID = copyOfBairro.ID;
+
+                    copyOfEndereco.Bairro = null;
+
+                    copyOfEndereco.ID = 0;
                     response = await _enderecoService.Insert(copyOfEndereco);
+                    if (!response.HasSuccess)
+                    {
+                        return response;
+                    }
                     funcionario.EnderecoID = copyOfEndereco.ID;
-                    funcionario.Endereco = copyOfEndereco;
+
+                    funcionario.Endereco = null;
+
                     response = await _funcionarioDAL.Update(funcionario);
                 }
                 else
                 {
                     //se ele não conseguiu acessar o banco de dados, retorna o erro
-                    response = responseCidade;
-                    return response;
+                    return responseCidade;
                 }
             }
             else
@@ -308,31 +433,47 @@ namespace BusinessLogicalLayer.BLL
                         {
                             //se ele conseguiu acessar o banco, mas não achou um endereço, faz o update do Endereço e do Funcionario
                             response = await _enderecoService.Update(funcionario.Endereco);
+                            if (!response.HasSuccess)
+                            {
+                                return response;
+                            }
                             response = await _funcionarioDAL.Update(funcionario);
                         }
                         else
                         {
                             //se ele não conseguiu acessar o banco de dados, retorna o erro
-                            response = responseEndereco;
-                            return response;
+                            return responseEndereco;
                         }
                     }
                     else if (responseBairro.HasSuccess && responseBairro.Item == null)
                     {
                         //Se conseguiu entrar no banco, mas não achou um Bairro, faz o insert do Bairro e update do Endereço e Funcionario
-                        Bairro copyOfBairro = ObjectCloner<Bairro,Bairro>.To(funcionario.Endereco.Bairro);
+                        Bairro copyOfBairro = ObjectCloner<Bairro, Bairro>.To(funcionario.Endereco.Bairro);
+                        copyOfBairro.ID = 0;
+
+                        copyOfBairro.Cidade = null;
+
                         response = await _bairroService.Insert(copyOfBairro);
-                        funcionario.Endereco.Bairro = copyOfBairro;
-                        funcionario.Endereco.BairroID = copyOfBairro.ID ;
+                        if (!response.HasSuccess)
+                        {
+                            return response;
+                        }
+                        funcionario.Endereco.BairroID = copyOfBairro.ID;
+
+                        funcionario.Endereco.Bairro = null;
+
                         response = await _enderecoService.Update(funcionario.Endereco);
+                        if (!response.HasSuccess)
+                        {
+                            return response;
+                        }
                         funcionario.EnderecoID = funcionario.Endereco.ID;
                         response = await _funcionarioDAL.Update(funcionario);
                     }
                     else
                     {
                         //se ele não conseguiu acessar o banco de dados, retorna o erro
-                        response = responseBairro;
-                        return response;
+                        return responseBairro;
                     }
                 }
                 else if (responseCidade.HasSuccess && responseCidade.Item == null)
@@ -340,38 +481,58 @@ namespace BusinessLogicalLayer.BLL
                     //Se conseguiu acessar o banco de dados, mas não achou uma cidade,
                     //faz o Inset da Cidade e Bairro e faz o Update do Endereço e Funcionario
                     Cidade copyOfCidade = ObjectCloner<Cidade, Cidade>.To(funcionario.Endereco.Bairro.Cidade);
-                    response = await _cidadeService.Insert(copyOfCidade);
-                    funcionario.Endereco.Bairro.Cidade = copyOfCidade;
-                    funcionario.Endereco.Bairro.CidadeId = copyOfCidade.ID;
                     Bairro copyOfBairro = ObjectCloner<Bairro, Bairro>.To(funcionario.Endereco.Bairro);
+                    copyOfCidade.ID = 0;
+
+                    copyOfCidade.Estado = null;
+
+                    response = await _cidadeService.Insert(copyOfCidade);
+                    if (!response.HasSuccess)
+                    {
+                        return response;
+                    }
+                    copyOfBairro.CidadeId = copyOfCidade.ID;
+
+                    copyOfBairro.Cidade = null;
+
+                    copyOfBairro.ID = 0;
                     response = await _bairroService.Insert(copyOfBairro);
-                    funcionario.Endereco.Bairro = copyOfBairro;
+                    if (!response.HasSuccess)
+                    {
+                        return response;
+                    }
                     funcionario.Endereco.BairroID = copyOfBairro.ID;
+
+                    funcionario.Endereco.Bairro = null;
+
                     response = await _enderecoService.Update(funcionario.Endereco);
+                    if (!response.HasSuccess)
+                    {
+                        return response;
+                    }
                     funcionario.EnderecoID = funcionario.Endereco.ID;
                     response = await _funcionarioDAL.Update(funcionario);
                 }
                 else
                 {
                     //se ele não conseguiu acessar o banco de dados, retorna o erro
-                    response = responseCidade;
-                    return response;
+                    return responseCidade;
                 }
             }
             if (_funcionarioDAL.GetAllByEnderecoId(enderecoIdVelho).Result.Item == 0)
             {
                 //Se não há mais funcionarios no Endereço antigo, deleta o Endereço
-                Endereco endereco =  _enderecoService.GetByID(enderecoIdVelho).Result.Item;
+                Endereco endereco = _enderecoService.GetByID(enderecoIdVelho).Result.Item;
                 Response responseDelete = await _enderecoService.Delete(enderecoIdVelho);
                 if (responseDelete.HasSuccess)
                 {
-                    Bairro bairro = endereco.Bairro;
-                    if(_enderecoService.GetAllByBairroId(bairro.ID).Result.Item == 0)
+                    Bairro bairro = _bairroService.GetByID(endereco.BairroID).Result.Item;
+                    if (_enderecoService.GetAllByBairroId(bairro.ID).Result.Item == 0)
                     {
                         responseDelete = await _bairroService.Delete(bairro);
                         if (responseDelete.HasSuccess)
                         {
-                            Cidade cidade = bairro.Cidade;
+                            Cidade cidade = _cidadeService.GetByID(bairro.CidadeId).Result.Item;
                             if (_bairroService.GetAllByCidadeId(cidade.ID).Result.Item == 0)
                             {
                                 responseDelete = await _cidadeService.Delete(cidade);
@@ -397,28 +558,4 @@ namespace BusinessLogicalLayer.BLL
             return response;
         }
     }
-
-    class ObjectCloner<T,W> where T:class,new()
-    {
-        public static W To(T item)
-        {
-            var propertiesOfT = typeof(T).GetProperties();
-            var propertiesOfW = typeof(W).GetProperties();
-            W w = Activator.CreateInstance<W>();
-
-            foreach (var property in propertiesOfT)
-            {
-                object data = property.GetValue(item);
-                PropertyInfo propertyToSet =  propertiesOfW.FirstOrDefault(c => c.Name == property.Name && c.PropertyType == property.PropertyType);
-
-                if (propertyToSet != null)
-                {
-                    propertyToSet.SetValue(w, data);
-                }
-            }
-            return w;
-
-        }
-    }
-
 }

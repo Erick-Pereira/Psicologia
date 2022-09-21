@@ -14,6 +14,11 @@ namespace DataAccessLayer.Impl
             this._db = db;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="equipe"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(Equipe equipe)
         {
             _db.Equipe.Remove(equipe);
@@ -28,6 +33,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(int id)
         {
             _db.Equipe.Remove(new Equipe() { ID = id });
@@ -42,6 +52,10 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataResponse<Equipe>> GetAll()
         {
             try
@@ -58,6 +72,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Equipe>> GetByID(int id)
         {
             try
@@ -74,6 +93,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="equipe"></param>
+        /// <returns></returns>
         public async Task<Response> Insert(Equipe equipe)
         {
             _db.Equipe.Add(equipe);
@@ -88,6 +112,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="equipe"></param>
+        /// <returns></returns>
         public async Task<Response> Update(Equipe equipe)
         {
             _db.Equipe.Update(equipe);

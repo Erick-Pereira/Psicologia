@@ -56,10 +56,6 @@ nav .sidebar {
     transition: all 0.4s ease;
 }
 
-table {
-    margin-top: 25px;
-}
-
 nav.open .sidebar {
     left: 0;
 }
@@ -83,6 +79,10 @@ nav.open .sidebar {
     padding: 14px 12px;
     border-radius: 8px;
     text-decoration: none;
+}
+
+.home-section {
+    margin-top: 25px;
 }
 
 .lists .nav-link:hover {
@@ -122,4 +122,148 @@ nav.open ~ .overlay {
     opacity: 1;
     left: 260px;
     pointer-events: auto;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: 0 auto;
+    z-index: -1;
+}
+
+    .flex .contains {
+        margin: 5px;
+        position: relative;
+        width: 100%;
+    }
+
+.contains .box-contains {
+    display: flex;
+    margin-top: 80px;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    margin-bottom: 26px;
+}
+
+.contains {
+    z-index: -1;
+}
+
+.box-contains .box {
+    flex: 1 1 350px;
+    margin: 15px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: #fff;
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.contains a {
+    z-index: +1;
+}
+
+.contains p {
+    z-index: +1;
+}
+
+.box h1 {
+    font-size: 35px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.box p {
+    text-align: center;
+    color: #333;
+}
+
+.box a {
+    font-size: 25px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+    .box a:hover {
+        background-color: #e3f2fd;
+        border-radius: 6px;
+        padding: 5px;
+    }
+
+.rTable {
+    width: 100%;
+    text-align: center;
+}
+
+    .rTable thead {
+        background: black;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .rTable tbody tr:nth-child(2n) {
+        background: #ccc;
+    }
+
+    .rTable th, .rTable td {
+        padding: 7px 0;
+    }
+
+@media screen and (max-width: 480px) {
+    .content {
+        width: 94%;
+    }
+
+    .contains {
+        width: 94%;
+    }
+
+    .rTable thead {
+        display: none;
+    }
+
+    .rTable tbody td {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .content {
+        width: 100%;
+    }
+
+    .contains {
+        width: 94%;
+    }
+
+    .rTable tbody tr td:nth-child(1) {
+        width: 15%;
+    }
+
+    .rTable tbody tr td:nth-child(2) {
+        width: 10%;
+    }
+
+    .rTable tbody tr td:nth-child(3) {
+        width: 10%;
+    }
+
+    .rTable tbody tr td:nth-child(4) {
+        width: 10%;
+    }
+
+    .rTable tbody tr td:nth-child(5) {
+        width: 5%;
+    }
+
+    .rTable tbody tr td:nth-child(6) {
+        width: 5%;
+    }
 }

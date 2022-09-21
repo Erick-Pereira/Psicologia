@@ -12,6 +12,7 @@ namespace DataAccessLayer.Interfaces
         Task<DataResponse<Endereco>> GetAll();
 
         Task<SingleResponse<Endereco>> GetByEndereco(Endereco endereco);
+
         Task<SingleResponse<int>> GetAllByBairroId(int id);
 
         Task<SingleResponse<Endereco>> GetByID(int id);

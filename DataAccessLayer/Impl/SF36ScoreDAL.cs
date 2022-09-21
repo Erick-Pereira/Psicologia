@@ -13,6 +13,11 @@ namespace DataAccessLayer.Impl
             this._db = db;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
         public async Task<Response> Insert(SF36Score score)
         {
             _db.Score.Add(score);
@@ -27,6 +32,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="endereco"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> InsertReturnId(Endereco endereco)
         {
             _db.Endereco.Add(endereco);
@@ -41,6 +51,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="endereco"></param>
+        /// <returns></returns>
         public async Task<Response> Update(Endereco endereco)
         {
             _db.Endereco.Update(endereco);

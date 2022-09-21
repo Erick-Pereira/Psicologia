@@ -1,8 +1,6 @@
-﻿@model Entities.FuncionarioRespostasQuestionarioSf36
-@{
+﻿@{
     
 }
-
 <!doctype html>
 <html>
 
@@ -12,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/teste.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/css/Funcionario/SF-36.css" media="screen">
 
     <!-- Título da página (aparece na aba) -->
     <title>Questionário</title>
@@ -45,7 +43,7 @@
         </div>
 
         <!-- Início do formulário -->
-        <form>
+        <form method="post" action="/Funcionario/SF36">
                 <div class="form-label">
                     <label align="left"><strong>1- Em geral você diria que sua saúde é: </strong></label>
                 </div>
@@ -62,17 +60,17 @@
                     </thead>
                     <tbody>
                         <tr align="center">
-                            <td height="30"><input type="radio"  name="question1" value="1">1</td>
-                            <td height="30"><input type="radio"  name="question1" value="2">2</td>
+                            <td height="30"><input type="radio" name="question1" value="1">1</td>
+                            <td height="30"><input type="radio" name="question1" value="2">2</td>
                             <td height="30"><input type="radio" name="question1" value="3">3</td>
-                            <td height="30"><input type="radio"  name="question1" value="4">4</td>
+                            <td height="30"><input type="radio" name="question1" value="4">4</td>
                             <td height="30"><input type="radio" name="question1" value="5">5</td>
                         </tr>
                     </tbody>
                 </table>
                 &nbsp;
                 <div class="form-label">
-                    <label align="left"><strong>2- Comparada há um ano atrás, como você classificaria sua saúde em geral, agora? </strong></label>
+                    <label align="left"><strong>2. Comparada há um ano atrás, como você classificaria sua saúde em geral, agora? </strong></label>
                 </div>
                 &nbsp;
                 <table class="styled-table" style="table-layout:fixed; width: 1550px" border="2">
@@ -446,12 +444,12 @@
                             <td align="justify" height="30">
                                 h) Quanto tempo você tem se sentido uma pessoa feliz?
                             </td>
-                            <td height="30"><input type="radio" name="select9h" value="1">1</td>
-                            <td height="30"><input type="radio" name="select9h" value="2">2</td>
-                            <td height="30"><input type="radio" name="select9h" value="3">3</td>
-                            <td height="30"><input type="radio" name="select9h" value="4">4</td>
-                            <td height="30"><input type="radio" name="select9h" value="5">5</td>
-                            <td height="30"><input type="radio" name="select9h" value="6">6</td>
+                            <td height="30"><input type="radio" name="question9h" value="1">1</td>
+                            <td height="30"><input type="radio" name="question9h" value="2">2</td>
+                            <td height="30"><input type="radio" name="question9h" value="3">3</td>
+                            <td height="30"><input type="radio" name="question9h" value="4">4</td>
+                            <td height="30"><input type="radio" name="question9h" value="5">5</td>
+                            <td height="30"><input type="radio" name="question9h" value="6">6</td>
                         </tr>
                         <tr align="center">
                             <td align="justify" height="30">
@@ -512,49 +510,48 @@
                             <td align="justify" height="30">
                                 a) Eu costumo obedecer um pouco mais facilmente que as outras pessoas
                             </td>
-                            <td height="30"><input type="radio" name="question11a" value="2">1</td>
-                            <td height="30"><input type="radio" name="question11a" value="3">2</td>
-                            <td height="30"><input type="radio" name="question11a" value="4">3</td>
-                            <td height="30"><input type="radio" name="question11a" value="5">4</td>
-                            <td height="30"><input type="radio" name="question11a" value="6">5</td>
+                            <td height="30"><input type="radio" name="question11a" value="1">1</td>
+                            <td height="30"><input type="radio" name="question11a" value="2">2</td>
+                            <td height="30"><input type="radio" name="question11a" value="3">3</td>
+                            <td height="30"><input type="radio" name="question11a" value="4">4</td>
+                            <td height="30"><input type="radio" name="question11a" value="5">5</td>
                         </tr>
                         <tr align="center">
                             <td align="justify" height="30">
                                 b) Eu sou tão saudável quanto qualquer pessoa que eu conheço
                             </td>
-                            <td height="30"><input type="radio" name="question11b" value="2">1</td>
-                            <td height="30"><input type="radio" name="question11b" value="3">2</td>
-                            <td height="30"><input type="radio" name="question11b" value="4">3</td>
-                            <td height="30"><input type="radio" name="question11b" value="5">4</td>
-                            <td height="30"><input type="radio" name="question11b" value="6">5</td>
+                            <td height="30"><input type="radio" name="question11b" value="1">1</td>
+                            <td height="30"><input type="radio" name="question11b" value="2">2</td>
+                            <td height="30"><input type="radio" name="question11b" value="3">3</td>
+                            <td height="30"><input type="radio" name="question11b" value="4">4</td>
+                            <td height="30"><input type="radio" name="question11b" value="5">5</td>
                         </tr>
                         <tr align="center">
                             <td align="justify" height="30">
                                 c) Eu acho que a minha saúde vai piorar
                             </td>
-                            <td height="30"><input type="radio" name="question11c" value="2">1</td>
-                            <td height="30"><input type="radio" name="question11c" value="3">2</td>
-                            <td height="30"><input type="radio" name="question11c" value="4">3</td>
-                            <td height="30"><input type="radio" name="question11c" value="5">4</td>
-                            <td height="30"><input type="radio" name="question11c" value="6">5</td>
+                            <td height="30"><input type="radio" name="question11c" value="1">1</td>
+                            <td height="30"><input type="radio" name="question11c" value="2">2</td>
+                            <td height="30"><input type="radio" name="question11c" value="3">3</td>
+                            <td height="30"><input type="radio" name="question11c" value="4">4</td>
+                            <td height="30"><input type="radio" name="question11c" value="5">5</td>
                         </tr>
                         <tr align="center">
                             <td align="justify" height="30">
                                 d) Minha saúde é excelente
                             </td>
-                            <td height="30"><input type="radio" name="question11d" value="2">1</td>
-                            <td height="30"><input type="radio" name="question11d" value="3">2</td>
-                            <td height="30"><input type="radio" name="question11d" value="4">3</td>
-                            <td height="30"><input type="radio" name="question11d" value="5">4</td>
-                            <td height="30"><input type="radio" name="question11d" value="6">5</td>
+                            <td height="30"><input type="radio" name="question11d" value="1">1</td>
+                            <td height="30"><input type="radio" name="question11d" value="2">2</td>
+                            <td height="30"><input type="radio" name="question11d" value="3">3</td>
+                            <td height="30"><input type="radio" name="question11d" value="4">4</td>
+                            <td height="30"><input type="radio" name="question11d" value="5">5</td>
                         </tr>
                     </tbody>
                 </table>
                 <div>
-                <button class="botao" type="submit" onsubmit="">Concluído</button> 
+                   <input type="submit" class="botao" value="Concluido" />
                 </div>
             </form>
 </body>
 </html>
-
 

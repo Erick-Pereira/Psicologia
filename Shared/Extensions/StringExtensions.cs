@@ -5,6 +5,11 @@ namespace Shared.Extensions
 {
     public static class StringExtensions
     {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
         public static string Hash(this string result)
         {
             result = "Q342SSGQQWERTD" + result + "U7RGJ786EFGQ2";
@@ -24,6 +29,11 @@ namespace Shared.Extensions
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
         public static string StringCleaner(this string info)
         {
             info = info.Replace("R", "").Replace("$", "").Replace(",", "").Replace(".", "").Replace("(", "").Replace(")", "").Replace("-", "");
@@ -31,6 +41,12 @@ namespace Shared.Extensions
             return info;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="clearText"></param>
+        /// <param name="EncryptionKey"></param>
+        /// <returns></returns>
         public static string Encrypt(this string clearText, string EncryptionKey)
         {
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
@@ -52,6 +68,12 @@ namespace Shared.Extensions
             return clearText;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="cipherText"></param>
+        /// <param name="EncryptionKey"></param>
+        /// <returns></returns>
         public static string Decrypt(this string cipherText, string EncryptionKey)
         {
             cipherText = cipherText.Replace(" ", "+").Replace("%2F", "/");

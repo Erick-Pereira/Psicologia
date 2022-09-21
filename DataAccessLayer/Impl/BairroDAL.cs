@@ -14,6 +14,11 @@ namespace DataAccessLayer.Impl
             this._db = db;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="bairro"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(Bairro bairro)
         {
             _db.Bairro.Remove(bairro);
@@ -28,11 +33,16 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> GetAllByCidadeId(int id)
         {
             try
             {
-                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Bairro.Where(e => e.CidadeId == id).CountAsync());
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Bairro.AsNoTracking().Where(e => e.CidadeId == id).CountAsync());
             }
             catch (Exception ex)
             {
@@ -40,6 +50,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(int id)
         {
             _db.Bairro.Remove(new Bairro() { ID = id });
@@ -54,11 +69,15 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<DataResponse<Bairro>> GetAll()
         {
             try
             {
-                return ResponseFactory<Bairro>.CreateSuccessDataResponse(await _db.Bairro.ToListAsync());
+                return ResponseFactory<Bairro>.CreateSuccessDataResponse(await _db.Bairro.AsNoTracking().ToListAsync());
             }
             catch (Exception ex)
             {
@@ -66,11 +85,16 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Bairro>> GetByID(int id)
         {
             try
             {
-                return ResponseFactory<Bairro>.CreateSuccessItemResponse(await _db.Bairro.FindAsync(id));
+                return ResponseFactory<Bairro>.CreateSuccessItemResponse(await _db.Bairro.AsNoTracking().FirstAsync(b => b.ID == id));
             }
             catch (Exception ex)
             {
@@ -78,11 +102,16 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="bairro"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<Bairro>> GetByNameAndCidadeId(Bairro bairro)
         {
             try
             {
-                return ResponseFactory<Bairro>.CreateSuccessItemResponse(await _db.Bairro.FirstOrDefaultAsync(b => b.NomeBairro == bairro.NomeBairro && b.CidadeId == bairro.CidadeId));
+                return ResponseFactory<Bairro>.CreateSuccessItemResponse(await _db.Bairro.AsNoTracking().FirstOrDefaultAsync(b => b.NomeBairro == bairro.NomeBairro && b.CidadeId == bairro.CidadeId));
             }
             catch (Exception ex)
             {
@@ -90,6 +119,10 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> Iniciar()
         {
             try
@@ -102,6 +135,10 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> IniciarReturnId()
         {
             try
@@ -115,6 +152,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="bairro"></param>
+        /// <returns></returns>
         public async Task<Response> Insert(Bairro bairro)
         {
             _db.Bairro.Add(bairro);
@@ -129,6 +171,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="bairro"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<int>> InsertReturnId(Bairro bairro)
         {
             _db.Bairro.Add(bairro);
@@ -143,6 +190,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="bairro"></param>
+        /// <returns></returns>
         public async Task<Response> Update(Bairro bairro)
         {
             _db.Bairro.Update(bairro);
