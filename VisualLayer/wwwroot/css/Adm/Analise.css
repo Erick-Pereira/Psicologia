@@ -119,8 +119,213 @@ nav.open .sidebar {
     background: rgba(0, 0, 0, 0.3);
 }
 
+.chart1 {
+    width:10%; 
+    position:absolute;
+    box-sizing: border-box;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    justify-content: center;
+    padding:1px;
+    margin-top:10px;
+    margin-left:389px;
+    margin-right:auto;
+    margin-bottom:auto;
+
+
+    align-items:center;
+}
+
+.chart2 {
+    width:10%; 
+    box-sizing: border-box;
+    position:absolute;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    justify-content: center;
+    padding:1px;
+    margin-top:10px;
+    margin-left:335px;
+    margin-right:auto;
+    margin-bottom:auto;
+
+
+    align-items:center;
+}
+
+.chart3 {
+    width:10%; 
+    box-sizing: border-box;
+    position:absolute;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    justify-content: center;
+    padding:1px;
+    margin-top:10px;
+    margin-left:355px;
+    margin-right:auto;
+    margin-bottom:auto;
+
+
+    align-items:center;
+}
+
+.chart4 {
+    width:10%; 
+    box-sizing: border-box;
+    position:absolute;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    justify-content: center;
+    padding:1px;
+    margin-top:10px;
+    margin-left:362px;
+    margin-right:auto;
+    margin-bottom:auto;
+
+
+    align-items:center;
+}
+
+.chart5 {
+    width:10%; 
+    box-sizing: border-box;
+    position:absolute;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    justify-content: center;
+    padding:1px;
+    margin-top:10px;
+    margin-left:357px;
+    margin-right:auto;
+    margin-bottom:auto;
+
+
+    align-items:center;
+}
+
+.chart6 {
+    width:20%; 
+    box-sizing: border-box;
+    position:absolute;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    justify-content: center;
+    padding:1px;
+    margin-top:10px;
+    margin-left:301px;
+    margin-right:auto;
+    margin-bottom:auto;
+
+
+    align-items:center;
+}
+
+.percentage {
+    width:40%; 
+    box-sizing: border-box;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    justify-content: center;
+    
+    margin-top: 100px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:auto;
+    box-shadow: 0px 10px 15px rgb(0 0 0 / 10%);
+    background:#FFFFFF;
+    align-items: left;
+    text-indent: 1px;
+    font-size:22px;
+    padding-left:5px;
+}
+
+.secondtitle {
+     
+
+    justify-content: center;
+
+    
+    margin-left:125px;
+    margin-right:auto;
+    align-items: center;
+    text-indent: 1.0px;
+    font-size:20px;
+}
+
 nav.open ~ .overlay {
     opacity: 1;
     left: 260px;
     pointer-events: auto;
+}
+
+@property --p{
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+.pie {
+  --p:40;
+  --b:3px;
+  --c:darkred;
+  --w:86px;
+  
+
+  
+  width:var(--w);
+  aspect-ratio:1;
+  
+  position:relative;
+  display:inline-grid;
+  place-content:center;
+  font-size:18px;
+  
+  font-weight:bold;
+  font-family:sans-serif;
+}
+.pie:before,
+.pie:after {
+  content:"";
+  position:absolute;
+  border-radius:50%;
+}
+.pie:before {
+  inset:0;
+  background:
+    radial-gradient(farthest-side,var(--c) 98%,#0000) top/var(--b) var(--b) no-repeat,
+    conic-gradient(var(--c) calc(var(--p)*1%),#0000 0);
+  -webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+          mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+}
+.pie:after {
+  inset:calc(50% - var(--b)/2);
+  background:var(--c);
+  transform:rotate(calc(var(--p)*3.6deg)) translateY(calc(50% - var(--w)/2));
+}
+.animate {
+  animation:p 1s .7s both;
+}
+.no-round:before {
+  background-size:0 0,auto;
+}
+.no-round:after {
+  content:none;
+}
+@keyframes p {
+  from{--p:0}
 }
