@@ -87,7 +87,9 @@
                     </p>
                     <div class="search-box">
                         <input type="text" id="teste" class="search-txt" onkeyup="myFunction" placeholder="Pesquisar" />
-                        <i class='bx bx-search icon'></i>
+                        <button class="submit-lent" type="">
+                            <i class='bx bx-search icon'></i>
+                        </button>
                     </div>
                 </div>
 
@@ -162,8 +164,10 @@
 
 
 
+
                                 @if (!item.IsAtivo)
                                     @Html.ActionLink("Ativar","Ativar", new {id = item.Id})
+
 
 
 
@@ -184,7 +188,7 @@
               function myFunction() {
             var input, filter, tr, th, textValue;
             input = document.getElementById("teste").value;
-            filter = input.value.toUpperCase();
+            filter = input.value;
             rTable = document.getElementById("myTable");
             tr = tr.getElementsByTagName("tr");
 

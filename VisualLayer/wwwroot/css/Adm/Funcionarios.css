@@ -128,16 +128,16 @@ nav.open ~ .overlay {
     transition: all 0.4s ease;
 }
 
-.flex {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 100%;
-    margin: 0 auto;
-}
 
-    .flex .contains {
+
+    .contains {
         margin: 5px;
         position: relative;
+        flex-wrap: wrap;
+        display: flex;
+        max-width: 100%;
+        margin: 0 auto;
+        min-width: 550px;
     }
 
 .contains .box-contains {
@@ -166,13 +166,14 @@ nav.open ~ .overlay {
 
 .search-box {
     position: absolute;
-    top: 64%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, 50%);
     height: 35px;
     padding: 10px;
     border-radius: 45px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
@@ -181,6 +182,7 @@ nav.open ~ .overlay {
         background: none;
         outline: none;
         padding: 3px;
+        margin: 10px;
         width: 400px;
         color: #333;
         font-size: 16px;
@@ -189,12 +191,15 @@ nav.open ~ .overlay {
         transition: 0.5s ease;
     }
 
-    .search-box .icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-    }
+ .submit-lent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    border: none;
+    background: transparent;
+    outline: none;
+}
 
 
 
