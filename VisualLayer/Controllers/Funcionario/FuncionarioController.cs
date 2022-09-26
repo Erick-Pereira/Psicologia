@@ -121,7 +121,7 @@ namespace VisualLayer.Controllers.Funcionario
         {
             FuncionarioRespostasQuestionarioSf36 sf36 = _mapper.Map<FuncionarioRespostasQuestionarioSf36>(respostas);
             Response response = await _sf36Service.CalcularScore(sf36);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(" / Home / CarregaGrafico");
         }
         [HttpGet]
         [Authorize]

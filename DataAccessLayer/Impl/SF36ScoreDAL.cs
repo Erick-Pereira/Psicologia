@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Interfaces;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using Shared;
 
 namespace DataAccessLayer.Impl
@@ -11,6 +12,54 @@ namespace DataAccessLayer.Impl
         public SF36ScoreDAL(DataBaseDbContext db)
         {
             this._db = db;
+        }
+
+        public async Task<DataResponse<SF36Score>> GetAllByFuncionarioId(Funcionario funcionario)
+        {
+            try
+            {
+                return ResponseFactory<SF36Score>.CreateSuccessDataResponse(await _db.Score.Where(s => s.FuncionarioID == funcionario.ID).ToListAsync());
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<SF36Score>.CreateFailureDataResponse(ex);
+            }
+        }
+
+        public async Task<DataResponse<SF36Score>> GetAllByFuncionarioId(int id)
+        {
+            try
+            {
+                return ResponseFactory<SF36Score>.CreateSuccessDataResponse(await _db.Score.Where(s => s.FuncionarioID == id).ToListAsync());
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<SF36Score>.CreateFailureDataResponse(ex);
+            }
+        }
+
+        public async Task<SingleResponse<SF36Score>> GetByFuncionarioIdAndDate(int id, DateTime data)
+        {
+            try
+            {
+                return ResponseFactory<SF36Score>.CreateSuccessItemResponse(await _db.Score.FirstOrDefaultAsync(s => s.FuncionarioID == id && s.Data == data));
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<SF36Score>.CreateFailureItemResponse(ex);
+            }
+        }
+
+        public async Task<SingleResponse<SF36Score>> GetByFuncionarioIdAndDate(Funcionario funcionario, DateTime data)
+        {
+            try
+            {
+                return ResponseFactory<SF36Score>.CreateSuccessItemResponse(await _db.Score.FirstOrDefaultAsync(s => s.FuncionarioID == funcionario.ID && s.Data == data));
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<SF36Score>.CreateFailureItemResponse(ex);
+            }
         }
 
         public async Task<Response> Insert(SF36Score score)
@@ -26,33 +75,6 @@ namespace DataAccessLayer.Impl
                 return ResponseFactory<Response>.CreateFailureResponse(ex);
             }
         }
-
-        public async Task<SingleResponse<int>> InsertReturnId(Endereco endereco)
-        {
-            _db.Endereco.Add(endereco);
-            try
-            {
-                await _db.SaveChangesAsync();
-                return ResponseFactory<int>.CreateSuccessItemResponse(endereco.ID);
-            }
-            catch (Exception ex)
-            {
-                return ResponseFactory<int>.CreateFailureItemResponse(ex);
-            }
-        }
-
-        public async Task<Response> Update(Endereco endereco)
-        {
-            _db.Endereco.Update(endereco);
-            try
-            {
-                await _db.SaveChangesAsync();
-                return ResponseFactory<Response>.CreateSuccessResponse();
-            }
-            catch (Exception ex)
-            {
-                return ResponseFactory<Response>.CreateFailureResponse(ex);
-            }
-        }
+      
     }
 }

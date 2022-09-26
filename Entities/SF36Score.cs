@@ -11,6 +11,8 @@
         public double AspectosSociais { get; set; }
         public double AspectosEmocionais { get; set; }
         public double SaudeMental { get; set; }
+        public double Score { get; set; }
+        public DateTime Data { get; set; }
         public int FuncionarioID { get; set; }
         public Funcionario FuncionarioSF36 { get; set; }
     }

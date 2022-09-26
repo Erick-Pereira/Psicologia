@@ -854,5 +854,25 @@ namespace BusinessLogicalLayer.BLL
                 return comparacaoSaude;
             }
         }
+
+        public Task<DataResponse<SF36Score>> GetAllByFuncionarioId(Funcionario funcionario)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<DataResponse<SF36Score>> GetAllByFuncionarioId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<SingleResponse<SF36Score>> GetByFuncionarioIdAndDate(int id, DateTime data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<SingleResponse<SF36Score>> GetByFuncionarioIdAndDate(Funcionario funcionario, DateTime data)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

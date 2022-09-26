@@ -46,11 +46,7 @@ namespace DataAccessLayer.Impl
         {
             try
             {
-                DataResponse<Equipe> dataResponse = new()
-                {
-                    Data = await _db.Equipe.ToListAsync()
-                };
-                return dataResponse;
+                return ResponseFactory<Equipe>.CreateSuccessDataResponse(await _db.Equipe.ToListAsync());
             }
             catch (Exception ex)
             {
@@ -62,11 +58,7 @@ namespace DataAccessLayer.Impl
         {
             try
             {
-                SingleResponse<Equipe> singleResponse = new()
-                {
-                    Item = await _db.Equipe.FindAsync(id)
-                };
-                return singleResponse;
+                return ResponseFactory<Equipe>.CreateSuccessItemResponse(await _db.Equipe.FindAsync(id));
             }
             catch (Exception ex)
             {
