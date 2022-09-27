@@ -102,26 +102,28 @@
             <tbody>
                 @foreach (var item in Model)
                 {
+
                     <tr>
-                        <td>
+                        <td style="box-sizing:border-box;background: #fff;">
                             @Html.DisplayFor(modelItem => item.Nome)
                         </td>
-                        <td>
+                        <td style="box-sizing:border-box;background: #fff;">
                             @Html.DisplayFor(modelItem => item.Cpf)
                         </td>
-                        <td>
+                        <td style="box-sizing:border-box;background: #fff;">
                             @Html.DisplayFor(modelItem => item.DataNascimento)
                         </td>
-                        <td>
+                        <td style="box-sizing:border-box;background: #fff;">
                             @Html.DisplayFor(modelItem => item.Cargo.Funcao)
                         </td>
-                        <td>
+                        <td style="box-sizing:border-box;background: #fff;">
                             @Html.DisplayFor(modelItem => item.Salario)
                         </td>
-                        <td>
+                        <td style="box-sizing:border-box;background: #fff;">
                             @Html.DisplayFor(modelItem => item.IsAtivo)
                         </td>
                         <td>
+                         <div style="font-size: 12px;word-spacing: 5px;justify-content:center;border:1px;border-radius: 12px; background: #fff;margin-right:85px;margin-left:85px;box-shadow: 0 5px 10px rgba(0,0,0,0.1);">  
                             @if (id != item.Id)
                             {
                                 @Html.ActionLink("Editar", "Editar", new {  id= item.Id})
@@ -142,12 +144,13 @@
 
                                 @Html.ActionLink("Delete", "Delete", new {  id=item.Id   })
                             }
+                         </div>      
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-    </div>
+        </div>
     <script>
         const navBar = document.querySelector("nav"),
             menuBtns = document.querySelectorAll(".menu-icon"),

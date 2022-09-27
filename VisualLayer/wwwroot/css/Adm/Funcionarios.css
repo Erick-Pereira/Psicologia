@@ -208,7 +208,7 @@ nav.open ~ .overlay {
     }
 
     .rTable tbody tr:nth-child(2n) {
-        background: #ccc;
+        background: rgba(204, 204, 204, 0);
     }
 
     .rTable th, .rTable td {
@@ -267,3 +267,4 @@ nav.open ~ .overlay {
         width: 5%;
     }
 }
+
