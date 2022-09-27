@@ -137,7 +137,7 @@ nav.open ~ .overlay {
         display: flex;
         max-width: 100%;
         margin: 0 auto;
-        min-width: 550px;
+        min-width: 570px;
     }
 
 .contains .box-contains {
@@ -164,9 +164,9 @@ nav.open ~ .overlay {
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
-.search-box {
+/*.search-box {
     position: absolute;
-    top: 60%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, 50%);
     height: 35px;
@@ -191,7 +191,7 @@ nav.open ~ .overlay {
         transition: 0.5s ease;
     }
 
- .submit-lent {
+ .search-box .submit-lent {
     position: absolute;
     top: 0;
     right: 0;
@@ -199,7 +199,43 @@ nav.open ~ .overlay {
     border: none;
     background: transparent;
     outline: none;
+}*/
+
+
+
+.form {
+    position: relative;
 }
+    .form .input {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        padding: 0 35px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        border-bottom: 2px solid #ccc;
+        border-top: 2px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    .form .icon {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: #9ca3af;
+    }
+
+.form-input {
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px;
+}
+
+    .form-input:focus {
+        box-shadow: none;
+        border: none;
+    }
 
 
 

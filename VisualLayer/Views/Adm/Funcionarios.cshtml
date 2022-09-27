@@ -85,12 +85,19 @@
                     <p>
                         <a asp-action="Cadastrar">Cadastrar novo Funcionario</a>
                     </p>
-                    <div class="search-box">
-                        <input type="text" id="teste" class="search-txt" onkeyup="myFunction" placeholder="Pesquisar" />
-                        <button class="submit-lent" type="">
-                            <i class='bx bx-search icon'></i>
+                    @*<div class="search-box">
+                        <button class="submit-lent" type="submit">
+                        <i class='bx bx-search icon'></i>
                         </button>
+                        <input type="text" id="teste" class="search-txt" onkeyup="myFunction" placeholder="Pesquisar" />
+                        </div>*@
+                    <div class="form">
+                         <div class="form-group">
+                        <input type="text" class="form-control form-input" placeholder="Pesquisar">
+                        </div>
+                        <i class="fa fa-search icon"></i>
                     </div>
+
                 </div>
 
             </div>
@@ -165,8 +172,10 @@
 
 
 
+
                                 @if (!item.IsAtivo)
                                     @Html.ActionLink("Ativar","Ativar", new {id = item.Id})
+
 
 
 
