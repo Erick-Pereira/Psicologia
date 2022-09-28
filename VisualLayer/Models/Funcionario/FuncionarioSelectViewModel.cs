@@ -1,4 +1,5 @@
 ﻿using Entities.Enums;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace VisualLayer.Models.Funcionario
@@ -28,4 +29,14 @@ namespace VisualLayer.Models.Funcionario
 
         public double Salario { get; set; }
     }
+
+
+
+    public PartialViewResult SearchFunc(string searchText)
+    {
+        List<FuncionarioSelectViewModel> model = new List<FuncionarioSelectViewModel>();
+        var result = model.Where(a => a.Nome.ToLower().Contains(searchText) || a.Cpf.ToString().Contains(searchText)).ToList();
+        return ViewResult("Funcionario" result);
+    }
+
 }
