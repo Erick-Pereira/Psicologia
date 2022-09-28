@@ -855,24 +855,40 @@ namespace BusinessLogicalLayer.BLL
             }
         }
 
-        public Task<DataResponse<SF36Score>> GetAllByFuncionarioId(Funcionario funcionario)
+        public async Task<Response> Delete(SF36Score score)
         {
-            throw new NotImplementedException();
+           return await _scoreDAL.Delete(score);
         }
 
-        public Task<DataResponse<SF36Score>> GetAllByFuncionarioId(int id)
+
+        public async Task<DataResponse<SF36Score>> GetAllByFuncionario(Funcionario funcionario)
         {
-            throw new NotImplementedException();
+            return await _scoreDAL.GetAllByFuncionario(funcionario);
         }
 
-        public Task<SingleResponse<SF36Score>> GetByFuncionarioIdAndDate(int id, DateTime data)
+        public async Task<DataResponse<SF36Score>> GetAllByFuncionario(int id)
         {
-            throw new NotImplementedException();
+            return await _scoreDAL.GetAllByFuncionario(id);
         }
 
-        public Task<SingleResponse<SF36Score>> GetByFuncionarioIdAndDate(Funcionario funcionario, DateTime data)
+        public async Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(Funcionario funcionario, DateTime data)
         {
-            throw new NotImplementedException();
+            return await _scoreDAL.GetByFuncionarioAndDate(funcionario, data);
+        }
+
+        public async Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(int id, DateTime data)
+        {
+            return await _scoreDAL.GetByFuncionarioAndDate(id, data);
+        }
+
+        public async Task<Response> Insert(SF36Score score)
+        {
+            return await _scoreDAL.Insert(score);
+        }
+
+        public Task<Response> Update(SF36Score score)
+        {
+            return _scoreDAL.Update(score);
         }
     }
 }

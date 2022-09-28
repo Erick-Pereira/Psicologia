@@ -8,7 +8,7 @@ objetoGrafico.CarregaGrafico = function () {
         {
             type: 'GET',
             timeout: 5000,
-            url: '/Home/CarregaGrafico',
+            url: '/Rh/CarregaGrafico',
             async: true,
 
             success: function (jsonResult) {

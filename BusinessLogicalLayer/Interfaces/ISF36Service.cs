@@ -24,10 +24,12 @@ namespace BusinessLogicalLayer.Interfaces
         Task<double> CalcularScoreSaudeMental(FuncionarioRespostasQuestionarioSf36 sf36scoreSaudeMental);
 
         Task<string> CopararSaude(FuncionarioRespostasQuestionarioSf36 sf36scoreSaudeComparada);
-
-        Task<SingleResponse<SF36Score>> GetByFuncionarioIdAndDate(int id, DateTime data);
-        Task<SingleResponse<SF36Score>> GetByFuncionarioIdAndDate(Funcionario funcionario, DateTime data);
-        Task<DataResponse<SF36Score>> GetAllByFuncionarioId(Funcionario funcionario);
-        Task<DataResponse<SF36Score>> GetAllByFuncionarioId(int id);
+        Task<Response> Insert(SF36Score score);
+        Task<DataResponse<SF36Score>> GetAllByFuncionario(Funcionario funcionario);
+        Task<DataResponse<SF36Score>> GetAllByFuncionario(int id);
+        Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(Funcionario funcionario,DateTime data);
+        Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(int id, DateTime data);
+        Task<Response> Update(SF36Score score);
+        Task<Response> Delete(SF36Score score);
     }
 }

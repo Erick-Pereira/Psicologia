@@ -14,7 +14,22 @@ namespace DataAccessLayer.Impl
             this._db = db;
         }
 
-        public async Task<DataResponse<SF36Score>> GetAllByFuncionarioId(Funcionario funcionario)
+        public async Task<Response> Delete(SF36Score score)
+        {
+          
+            try
+            {
+                _db.Remove(score);
+                await _db.SaveChangesAsync();
+                return ResponseFactory<SF36Score>.CreateSuccessResponse();
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<SF36Score>.CreateFailureDataResponse(ex);
+            }
+        }
+
+        public async Task<DataResponse<SF36Score>> GetAllByFuncionario(Funcionario funcionario)
         {
             try
             {
@@ -26,7 +41,7 @@ namespace DataAccessLayer.Impl
             }
         }
 
-        public async Task<DataResponse<SF36Score>> GetAllByFuncionarioId(int id)
+        public async Task<DataResponse<SF36Score>> GetAllByFuncionario(int id)
         {
             try
             {
@@ -38,7 +53,7 @@ namespace DataAccessLayer.Impl
             }
         }
 
-        public async Task<SingleResponse<SF36Score>> GetByFuncionarioIdAndDate(int id, DateTime data)
+        public async Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(int id, DateTime data)
         {
             try
             {
@@ -50,7 +65,7 @@ namespace DataAccessLayer.Impl
             }
         }
 
-        public async Task<SingleResponse<SF36Score>> GetByFuncionarioIdAndDate(Funcionario funcionario, DateTime data)
+        public async Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(Funcionario funcionario, DateTime data)
         {
             try
             {
@@ -75,6 +90,19 @@ namespace DataAccessLayer.Impl
                 return ResponseFactory<Response>.CreateFailureResponse(ex);
             }
         }
-      
+
+        public async Task<Response> Update(SF36Score score)
+        {
+            try
+            {
+                _db.Update(score);
+                await _db.SaveChangesAsync();
+                return ResponseFactory<SF36Score>.CreateSuccessResponse();
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<SF36Score>.CreateFailureDataResponse(ex);
+            }
+        }
     }
 }

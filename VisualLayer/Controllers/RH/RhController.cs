@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Interfaces;
+using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using Shared.Extensions;
+using System.Diagnostics;
 using System.Security.Claims;
+using VisualLayer.Models;
 using VisualLayer.Models.Funcionario;
 
 namespace VisualLayer.Controllers.RH
@@ -19,13 +22,15 @@ namespace VisualLayer.Controllers.RH
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment hostEnvironment;
+        private readonly ILogger<RhController> _logger;
 
-        public RhController(ICargoService cargoService, IFuncionarioService funcionarioService, IHttpContextAccessor httpContextAccessor, IMapper mapper, IWebHostEnvironment hostEnvironment)
+        public RhController(ILogger<RhController> logger, ICargoService cargoService, IFuncionarioService funcionarioService, IHttpContextAccessor httpContextAccessor, IMapper mapper, IWebHostEnvironment hostEnvironment)
         {
             _CargoService = cargoService;
             _FuncionarioService = funcionarioService;
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
+            _logger = logger;
             this.hostEnvironment = hostEnvironment;
         }
 
@@ -301,6 +306,40 @@ namespace VisualLayer.Controllers.RH
             ViewBag.Funcionario = _mapper.Map<FuncionarioUpdateAdmViewModel>(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item);
             ViewBag.Cargos = _CargoService.GetAll().Result.Data;
             return RedirectToAction(actionName: "Funcionarios", controllerName: controllerName);
+        }
+        [HttpGet("/RH/CarregaGrafico")]
+        public JsonResult CarregaGrafico()
+        {
+            double[] valore = { 67, 11, 98, 33, 1, 34, 66, 12, 90, 99, 7, 12, 44 };
+
+            var dados = new List<SF36Score>();
+
+            for (int i = 0; i < 8; i++)
+            {
+                dados.Add(new SF36Score
+                {
+                    AspectosSociais = 0,
+                    Score = valore[i]
+                });
+            }
+
+            return Json(new { dados = dados });
+
+        }
+        public IActionResult Grafico()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
