@@ -28,5 +28,7 @@ namespace DataAccessLayer.Interfaces
         Task<SingleResponse<int>> Logar(Funcionario funcionario);
 
         Task<Response> Update(Funcionario funcionario);
+
+        Task<DataResponse<Funcionario>> SearchItem(string searchString);
     }
 }

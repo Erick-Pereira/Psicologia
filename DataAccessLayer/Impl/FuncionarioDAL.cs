@@ -68,6 +68,8 @@ namespace DataAccessLayer.Impl
             }
         }
 
+
+
         /// <summary>
         ///
         /// </summary>
@@ -220,6 +222,19 @@ namespace DataAccessLayer.Impl
             catch (Exception ex)
             {
                 return ResponseFactory<Response>.CreateFailureResponse(ex);
+            }
+        }
+
+        public async Task<DataResponse<Funcionario>> SearchItem(string searchString)
+        {
+            try
+            {
+                List<Funcionario> funcionario = _db.Funcionario.Where(f => f.Nome.ToLower().Contains(searchString.ToLower())).ToList();
+                return ResponseFactory<Funcionario>.CreateSuccessDataResponse(funcionario); 
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Funcionario>.CreateFailureDataResponse(ex);
             }
         }
     }

@@ -430,5 +430,41 @@ namespace VisualLayer.Controllers.Adm
                 return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
             }
         }
+
+        public async Task<IActionResult> Search(string searchString)
+        {
+
+            IActionResult result = await Authorize(NIVEL_PERMISSAO);
+            if (result != null)
+            {
+                return result;
+            }
+
+            List<Entities.Funcionario> funcionarios;
+            string funcAtual = null;
+            if (string.IsNullOrWhiteSpace(searchString))
+            {
+                DataResponse<Entities.Funcionario> dataResponse = await _FuncionarioService.SearchItem(searchString);
+                funcionarios = dataResponse.Data;
+                funcAtual = "Todos os Funcionários";
+            }
+            else
+            {
+                DataResponse<Entities.Funcionario> dataResponse = await _FuncionarioService.SearchItem(searchString);
+                if (dataResponse.Data.Any())
+                {
+                    funcAtual = "Funcionario";
+                }
+                else
+                {
+                    funcAtual = "Nenhum Funcionario foi encontrado";
+                }
+            }
+            return View("~/Views/Lanche/List.cshtml", new ListLancheViewModel
+            {
+                Funcionarios = funcionarios,
+                FuncAtual = funcAtual
+            }) ;
+        }
     }
 }

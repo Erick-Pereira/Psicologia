@@ -81,6 +81,11 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.GetAll();
         }
 
+        public async Task<DataResponse<Funcionario>> SearchItem(string searchString)
+        {
+            return await _funcionarioDAL.SearchItem(searchString);
+        }
+
         /// <summary>
         /// </summary>
         /// <returns></returns>
