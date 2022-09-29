@@ -15,10 +15,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um Estado e Deleta no Banco de Dados
         /// </summary>
         /// <param name="estado"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Delete(Estado estado)
         {
             _db.Estado.Remove(estado);
@@ -34,13 +34,13 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um ID de Estado e Deleta no Banco de Dados
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Delete(int id)
         {
-            _db.Estado.Remove(new Estado() { ID = id });
+            _db.Estado.Remove(GetByID(id).Result.Item);
             try
             {
                 await _db.SaveChangesAsync();
@@ -53,9 +53,9 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Busca no Banco de Dados todos os Estados Registrados
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um DataResponse contendo todos os Estados no Banco de Dados</returns>
         public async Task<DataResponse<Estado>> GetAll()
         {
             try
@@ -69,10 +69,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um ID e busca no Banco de Dados o Estado referente ao ID passado
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo o Estado referente ao ID passado</returns>
         public async Task<SingleResponse<Estado>> GetByID(int id)
         {
             try
@@ -86,10 +86,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um UF e Busca no Banco de Dados o Estado referente ao UF passado
         /// </summary>
         /// <param name="uf"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo o Estado</returns>
         public async Task<SingleResponse<Estado>> GetByUF(string uf)
         {
             try
@@ -103,9 +103,26 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        ///  Recebe um Estado com UF e Nome preenchidos e Busca no Banco de Dados o Estado referente ao UF e Nome passados
         /// </summary>
-        /// <returns></returns>
+        /// <param name="estado"></param>
+        /// <returns>Retorna um SingleResponse contendo o Estado</returns>
+        public async Task<SingleResponse<Estado>> GetByUFAndName(Estado estado)
+        {
+            try
+            {
+                return ResponseFactory<Estado>.CreateSuccessItemResponse(await _db.Estado.FirstOrDefaultAsync(e => e.Sigla == estado.Sigla && e.NomeEstado == estado.NomeEstado));
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Estado>.CreateFailureItemResponse(ex);
+            }
+        }
+
+        /// <summary>
+        /// Conta a quantidade de Estados com nome e sigla vazios
+        /// </summary>
+        /// <returns>Retorna um SingleResponse contendo a quantidade de Estados com nome Vazio</returns>
         public async Task<SingleResponse<int>> Iniciar()
         {
             try
@@ -119,9 +136,9 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Verificar se existe um Estado com Nome e sigla vazios e busca o ID
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo o ID do Estado</returns>
         public async Task<SingleResponse<int>> IniciarReturnId()
         {
             try
@@ -137,10 +154,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um Estado e Insere no Banco de Dados
         /// </summary>
         /// <param name="estado"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Insert(Estado estado)
         {
             _db.Estado.Add(estado);
@@ -156,10 +173,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um Estado e Insere no Banco de Dados
         /// </summary>
         /// <param name="estado"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo o ID do Estado inserido</returns>
         public async Task<SingleResponse<int>> InsertReturnId(Estado estado)
         {
             _db.Estado.Add(estado);
@@ -175,10 +192,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um Estado e faz o Update no Banco de Dados
         /// </summary>
         /// <param name="estado"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Update(Estado estado)
         {
             _db.Estado.Update(estado);

@@ -1,0 +1,111 @@
+﻿﻿.conteudo {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 1rem;
+    display: contents;
+}
+
+.top {
+    height: 80px;
+    width: 100%;
+    background: gray;
+    overflow: hidden;
+}
+
+h1 {
+    color: honeydew;
+    margin: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.grafico {
+    height: 400px;
+    width: 100%;
+    padding-top: 8px;
+    position: absolute;
+    padding: 2px 2px 2px 2px;
+}
+
+.rodape {
+    height: 40px;
+    width: 100%;
+    background: gray;
+    position: absolute;
+    bottom: 0px;
+}
+
+.gridColuna {
+    display: flex;
+    width: 100%;
+    padding: 2px 2px 2px 2px;
+    position: absolute;
+    background: rgba(220, 220, 220, 0.488);
+    padding: 1rem;
+    overflow: auto;
+}
+
+.coluna {
+    height: 400px;
+    width: 100px;
+    margin-left: 3.8%;
+    background: rgba(250, 250, 210, 0.639);
+    margin-bottom: 10px;
+}
+
+.tituloColuna {
+    width: 100px;
+    height: 10px;
+    bottom: 11px;
+    position: absolute;
+    font-size: 12px;
+    font-style: normal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 5px;
+}
+
+.colunaPorcentagem {
+    width: 10px;
+    border-radius: 7px;
+    height: 280px;
+    background: gray;
+    bottom: 40px;
+    position: absolute;
+    margin-left: 45px;
+}
+
+.porcentagem {
+    width: 6px;
+    height: 90%;
+    background: rgba(0, 255, 136, 0.488);
+    position: absolute;
+    bottom: 2px;
+    margin-left: 1.9px;
+    border-radius: 5px;
+}
+
+.bolinha {
+    width: 45px;
+    height: 45px;
+    border-radius: 25px;
+    background: whitesmoke;
+    border: 1px solid black;
+    border-style: dashed;
+    position: absolute;
+    margin-left: 30px;
+    top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.porcentagemTitulo {
+    font-size: 12px;
+    font-style: normal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    top: 15px;
+    position: absolute;
+}
+
+.bolinhaVermelha {
+    background: MistyRose;
+}

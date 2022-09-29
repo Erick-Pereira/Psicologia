@@ -6,6 +6,9 @@ namespace BusinessLogicalLayer.Validators.FuncionarioValidator
 {
     public class UpdateAdmFuncionarioValidator : AbstractValidator<Funcionario>
     {
+        /// <summary>
+        /// Faz todas as validações para fazer o update no banco de dados
+        /// </summary>
         public UpdateAdmFuncionarioValidator()
         {
             RuleFor(f => f.Cpf).NotEmpty().WithMessage(FuncionarioConstants.MENSAGEM_ERRO_CPF_OBRIGATORIO).Length(FuncionarioConstants.TAMANHO_CPF).WithMessage(FuncionarioConstants.MENSAGEM_ERRO_CPF_COMPRIMENTO).Must(Validator.IsCpf).WithMessage(FuncionarioConstants.MENSAGEM_ERRO_CPF_FORMATO_INVALIDO);

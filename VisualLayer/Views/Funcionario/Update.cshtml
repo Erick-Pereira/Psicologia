@@ -9,10 +9,11 @@
     List<Estado> estados = ViewBag.Estados;
 }
 <head>
+    <link rel="stylesheet" href="~/css/Funcionario/FuncionariosUpdate.css">
     <meta charset="UTF-8" />
     <title>Update</title>
 </head>
-<h1>Update</h1>
+<h1 class="updatetitle">Update</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -27,9 +28,9 @@
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Cpf" class="control-label"></label>
-                <input asp-for="Cpf" for="input_cpf" class="form-control" />
-                <span asp-validation-for="Cpf" class="text-danger"></span>
+                <label asp-for="Celular" class="control-label"></label>
+                <input asp-for="Celular" class="form-control" />
+                <span asp-validation-for="Celular" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Cep" class="control-label"></label>
@@ -148,53 +149,53 @@
 </div>
 @section Scripts
     {
-    <script>
-        function limpa_formulario_cep() {
-            $("#EstadoId").removeAttr("disabled");
-            $("#EstadoId option[selected]").removeAttr("selected");
-            $("#EstadoId #empty").attr("selected", "");
-            $("#Cidade").val("");
-            $("#Cidade").removeAttr("disabled");
-            $("#Bairro").val("");
-            $("#Bairro").removeAttr("disabled");
-            $("#Rua").val("");
-            $("#Rua").removeAttr("disabled");
-        };
-        function buscaCep() {
-            var code = $("#Cep").val().replace(/\D/g, '');
-            if (code.length === 8) {
-                var url = "https://viacep.com.br/ws/" + code + "/json/";
-                $.getJSON(url, function (dados) {
-                    if (!("erro" in dados)) {
-                        $("#Cep").removeClass("is-invalid");
-                        var option = $("option[value = " + dados.uf + "]");
-                        option.attr("selected", "");
-                        //$("#EstadoId").attr("disabled", "");
-                        $("#Cidade").val(dados.localidade);
-                        //$("#Cidade").attr("disabled", "");
-                        if (dados.bairro !== "") {
-                            $("#Bairro").val(dados.bairro);
-                            //$("#Bairro").attr("disabled", "");
-                        } else {
-                            $("#Bairro").val("");
-                            //$("#Bairro").removeAttr("disabled");
-                        }
-                        if (dados.logradouro !== "") {
-                            $("#Rua").val(dados.logradouro);
-                            //$("#Rua").attr("disabled", "");
-                        } else {
-                            $("#Rua").val("");
-                            //$("#Rua").removeAttr("disabled");
-                        }
+<script>
+    function limpa_formulario_cep() {
+        $("#EstadoId").removeAttr("disabled");
+        $("#EstadoId option[selected]").removeAttr("selected");
+        $("#EstadoId #empty").attr("selected", "");
+        $("#Cidade").val("");
+        $("#Cidade").removeAttr("disabled");
+        $("#Bairro").val("");
+        $("#Bairro").removeAttr("disabled");
+        $("#Rua").val("");
+        $("#Rua").removeAttr("disabled");
+    };
+    function buscaCep() {
+        var code = $("#Cep").val().replace(/\D/g, '');
+        if (code.length === 8) {
+            var url = "https://viacep.com.br/ws/" + code + "/json/";
+            $.getJSON(url, function (dados) {
+                if (!("erro" in dados)) {
+                    $("#Cep").removeClass("is-invalid");
+                    var option = $("option[value = " + dados.uf + "]");
+                    option.attr("selected", "");
+                    //$("#EstadoId").attr("disabled", "");
+                    $("#Cidade").val(dados.localidade);
+                    //$("#Cidade").attr("disabled", "");
+                    if (dados.bairro !== "") {
+                        $("#Bairro").val(dados.bairro);
+                        //$("#Bairro").attr("disabled", "");
+                    } else {
+                        $("#Bairro").val("");
+                        //$("#Bairro").removeAttr("disabled");
                     }
-                    else {
-                        limpa_formulario_cep();
-                        Cep.addClass("is-invalid");
+                    if (dados.logradouro !== "") {
+                        $("#Rua").val(dados.logradouro);
+                        //$("#Rua").attr("disabled", "");
+                    } else {
+                        $("#Rua").val("");
+                        //$("#Rua").removeAttr("disabled");
                     }
-                });
-            } else {
-                limpa_formulario_cep();
-            }
+                }
+                else {
+                    limpa_formulario_cep();
+                    Cep.addClass("is-invalid");
+                }
+            });
+        } else {
+            limpa_formulario_cep();
         }
-    </script>
+    }
+</script>
 }

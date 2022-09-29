@@ -4,6 +4,7 @@ using System.Net;
 
 namespace BusinessLogicalLayer.API
 {
+    //ESSA CLASSE NÃO ESTA SENDO USADA NO PRODUTO FINAL
     public class CepAPI
     {
         public string CEP { get; set; }
@@ -13,9 +14,10 @@ namespace BusinessLogicalLayer.API
         public string Estado { get; set; }
 
         /// <summary>
+        /// Recebe um CEP e busca, atravez de uma API, o endereço referente ao CEP
         /// </summary>
         /// <param name="cep"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um CepAPI contendo o Endereco preenchido</returns>
         public static CepAPI Busca(string cep)
         {
             if (!string.IsNullOrWhiteSpace(cep))

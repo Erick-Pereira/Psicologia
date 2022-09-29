@@ -16,26 +16,29 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
+        /// Recebe um Cargo e Chama o metodo Delete do CargoDAL
         /// </summary>
         /// <param name="cargo"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Delete(Cargo cargo)
         {
             return await _cargoDAL.Delete(cargo);
         }
 
         /// <summary>
+        /// Recebe um ID e chama o metodo Delete do CargoDAL
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Delete(int id)
         {
             return await _cargoDAL.Delete(id);
         }
 
         /// <summary>
+        /// Chama o metodo GetAll do CargoDAL
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um DataResponse contendo todos os Cargos registrados no Banco de Dados</returns>
         public async Task<DataResponse<Cargo>> GetAll()
         {
             return await _cargoDAL.GetAll();

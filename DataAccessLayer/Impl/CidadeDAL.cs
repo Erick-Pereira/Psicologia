@@ -15,10 +15,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe uma Cidade e Deleta no Banco de Dados
         /// </summary>
         /// <param name="cidade"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Delete(Cidade cidade)
         {
             _db.Cidade.Remove(cidade);
@@ -34,13 +34,13 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um ID de Cidade e Deleta no Banco de Dados
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Delete(int id)
         {
-            _db.Cidade.Remove(new Cidade() { ID = id });
+            _db.Cidade.Remove(GetByID(id).Result.Item);
             try
             {
                 await _db.SaveChangesAsync();
@@ -53,9 +53,9 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Buscar todas as Cidades Registradas no Banco de Dados
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um DataResponse contendo todas as Cidade registradas no Banco de Dados</returns>
         public async Task<DataResponse<Cidade>> GetAll()
         {
             try
@@ -69,10 +69,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um ID de Cidade e Busca Todas as informações no Banco de Dados
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo uma Cidade referente ao ID informado</returns>
         public async Task<SingleResponse<Cidade>> GetByID(int id)
         {
             try
@@ -86,10 +86,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe uma Cidade contendo Nome e ID de Estado e Busca todas as informações referente a Cidade no Banco de Dados
         /// </summary>
         /// <param name="cidade"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo uma Cidade</returns>
         public async Task<SingleResponse<Cidade>> GetByNameAndEstadoId(Cidade cidade)
         {
             try
@@ -103,9 +103,9 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Conta quantas Cidades tem o nome vazio para o primeiro login
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo a quantidade de Cidades que contem o nome vazio</returns>
         public async Task<SingleResponse<int>> Iniciar()
         {
             try
@@ -119,9 +119,9 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Busca o ID da Cidade com o nome vazio
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo o ID da Cidade com nome vazio</returns>
         public async Task<SingleResponse<int>> IniciarReturnId()
         {
             try
@@ -137,10 +137,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe uma Cidade e insere no Banco de Dados
         /// </summary>
         /// <param name="cidade"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Insert(Cidade cidade)
         {
             _db.Cidade.Add(cidade);
@@ -156,10 +156,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe uma Cidade e insere no Banco de Dados
         /// </summary>
         /// <param name="cidade"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo o ID da Cidade inserida</returns>
         public async Task<SingleResponse<int>> InsertReturnId(Cidade cidade)
         {
             _db.Cidade.Add(cidade);
@@ -175,10 +175,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe uma Cidade e faz o Update no Banco de Dados
         /// </summary>
         /// <param name="cidade"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Update(Cidade cidade)
         {
             _db.Cidade.Update(cidade);

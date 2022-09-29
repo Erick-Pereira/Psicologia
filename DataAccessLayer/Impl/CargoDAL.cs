@@ -15,10 +15,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um Cargo e Deleta no Banco de Dados
         /// </summary>
         /// <param name="cargo"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Delete(Cargo cargo)
         {
             _db.Cargo.Remove(cargo);
@@ -34,13 +34,13 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um ID de Cargo e Deleta no Banco de Dados
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Delete(int id)
         {
-            _db.Cargo.Remove(new Cargo() { ID = id });
+            _db.Cargo.Remove(GetByID(id).Result.Item);
             try
             {
                 await _db.SaveChangesAsync();
@@ -53,9 +53,9 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Busca todos os Cargos registrados no Banco de Dados
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um DataResponse contendo todos os Cargos registrados no Banco de Dados</returns>
         public async Task<DataResponse<Cargo>> GetAll()
         {
             try
@@ -69,10 +69,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um ID de Cargo e Busca um Cargo referente ao ID informado
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo um Bairro referente ao ID informado</returns>
         public async Task<SingleResponse<Cargo>> GetByID(int id)
         {
             try
@@ -86,9 +86,9 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Conta quantos Cargos tem nivel de Permissão 0
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse informando a quantidade de cargos com nivel de Permissão 0</returns>
         public async Task<SingleResponse<int>> Iniciar()
         {
             try
@@ -102,9 +102,9 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Buscar um Cargo com nivel de permissão 0 e retorna o ID dele
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo um ID de Cargo</returns>
         public async Task<SingleResponse<int>> IniciarReturnId()
         {
             try
@@ -120,10 +120,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um Cargo e insere no Banco de Dados
         /// </summary>
         /// <param name="cargo"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Insert(Cargo cargo)
         {
             _db.Cargo.Add(cargo);
@@ -139,10 +139,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um Cargo e insere no Banco de Dados
         /// </summary>
         /// <param name="cargo"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo o ID do Cargo inserido</returns>
         public async Task<SingleResponse<int>> InsertReturnId(Cargo cargo)
         {
             _db.Cargo.Add(cargo);
@@ -158,10 +158,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um Cargo e faz o Update no Banco de Dados
         /// </summary>
         /// <param name="cargo"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Update(Cargo cargo)
         {
             _db.Cargo.Update(cargo);

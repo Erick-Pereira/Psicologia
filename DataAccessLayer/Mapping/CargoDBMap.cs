@@ -6,6 +6,10 @@ namespace DataAccessLayer.Mapping
 {
     internal class CargoDBMap : IEntityTypeConfiguration<Cargo>
     {
+        /// <summary>
+        /// Faz a Configuração da Tabela de Cargo no Banco de Dados
+        /// </summary>
+        /// <param name="builder"></param>
         public void Configure(EntityTypeBuilder<Cargo> builder)
         {
             builder.HasIndex(c => c.Funcao).IsUnique();

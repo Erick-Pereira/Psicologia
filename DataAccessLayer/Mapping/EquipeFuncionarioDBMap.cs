@@ -6,6 +6,10 @@ namespace DataAccessLayer.Mapping
 {
     internal class EquipeFuncionarioDBMap : IEntityTypeConfiguration<EquipeFuncionario>
     {
+        /// <summary>
+        /// Faz a Configuração da Tabela de Equipe_Funcionario no Banco de Dados (NO MOMENTO NÃO ESTA SENDO ULTILIZADA)
+        /// </summary>
+        /// <param name="builder"></param>
         public void Configure(EntityTypeBuilder<EquipeFuncionario> builder)
         {
             builder.ToTable("EQUIPE_FUNCIONARIO");

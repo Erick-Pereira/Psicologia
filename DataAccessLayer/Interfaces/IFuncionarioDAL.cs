@@ -13,7 +13,7 @@ namespace DataAccessLayer.Interfaces
 
         Task<DataResponse<Funcionario>> GetAllAtivos();
 
-        Task<SingleResponse<int>> GetAllByEnderecoId(int id);
+        Task<SingleResponse<int>> CountAllByEnderecoId(int id);
 
         Task<SingleResponse<Funcionario>> GetByID(int id);
 
@@ -28,5 +28,7 @@ namespace DataAccessLayer.Interfaces
         Task<SingleResponse<int>> Logar(Funcionario funcionario);
 
         Task<Response> Update(Funcionario funcionario);
+
+        Task<DataResponse<Funcionario>> SearchItem(string searchString);
     }
 }

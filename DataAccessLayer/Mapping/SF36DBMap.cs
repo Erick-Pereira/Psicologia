@@ -6,6 +6,10 @@ namespace DataAccessLayer.Mapping
 {
     internal class SF36DBMap : IEntityTypeConfiguration<SF36Score>
     {
+        /// <summary>
+        /// Faz a Configuração da Tabela de SF36 no Banco de Dados
+        /// </summary>
+        /// <param name="builder"></param>
         public void Configure(EntityTypeBuilder<SF36Score> builder)
         {
             builder.Property(c => c.AspectosSociais).IsRequired();

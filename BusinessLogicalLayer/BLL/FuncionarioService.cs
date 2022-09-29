@@ -81,6 +81,11 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.GetAll();
         }
 
+        public async Task<DataResponse<Funcionario>> SearchItem(string searchString)
+        {
+            return await _funcionarioDAL.SearchItem(searchString);
+        }
+
         /// <summary>
         /// </summary>
         /// <returns></returns>
@@ -93,9 +98,9 @@ namespace BusinessLogicalLayer.BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<SingleResponse<int>> GetAllByEnderecoId(int id)
+        public async Task<SingleResponse<int>> CountAllByEnderecoId(int id)
         {
-            return await _funcionarioDAL.GetAllByEnderecoId(id);
+            return await _funcionarioDAL.CountAllByEnderecoId(id);
         }
 
         /// <summary>
@@ -271,7 +276,7 @@ namespace BusinessLogicalLayer.BLL
             }
 
             int enderecoIdVelho = funcionario.EnderecoID;
-            int verify = _funcionarioDAL.GetAllByEnderecoId(funcionario.EnderecoID).Result.Item;
+            int verify = CountAllByEnderecoId(funcionario.EnderecoID).Result.Item;
             if (verify != 1)
             {
                 //Se a quantidade de Funcionarios no endereços for diferente que 1, ele entra no if
@@ -519,7 +524,7 @@ namespace BusinessLogicalLayer.BLL
                     return responseCidade;
                 }
             }
-            if (_funcionarioDAL.GetAllByEnderecoId(enderecoIdVelho).Result.Item == 0)
+            if (CountAllByEnderecoId(enderecoIdVelho).Result.Item == 0)
             {
                 //Se não há mais funcionarios no Endereço antigo, deleta o Endereço
                 Endereco endereco = _enderecoService.GetByID(enderecoIdVelho).Result.Item;
@@ -527,13 +532,13 @@ namespace BusinessLogicalLayer.BLL
                 if (responseDelete.HasSuccess)
                 {
                     Bairro bairro = _bairroService.GetByID(endereco.BairroID).Result.Item;
-                    if (_enderecoService.GetAllByBairroId(bairro.ID).Result.Item == 0)
+                    if (_enderecoService.CountAllByBairroId(bairro.ID).Result.Item == 0)
                     {
                         responseDelete = await _bairroService.Delete(bairro);
                         if (responseDelete.HasSuccess)
                         {
                             Cidade cidade = _cidadeService.GetByID(bairro.CidadeId).Result.Item;
-                            if (_bairroService.GetAllByCidadeId(cidade.ID).Result.Item == 0)
+                            if (_bairroService.CountAllByCidadeId(cidade.ID).Result.Item == 0)
                             {
                                 responseDelete = await _cidadeService.Delete(cidade);
                                 if (!responseDelete.HasSuccess)

@@ -15,6 +15,10 @@ namespace BusinessLogicalLayer.Interfaces
 
         Task<SingleResponse<Estado>> GetByUF(string uf);
 
+        Task<Response> VerifyEstados();
+
+        Task<SingleResponse<Estado>> GetByUFAndName(Estado estado);
+
         Task<SingleResponse<bool>> Iniciar();
 
         Task<SingleResponse<int>> IniciarReturnId();

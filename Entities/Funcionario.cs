@@ -35,8 +35,5 @@ namespace Entities
         public bool HasRequiredTest { get; set; }
         public bool IsAtivo { get; set; }
         public bool IsFirstLogin { get; set; }
-        public int SF36ScoreID { get; set; }
-
-        public ICollection<SF36Score> Sf36Score { get; set; }
     }
 }

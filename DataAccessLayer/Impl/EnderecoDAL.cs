@@ -15,10 +15,27 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um ID de Bairro e Conta quantos Enderecos estão ligados a esse Bairro
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Retorna um SingleResponse contendo a quantidade de Enderecos ligados a um Bairro</returns>
+        public async Task<SingleResponse<int>> CountAllByBairroId(int id)
+        {
+            try
+            {
+                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Endereco.AsNoTracking().Where(e => e.BairroID == id).CountAsync());
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<int>.CreateFailureItemResponse(ex);
+            }
+        }
+
+        /// <summary>
+        /// Recebe um Endereco e Deleta no Banco de Dados
         /// </summary>
         /// <param name="endereco"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Delete(Endereco endereco)
         {
             _db.Endereco.Remove(endereco);
@@ -34,10 +51,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um ID de Endereco e Deleta no Banco de Dados
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Delete(int id)
         {
             _db.Endereco.Remove(GetByID(id).Result.Item);
@@ -53,9 +70,9 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Busca todos os Enderecos registrados no Banco de Dados
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um DataResponse contendo todos os Enderecos registrados no Banco de Dados</returns>
         public async Task<DataResponse<Endereco>> GetAll()
         {
             try
@@ -69,27 +86,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task<SingleResponse<int>> GetAllByBairroId(int id)
-        {
-            try
-            {
-                return ResponseFactory<int>.CreateSuccessItemResponse(await _db.Endereco.AsNoTracking().Where(e => e.BairroID == id).CountAsync());
-            }
-            catch (Exception ex)
-            {
-                return ResponseFactory<int>.CreateFailureItemResponse(ex);
-            }
-        }
-
-        /// <summary>
-        ///
+        /// Recebe um Endereco contendo rua,numero da casa, CEP e ID de Bairro e Busca no Banco de Dados um Bairro com as mesmas informações
         /// </summary>
         /// <param name="endereco"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo um Endereco com as mesmas informações recebidas</returns>
 
         public async Task<SingleResponse<Endereco>> GetByEndereco(Endereco endereco)
 
@@ -105,10 +105,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um ID de Endereco e Busca todas as informações referentes ao ID informado
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo um Endereco referente ao ID informado</returns>
         public async Task<SingleResponse<Endereco>> GetByID(int id)
         {
             try
@@ -122,9 +122,9 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Conta quantos Enderecos tem valores vazios para o primeiro registro
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo a quantidade de Enderecos com valores vazios</returns>
         public async Task<SingleResponse<int>> Iniciar()
         {
             try
@@ -138,9 +138,9 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Busca um Endereco com cep e rua vazio
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo um Endereco</returns>
         public async Task<SingleResponse<int>> IniciarReturnId()
         {
             try
@@ -156,10 +156,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um Endereco e Insere no Banco de Dados
         /// </summary>
         /// <param name="endereco"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Insert(Endereco endereco)
         {
             _db.Endereco.Add(endereco);
@@ -175,10 +175,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um Endereco e Insere no Banco de Dados
         /// </summary>
         /// <param name="endereco"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo o ID do Endereco inserido</returns>
         public async Task<SingleResponse<int>> InsertReturnId(Endereco endereco)
         {
             _db.Endereco.Add(endereco);
@@ -194,10 +194,10 @@ namespace DataAccessLayer.Impl
         }
 
         /// <summary>
-        ///
+        /// Recebe um Endereco e faz Update no Banco de Dados
         /// </summary>
         /// <param name="endereco"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Update(Endereco endereco)
         {
             _db.Endereco.Update(endereco);

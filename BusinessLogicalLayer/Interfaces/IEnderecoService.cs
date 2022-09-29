@@ -13,7 +13,7 @@ namespace BusinessLogicalLayer.Interfaces
 
         Task<SingleResponse<Endereco>> GetByEndereco(Endereco endereco);
 
-        Task<SingleResponse<int>> GetAllByBairroId(int id);
+        Task<SingleResponse<int>> CountAllByBairroId(int id);
 
         Task<SingleResponse<Endereco>> GetByID(int id);
 

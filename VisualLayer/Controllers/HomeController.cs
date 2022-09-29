@@ -81,7 +81,6 @@ namespace VisualLayer.Controllers
                 Entities.Funcionario funcionario = _FuncionarioService.GetByID(await GetIdByCookie()).Result.Item;
                 if (await _FuncionarioService.Logar(funcionario))
                 {
-                    funcionario = _FuncionarioService.GetByLogin(funcionario).Result.Item;
                     funcionario.Cargo = _cargoService.GetByID(funcionario.CargoID).Result.Item;
                     if (funcionario.IsFirstLogin)
                         return RedirectToAction(actionName: "Update", controllerName: "Funcionario");
@@ -123,8 +122,7 @@ namespace VisualLayer.Controllers
         {
             try
             {
-                _InicioService.Iniciar();
-
+                await _InicioService.Iniciar();
                 login.Senha = login.Senha.Hash();
                 Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(login);
                 if (await _FuncionarioService.Logar(funcionario))
@@ -135,9 +133,9 @@ namespace VisualLayer.Controllers
                     Logar(funcionario);
 
                     if (funcionario.IsFirstLogin)
-                        return RedirectToAction(actionName: "Update", controllerName: "Funcionario", funcionario.ID);
+                        return RedirectToAction(actionName: "Update", controllerName: "Funcionario");
                     if (funcionario.HasRequiredTest)
-                        return RedirectToAction(actionName: "Sf36 ", controllerName: "Funcionario", funcionario.ID);
+                        return RedirectToAction(actionName: "Sf36", controllerName: "Funcionario");
                     if (funcionario.Cargo.NivelPermissao == 0)
                         return RedirectToAction(actionName: "Index", controllerName: "Adm");
                     if (funcionario.Cargo.NivelPermissao == 3)

@@ -5,6 +5,7 @@ using Shared;
 
 namespace DataAccessLayer.Impl
 {
+    //ESSA CLASSE NÃO ESTA SENDO USADA NO MOMENTO
     public class CompromissoDAL : ICompromissoDAL
     {
         private readonly DataBaseDbContext _db;

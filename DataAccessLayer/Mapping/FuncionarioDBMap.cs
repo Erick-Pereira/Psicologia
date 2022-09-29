@@ -7,6 +7,10 @@ namespace DataAccessLayer.Mapping
 {
     internal class FuncionarioDBMap : IEntityTypeConfiguration<Funcionario>
     {
+        /// <summary>
+        /// Faz a Configuração da Tabela de Funcionario no Banco de Dados
+        /// </summary>
+        /// <param name="builder"></param>
         public void Configure(EntityTypeBuilder<Funcionario> builder)
         {
             builder.HasIndex(f => f.Cpf).IsUnique().HasDatabaseName("UQ_FUNCIONARIO_CPF");

@@ -6,6 +6,10 @@ namespace DataAccessLayer.Mapping
 {
     internal class EstadoDBMap : IEntityTypeConfiguration<Estado>
     {
+        /// <summary>
+        /// Faz a Configuração da Tabela de Estado no Banco de Dados
+        /// </summary>
+        /// <param name="builder"></param>
         public void Configure(EntityTypeBuilder<Estado> builder)
         {
             builder.HasIndex(e => e.NomeEstado).IsUnique();

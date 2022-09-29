@@ -17,10 +17,10 @@ namespace VisualLayer.Controllers.Funcionario
         private const int NIVEL_PERMISSAO = 3;
         private readonly IEstadoService _estadoService;
         private readonly IFuncionarioService _FuncionarioService;
+        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
         private readonly ISF36Service _sf36Service;
-        private readonly IWebHostEnvironment _hostEnvironment;
 
         public FuncionarioController(IEstadoService estadoService, IFuncionarioService funcionarioService, IHttpContextAccessor httpContextAccessor, IMapper mapper, ISF36Service sf36Service, IWebHostEnvironment hostEnvironment) : base(funcionarioService, httpContextAccessor)
         {
@@ -153,37 +153,25 @@ namespace VisualLayer.Controllers.Funcionario
         [Authorize]
         public async Task<IActionResult> SF36()
         {
-            try
-            {
-                SingleResponse<Entities.Funcionario> response = await _FuncionarioService.GetByID(await GetIdByCookie());
-                if (response.Item.HasRequiredTest)
-                {
-                    return View();
-                }
-                else
-                {
-                    return RedirectToAction(actionName: "Logarr", controllerName: "home");
-                }
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
+            return View();
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> SF36(FuncionarioRespostasQuestionarioSf36 respostas)
+        public async Task<IActionResult> SF36(FuncionarioRespostasQuestionarioSf36ViewModel respostas)
         {
             try
             {
-                Response response = await _sf36Service.CalcularScore(respostas);
-                return RedirectToAction("Index", "Home");
+                Entities.Funcionario funcionario = _FuncionarioService.GetByID(GetIdByCookie().Result).Result.Item;
+                FuncionarioRespostasQuestionarioSf36 sf36 = _mapper.Map<FuncionarioRespostasQuestionarioSf36>(respostas);
+                Response response = await _sf36Service.CalcularScore(sf36,funcionario);
+                return RedirectToAction(" / Home / CarregaGrafico");
             }
             catch (Exception ex)
             {
                 return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
             }
+
         }
 
         [HttpGet]
@@ -197,6 +185,7 @@ namespace VisualLayer.Controllers.Funcionario
                 {
                     FuncionarioUpdateViewModel funcionario = _mapper.Map<FuncionarioUpdateViewModel>(response.Item);
                     funcionario.EstadoUf = response.Item.Endereco.Bairro.Cidade.Estado.Sigla;
+                    funcionario.Celular = response.Item.Celular;
                     funcionario.Cep = response.Item.Endereco.CEP;
                     funcionario.NumeroCasa = response.Item.Endereco.NumeroCasa;
                     funcionario.Rua = response.Item.Endereco.Rua;
@@ -223,10 +212,10 @@ namespace VisualLayer.Controllers.Funcionario
         public async Task<IActionResult> Update(FuncionarioUpdateViewModel funcionarioUpdate)
         {
             try
-            {
+            {                
                 Entities.Funcionario funcionario2 = _FuncionarioService.GetByID(Convert.ToInt32(funcionarioUpdate.Id)).Result.Item;
                 funcionario2.Nome = funcionarioUpdate.Nome;
-                funcionario2.Cpf = funcionarioUpdate.Cpf;
+                funcionario2.Celular = funcionarioUpdate.Celular;
                 funcionario2.Endereco.Bairro.Cidade.Estado = _estadoService.GetByUF(funcionarioUpdate.EstadoUf).Result.Item;
                 funcionario2.Endereco.Bairro.Cidade.EstadoId = funcionario2.Endereco.Bairro.Cidade.Estado.ID;
                 funcionario2.Endereco.Bairro.Cidade.NomeCidade = funcionarioUpdate.Cidade;

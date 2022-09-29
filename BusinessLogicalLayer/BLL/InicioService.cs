@@ -40,15 +40,19 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        ///  Executa toda a politica para que tenha ao menos um Adm registrado no Banco de Dados
         /// </summary>
-        /// <returns></returns>
-
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Iniciar()
 
         {
             if (!hasVerified)
             {
+                Response response = await _estadoService.VerifyEstados();
+                if (!response.HasSuccess)
+                {
+                    return response;
+                }
                 if (!_funcionarioService.Iniciar().Result.Item)
                 {
                     if (!_enderecoService.Iniciar().Result.Item)

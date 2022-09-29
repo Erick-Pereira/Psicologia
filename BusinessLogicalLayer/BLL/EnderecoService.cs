@@ -45,9 +45,9 @@ namespace BusinessLogicalLayer.BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<SingleResponse<int>> GetAllByBairroId(int id)
+        public async Task<SingleResponse<int>> CountAllByBairroId(int id)
         {
-            return await _enderecoDAL.GetAllByBairroId(id);
+            return await _enderecoDAL.CountAllByBairroId(id);
         }
 
         /// <summary>
