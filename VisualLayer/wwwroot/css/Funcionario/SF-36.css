@@ -1,0 +1,123 @@
+﻿.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    table-layout: fixed;
+}
+
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+        .styled-table tbody tr.active-row {
+            font-weight: bold;
+            color: #009879;
+            display: flex;
+        }
+
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#menu-horizontal {
+    list-style: none;
+}
+
+    #menu-horizontal li {
+        display: flex;
+        background-color: #009879;
+        padding: 0px;
+        position: sticky;
+        align-items: center;
+        justify-content: center;
+        top: 0px;
+        cursor: pointer;
+    }
+
+        #menu-horizontal li a {
+            color: #ffffff;
+            padding: 30px;
+            display: flex;
+            text-decoration: none;
+        }
+
+            #menu-horizontal li a:hover {
+                color: #000000;
+            }
+
+#titulo {
+    font-family: sans-serif;
+    color: #380B61;
+    margin-left: 40%;
+}
+
+#subtitulo {
+    font-family: sans-serif;
+    color: #380B61;
+    margin-left: 39%;
+}
+
+#check {
+    display: inline-block;
+}
+
+body {
+    background-color: #F0F8FF;
+    font-family: sans-serif;
+    font-size: 1em;
+    color: #59429d;
+    margin-left: 1%;
+    align-items: left;
+    margin-top: 2%;
+    justify-content: center;
+}
+
+/* Elemento de classe "botao" */
+.botao {
+    display: inline-flex;
+    font-size: 1.2em;
+    background: #59429d;
+    border: 0;
+    margin-bottom: 1em;
+    color: #ffffff;
+    padding: 0.2em 0.6em;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    transform: translate(-50%, -50%)
+}
+
+    /* Elemento de classe "botao" com o estado da pseudoclasse "hover" */
+    .botao:hover {
+        background: #CCBBFF;
+        box-shadow: inset 2px 2px 2px rgba(0,0,0,0.2);
+        text-shadow: none;
+    }
+
+/* Elementos de classe botão e de tag <select> */
+.botao, select {
+    cursor: pointer;
+}

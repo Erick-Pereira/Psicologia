@@ -190,35 +190,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
    <script>
-              function myFunction() {
-            var input, filter, tr, th, textValue;
-            input = document.getElementById("teste").value;
-            filter = input.value;
-            rTable = document.getElementById("myTable");
-            tr = tr.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                th = rTable[i].getElementsByTagName("th")[0];
-                if(th){
-                txtValue = th.textContent || th.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        txtValue = a.textContent || a.innerText;
-                        rTable.[i].style.display = "";
-                    } else {
-                        th.[i].style.display = "None";
-                            }
-                      }
-            }
-        }
-                //const navBar = document.querySelector("nav"),
-                //    menuBtns = document.querySelectorAll(".menu-icon"),
-                //    overlay = document.querySelector(".overlay");
-                //menuBtns.forEach((menuBtn) => {
-                //    menuBtn.addEventListener("click", () => {
-                //        navBar.classList.toggle("open");
-                //    });
-                //});
-                //overlay.addEventListener("click", () => {
-                //    navBar.classList.remove("open");
-                //});
+        //      function myFunction() {
+        //    var input, filter, tr, th, textValue;
+        //    input = document.getElementById("teste").value;
+        //    filter = input.value;
+        //    rTable = document.getElementById("myTable");
+        //    tr = tr.getElementsByTagName("tr");
+        //    for (i = 0; i < tr.length; i++) {
+        //        th = rTable[i].getElementsByTagName("th")[0];
+        //        if(th){
+        //        txtValue = th.textContent || th.innerText;
+        //            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        //                txtValue = a.textContent || a.innerText;
+        //                rTable.[i].style.display = "";
+        //            } else {
+        //                th.[i].style.display = "None";
+        //                    }
+        //              }
+        //    }
+        //}
+                const navBar = document.querySelector("nav"),
+                    menuBtns = document.querySelectorAll(".menu-icon"),
+                    overlay = document.querySelector(".overlay");
+                menuBtns.forEach((menuBtn) => {
+                    menuBtn.addEventListener("click", () => {
+                        navBar.classList.toggle("open");
+                    });
+                });
+                overlay.addEventListener("click", () => {
+                    navBar.classList.remove("open");
+                });
     </script>
 </section>

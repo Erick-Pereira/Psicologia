@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using BusinessLogicalLayer.Interfaces;
+using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using Shared.Extensions;
+using System.Diagnostics;
+using VisualLayer.Models;
 using VisualLayer.Models.Cargo;
 using VisualLayer.Models.Funcionario;
 using VisualLayer.Security;
@@ -15,18 +18,84 @@ namespace VisualLayer.Controllers.RH
         private const int NIVEL_PERMISSAO = 1;
         private const string ENCRYPT = "ID";
         private readonly ICargoService _CargoService;
+        private readonly ISF36Service _sf36;
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment hostEnvironment;
 
-        public RhController(ICargoService cargoService, IFuncionarioService funcionarioService, IHttpContextAccessor httpContextAccessor, IMapper mapper, IWebHostEnvironment hostEnvironment) : base(funcionarioService, httpContextAccessor)
+        public RhController(ICargoService cargoService, IFuncionarioService funcionarioService, IHttpContextAccessor httpContextAccessor, IMapper mapper, IWebHostEnvironment hostEnvironment, ISF36Service sf36) : base(funcionarioService, httpContextAccessor)
         {
             _CargoService = cargoService;
             _FuncionarioService = funcionarioService;
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
+            _sf36 = sf36;
             this.hostEnvironment = hostEnvironment;
+        }
+
+        [HttpGet("/RH/CarregaGrafico")]
+        public async Task<JsonResult> CarregaGrafico(int id = 7)
+        {
+            //int[] valore = { 67, 11, 98, 33, 1, 34, 66, 12, 90, 99, 7, 12, 44 };
+            //var dados = new List<GraficoModel>();
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    dados.Add(new GraficoModel
+            //    {
+            //        TituloRodape = string.Concat(" Sim - ", i.ToString()),
+            //        Porcentagem = valore[i]
+            //    });
+            //}
+            //return Json(new { dados = dados });
+            DataResponse<SF36Score> response = await _sf36.GetLast3SFByFuncionario(id);
+            List<SF36Score> scores = response.Data;
+            SF36Score score = scores[0];
+            string[] titulos = { "Dor", "Estado geral de Saúde", "Capacidade Funcional", "Vitalidade", "Saúde Mental", "Limitação por Aspectos Fisicos", "Limitação por Aspectos Emocionais", "Aspectos Sociais" };
+            double[] valores = { score.Dor, score.EstadoSaude, score.CapacidadeFuncional, score.Vitalidade, score.SaudeMental, score.LimitacaoAspectosFisicos, score.AspectosEmocionais, score.AspectosSociais };
+
+            var dados = new List<GraficoModel>();
+
+            for (int i = 0; i < 8; i++)
+            {
+                dados.Add(new GraficoModel
+                {
+                    TituloRodape = titulos[i],
+                    Porcentagem = Convert.ToInt32(valores[i])
+                });
+            }
+
+            return Json(new { dados = dados });
+        }
+
+        public async Task<IActionResult> Grafico()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+            }
+        }
+
+        public async Task<IActionResult> Privacy()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+            }
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public async Task<IActionResult> Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         [Authorize]
@@ -443,5 +512,11 @@ namespace VisualLayer.Controllers.RH
                 return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
             }
         }
+    }
+
+    public class GraficoModel
+    {
+        public string TituloRodape { get; set; }
+        public int Porcentagem { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿/* Google Fonts - Poppins */
+﻿﻿ /* Google Fonts - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 * {
@@ -125,6 +125,82 @@ nav.open .sidebar {
     transition: all 0.4s ease;
     background: rgba(0, 0, 0, 0.3);
 }
+
+.passbutton {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.infohead {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.passbox {
+    box-sizing: border-box;
+    width: 110%;
+    height: 394px;
+    background: #fff;
+    padding-left: 13px;
+    margin-top: 100px;
+    margin-left: 15px;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    float: left;
+}
+
+.my-flex-container {
+    display: flex;
+    max-width: 600px;
+    height: 390px;
+    background-color: rgb(255, 255, 255);
+}
+
+.configbox {
+    padding-bottom: 10px;
+    margin-left: 15px;
+    margin-top: 100px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 15px;
+    box-sizing: border-box;
+    width: 45%;
+    height: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    float: left;
+    white-space: nowrap;
+}
+
+
+.inforesulttext {
+    float: right;
+    white-space: nowrap;
+}
+
+.textpassbox {
+    align-content: center;
+}
+
+
 
 nav.open ~ .overlay {
     opacity: 1;

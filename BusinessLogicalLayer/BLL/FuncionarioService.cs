@@ -81,6 +81,11 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.GetAll();
         }
 
+        public async Task<DataResponse<Funcionario>> SearchItem(string searchString)
+        {
+            return await _funcionarioDAL.SearchItem(searchString);
+        }
+
         /// <summary>
         /// </summary>
         /// <returns></returns>
@@ -533,7 +538,7 @@ namespace BusinessLogicalLayer.BLL
                         if (responseDelete.HasSuccess)
                         {
                             Cidade cidade = _cidadeService.GetByID(bairro.CidadeId).Result.Item;
-                            if (_bairroService.GetAllByCidadeId(cidade.ID).Result.Item == 0)
+                            if (_bairroService.CountAllByCidadeId(cidade.ID).Result.Item == 0)
                             {
                                 responseDelete = await _cidadeService.Delete(cidade);
                                 if (!responseDelete.HasSuccess)

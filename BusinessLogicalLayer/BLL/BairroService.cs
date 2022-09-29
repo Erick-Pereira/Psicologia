@@ -10,6 +10,7 @@ namespace BusinessLogicalLayer.BLL
         private readonly IBairroDAL _bairroDAL;
 
         /// <summary>
+        /// Construtor do BairroService
         /// </summary>
         /// <param name="bairroDAL"></param>
         public BairroService(IBairroDAL bairroDAL)
@@ -18,29 +19,32 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
+        /// Recebe um Bairro e chama o metodo Delete do BairroDAL
         /// </summary>
         /// <param name="bairro"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Delete(Bairro bairro)
         {
             return await _bairroDAL.Delete(bairro);
         }
 
         /// <summary>
+        /// Chama o Metodo GetAll do BairroDAL
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um DataResponse contendo todos os Bairros do banco de dados</returns>
         public async Task<DataResponse<Bairro>> GetAll()
         {
             return await _bairroDAL.GetAll();
         }
 
         /// <summary>
+        /// Recebe um ID de cidade e pega a quantidade de Bairros ligados a essa cidade
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<SingleResponse<int>> GetAllByCidadeId(int id)
+        public async Task<SingleResponse<int>> CountAllByCidadeId(int id)
         {
-            return await _bairroDAL.GetAllByCidadeId(id);
+            return await _bairroDAL.CountAllByCidadeId(id);
         }
 
         /// <summary>

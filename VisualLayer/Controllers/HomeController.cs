@@ -81,7 +81,6 @@ namespace VisualLayer.Controllers
                 Entities.Funcionario funcionario = _FuncionarioService.GetByID(await GetIdByCookie()).Result.Item;
                 if (await _FuncionarioService.Logar(funcionario))
                 {
-                    funcionario = _FuncionarioService.GetByLogin(funcionario).Result.Item;
                     funcionario.Cargo = _cargoService.GetByID(funcionario.CargoID).Result.Item;
                     if (funcionario.IsFirstLogin)
                         return RedirectToAction(actionName: "Update", controllerName: "Funcionario");

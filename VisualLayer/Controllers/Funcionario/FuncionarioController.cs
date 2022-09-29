@@ -153,37 +153,16 @@ namespace VisualLayer.Controllers.Funcionario
         [Authorize]
         public async Task<IActionResult> SF36()
         {
-            try
-            {
-                SingleResponse<Entities.Funcionario> response = await _FuncionarioService.GetByID(await GetIdByCookie());
-                if (response.Item.HasRequiredTest)
-                {
-                    return View();
-                }
-                else
-                {
-                    return RedirectToAction(actionName: "Logarr", controllerName: "home");
-                }
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
+            return View();
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> SF36(FuncionarioRespostasQuestionarioSf36 respostas)
+        public async Task<IActionResult> SF36(FuncionarioRespostasQuestionarioSf36ViewModel respostas)
         {
-            try
-            {
-                Response response = await _sf36Service.CalcularScore(respostas);
-                return RedirectToAction("Index", "Home");
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
+            FuncionarioRespostasQuestionarioSf36 sf36 = _mapper.Map<FuncionarioRespostasQuestionarioSf36>(respostas);
+            Response response = await _sf36Service.CalcularScore(sf36);
+            return RedirectToAction(" / Home / CarregaGrafico");
         }
 
         [HttpGet]

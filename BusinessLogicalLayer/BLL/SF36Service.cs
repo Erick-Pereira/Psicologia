@@ -97,7 +97,6 @@ namespace BusinessLogicalLayer.BLL
         }
 
         public async Task<double> CalcularScoreCapacidadeFuncional(FuncionarioRespostasQuestionarioSf36 sf36scoreCapacidadeFuncional)
-
         {
             double capaficadeFuncional = 0;
             double limiteInferior = 10;
@@ -248,7 +247,6 @@ namespace BusinessLogicalLayer.BLL
         }
 
         public async Task<double> CalcularScoreDor(FuncionarioRespostasQuestionarioSf36 sf36scoreDor)
-
         {
             double dor = 0;
             double limiteInferior = 2;
@@ -344,7 +342,6 @@ namespace BusinessLogicalLayer.BLL
         }
 
         public async Task<double> CalcularScoreEstadoSaude(FuncionarioRespostasQuestionarioSf36 sf36scoreEstadoSaude)
-
         {
             double estadoSaude1 = 0;
             double estadoSaude11 = 0;
@@ -464,7 +461,6 @@ namespace BusinessLogicalLayer.BLL
         }
 
         public async Task<double> CalcularScoreLimitacaoEmocional(FuncionarioRespostasQuestionarioSf36 sf36scoreLimitacaoEmocional)
-
         {
             double limitacaoEmocional = 0;
             double limiteInferior = 3;
@@ -505,7 +501,6 @@ namespace BusinessLogicalLayer.BLL
         }
 
         public async Task<double> CalcularScoreLimitacaoFisica(FuncionarioRespostasQuestionarioSf36 sf36scoreLimitacaoFisica)
-
         {
             double limitacaoFisica = 0;
             double limiteInferior = 4;
@@ -554,7 +549,6 @@ namespace BusinessLogicalLayer.BLL
         }
 
         public async Task<double> CalcularScoreSaudeMental(FuncionarioRespostasQuestionarioSf36 sf36scoreSaudeMental)
-
         {
             double saudeMental = 0;
             double limiteInferior = 5;
@@ -693,7 +687,6 @@ namespace BusinessLogicalLayer.BLL
         }
 
         public async Task<double> CalcularScoreVitalidade(FuncionarioRespostasQuestionarioSf36 sf36scoreVitalidade)
-
         {
             double vitalidade = 0;
             double limiteInferior = 4;
@@ -806,7 +799,6 @@ namespace BusinessLogicalLayer.BLL
         }
 
         public async Task<string> CopararSaude(FuncionarioRespostasQuestionarioSf36 sf36scoreSaudeComparada)
-
         {
             {
                 string comparacaoSaude = "";
@@ -836,6 +828,46 @@ namespace BusinessLogicalLayer.BLL
                 }
                 return comparacaoSaude;
             }
+        }
+
+        public async Task<Response> Delete(SF36Score score)
+        {
+            return await _scoreDAL.Delete(score);
+        }
+
+        public async Task<DataResponse<SF36Score>> GetAllByFuncionario(Funcionario funcionario)
+        {
+            return await _scoreDAL.GetAllByFuncionario(funcionario);
+        }
+
+        public async Task<DataResponse<SF36Score>> GetAllByFuncionario(int id)
+        {
+            return await _scoreDAL.GetAllByFuncionario(id);
+        }
+
+        public async Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(Funcionario funcionario, DateTime data)
+        {
+            return await _scoreDAL.GetByFuncionarioAndDate(funcionario, data);
+        }
+
+        public async Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(int id, DateTime data)
+        {
+            return await _scoreDAL.GetByFuncionarioAndDate(id, data);
+        }
+
+        public async Task<DataResponse<SF36Score>> GetLast3SFByFuncionario(int id)
+        {
+            return await _scoreDAL.GetLast3SFByFuncionario(id);
+        }
+
+        public async Task<Response> Insert(SF36Score score)
+        {
+            return await _scoreDAL.Insert(score);
+        }
+
+        public Task<Response> Update(SF36Score score)
+        {
+            return _scoreDAL.Update(score);
         }
     }
 }
