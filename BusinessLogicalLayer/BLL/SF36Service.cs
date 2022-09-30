@@ -16,6 +16,7 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<Response> CalcularScore(FuncionarioRespostasQuestionarioSf36 sf36scoretotal)
         {
+
             double[] constructs = new double[8];
             string comparacaoSaude = "";
            
@@ -46,6 +47,7 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<double> CalcularScoreAspectosSociais(FuncionarioRespostasQuestionarioSf36 sf36scoreAspectosSociais)
         {
+            
             double aspectosSociais = 0;
             double limiteInferior = 2;
             double variacao = 8;
@@ -470,7 +472,7 @@ namespace BusinessLogicalLayer.BLL
                     estadoSaude11 += 1;
                     break;
             }
-            return (estadoSaude1 + estadoSaude11 - limiteInferior) * 100 / variacao;
+            return (Math.Round((estadoSaude1+estadoSaude11 - limiteInferior) * 100 / variacao, MidpointRounding.AwayFromZero));
         }
 
         public async Task<double> CalcularScoreLimitacaoEmocional(FuncionarioRespostasQuestionarioSf36 sf36scoreLimitacaoEmocional)

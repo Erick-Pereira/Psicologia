@@ -313,7 +313,7 @@ namespace VisualLayer.Controllers.RH
         public async Task<JsonResult> CarregaGrafico(int id = 7)
         {
             //int[] valore = { 67, 11, 98, 33, 1, 34, 66, 12, 90, 99, 7, 12, 44 };
-            //var dados = new List<GraficoModel>();
+            //var dados = new List<GraficoModel>(); 
             //for (int i = 0; i < 8; i++)
             //{
             //    dados.Add(new GraficoModel

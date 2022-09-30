@@ -9,7 +9,7 @@
 .top {
     height: 80px;
     width: 100%;
-    background: gray;
+    background: #009879;
     overflow: hidden;
 }
 
@@ -30,7 +30,7 @@ h1 {
 .rodape {
     height: 40px;
     width: 100%;
-    background: gray;
+    background: #009879;
     position: absolute;
     bottom: 0px;
 }
@@ -40,7 +40,7 @@ h1 {
     width: 100%;
     padding: 2px 2px 2px 2px;
     position: absolute;
-    background: rgba(220, 220, 220, 0.488);
+    background:#F0F8FF;
     padding: 1rem;
     overflow: auto;
 }

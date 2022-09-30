@@ -72,13 +72,13 @@
 #titulo {
     font-family: sans-serif;
     color: #380B61;
-    margin-left: 40%;
+    margin-left: 37%;
 }
 
 #subtitulo {
     font-family: sans-serif;
     color: #380B61;
-    margin-left: 39%;
+    margin-left: 38%;
 }
 
 #check {
@@ -91,14 +91,14 @@ body {
     font-size: 1em;
     color: #59429d;
     margin-left: 1%;
-    align-items: left;
     margin-top: 2%;
-    justify-content: center;
+    justify-content: left;
+
 }
 
 /* Elemento de classe "botao" */
 .botao {
-    display:inline-flex;
+    margin-left:50%;
     font-size: 1.2em;
     background: #59429d;
     border: 0;

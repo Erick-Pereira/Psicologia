@@ -295,12 +295,26 @@ namespace VisualLayer.Controllers.Adm
             Entities.Funcionario verify = _FuncionarioService.GetInformationToVerify(Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.Sid).Value.Decrypt(ENCRYPT))).Result.Item;
             if (verify.Cargo.NivelPermissao != NIVEL_PERMISSAO || verify.IsFirstLogin || verify.HasRequiredTest)
             {
-                return RedirectToAction(actionName: "Logarr", controllerName: "Home");
+                IActionResult result = await Authorize(NIVEL_PERMISSAO);
+                if (result != null)
+                {
+                    return result;
+                }
+
+                _FuncionarioService.ResetarSenha(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item);
+
+                ViewBag.Funcionario = _mapper.Map<FuncionarioUpdateAdmViewModel>(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item);
+                ViewBag.Cargos = _CargoService.GetAll().Result.Data;
+                return RedirectToAction(actionName: "Funcionarios");
             }
-            _FuncionarioService.ResetarSenha(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item);
-            ViewBag.Funcionario = _mapper.Map<FuncionarioUpdateAdmViewModel>(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item);
-            ViewBag.Cargos = _CargoService.GetAll().Result.Data;
-            return RedirectToAction(actionName: "Funcionarios", controllerName: "Adm");
+            catch (Exception ex)
+            {
+                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+            }
         }
+
+       
+        
+
     }
 }
