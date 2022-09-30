@@ -20,6 +20,7 @@ namespace VisualLayer.Controllers.RH
         private readonly ICargoService _CargoService;
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ISF36Service _sf36;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment hostEnvironment;
         private readonly ILogger<RhController> _logger;
@@ -308,18 +309,33 @@ namespace VisualLayer.Controllers.RH
             return RedirectToAction(actionName: "Funcionarios", controllerName: controllerName);
         }
         [HttpGet("/RH/CarregaGrafico")]
-        public JsonResult CarregaGrafico()
+        public async Task<JsonResult> CarregaGrafico(int id)
         {
-            double[] valore = { 67, 11, 98, 33, 1, 34, 66, 12, 90, 99, 7, 12, 44 };
+            //int[] valore = { 67, 11, 98, 33, 1, 34, 66, 12, 90, 99, 7, 12, 44 };
+            //var dados = new List<GraficoModel>();
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    dados.Add(new GraficoModel
+            //    {
+            //        TituloRodape = string.Concat(" Sim - ", i.ToString()),
+            //        Porcentagem = valore[i]
+            //    });
+            //}
+            //return Json(new { dados = dados });
+            DataResponse<SF36Score> response = await _sf36.GetLast3SFByFuncionario(id);
+            List<SF36Score> scores = response.Data;
+            SF36Score score =  scores[0];
+            string[] titulos = { "Dor", "Capacidade Funcional", "Limitação por Aspectos Físicos", "Estado geral de Saúde", "Vitalidade", "Aspectos Sociais", "Limitação por Aspectos Emocionais", "Saúde Mental" };
+            double[] valores = { score.Dor, score.EstadoSaude, score.CapacidadeFuncional,score.Vitalidade,score.SaudeMental,score.LimitacaoAspectosFisicos,score.AspectosEmocionais,score.AspectosSociais};
 
-            var dados = new List<SF36Score>();
+            var dados = new List<GraficoModel>();
 
             for (int i = 0; i < 8; i++)
             {
-                dados.Add(new SF36Score
+                dados.Add(new GraficoModel
                 {
-                    AspectosSociais = 0,
-                    Score = valore[i]
+                    TituloRodape = titulos[i],
+                    Porcentagem = Convert.ToInt32(valores[i])
                 });
             }
 
@@ -341,5 +357,10 @@ namespace VisualLayer.Controllers.RH
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+    }
+    public class GraficoModel
+    {
+        public string TituloRodape { get; set; }
+        public int Porcentagem { get; set; }
     }
 }

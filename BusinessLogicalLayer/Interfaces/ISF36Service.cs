@@ -22,7 +22,7 @@ namespace BusinessLogicalLayer.Interfaces
         Task<double> CalcularScoreLimitacaoEmocional(FuncionarioRespostasQuestionarioSf36 sf36scoreLimitacaoEmocional);
 
         Task<double> CalcularScoreSaudeMental(FuncionarioRespostasQuestionarioSf36 sf36scoreSaudeMental);
-
+        Task<DataResponse<SF36Score>> GetLast3SFByFuncionario(int id);
         Task<string> CopararSaude(FuncionarioRespostasQuestionarioSf36 sf36scoreSaudeComparada);
         Task<Response> Insert(SF36Score score);
         Task<DataResponse<SF36Score>> GetAllByFuncionario(Funcionario funcionario);

@@ -77,6 +77,18 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        public async Task<DataResponse<SF36Score>> GetLast3SFByFuncionario(int id)
+        {
+            try
+            {
+                return ResponseFactory<SF36Score>.CreateSuccessDataResponse(await _db.Score.Where(s => s.FuncionarioID == id).OrderByDescending(c=>c.ID).Take(3).ToListAsync());
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<SF36Score>.CreateFailureDataResponse(ex);
+            }
+        }
+
         public async Task<Response> Insert(SF36Score score)
         {
             _db.Score.Add(score);

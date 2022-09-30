@@ -10,6 +10,8 @@ namespace DataAccessLayer.Interfaces
         Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(Funcionario funcionario, DateTime data);
         Task<DataResponse<SF36Score>> GetAllByFuncionario(Funcionario funcionario);
         Task<DataResponse<SF36Score>> GetAllByFuncionario(int id);
+        Task<DataResponse<SF36Score>> GetLast3SFByFuncionario(int id);
+
         Task<Response> Update(SF36Score score);
         Task<Response> Delete(SF36Score score);
     }

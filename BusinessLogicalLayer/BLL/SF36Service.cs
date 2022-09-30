@@ -881,6 +881,11 @@ namespace BusinessLogicalLayer.BLL
             return await _scoreDAL.GetByFuncionarioAndDate(id, data);
         }
 
+        public async Task<DataResponse<SF36Score>> GetLast3SFByFuncionario(int id)
+        {
+            return await _scoreDAL.GetLast3SFByFuncionario(id);
+        }
+
         public async Task<Response> Insert(SF36Score score)
         {
             return await _scoreDAL.Insert(score);
