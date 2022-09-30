@@ -57,7 +57,7 @@ namespace DataAccessLayer.Impl
         {
             try
             {
-                return ResponseFactory<SF36Score>.CreateSuccessItemResponse(await _db.Score.FirstOrDefaultAsync(s => s.FuncionarioID == id && s.Data == data));
+                return ResponseFactory<SF36Score>.CreateSuccessItemResponse(await _db.Score.FirstOrDefaultAsync(s => s.FuncionarioID == id && s.DataSF == data));
             }
             catch (Exception ex)
             {
@@ -69,7 +69,7 @@ namespace DataAccessLayer.Impl
         {
             try
             {
-                return ResponseFactory<SF36Score>.CreateSuccessItemResponse(await _db.Score.FirstOrDefaultAsync(s => s.FuncionarioID == funcionario.ID && s.Data == data));
+                return ResponseFactory<SF36Score>.CreateSuccessItemResponse(await _db.Score.FirstOrDefaultAsync(s => s.FuncionarioID == funcionario.ID && s.DataSF == data));
             }
             catch (Exception ex)
             {

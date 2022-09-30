@@ -25,7 +25,7 @@ namespace VisualLayer.Controllers.RH
         private readonly IWebHostEnvironment hostEnvironment;
         private readonly ILogger<RhController> _logger;
 
-        public RhController(ILogger<RhController> logger, ICargoService cargoService, IFuncionarioService funcionarioService, IHttpContextAccessor httpContextAccessor, IMapper mapper, IWebHostEnvironment hostEnvironment)
+        public RhController(ILogger<RhController> logger, ISF36Service sf36, ICargoService cargoService, IFuncionarioService funcionarioService, IHttpContextAccessor httpContextAccessor, IMapper mapper, IWebHostEnvironment hostEnvironment)
         {
             _CargoService = cargoService;
             _FuncionarioService = funcionarioService;
@@ -33,6 +33,7 @@ namespace VisualLayer.Controllers.RH
             _mapper = mapper;
             _logger = logger;
             this.hostEnvironment = hostEnvironment;
+            this._sf36 = sf36;
         }
 
         [Authorize]
@@ -309,7 +310,7 @@ namespace VisualLayer.Controllers.RH
             return RedirectToAction(actionName: "Funcionarios", controllerName: controllerName);
         }
         [HttpGet("/RH/CarregaGrafico")]
-        public async Task<JsonResult> CarregaGrafico(int id)
+        public async Task<JsonResult> CarregaGrafico(int id = 7)
         {
             //int[] valore = { 67, 11, 98, 33, 1, 34, 66, 12, 90, 99, 7, 12, 44 };
             //var dados = new List<GraficoModel>();
@@ -325,7 +326,7 @@ namespace VisualLayer.Controllers.RH
             DataResponse<SF36Score> response = await _sf36.GetLast3SFByFuncionario(id);
             List<SF36Score> scores = response.Data;
             SF36Score score =  scores[0];
-            string[] titulos = { "Dor", "Capacidade Funcional", "Limitação por Aspectos Físicos", "Estado geral de Saúde", "Vitalidade", "Aspectos Sociais", "Limitação por Aspectos Emocionais", "Saúde Mental" };
+            string[] titulos = { "Dor", "Estado geral de Saúde", "Capacidade Funcional", "Vitalidade", "Saúde Mental", "Limitação por Aspectos Fisicos", "Limitação por Aspectos Emocionais", "Aspectos Sociais" };
             double[] valores = { score.Dor, score.EstadoSaude, score.CapacidadeFuncional,score.Vitalidade,score.SaudeMental,score.LimitacaoAspectosFisicos,score.AspectosEmocionais,score.AspectosSociais};
 
             var dados = new List<GraficoModel>();

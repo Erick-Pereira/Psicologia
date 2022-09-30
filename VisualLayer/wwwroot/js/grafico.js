@@ -8,7 +8,7 @@ objetoGrafico.CarregaGrafico = function () {
         {
             type: 'GET',
             timeout: 5000,
-            url: '/Rh/CarregaGrafico',
+            url: '/Rh/CarregaGrafico/',
             async: true,
 
             success: function (jsonResult) {
@@ -20,12 +20,12 @@ objetoGrafico.CarregaGrafico = function () {
                     tituloColuna.text(item.tituloRodape);
 
                     var colunaPorcentagem = $("<div>", { class: "colunaPorcentagem" });
-                    var porcentagem = $("<div>", { class: "porcentagem", style: "height: " + item.porcentagem + "%" });
+                    var porcentagem = $("<div>", { class: "porcentagem", style: "height: " + item.porcentagem  });
                     colunaPorcentagem.append(porcentagem);
 
                     var bolinha = $("<div>", { class: "bolinha" });
                     var porcentagemTitulo = $("<span>", { class: "porcentagemTitulo" });
-                    porcentagemTitulo.text(item.porcentagem + "%");
+                    porcentagemTitulo.text(item.porcentagem );
 
                     bolinha.append(porcentagemTitulo);
 
