@@ -229,6 +229,7 @@ nav.open ~ .overlay {
 
 .containers .box-dois {
     flex: 1 1 350px;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     width: calc(100% / 4 - 15px);
@@ -238,6 +239,35 @@ nav.open ~ .overlay {
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
+
+.containers .avisosWeek {
+    display: felx;
+    width: 1000px;
+    height: 300px;
+}
+
+.avisosWeek .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+.table .thead-dark {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+    background: #333;
+    color: #FFF;
+}
+
+.thead-dark th {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+
 
 .box-dois .name-box {
     font-size: 25px;
