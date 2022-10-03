@@ -7,10 +7,13 @@
     var a = "89015-360";
     List<Estado> estados = ViewBag.Estados;
 }
-<h1>Update</h1>
-<hr />
+<link rel="stylesheet" href="~/css/Funcionario/FuncionariosUpdate.css">
+<h1 class="updatetitle">Update</h2>
+
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 updatetext">
+    
         <form enctype="multipart/form-data" asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -88,7 +91,7 @@
             </div>
 
 
-            <div class="form-group">
+            <div class="form-group updatesavebuttonspace">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -100,6 +103,7 @@
                 </p>
             </div>
         }
+        </div>
     </div>
 </div>
 @section Scripts
