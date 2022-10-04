@@ -430,5 +430,40 @@ namespace VisualLayer.Controllers.Adm
                 return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
             }
         }
+
+        public async Task<IActionResult> Search(string searchString)
+        {
+            IActionResult result = await Authorize(NIVEL_PERMISSAO);
+            if (result != null)
+            {
+                return result;
+            }
+            Task<List<Funcionario>>;
+            string categoriaAtual = string.Empty;
+            if (string.IsNullOrWhiteSpace(searchString))
+            {
+                lanches = lancheBLL.GetAllLancheModel().Itens;
+                categoriaAtual = "Todos os Lanches";
+            }
+            else
+            {
+                lanches = lancheBLL.SearchItem(searchString).Itens;
+                if (lanches.Any())
+                {
+                    categoriaAtual = "Lanches";
+                }
+                else
+                {
+                    categoriaAtual = "Nenhum Lanche foi encontrado";
+                }
+            }
+            return View("~/Views/Lanche/List.cshtml", new ListLancheViewModel
+            {
+                Lanches = lanches,
+                CategoriaAtual = categoriaAtual
+            });
+        }
+
+
     }
 }

@@ -89,11 +89,16 @@ namespace BusinessLogicalLayer.BLL
             return await _funcionarioDAL.GetAllAtivos();
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task<SingleResponse<int>> GetAllByEnderecoId(int id)
+        public async Task<DataResponse<Funcionario>> SearchItem(string searchString)
+        {
+            return await _funcionarioDAL.SearchItem(searchString);
+        }
+
+    /// <summary>
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public async Task<SingleResponse<int>> GetAllByEnderecoId(int id)
         {
             return await _funcionarioDAL.GetAllByEnderecoId(id);
         }
