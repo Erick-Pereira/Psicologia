@@ -241,31 +241,56 @@ nav.open ~ .overlay {
 }
 
 .containers .avisosWeek {
-    display: felx;
+    display: flex;
     width: 1000px;
     height: 300px;
 }
 
-.avisosWeek .table {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 1rem;
-    background-color: transparent;
+
+.intro {
+    height: 100%;
 }
 
-.table .thead-dark {
-    display: table-header-group;
-    vertical-align: middle;
-    border-color: inherit;
-    background: #333;
+table td,
+table th {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+thead th,
+tbody th {
+    color: #fff;
+}
+
+tbody td {
+    font-weight: 500;
     color: #FFF;
 }
 
-.thead-dark th {
-    display: table-row;
-    vertical-align: inherit;
-    border-color: inherit;
+.card {
+    border-radius: .5rem;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
