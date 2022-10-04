@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -144,9 +145,9 @@ namespace DataAccessLayer.Migrations
                     EnderecoID = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
                     EstadoCivil = table.Column<int>(type: "int", nullable: false),
                     Genero = table.Column<int>(type: "int", nullable: false),
-                    HasRequiredTest = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    IsAtivo = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
-                    IsFirstLogin = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+                    HasRequiredTest = table.Column<bool>(type: "bit", nullable: false),
+                    IsAtivo = table.Column<bool>(type: "bit", nullable: false),
+                    IsFirstLogin = table.Column<bool>(type: "bit", nullable: false),
                     SF36ScoreID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -204,6 +205,8 @@ namespace DataAccessLayer.Migrations
                     AspectosSociais = table.Column<double>(type: "float", nullable: false),
                     AspectosEmocionais = table.Column<double>(type: "float", nullable: false),
                     SaudeMental = table.Column<double>(type: "float", nullable: false),
+                    ComparacaoSaude = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DataSF = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FuncionarioID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

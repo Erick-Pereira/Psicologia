@@ -28,7 +28,7 @@ namespace BusinessLogicalLayer.BLL
             constructs[6] = CalcularScoreSaudeMental(sf36scoretotal).Result;
             constructs[7] = CalcularScoreVitalidade(sf36scoretotal).Result;
             comparacaoSaude = CopararSaude(sf36scoretotal).Result;
-
+            DateTime data = DateTime.Now;
             SF36Score score = new SF36Score()
             {
                 AspectosSociais = constructs[0],
@@ -39,6 +39,8 @@ namespace BusinessLogicalLayer.BLL
                 LimitacaoAspectosFisicos = constructs[5],
                 SaudeMental = constructs[6],
                 Vitalidade = constructs[7],
+                ComparacaoSaude = comparacaoSaude,
+                DataSF = data
             };
 
             return await _scoreDAL.Insert(score);

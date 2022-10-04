@@ -15,6 +15,8 @@ namespace DataAccessLayer.Mapping
             builder.Property(c => c.LimitacaoAspectosFisicos).IsRequired();
             builder.Property(c => c.AspectosEmocionais).IsRequired();
             builder.Property(c => c.Vitalidade).IsRequired();
+            builder.Property(c => c.DataSF).IsRequired();
+            builder.Property(c => c.ComparacaoSaude).IsRequired().IsUnicode(false);
             builder.ToTable("SF36_SCORE");
         }
     }

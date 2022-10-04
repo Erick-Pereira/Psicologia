@@ -51,12 +51,12 @@ namespace VisualLayer.Controllers.RH
             DataResponse<SF36Score> response = await _sf36.GetLast3SFByFuncionario(id);
             List<SF36Score> scores = response.Data;
             SF36Score score = scores[0];
-            string[] titulos = { "Dor", "Estado geral de Saúde", "Capacidade Funcional", "Vitalidade", "Saúde Mental", "Limitação por Aspectos Fisicos", "Limitação por Aspectos Emocionais", "Aspectos Sociais" };
+            string[] titulos = { "Dor", "Estado geral de Saúde", "Capacidade Funcional", "Vitalidade", "Saúde Mental", "Limitação por Aspectos Fisicos", "Limitação por Aspectos Emocionais", "Aspectos Sociais", score.ComparacaoSaude };
             double[] valores = { score.Dor, score.EstadoSaude, score.CapacidadeFuncional, score.Vitalidade, score.SaudeMental, score.LimitacaoAspectosFisicos, score.AspectosEmocionais, score.AspectosSociais };
 
             var dados = new List<GraficoModel>();
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < titulos.Length ; i++)
             {
                 dados.Add(new GraficoModel
                 {

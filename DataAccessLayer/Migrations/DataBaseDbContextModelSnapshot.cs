@@ -316,6 +316,14 @@ namespace DataAccessLayer.Migrations
                     b.Property<double>("CapacidadeFuncional")
                         .HasColumnType("float");
 
+                    b.Property<string>("ComparacaoSaude")
+                        .IsRequired()
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<DateTime>("DataSF")
+                        .HasColumnType("datetime2");
+
                     b.Property<double>("Dor")
                         .HasColumnType("float");
 

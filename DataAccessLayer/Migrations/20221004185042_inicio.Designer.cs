@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(DataBaseDbContext))]
-    [Migration("20220923200830_ajuste_funcionario")]
-    partial class ajuste_funcionario
+    [Migration("20221004185042_inicio")]
+    partial class inicio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -317,6 +317,13 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<double>("CapacidadeFuncional")
                         .HasColumnType("float");
+
+                    b.Property<string>("ComparacaoSaude")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataSF")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Dor")
                         .HasColumnType("float");

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(DataBaseDbContext))]
-    [Migration("20220923194431_inicio")]
-    partial class inicio
+    [Migration("20221004194539_sf36")]
+    partial class sf36
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -259,19 +259,13 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("HasRequiredTest")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsAtivo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsFirstLogin")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -323,6 +317,14 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<double>("CapacidadeFuncional")
                         .HasColumnType("float");
+
+                    b.Property<string>("ComparacaoSaude")
+                        .IsRequired()
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<DateTime>("DataSF")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Dor")
                         .HasColumnType("float");

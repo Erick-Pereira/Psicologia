@@ -9,8 +9,9 @@
 .top {
     height: 80px;
     width: 100%;
-    background: gray;
+    background: #009879;
     overflow: hidden;
+
 }
 
 h1 {
@@ -30,7 +31,7 @@ h1 {
 .rodape {
     height: 40px;
     width: 100%;
-    background: gray;
+    background: #009879;
     position: absolute;
     bottom: 0px;
 }
@@ -40,14 +41,14 @@ h1 {
     width: 100%;
     padding: 2px 2px 2px 2px;
     position: absolute;
-    background: rgba(220, 220, 220, 0.488);
+    background: #F0F8FF;
     padding: 1rem;
     overflow: auto;
 }
 
 .coluna {
-    height: 400px;
-    width: 100px;
+    height: 220px;
+    width: 110px;
     margin-left: 3.8%;
     background: rgba(250, 250, 210, 0.639);
     margin-bottom: 10px;
@@ -57,7 +58,7 @@ h1 {
     width: 100px;
     height: 10px;
     bottom: 11px;
-    position: absolute;
+    position: inherit;
     font-size: 12px;
     font-style: normal;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -67,7 +68,7 @@ h1 {
 .colunaPorcentagem {
     width: 10px;
     border-radius: 7px;
-    height: 280px;
+    height: 100px;
     background: gray;
     bottom: 40px;
     position: absolute;
@@ -93,7 +94,7 @@ h1 {
     border-style: dashed;
     position: absolute;
     margin-left: 30px;
-    top: 60px;
+    top: 70px;
     display: flex;
     justify-content: center;
 }
