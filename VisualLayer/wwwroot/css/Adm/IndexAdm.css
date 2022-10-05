@@ -24,7 +24,6 @@ nav {
     background: #fff;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
-
     nav .logo {
         display: flex;
         align-items: center;
@@ -237,6 +236,11 @@ nav.open ~ .overlay {
     padding: 15px 14px;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.containers .corpoTable {
+    flex: 1 1 350px;
+    width: calc(100% / 2 - 15px);
+    background: #333;
 }
 
 .box-dois .name-box {
