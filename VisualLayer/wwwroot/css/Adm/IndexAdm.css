@@ -81,7 +81,7 @@ nav.open .sidebar {
 }
 
 .lists .nav-link:hover {
-    background-color: #4070f4;
+    background-color: #2C2928;
 }
 
 .nav-link .icon {
@@ -228,10 +228,7 @@ nav.open ~ .overlay {
 }
 
 .containers .box-dois {
-    flex: 1 1 350px;
-    align-items: center;
-    justify-content: center;
-    width: calc(100% / 4 - 15px);
+    width: 300px;
     height: 370px;
     background: #fff;
     padding: 15px 14px;
@@ -239,9 +236,7 @@ nav.open ~ .overlay {
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 .containers .corpoTable {
-    flex: 1 1 350px;
-    width: calc(100% / 2 - 15px);
-    background: #333;
+    width: 100%;
 }
 
 .box-dois .name-box {
