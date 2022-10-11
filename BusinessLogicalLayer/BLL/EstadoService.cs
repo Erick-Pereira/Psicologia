@@ -59,6 +59,7 @@ namespace BusinessLogicalLayer.BLL
                     }
                 }
             }
+            response.HasSuccess = true;
             return response;
         }
 

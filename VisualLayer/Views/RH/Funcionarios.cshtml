@@ -68,7 +68,8 @@
         <a asp-action="Cadastrar">Cadastrar novo Funcionario</a>
     </p>
     @*<div class="cabecalho">*@
-    <table>
+    <div class="content">
+        <table class="rTable">
         <thead>
             <tr>
                 <th>
@@ -97,7 +98,7 @@
                 </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody>            
             @foreach (var item in Model)
             {
                 <tr>
@@ -130,8 +131,9 @@
                         {
                             @Html.ActionLink("Editar", "Editar", new {  id= item.Id})
                             @Html.ActionLink("Requisitar Teste", "RequisitarTeste", new {  id= item.Id})
+                                @Html.ActionLink("Grafico","Grafico", new {id = item.Id})
                         }
-                        @Html.ActionLink("Detalhar", "Detalhar", new {  id= item.Id })
+                        @Html.ActionLink("Detalhar", "Detalhar", new {  id= item.Id })                        
                         @Html.ActionLink("Requisitar Update","RequisitarUpdate", new {id = item.Id})
                         @if (id != item.Id)
                         {
@@ -143,9 +145,9 @@
                     </td>
                 </tr>
             }
-        </tbody>
-    </table>
-    @*</div>*@
+            </tbody>
+        </table>
+    </div>
     <script>
         const navBar = document.querySelector("nav"),
             menuBtns = document.querySelectorAll(".menu-icon"),

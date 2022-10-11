@@ -138,6 +138,8 @@ namespace VisualLayer.Controllers
                         return RedirectToAction(actionName: "Sf36", controllerName: "Funcionario");
                     if (funcionario.Cargo.NivelPermissao == 0)
                         return RedirectToAction(actionName: "Index", controllerName: "Adm");
+                    if (funcionario.Cargo.NivelPermissao == 1)
+                        return RedirectToAction(actionName: "Index", controllerName: "RH");
                     if (funcionario.Cargo.NivelPermissao == 3)
                         return RedirectToAction(actionName: "Index", controllerName: "Funcionario");
                 }

@@ -8,13 +8,15 @@ namespace BusinessLogicalLayer.BLL
     public class SF36Service : ISF36Service
     {
         private readonly ISFScoreDAL _scoreDAL;
+        private readonly IFuncionarioService _funcionarioService;
 
-        public SF36Service(ISFScoreDAL scoreDAL)
+        public SF36Service(ISFScoreDAL scoreDAL, IFuncionarioService funcionarioService)
         {
             _scoreDAL = scoreDAL;
+            _funcionarioService = funcionarioService;
         }
 
-        public async Task<Response> CalcularScore(FuncionarioRespostasQuestionarioSf36 sf36scoretotal,Funcionario funcionario)
+        public async Task<Response> CalcularScore(FuncionarioRespostasQuestionarioSf36 sf36scoretotal, Funcionario funcionario)
         {
             double[] constructs = new double[8];
             string comparacaoSaude = "";
@@ -38,14 +40,19 @@ namespace BusinessLogicalLayer.BLL
                 AspectosEmocionais = constructs[4],
                 LimitacaoAspectosFisicos = constructs[5],
                 SaudeMental = constructs[6],
-                Vitalidade = constructs[7],               
+                Vitalidade = constructs[7],
                 DataSF = DateTime.Now,
                 ComparacaoSaude = comparacaoSaude,
-           
+
                 FuncionarioID = funcionario.ID
             };
-
-            return await _scoreDAL.Insert(score);
+            Response repsponse = await _scoreDAL.Insert(score);
+            if (repsponse.HasSuccess)
+            {
+                funcionario.HasRequiredTest = false;
+                return await _funcionarioService.Update(funcionario);
+            }
+            return repsponse;
         }
 
         public async Task<double> CalcularScoreAspectosSociais(FuncionarioRespostasQuestionarioSf36 sf36scoreAspectosSociais)
