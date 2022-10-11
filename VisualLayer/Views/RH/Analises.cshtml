@@ -62,29 +62,33 @@
 
     <section class="overlay"></section>
     <section class="home-section">
-        <dl>
-            <dt>
-                Browser market share June 2015
-            </dt>
-            <dd class="percentage percentage-11"><span class="text">IE 11: 11.33%</span></dd>
-            <dd class="percentage percentage-49"><span class="text">Chrome: 49.77%</span></dd>
-            <dd class="percentage percentage-16"><span class="text">Firefox: 16.09%</span></dd>
-            <dd class="percentage percentage-5"><span class="text">Safari: 5.41%</span></dd>
-            <dd class="percentage percentage-2"><span class="text">Opera: 1.62%</span></dd>
-            <dd class="percentage percentage-2"><span class="text">Android 4.4: 2%</span></dd>
-        </dl>
+        <div class="percentage">
+            <dl justify="center">
+                <dt>
+                    <h1 class="secondtitle">Browser market share June 2015</h1>
+                </dt>
+
+
+                <dd class="percentagepercentage-1"><span class="text"><li>IE 11: <div align="right" class="pie animate chart1" style="--p:11;--c:lightblue">11%</div></li></span></dd>
+                <dd class="percentagepercentage-2"><span class="text"><li>Chrome: <div align="right" class="pie animate chart2" style="--p:49;--c:yellow">49%</div></li></span></dd>
+                <dd class="percentagepercentage-3"><span class="text"><li>Firefox: <div align="right" class="pie animate chart3" style="--p:16;--c:orange">16%</div></li></span></dd>
+                <dd class="percentagepercentage-4"><span class="text"><li>Safari: <div align="right" class="pie animate chart4" style="--p:5;--c:darkred">5%</div></li></span></dd>
+                <dd class="percentagepercentage-5"><span class="text"><li>Opera:  <div align="right" class="pie animate chart5" style="--p:1;--c:red">1%</div></li></span></dd>
+                <dd class="percentagepercentage-6"><span class="text"><li>Android 4.4: <div align="right" class="pie animate chart6" style="--p:2;--c:green">2%</div></li></span></dd>
+
+            </dl>
+        </div>
+
     </section>
     <script>
         const navBar = document.querySelector("nav"),
             menuBtns = document.querySelectorAll(".menu-icon"),
             overlay = document.querySelector(".overlay");
-
         menuBtns.forEach((menuBtn) => {
             menuBtn.addEventListener("click", () => {
                 navBar.classList.toggle("open");
             });
         });
-
         overlay.addEventListener("click", () => {
             navBar.classList.remove("open");
         });

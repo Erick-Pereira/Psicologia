@@ -314,8 +314,8 @@ namespace BusinessLogicalLayer.BLL
                         }
                     }
                 }
-                hasVerified = true;
             }
+            hasVerified = true;
             return new Response();
         }
     }

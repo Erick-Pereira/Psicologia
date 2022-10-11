@@ -164,14 +164,13 @@ namespace VisualLayer.Controllers.Funcionario
             {
                 Entities.Funcionario funcionario = _FuncionarioService.GetByID(GetIdByCookie().Result).Result.Item;
                 FuncionarioRespostasQuestionarioSf36 sf36 = _mapper.Map<FuncionarioRespostasQuestionarioSf36>(respostas);
-                Response response = await _sf36Service.CalcularScore(sf36,funcionario);
-                return RedirectToAction(actionName: "Grafico", controllerName: "Rh");
+                Response response = await _sf36Service.CalcularScore(sf36, funcionario);
+                return RedirectToAction(actionName: "Logarr", controllerName: "home");
             }
             catch (Exception ex)
             {
                 return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
             }
-
         }
 
         [HttpGet]
@@ -212,7 +211,7 @@ namespace VisualLayer.Controllers.Funcionario
         public async Task<IActionResult> Update(FuncionarioUpdateViewModel funcionarioUpdate)
         {
             try
-            {                
+            {
                 Entities.Funcionario funcionario2 = _FuncionarioService.GetByID(Convert.ToInt32(funcionarioUpdate.Id)).Result.Item;
                 funcionario2.Nome = funcionarioUpdate.Nome;
                 funcionario2.Celular = funcionarioUpdate.Celular;

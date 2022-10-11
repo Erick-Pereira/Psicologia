@@ -35,8 +35,9 @@ namespace VisualLayer.Controllers.RH
         }
 
         [HttpGet("/RH/CarregaGrafico")]
-        public async Task<JsonResult> CarregaGrafico(int id = 7)
+        public async Task<JsonResult> CarregaGrafico(string id)
         {
+            id = "GhLEwNzhyQUYiOOoYvZzhw%3D%3D";
             //int[] valore = { 67, 11, 98, 33, 1, 34, 66, 12, 90, 99, 7, 12, 44 };
             //var dados = new List<GraficoModel>();
             //for (int i = 0; i < 8; i++)
@@ -48,7 +49,7 @@ namespace VisualLayer.Controllers.RH
             //    });
             //}
             //return Json(new { dados = dados });
-            DataResponse<SF36Score> response = await _sf36.GetLast3SFByFuncionario(id);
+            DataResponse<SF36Score> response = await _sf36.GetLast3SFByFuncionario(Convert.ToInt32(id.Decrypt(ENCRYPT)));
             List<SF36Score> scores = response.Data;
             SF36Score score = scores[0];
             string[] titulos = { "Dor", "Estado geral de Saúde", "Capacidade Funcional", "Vitalidade", "Saúde Mental", "Limitação por Aspectos Fisicos", "Limitação por Aspectos Emocionais", "Aspectos Sociais", score.ComparacaoSaude };
@@ -68,10 +69,11 @@ namespace VisualLayer.Controllers.RH
             return Json(new { dados = dados });
         }
 
-        public async Task<IActionResult> Grafico()
+        public async Task<IActionResult> Grafico(string id)
         {
             try
             {
+                ViewBag.ID = id;
                 return View();
             }
             catch (Exception ex)
