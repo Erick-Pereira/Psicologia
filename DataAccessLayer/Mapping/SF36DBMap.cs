@@ -12,6 +12,8 @@ namespace DataAccessLayer.Mapping
         /// <param name="builder"></param>
         public void Configure(EntityTypeBuilder<SF36Score> builder)
         {
+            builder.HasKey(c => c.ID);
+            builder.Property(c => c.ID).UseIdentityColumn(1, 1);
             builder.Property(c => c.AspectosSociais).IsRequired();
             builder.Property(c => c.CapacidadeFuncional).IsRequired();
             builder.Property(c => c.SaudeMental).IsRequired();

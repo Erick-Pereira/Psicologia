@@ -41,7 +41,7 @@ namespace BusinessLogicalLayer.BLL
                 Vitalidade = constructs[7],               
                 DataSF = DateTime.Now,
                 ComparacaoSaude = comparacaoSaude,
-                Funcionario = funcionario,
+           
                 FuncionarioID = funcionario.ID
             };
 
