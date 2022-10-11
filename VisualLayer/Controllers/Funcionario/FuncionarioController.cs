@@ -165,7 +165,7 @@ namespace VisualLayer.Controllers.Funcionario
                 Entities.Funcionario funcionario = _FuncionarioService.GetByID(GetIdByCookie().Result).Result.Item;
                 FuncionarioRespostasQuestionarioSf36 sf36 = _mapper.Map<FuncionarioRespostasQuestionarioSf36>(respostas);
                 Response response = await _sf36Service.CalcularScore(sf36,funcionario);
-                return RedirectToAction(" / Home / CarregaGrafico");
+                return RedirectToAction(actionName: "Grafico", controllerName: "Rh");
             }
             catch (Exception ex)
             {
