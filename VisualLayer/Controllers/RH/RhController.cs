@@ -37,6 +37,7 @@ namespace VisualLayer.Controllers.RH
         [HttpGet("/RH/CarregaGrafico")]
         public async Task<JsonResult> CarregaGrafico(string id)
         {
+            id = "GhLEwNzhyQUYiOOoYvZzhw%3D%3D";
             //int[] valore = { 67, 11, 98, 33, 1, 34, 66, 12, 90, 99, 7, 12, 44 };
             //var dados = new List<GraficoModel>();
             //for (int i = 0; i < 8; i++)
@@ -51,12 +52,12 @@ namespace VisualLayer.Controllers.RH
             DataResponse<SF36Score> response = await _sf36.GetLast3SFByFuncionario(Convert.ToInt32(id.Decrypt(ENCRYPT)));
             List<SF36Score> scores = response.Data;
             SF36Score score = scores[0];
-            string[] titulos = { "Dor", "Estado geral de Saúde", "Capacidade Funcional", "Vitalidade", "Saúde Mental", "Limitação por Aspectos Fisicos", "Limitação por Aspectos Emocionais", "Aspectos Sociais", score.ComparacaoSaude };
-            double[] valores = { score.Dor, score.EstadoSaude, score.CapacidadeFuncional, score.Vitalidade, score.SaudeMental, score.LimitacaoAspectosFisicos, score.AspectosEmocionais, score.AspectosSociais };
+            string[] titulos = { "Dor", "Estado geral de Saúde", "Capacidade Funcional", "Vitalidade", "Saúde Mental", "Limitação por Aspectos Fisicos", "Limitação por Aspectos Emocionais", "Aspectos Sociais" };
+            double[] valores = { score.Dor, score.EstadoSaude, score.CapacidadeFuncional, score.Vitalidade, score.SaudeMental, score.LimitacaoAspectosFisicos, score.AspectosEmocionais, score.AspectosSociais};
 
             var dados = new List<GraficoModel>();
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < titulos.Length; i++)
             {
                 dados.Add(new GraficoModel
                 {

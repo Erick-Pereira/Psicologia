@@ -76,7 +76,7 @@ namespace Shared.Extensions
         /// <returns></returns>
         public static string Decrypt(this string cipherText, string EncryptionKey)
         {
-            cipherText = cipherText.Replace(" ", "+").Replace("%2F", "/");
+            cipherText = cipherText.Replace(" ", "+").Replace("%2F", "/").Replace("%3D","=");
             byte[] cipherBytes = Convert.FromBase64String(cipherText);
             using (Aes encryptor = Aes.Create())
             {
