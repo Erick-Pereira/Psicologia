@@ -35,7 +35,7 @@ namespace VisualLayer.Controllers.RH
         }
 
         [HttpGet("/RH/CarregaGrafico")]
-        public async Task<JsonResult> CarregaGrafico(int id = 7)
+        public async Task<JsonResult> CarregaGrafico(int id = 2)
         {
             //int[] valore = { 67, 11, 98, 33, 1, 34, 66, 12, 90, 99, 7, 12, 44 };
             //var dados = new List<GraficoModel>();

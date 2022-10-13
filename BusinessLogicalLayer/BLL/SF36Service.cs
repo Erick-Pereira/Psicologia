@@ -50,6 +50,7 @@ namespace BusinessLogicalLayer.BLL
 
         public async Task<double> CalcularScoreAspectosSociais(FuncionarioRespostasQuestionarioSf36 sf36scoreAspectosSociais)
         {
+          
             double aspectosSociais = 0;
             double limiteInferior = 2;
             double variacao = 8;
@@ -75,6 +76,10 @@ namespace BusinessLogicalLayer.BLL
                     aspectosSociais += 1;
                     break;
             }
+            if (aspectosSociais >= 0)
+            {
+                return 0;
+            }
             switch (sf36scoreAspectosSociais.Question10)
             {
                 case 1:
@@ -97,11 +102,16 @@ namespace BusinessLogicalLayer.BLL
                     aspectosSociais += 5;
                     break;
             }
+            if (aspectosSociais >= 0)
+            {
+                return 0;
+            }
             return (aspectosSociais - limiteInferior) * 100 / variacao;
         }
 
         public async Task<double> CalcularScoreCapacidadeFuncional(FuncionarioRespostasQuestionarioSf36 sf36scoreCapacidadeFuncional)
         {
+      
             double capaficadeFuncional = 0;
             double limiteInferior = 10;
             double variacao = 20;
@@ -246,6 +256,10 @@ namespace BusinessLogicalLayer.BLL
                         capaficadeFuncional += 3;
                         break;
                 }
+                if (sf36scoreCapacidadeFuncional.Question3a>=0||sf36scoreCapacidadeFuncional.Question3b>=0||sf36scoreCapacidadeFuncional.Question3c>=0|| sf36scoreCapacidadeFuncional.Question3d>=0||sf36scoreCapacidadeFuncional.Question3e>=0||sf36scoreCapacidadeFuncional.Question3f>=0|| sf36scoreCapacidadeFuncional.Question3g>=0||sf36scoreCapacidadeFuncional.Question3h>=0||sf36scoreCapacidadeFuncional.Question3i>=0|| sf36scoreCapacidadeFuncional.Question3j>=0)
+                {
+                    return 0;
+                }
             }
             return (capaficadeFuncional - limiteInferior) * 100 / variacao;
         }
@@ -280,6 +294,10 @@ namespace BusinessLogicalLayer.BLL
                 case 6:
                     dor += 1;
                     break;
+            }
+            if (dor == 0)
+            {
+                return 0;
             }
             switch (sf36scoreDor.Question8)
             {
@@ -339,7 +357,10 @@ namespace BusinessLogicalLayer.BLL
                     {
                         dor += 6;
                     }
-
+                    if (dor == 0)
+                    {
+                        return 0;
+                    }
                     break;
             }
             return (Math.Round((dor - limiteInferior) * 100 / variacao, MidpointRounding.AwayFromZero));
@@ -372,6 +393,10 @@ namespace BusinessLogicalLayer.BLL
                 case 5:
                     estadoSaude1 += 1;
                     break;
+            }
+            if (estadoSaude1 == 0)
+            {
+                return 0;
             }
             switch (sf36scoreEstadoSaude.Question11a)
             {
@@ -461,6 +486,10 @@ namespace BusinessLogicalLayer.BLL
                     estadoSaude11 += 1;
                     break;
             }
+            if (sf36scoreEstadoSaude.Question1 >= 0 || sf36scoreEstadoSaude.Question11a >= 0 || sf36scoreEstadoSaude.Question11b >= 0 || sf36scoreEstadoSaude.Question11c >= 0 || sf36scoreEstadoSaude.Question11d >= 0)
+            {
+                return 0;
+            }
             return (estadoSaude1 + estadoSaude11 - limiteInferior) * 100 / variacao;
         }
 
@@ -499,6 +528,10 @@ namespace BusinessLogicalLayer.BLL
                     case 2:
                         limitacaoEmocional += 2;
                         break;
+                }
+                if (sf36scoreLimitacaoEmocional.Question5a >= 0 || sf36scoreLimitacaoEmocional.Question5b >= 0 || sf36scoreLimitacaoEmocional.Question5c >= 0)
+                {
+                    return 0;
                 }
             }
             return (limitacaoEmocional - limiteInferior) * 100 / variacao;
@@ -548,6 +581,10 @@ namespace BusinessLogicalLayer.BLL
                 case 2:
                     limitacaoFisica += 2;
                     break;
+            }
+            if (sf36scoreLimitacaoFisica.Question4a >= 0 || sf36scoreLimitacaoFisica.Question4b >= 0 || sf36scoreLimitacaoFisica.Question4c >= 0 || sf36scoreLimitacaoFisica.Question4d >= 0)
+            {
+                return 0;
             }
             return (limitacaoFisica - limiteInferior) * 100 / variacao;
         }
@@ -687,6 +724,10 @@ namespace BusinessLogicalLayer.BLL
                     saudeMental++;
                     break;
             }
+            if (sf36scoreSaudeMental.Question9b >= 0 || sf36scoreSaudeMental.Question9c >= 0 || sf36scoreSaudeMental.Question9d >= 0 || sf36scoreSaudeMental.Question9f >= 0 || sf36scoreSaudeMental.Question9h >= 0 )
+            {
+                return 0;
+            }
             return (saudeMental - limiteInferior) * 100 / variacao;
         }
 
@@ -799,6 +840,10 @@ namespace BusinessLogicalLayer.BLL
                     vitalidade += 6;
                     break;
             }
+            if (sf36scoreVitalidade.Question9a >= 0 || sf36scoreVitalidade.Question9e >= 0 || sf36scoreVitalidade.Question9g >= 0 ||  sf36scoreVitalidade.Question9i >= 0)
+            {
+                return 0;
+            }
             return (vitalidade - limiteInferior) * 100 / variacao;
         }
 
@@ -829,6 +874,10 @@ namespace BusinessLogicalLayer.BLL
                     case "5":
                         comparacaoSaude = "Muito Pior";
                         break;
+                }
+                if (String.IsNullOrEmpty(comparacaoSaude))
+                {
+                    return "Não foi informado";
                 }
                 return comparacaoSaude;
             }
