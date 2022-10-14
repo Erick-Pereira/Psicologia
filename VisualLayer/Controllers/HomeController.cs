@@ -50,7 +50,7 @@ namespace VisualLayer.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -70,7 +70,7 @@ namespace VisualLayer.Controllers
             }
             catch (Exception ex)
             {
-                RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                ThrowError(ex);
             }
         }
 
@@ -97,7 +97,7 @@ namespace VisualLayer.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -111,7 +111,7 @@ namespace VisualLayer.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -148,7 +148,7 @@ namespace VisualLayer.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -162,7 +162,7 @@ namespace VisualLayer.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -180,7 +180,7 @@ namespace VisualLayer.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
     }

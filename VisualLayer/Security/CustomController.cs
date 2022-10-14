@@ -1,6 +1,7 @@
 ﻿using BusinessLogicalLayer.Interfaces;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
+using Shared;
 using Shared.Extensions;
 using System.Security.Claims;
 
@@ -16,6 +17,11 @@ namespace VisualLayer.Security
         {
             _FuncionarioService = funcionarioService;
             _httpContextAccessor = httpContextAccessor;
+        }
+
+        public IActionResult ThrowError(Exception ex)
+        {
+            return RedirectToAction(actionName: "Index", controllerName: "Erro", ResponseFactory<Response>.CreateFailureResponse(ex.Message));
         }
 
         /// <summary>

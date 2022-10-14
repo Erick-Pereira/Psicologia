@@ -66,116 +66,133 @@
     </nav>
 
  <section class="overlay"></section>
-<section class="home-section configbox" style="float: left;">
-       <br>
+    <section class="home-section configbox" style="float: left;">
+        <br>
         <div class="infohead">Configurações</div>
         <div>
-         <br>
-          <dl class="row">
-                <div>
-               <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Foto)
-                </dt>
-                <dd class="col-sm-10">
-                      <img src="@Model.Foto" alt="" />   
-                </dd>              
-                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Nome)
-                </dt>           
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Nome)
-                </dd>                    
-              
-               <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Email)
-                </dt>              
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Email)
-                </dd>           
+            <br>
+            <dl class="row">
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Cpf)
+                        @Html.DisplayNameFor(model => model.Foto)
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Cpf)
-                </dd>                        
-                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.DataNascimento)
-                </dt> 
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DataNascimento)
-                </dd>                   
-                 <dt class="col-sm-2">
-                   @Html.DisplayNameFor(model => model.Cep)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Cep)
-                </dd>                              
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.NumeroCasa)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.NumeroCasa)
-                </dd>               
-              <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Rua)
-                </dt>
-                <dd class="col-sm-10">
-                  @Html.DisplayFor(model => model.Rua)  
-                </dd>    
-                <dt class="col-sm-2">
-                 @Html.DisplayNameFor(model => model.Bairro)
-                </dt>
-                <dd class="col-sm-10 ">
-                 @Html.DisplayFor(model => model.Bairro)   
-                </dd>   
-               <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Cidade)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Cidade)
-                </dd>      
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Estado)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Estado)
+                        <img src="@Model.Foto" alt="" / style=" width: 75px; height: 75px;" >
                 </dd>
-                </div>
-            
-          </dl>   
+                <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+                <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Nome)
+                </dd>
+
+
+
+                <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Email)
+                </dd>
+
+
+
+                <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Cpf)
+                </dt>
+                <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Cpf)
+                </dd>
+
+
+
+                <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.DataNascimento)
+                </dt>
+                <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.DataNascimento)
+                </dd>
+
+
+
+                <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Cep)
+                </dt>
+                <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Cep)
+                </dd>
+
+
+                <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.NumeroCasa)
+                </dt>
+                <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.NumeroCasa)
+                </dd>
+
+
+
+                <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Rua)
+                </dt>
+                <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Rua)
+                </dd>
+
+
+
+                <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Bairro)
+                </dt>
+                <dd class="col-sm-8 ">
+                        @Html.DisplayFor(model => model.Bairro)
+                </dd>
+
+
+
+                <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Cidade)
+                </dt>
+                <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Cidade)
+                </dd>
+
+
+                <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Estado)
+                </dt>
+                <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Estado)
+                </dd>
+        </dl>
         </div>
-    </section> 
-     <section style="float: left;">
-            <div class="passbox">
-              <br>
-              <input type="button" class="passbutton" value="Senha">    
-               <br>
-               <br>
-              <div class="Senha-content">
+    </section>
+    <section style="float: left;">
+        <div class="passbox">
+            <br>
+            <input type="button" class="passbutton" value="Senha">
+            <br>
+            <br>
+            <div class="Senha-content">
                 <div name="Senha">
-                      <label>Senha</label>
-                      <br>
-                      <input type="password" class="Senha textpassbox">
-                      <br> 
-                      <br>
-                      <label>Confirmar Senha</label> 
-                      <br>
-                      <input type="password" class="ConfirmarSenha textpassbox">
-                      <br> 
-                      <br>
-                      <div class="form-group" type="hidden">         
-                    <button onclick="window.location.href='/Adm/AlterarSenha';">Alterar Senha</button>
+                    <label>Senha</label>
+                    <br>
+                    <input type="password" class="Senha textpassbox" id="Senha">
+                    <br>
+                    <br>
+                    <label>Confirmar Senha</label>
+                    <br>
+                    <input type="password" class="ConfirmarSenha textpassbox" id="ConfirmarSenha">
+                    <br>
+                    <br>
+                    <div class="form-group" type="hidden">
+                        <button onclick=alterarSenha()>Alterar Senha</button>
                     </div>
-                    <label></label>
-                    </div>
-                    </div>
-                    </div>
-                    </div>      
-        <section class="SenhaSection"></section> 
-        
-
-
-
+                    <label id="Erros"></label>
+                </div>
+            </div>
+        </div>
+        <section class="SenhaSection"></section>
+        </section>
     
     <script>
         const navBar = document.querySelector("nav"),
@@ -201,7 +218,46 @@
             navSenha.classList.remove("open");
         });
     </script>
-
+    @section Scripts
+        {
+        <script>
+            function alterarSenha() {
+                console.log("chamou");
+                var erros = document.getElementById("Erros");
+                erros.innerHTML = "";
+                var senha1 = document.getElementById("Senha").value;
+                var senha2 = document.getElementById("ConfirmarSenha").value;
+                if (senha1 !== "" && senha2 !== "") {
+                    console.log("chamou2");
+                    if (senha1 === senha2) {
+                        console.log("chamou3");
+                        if (senha1.length >= 8) {
+                            console.log("chamou4");
+                            $.ajax
+                                ({
+                                    type: "POST", //HTTP POST Method
+                                    url: "/Adm/AlterarSenha", // Controller/View
+                                    data: { senha: senha1 },
+                                    success: function (result) {
+                                        erros.innerHTML = result;
+                                        console.log(result);
+                                    }
+                                });
+                        }
+                        else {
+                            erros.innerHTML = "Senha deve conter pelo menos 8 digitos";
+                        }
+                    }
+                    else {
+                        erros.innerHTML = "Senhas devem ser iguais";
+                    }
+                }
+                else {
+                    erros.innerHTML = "Senha deve ser informada";
+                }
+            }
+        </script>
+    }
     <script src="/lib/jquery/dist/jquery.min.js"></script>
 <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/js/site.js?v=qJ6sF6fAQn4m-8y39hiFs0CzFE8ldTJ8vZrFRoBAU5U"></script>

@@ -45,17 +45,19 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
+        /// Recebe um id de Cargo e chama o metodo GetById do CargoDAL
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo um Bairro referente ao ID informado</returns>
         public async Task<SingleResponse<Cargo>> GetByID(int id)
         {
             return await _cargoDAL.GetByID(id);
         }
 
         /// <summary>
+        /// Chama o metodo iniciar do CargoDAL e verifica se há pelo menos um Cargo com as informações iniciais
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse informando se há pelo menos um Cargo com nivel de Permissão 0</returns>
         public async Task<SingleResponse<bool>> Iniciar()
         {
             SingleResponse<int> response = await _cargoDAL.Iniciar();
@@ -63,17 +65,19 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
+        /// Chama o metodo IniciarReturnId do CargoDAL
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo um ID de Cargo</returns>
         public async Task<SingleResponse<int>> IniciarReturnId()
         {
             return await _cargoDAL.IniciarReturnId();
         }
 
         /// <summary>
+        /// Recebe um cargo e chama o metodo Insert do CargoDAL
         /// </summary>
         /// <param name="cargo"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Insert(Cargo cargo)
         {
             return await _cargoDAL.Insert(cargo);

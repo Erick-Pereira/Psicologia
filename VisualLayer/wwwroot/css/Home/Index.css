@@ -45,7 +45,7 @@ a:active {
     }
 /* navbar styling */
 nav {
-    position: fixed;
+    position: absolute;
     width: 100%;
     padding: 20px 0;
     z-index: 998;

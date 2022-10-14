@@ -44,7 +44,24 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AlterarSenha(string senha)
+        {
+            try
+            {
+                Entities.Funcionario funcionario = _FuncionarioService.GetByID(await GetIdByCookie()).Result.Item;
+                funcionario.Senha = senha.Hash();
+                Response response = await _FuncionarioService.AlterarSenha(funcionario);
+                JsonResult result = Json(response.Message);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return ThrowError(ex);
             }
         }
 
@@ -65,7 +82,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -86,7 +103,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -109,7 +126,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -127,7 +144,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -146,7 +163,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -164,7 +181,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -196,7 +213,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -221,7 +238,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -248,7 +265,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -281,7 +298,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -309,7 +326,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -336,7 +353,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -366,7 +383,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -384,7 +401,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -404,7 +421,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -427,7 +444,7 @@ namespace VisualLayer.Controllers.Adm
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
     }

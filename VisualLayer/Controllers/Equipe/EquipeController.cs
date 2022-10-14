@@ -32,7 +32,7 @@ namespace VisualLayer.Controllers.Equipe
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -46,7 +46,7 @@ namespace VisualLayer.Controllers.Equipe
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -60,7 +60,7 @@ namespace VisualLayer.Controllers.Equipe
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
     }

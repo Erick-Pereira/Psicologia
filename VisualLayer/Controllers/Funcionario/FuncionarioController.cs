@@ -40,12 +40,12 @@ namespace VisualLayer.Controllers.Funcionario
                 Entities.Funcionario funcionario = _FuncionarioService.GetByID(await GetIdByCookie()).Result.Item;
                 funcionario.Senha = senha.Hash();
                 Response response = await _FuncionarioService.AlterarSenha(funcionario);
-                JsonResult result = Json(response);
+                JsonResult result = Json(response.Message);
                 return result;
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -61,7 +61,7 @@ namespace VisualLayer.Controllers.Funcionario
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -93,7 +93,7 @@ namespace VisualLayer.Controllers.Funcionario
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -121,7 +121,7 @@ namespace VisualLayer.Controllers.Funcionario
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -139,7 +139,7 @@ namespace VisualLayer.Controllers.Funcionario
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -169,7 +169,7 @@ namespace VisualLayer.Controllers.Funcionario
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -202,7 +202,7 @@ namespace VisualLayer.Controllers.Funcionario
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -260,7 +260,7 @@ namespace VisualLayer.Controllers.Funcionario
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
     }

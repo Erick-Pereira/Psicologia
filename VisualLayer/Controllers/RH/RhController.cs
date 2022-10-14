@@ -13,15 +13,21 @@ using VisualLayer.Security;
 
 namespace VisualLayer.Controllers.RH
 {
+    public class GraficoModel
+    {
+        public int Porcentagem { get; set; }
+        public string TituloRodape { get; set; }
+    }
+
     public class RhController : CustomController
     {
-        private const int NIVEL_PERMISSAO = 1;
         private const string ENCRYPT = "ID";
+        private const int NIVEL_PERMISSAO = 1;
         private readonly ICargoService _CargoService;
-        private readonly ISF36Service _sf36;
         private readonly IFuncionarioService _FuncionarioService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
+        private readonly ISF36Service _sf36;
         private readonly IWebHostEnvironment hostEnvironment;
 
         public RhController(ICargoService cargoService, IFuncionarioService funcionarioService, IHttpContextAccessor httpContextAccessor, IMapper mapper, IWebHostEnvironment hostEnvironment, ISF36Service sf36) : base(funcionarioService, httpContextAccessor)
@@ -34,10 +40,162 @@ namespace VisualLayer.Controllers.RH
             this.hostEnvironment = hostEnvironment;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AlterarSenha(string senha)
+        {
+            try
+            {
+                Entities.Funcionario funcionario = _FuncionarioService.GetByID(await GetIdByCookie()).Result.Item;
+                funcionario.Senha = senha.Hash();
+                Response response = await _FuncionarioService.AlterarSenha(funcionario);
+                JsonResult result = Json(response.Message);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return ThrowError(ex);
+            }
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Analises()
+        {
+            try
+            {
+                IActionResult result = await Authorize(NIVEL_PERMISSAO);
+                if (result != null)
+                {
+                    return result;
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return ThrowError(ex);
+            }
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Ativar(string id)
+        {
+            try
+            {
+                IActionResult result = await Authorize(NIVEL_PERMISSAO);
+                if (result != null)
+                {
+                    return result;
+                }
+                Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item;
+                funcionario.IsAtivo = false;
+                Response response = await _FuncionarioService.Ativar(funcionario);
+                return RedirectToAction(actionName: "Funcionarios");
+            }
+            catch (Exception ex)
+            {
+                return ThrowError(ex);
+            }
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Cadastrar()
+        {
+            try
+            {
+                IActionResult result = await Authorize(NIVEL_PERMISSAO);
+                if (result != null)
+                {
+                    return result;
+                }
+                ViewBag.Cargos = _CargoService.GetAll().Result.Data;
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return ThrowError(ex);
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Cadastrar(FuncionarioInsertViewModel funcionarioInsert)
+        {
+            try
+            {
+                IActionResult result = await Authorize(NIVEL_PERMISSAO);
+                if (result != null)
+                {
+                    return result;
+                }
+                Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(funcionarioInsert);
+                Response response = await _FuncionarioService.Insert(funcionario);
+                ViewBag.Cargos = _CargoService.GetAll().Result.Data;
+                ViewBag.Errors = response.Message;
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return ThrowError(ex);
+            }
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Calendario()
+        {
+            try
+            {
+                IActionResult result = await Authorize(NIVEL_PERMISSAO);
+                if (result != null)
+                {
+                    return result;
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return ThrowError(ex);
+            }
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Cargo()
+        {
+            try
+            {
+                IActionResult result = await Authorize(NIVEL_PERMISSAO);
+                if (result != null)
+                {
+                    return result;
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return ThrowError(ex);
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Cargo(CargoInsertViewModel cargoViewModel)
+        {
+            try
+            {
+                Entities.Cargo cargo = _mapper.Map<Entities.Cargo>(cargoViewModel);
+                Response response = _CargoService.Insert(cargo).Result;
+                ViewBag.Erros = response.Message;
+                return RedirectToAction(actionName: "Cadastrar");
+            }
+            catch (Exception ex)
+            {
+                return ThrowError(ex);
+            }
+        }
+
         [HttpGet("/RH/CarregaGrafico")]
         public async Task<JsonResult> CarregaGrafico(string id)
         {
-            id = "GhLEwNzhyQUYiOOoYvZzhw%3D%3D";
             //int[] valore = { 67, 11, 98, 33, 1, 34, 66, 12, 90, 99, 7, 12, 44 };
             //var dados = new List<GraficoModel>();
             //for (int i = 0; i < 8; i++)
@@ -69,196 +227,6 @@ namespace VisualLayer.Controllers.RH
             return Json(new { dados = dados });
         }
 
-        public async Task<IActionResult> Grafico(string id)
-        {
-            try
-            {
-                ViewBag.ID = id;
-                return View();
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
-        }
-
-        public async Task<IActionResult> Privacy()
-        {
-            try
-            {
-                return View();
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public async Task<IActionResult> Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        [Authorize]
-        public async Task<IActionResult> Analises()
-        {
-            try
-            {
-                IActionResult result = await Authorize(NIVEL_PERMISSAO);
-                if (result != null)
-                {
-                    return result;
-                }
-                return View();
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
-        }
-
-        [Authorize]
-        public async Task<IActionResult> Ativar(string id)
-        {
-            try
-            {
-                IActionResult result = await Authorize(NIVEL_PERMISSAO);
-                if (result != null)
-                {
-                    return result;
-                }
-                Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item;
-                funcionario.IsAtivo = false;
-                Response response = await _FuncionarioService.Ativar(funcionario);
-                return RedirectToAction(actionName: "Funcionarios");
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
-        }
-
-        [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> Cadastrar()
-        {
-            try
-            {
-                IActionResult result = await Authorize(NIVEL_PERMISSAO);
-                if (result != null)
-                {
-                    return result;
-                }
-                ViewBag.Cargos = _CargoService.GetAll().Result.Data;
-                return View();
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
-        }
-
-        [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> Cadastrar(FuncionarioInsertViewModel funcionarioInsert)
-        {
-            try
-            {
-                IActionResult result = await Authorize(NIVEL_PERMISSAO);
-                if (result != null)
-                {
-                    return result;
-                }
-                Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(funcionarioInsert);
-                Response response = await _FuncionarioService.Insert(funcionario);
-                ViewBag.Cargos = _CargoService.GetAll().Result.Data;
-                ViewBag.Errors = response.Message;
-                return View();
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
-        }
-
-        [Authorize]
-        public async Task<IActionResult> Calendario()
-        {
-            try
-            {
-                IActionResult result = await Authorize(NIVEL_PERMISSAO);
-                if (result != null)
-                {
-                    return result;
-                }
-                return View();
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
-        }
-
-        [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> Cargo()
-        {
-            try
-            {
-                IActionResult result = await Authorize(NIVEL_PERMISSAO);
-                if (result != null)
-                {
-                    return result;
-                }
-                return View();
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
-        }
-
-        [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> Cargo(CargoInsertViewModel cargoViewModel)
-        {
-            try
-            {
-                Entities.Cargo cargo = _mapper.Map<Entities.Cargo>(cargoViewModel);
-                Response response = _CargoService.Insert(cargo).Result;
-                ViewBag.Erros = response.Message;
-                return RedirectToAction(actionName: "Cadastrar");
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
-        }
-
-        [Authorize]
-        public async Task<IActionResult> Deletar(string id)
-        {
-            try
-            {
-                IActionResult result = await Authorize(NIVEL_PERMISSAO);
-                if (result != null)
-                {
-                    return result;
-                }
-                int userId = await GetIdByCookie();
-                if (Convert.ToInt32(id.Decrypt(ENCRYPT)) == userId)
-                {
-                    ViewBag.Erros = "Você não pode se deletar";
-                }
-                return View();
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
-            }
-        }
-
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> Configuracao()
@@ -287,7 +255,30 @@ namespace VisualLayer.Controllers.RH
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
+            }
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Deletar(string id)
+        {
+            try
+            {
+                IActionResult result = await Authorize(NIVEL_PERMISSAO);
+                if (result != null)
+                {
+                    return result;
+                }
+                int userId = await GetIdByCookie();
+                if (Convert.ToInt32(id.Decrypt(ENCRYPT)) == userId)
+                {
+                    ViewBag.Erros = "Você não pode se deletar";
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return ThrowError(ex);
             }
         }
 
@@ -314,7 +305,7 @@ namespace VisualLayer.Controllers.RH
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -348,7 +339,7 @@ namespace VisualLayer.Controllers.RH
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -376,7 +367,7 @@ namespace VisualLayer.Controllers.RH
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -400,8 +391,14 @@ namespace VisualLayer.Controllers.RH
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public async Task<IActionResult> Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         [Authorize]
@@ -430,7 +427,24 @@ namespace VisualLayer.Controllers.RH
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
+            }
+        }
+
+        public async Task<IActionResult> Grafico(string id)
+        {
+            try
+            {
+                IActionResult result = await Authorize(NIVEL_PERMISSAO);
+                if (result != null)
+                {
+                    return result;
+                }
+                return View((object)id);
+            }
+            catch (Exception ex)
+            {
+                return ThrowError(ex);
             }
         }
 
@@ -448,27 +462,19 @@ namespace VisualLayer.Controllers.RH
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
-        [Authorize]
-        public async Task<IActionResult> RequisitarUpdate(string id)
+        public async Task<IActionResult> Privacy()
         {
             try
             {
-                IActionResult result = await Authorize(NIVEL_PERMISSAO);
-                if (result != null)
-                {
-                    return result;
-                }
-                Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item;
-                Response response = await _FuncionarioService.RequistarUpdate(funcionario);
-                return RedirectToAction(actionName: "Funcionarios");
+                return View();
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
 
@@ -488,7 +494,27 @@ namespace VisualLayer.Controllers.RH
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
+            }
+        }
+
+        [Authorize]
+        public async Task<IActionResult> RequisitarUpdate(string id)
+        {
+            try
+            {
+                IActionResult result = await Authorize(NIVEL_PERMISSAO);
+                if (result != null)
+                {
+                    return result;
+                }
+                Entities.Funcionario funcionario = _FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item;
+                Response response = await _FuncionarioService.RequistarUpdate(funcionario);
+                return RedirectToAction(actionName: "Funcionarios");
+            }
+            catch (Exception ex)
+            {
+                return ThrowError(ex);
             }
         }
 
@@ -511,14 +537,8 @@ namespace VisualLayer.Controllers.RH
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
-    }
-
-    public class GraficoModel
-    {
-        public string TituloRodape { get; set; }
-        public int Porcentagem { get; set; }
     }
 }

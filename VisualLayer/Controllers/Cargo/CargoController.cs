@@ -3,15 +3,16 @@ using BusinessLogicalLayer.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VisualLayer.Models.Cargo;
+using VisualLayer.Security;
 
 namespace VisualLayer.Controllers.Cargo
 {
-    public class CargoController : Controller
+    public class CargoController : CustomController
     {
         private readonly ICargoService _cargoService;
         private readonly IMapper _mapper;
 
-        public CargoController(ICargoService cargoService, IMapper mapper)
+        public CargoController(ICargoService cargoService, IMapper mapper, IFuncionarioService funcionarioService, IHttpContextAccessor httpContextAccessor) : base(funcionarioService, httpContextAccessor)
         {
             _cargoService = cargoService;
             _mapper = mapper;
@@ -36,7 +37,7 @@ namespace VisualLayer.Controllers.Cargo
             }
             catch (Exception ex)
             {
-                return RedirectToAction(actionName: "Index", controllerName: "Erro", ex);
+                return ThrowError(ex);
             }
         }
     }

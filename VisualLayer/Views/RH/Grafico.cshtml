@@ -3,78 +3,72 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<body>
+    <div class="conteudo">
+        <div class="top">
+            <h1>Resultado SF-36</h1>
+        </div>
 
-<link rel="stylesheet" href="~/css/Funcionario/grafico.css">
-<div class="conteudo">
-    <div class="top">
-        <h1>Resultado SF-36</h1>
-    </div>
+        <div class="grafico">
+            <div class="gridColuna" id="gridColuna">
 
-    <div class="grafico">
-        <div class="gridColuna" id="gridColuna">
-            <form>
-                <input type="hidden" id="UserID" value="@Model" />
-            </form>
-            @*<div class="coluna">
-            <div class="tituloColuna">Meu Titulo</div>
-            <div class="colunaPorcentagem">
-            <div class="porcentagem"></div>
+                <div >
+                  <label id="val123" name="val123" style="display: none;">@System.Text.RegularExpressions.Regex.Escape(this.Model)</label>  
+                </div>
+                @*<div class="coluna">
+                    <div class="tituloColuna">Meu Titulo</div>
+                    <div class="colunaPorcentagem">
+                    <div class="porcentagem"></div>
+                    </div>
+                    <div class="bolinha">
+                    <span class="porcentagemTitulo">90%</span>
+                    </div>*@
             </div>
-            <div class="bolinha">
-            <span class="porcentagemTitulo">90%</span>
-            </div>*@
         </div>
     </div>
-</div>
 
-<div class="rodape">
-</div>
+    <div class="rodape">
+    </div>
+</body>
 
 
 @section Scripts
     {
-    <script>
-        var objetoGrafico = new Object();
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+         $("#gridColuna").html("");
+        let id = window.location.href.replace("https://localhost:7184/Rh/Grafico/","").replace(":62","123456")
+        $.ajax(
+            {
+                type: 'GET',
+                timeout: 5000,
+                url: '/Rh/CarregaGrafico?id='+id,
+                async: true,
+                success: function (jsonResult) {
+                    jsonResult.dados.forEach(function (item) {
+                        var coluna = $("<div>", { class: "coluna" });
+                        var tituloColuna = $("<div>", { class: "tituloColuna" });
+                        tituloColuna.text(item.tituloRodape);
 
-        objetoGrafico.CarregaGrafico = function () {
-            $("#gridColuna").html("");
-            var id = $("#UserID").val();
-            $.ajax(
-                {
-                    type: 'GET',
-                    timeout: 5000,
-                    url: '/Rh/CarregaGrafico?id='+id,
-                    async: true,
+                        var colunaPorcentagem = $("<div>", { class: "colunaPorcentagem" });
+                        var porcentagem = $("<div>", { class: "porcentagem", style: "height: " + item.porcentagem });
+                        colunaPorcentagem.append(porcentagem);
 
-                    success: function (jsonResult) {
-                        jsonResult.dados.forEach(function (item) {
-                            var coluna = $("<div>", { class: "coluna" });
-                            var tituloColuna = $("<div>", { class: "tituloColuna" });
-                            tituloColuna.text(item.tituloRodape);
+                        var bolinha = $("<div>", { class: "bolinha" });
+                        var porcentagemTitulo = $("<span>", { class: "porcentagemTitulo" });
+                        porcentagemTitulo.text(item.porcentagem);
 
-                            var colunaPorcentagem = $("<div>", { class: "colunaPorcentagem" });
-                            var porcentagem = $("<div>", { class: "porcentagem", style: "height: " + item.porcentagem });
-                            colunaPorcentagem.append(porcentagem);
+                        bolinha.append(porcentagemTitulo);
 
-                            var bolinha = $("<div>", { class: "bolinha" });
-                            var porcentagemTitulo = $("<span>", { class: "porcentagemTitulo" });
-                            porcentagemTitulo.text(item.porcentagem);
+                        coluna.append(tituloColuna);
+                        coluna.append(colunaPorcentagem);
+                        coluna.append(bolinha);
 
-                            bolinha.append(porcentagemTitulo);
-
-                            coluna.append(tituloColuna);
-                            coluna.append(colunaPorcentagem);
-                            coluna.append(bolinha);
-
-                            $("#gridColuna").append(coluna);
-                        });
-                    }
-                });
-        }
-
-        $(function () {
-            objetoGrafico.CarregaGrafico();
-        });
-    </script>
-    @*<script src="~/js/grafico.js"></script>*@
+                        $("#gridColuna").append(coluna);
+                    });
+                }
+            });
+    });
+</script>
 }
