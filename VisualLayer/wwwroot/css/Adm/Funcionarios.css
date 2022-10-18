@@ -10,7 +10,7 @@
 
 body {
     min-height: 100%;
-    background: #e3f2fd;
+    background-color: #e3f2fd;
 }
 
 nav {
@@ -88,7 +88,7 @@ nav.open .sidebar {
 }
 
 .lists .nav-link:hover {
-    background-color: #4070f4;
+    background-color: #2C2928;
 }
 
 .nav-link .icon {
@@ -154,49 +154,11 @@ nav.open ~ .overlay {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 180px;
     background: #fff;
     padding: 15px 14px;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
-
-/*.search-box {
-    position: absolute;
-    top: 65%;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    height: 35px;
-    padding: 10px;
-    border-radius: 45px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
-    .search-box .search-txt {
-        background: none;
-        outline: none;
-        padding: 3px;
-        margin: 10px;
-        width: 400px;
-        color: #333;
-        font-size: 16px;
-        line-height: 35px;
-        border-radius: 25px;
-        transition: 0.5s ease;
-    }
-
- .search-box .submit-lent {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 10;
-    border: none;
-    background: transparent;
-    outline: none;
-}*/
 
 .form {
     position: relative;
