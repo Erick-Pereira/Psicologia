@@ -82,7 +82,7 @@ nav.open .sidebar {
 }
 
 .lists .nav-link:hover {
-    background-color: #4070f4;
+    background-color: #2C2928;
 }
 
 .nav-link .icon {
@@ -137,6 +137,46 @@ nav.open ~ .overlay {
         position: relative;
     }
 
+.input-field input {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0 35px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+    .input-field input:is(:focus, :valid) {
+        border-bottom-color: #4070f4;
+    }
+
+.input-field i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 23px;
+    transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) ~ i {
+    color: #4070f4;
+}
+
+.input-field i.icon {
+    left: 0;
+}
+
+.input-field i.showHidePw {
+    right: 0;
+    cursor: pointer;
+    padding: 10px;
+}
+
 .contains .box-contains {
     display: flex;
     margin-top: 80px;
@@ -170,16 +210,16 @@ nav.open ~ .overlay {
 }
 
 .contains-dois .containers {
-    flex: 1 1 350px;
+    display: flex;
     margin: 15px;
     align-items: center;
     justify-content: center;
-    width: calc(100% / 4 - 15px);
+    width: 100%;
     height: 400px;
     background: #fff;
     padding: 15px 14px;
     border-radius: 12px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
 }
 
 .box .name-box {
@@ -188,15 +228,16 @@ nav.open ~ .overlay {
 }
 
 .containers .box-dois {
-    flex: 1 1 350px;
-    align-items: center;
-    justify-content: center;
-    width: calc(100% / 4 - 15px);
+    width: 300px;
     height: 370px;
     background: #fff;
     padding: 15px 14px;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.containers .corpoTable {
+    width: 100%;
 }
 
 .box-dois .name-box {

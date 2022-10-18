@@ -53,7 +53,7 @@
                 </ul>
                 <div class="bottom-cotent">
                     <li class="list">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LogOff">
+                        <a asp-area="" asp-controller="Home" asp-action="LogOff" class="nav-link">
                             <i class="bx bx-log-out icon"></i>
                             <span class="link">Log-out</span>
                         </a>
@@ -63,14 +63,15 @@
         </div>
     </nav>
 
-    <section class="overlay"></section>
-    <section class="home-section">
-        <h1>Configuracao</h1>
+ <section class="overlay"></section>
+    <section class="home-section configbox" style="float: left;">
+        <br>
+        <div class="infohead">Configurações</div>
         <div>
-            <hr />
+            <br>
             <dl class="row">
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Foto)
+                        @Html.DisplayNameFor(model => model.Foto)
                 </dt>
                 <dd class="col-sm-10">
                         <img src="@Model.Foto" alt="" / style=" width: 75px; height: 75px;" >
@@ -182,8 +183,8 @@
                     <br>
                     <br>
                     <div class="form-group" type="hidden">
-                        <button onclick=alterarSenha()>Alterar Senha</button>                        
-                    </div>      
+                        <button onclick=alterarSenha()>Alterar Senha</button>
+                    </div>
                     <label id="Erros"></label>
                 </div>
             </div>

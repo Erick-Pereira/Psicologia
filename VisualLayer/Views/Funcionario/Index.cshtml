@@ -1,19 +1,21 @@
 ﻿<!DOCTYPE html>
-<!-- Coding by CodingLab | www.codinglabweb.com-->
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Funcionario</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--<title>Sidebar Menu | Side Navigation Bar</title>-->
+    <title>ADM</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="~/css/Funcionario/Index.css"/>
+    <link rel="stylesheet" href="~/css/Funcionario/Index.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
           rel="stylesheet" />
 </head>
-<body>
+<body style="background-color: #e3f2fd;">
     <nav>
         <div class="logo">
             <i class="bx bx-menu menu-icon"></i>
@@ -57,67 +59,101 @@
             </div>
         </div>
     </nav>
+
     <section class="overlay"></section>
     <section claas="flex">
-        <div class="contains">
-            <div class="box-contains">
-                <div class="box">
-                    <div class="format">
-                        <div class="name-box"> Carga Horaria </div>
-                        <time class="numero">00:00</time>
-                        <div class="indicador">
-                            <i class='bx bx-up-arrow-alt'></i>
-                            <span class="text">Iniciar</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="format">
-                        <div class="name-box">Ausências do Time</div>
-                        <div>Ver com erick</div>
-                        <div class="indicador">
-                            <i class='bx bx-right-arrow-alt'></i>
-                            <span class="text">Ver histórico de ausências</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="format">
-                        <div class="name-box">Reuniões</div>
-                        <div>Ver com erick</div>
-                        <div class="indicador">
-                            <i class='bx bx-camera-home'></i>
-                            <span class="text">Ingressar na reunião</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="format">
-                        <div class="name-box">Próximos Eventos</div>
-                        <div>Ver com erick</div>
-                        <div class="indicador">
-                            <i class='bx bxs-calendar-minus'></i>
-                            <span class="text">Ver Calendário</span>
-                        </div>
+    <div class="contains">
+        <div class="box-contains">
+            <div class="box">
+                <div class="format">
+                    <div class="name-box"> Carga Horaria </div>
+                    <time class="numero">00:00</time>
+                    <div class="indicador">
+                        <i class='bx bx-up-arrow-alt'></i>
+                        <span class="text">Iniciar</span>
                     </div>
                 </div>
             </div>
-            <div class="avisos">
-                <div class="contains-dois">
-                    <div class="containers">
-                        <div class="box-dois">
-                            <div class="name-box">Avisos Gerais</div>
-                            <div>Temos que terminar logo</div>
-                            <div class="indicador">
-                                <i class='bx bx-list-ul'></i>
-                                <span class="text">Ver avisos</span>
-                            </div>
-
-                        </div>
+            <div class="box">
+                <div class="format">
+                    <div class="name-box">Ausências do Time</div>
+                    <div>Ver com erick</div>
+                    <div class="indicador">
+                        <i class='bx bx-right-arrow-alt'></i>
+                        <span class="text">Ver histórico de ausências</span>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="format">
+                    <div class="name-box">Reuniões</div>
+                    <div>Ver com erick</div>
+                    <div class="indicador">
+                        <i class='bx bx-camera-home'></i>
+                        <span class="text">Ingressar na reunião</span>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="format">
+                    <div class="name-box">Próximos Eventos</div>
+                    <div>Ver com erick</div>
+                    <div class="indicador">
+                        <i class='bx bxs-calendar-minus'></i>
+                        <span class="text">Ver Calendário</span>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="avisos">
+                <div class="contains-dois">
+                <div class="containers">
+                    <div class="box-dois">
+                        <div class="name-box">Avisos Gerais</div>
+                        <div>Temos que terminar logo</div>
+                        <div class="indicador">
+                            <i class='bx bx-list-ul'></i>
+                            <span class="text">Ver avisos</span>
+                        </div>
+                    </div>
+                    <div class="corpoTable">
+                            <div style="border:2px solid black; border-radius: 5px;">
+                             <table class="table table-hover table-bordered" style="width:100%;">
+                                <thead class="table-dark" style="text-align:center;">
+                                    <tr>
+                                        <th> Avisos Semanais </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td> Domingo </td>
+                                    </tr>
+                                    <tr>
+                                        <td> Segunda-Feira </td>
+                                    </tr>
+                                    <tr>
+                                        <td> Terça-Feira </td>
+                                    </tr>
+                                    <tr>
+                                        <td> Quarta-Feira </td>
+                                    </tr>
+                                    <tr>
+                                        <td> Quinta-Feira </td>
+                                    </tr>
+                                    <tr>
+                                        <td> Sexta-Feira </td>
+                                    </tr>
+                                    <tr>
+                                        <td> Sábado </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </section>
 
     <script>
@@ -137,3 +173,4 @@
     </script>
 </body>
 </html>
+
