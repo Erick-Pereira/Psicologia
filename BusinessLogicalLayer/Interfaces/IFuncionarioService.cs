@@ -37,6 +37,8 @@ namespace BusinessLogicalLayer.Interfaces
 
         Task<Response> RequistarTeste(Funcionario funcionario);
 
+        Task<Response> HasFinishedTeste(Funcionario funcionario);
+
         Task<Response> ResetarSenha(Funcionario funcionario);
 
         Task<Response> Update(Funcionario funcionario);
