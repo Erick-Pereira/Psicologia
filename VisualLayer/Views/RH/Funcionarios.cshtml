@@ -64,9 +64,32 @@
 <section class="home-section">
     <h1>Funcionarios</h1>
 
-    <p>
-        <a asp-action="Cadastrar">Cadastrar novo Funcionario</a>
-    </p>
+    <div class="flex">
+        <div class="contains">
+            <div class="box-contains">
+                <div class="box">
+                    <h1>Funcionarios</h1>
+                    <p>
+                        <a asp-action="Cadastrar">Cadastrar novo Funcionario</a>
+                    </p>
+                    @*<div class="search-box">
+                        <button class="submit-lent" type="submit">
+                        <i class='bx bx-search icon'></i>
+                        </button>
+                        <input type="text" id="teste" class="search-txt" onkeyup="myFunction" placeholder="Pesquisar" />
+                        </div>*@
+                    <div class="form">
+                         <div class="form-group">
+                        <input type="text" class="form-control form-input" placeholder="Pesquisar">
+                        </div>
+                        <i class="fa fa-search icon"></i>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
     @*<div class="cabecalho">*@
     <div class="content">
         <table class="rTable">
@@ -129,7 +152,6 @@
                     <td>
                         @if (id != item.Id)
                         {
-                            @Html.ActionLink("Editar", "Editar", new {  id= item.Id})
                             @Html.ActionLink("Requisitar Teste", "RequisitarTeste", new {  id= item.Id})
                             @Html.ActionLink("Grafico","Grafico", new {id = item.Id})
                         }
