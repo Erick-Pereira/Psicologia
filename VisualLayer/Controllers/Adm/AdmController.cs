@@ -429,7 +429,7 @@ namespace VisualLayer.Controllers.Adm
         }
 
         [Authorize]
-        public async Task<IActionResult> ResetarSenha(string id)
+        public async Task<IActionResult> ResetarSenha(FuncionarioUpdateAdmViewModel funcionario)
         {
             try
             {
@@ -438,10 +438,9 @@ namespace VisualLayer.Controllers.Adm
                 {
                     return result;
                 }
+                _FuncionarioService.ResetarSenha(_FuncionarioService.GetByID(Convert.ToInt32(funcionario.Id.Decrypt(ENCRYPT))).Result.Item);
 
-                _FuncionarioService.ResetarSenha(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item);
-
-                ViewBag.Funcionario = _mapper.Map<FuncionarioUpdateAdmViewModel>(_FuncionarioService.GetByID(Convert.ToInt32(id.Decrypt(ENCRYPT))).Result.Item);
+                ViewBag.Funcionario = _mapper.Map<FuncionarioUpdateAdmViewModel>(_FuncionarioService.GetByID(Convert.ToInt32(funcionario.Id.Decrypt(ENCRYPT))).Result.Item);
                 ViewBag.Cargos = _CargoService.GetAll().Result.Data;
                 return RedirectToAction(actionName: "Funcionarios");
             }

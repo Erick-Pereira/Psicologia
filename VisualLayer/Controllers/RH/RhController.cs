@@ -13,6 +13,13 @@ using VisualLayer.Security;
 
 namespace VisualLayer.Controllers.RH
 {
+    public class GraficoSF36
+    {
+        public List<GraficoModel> Lista { get; set; }
+        public DateTime Data { get; set; }
+        public string ComparacaoSaude { get; set; }
+    }
+
     public class GraficoModel
     {
         public int Porcentagem { get; set; }
@@ -208,20 +215,28 @@ namespace VisualLayer.Controllers.RH
             //}
             //return Json(new { dados = dados });
             DataResponse<SF36Score> response = await _sf36.GetLast3SFByFuncionario(Convert.ToInt32(id.Decrypt(ENCRYPT)));
+
+            var dados = new List<GraficoSF36>();
             List<SF36Score> scores = response.Data;
-            SF36Score score = scores[0];
-            string[] titulos = { "Dor", "Estado geral de Saúde", "Capacidade Funcional", "Vitalidade", "Saúde Mental", "Limitação por Aspectos Fisicos", "Limitação por Aspectos Emocionais", "Aspectos Sociais", score.ComparacaoSaude };
-            double[] valores = { score.Dor, score.EstadoSaude, score.CapacidadeFuncional, score.Vitalidade, score.SaudeMental, score.LimitacaoAspectosFisicos, score.AspectosEmocionais, score.AspectosSociais };
-
-            var dados = new List<GraficoModel>();
-
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < scores.Count; i++)
             {
-                dados.Add(new GraficoModel
+                SF36Score score = scores[i];
+                string[] titulos = { "Dor", "Estado geral de Saúde", "Capacidade Funcional", "Vitalidade", "Saúde Mental", "Limitação por Aspectos Fisicos", "Limitação por Aspectos Emocionais", "Aspectos Sociais", score.ComparacaoSaude };
+                double[] valores = { score.Dor, score.EstadoSaude, score.CapacidadeFuncional, score.Vitalidade, score.SaudeMental, score.LimitacaoAspectosFisicos, score.AspectosEmocionais, score.AspectosSociais };
+                List<GraficoModel> graficos = new List<GraficoModel>();
+                for (int j = 0; j < valores.Length; j++)
                 {
-                    TituloRodape = titulos[i],
-                    Porcentagem = Convert.ToInt32(valores[i])
-                });
+                    graficos.Add(new GraficoModel
+                    {
+                        TituloRodape = titulos[j],
+                        Porcentagem = Convert.ToInt32(valores[j])
+                    });
+                }
+                GraficoSF36 graficoSF36 = new GraficoSF36();
+                graficoSF36.Lista = graficos;
+                graficoSF36.Data = score.DataSF;
+                graficoSF36.ComparacaoSaude = score.ComparacaoSaude;
+                dados.Add(graficoSF36);
             }
 
             return Json(new { dados = dados });

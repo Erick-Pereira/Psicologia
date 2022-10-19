@@ -49,8 +49,9 @@ namespace BusinessLogicalLayer.BLL
             Response repsponse = await _scoreDAL.Insert(score);
             if (repsponse.HasSuccess)
             {
+                funcionario = _funcionarioService.GetByID(funcionario.ID).Result.Item;
                 funcionario.HasRequiredTest = false;
-                return await _funcionarioService.Update(funcionario);
+                return await _funcionarioService.HasFinishedTeste(funcionario);
             }
             return repsponse;
         }

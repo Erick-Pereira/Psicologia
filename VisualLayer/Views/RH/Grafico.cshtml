@@ -9,13 +9,14 @@
         <div class="top">
             <h1>Resultado SF-36</h1>
         </div>
+        @*@System.Text.RegularExpressions.Regex.Escape()*@
+        <div>
+            <input id="val123" name="val123" style="visibility: hidden;" value="@this.Model"></input>
+        </div>
 
-        <div class="grafico">
+        <div class="grafico" id="grafico">
             <div class="gridColuna" id="gridColuna">
-
-                <div >
-                  <label id="val123" name="val123" style="display: none;">@System.Text.RegularExpressions.Regex.Escape(this.Model)</label>  
-                </div>
+               
                 @*<div class="coluna">
                     <div class="tituloColuna">Meu Titulo</div>
                     <div class="colunaPorcentagem">
@@ -32,44 +33,49 @@
     </div>
 </body>
 
-
+@*window.location.href.replace("https://localhost:7184/Rh/Grafico/","").replace(":62","123456")*@
 @section Scripts
     {
 <script type="text/javascript">
-    
-    $(document).ready(function() {
-         $("#gridColuna").html("");
-        let id = window.location.href.replace("https://localhost:7184/Rh/Grafico/","").replace(":62","123456")
+        var id = document.getElementById("val123").value.split(':')[0];
+    $(document).ready(function() 
+    {
+         $("#gridColuna").html("");            
         $.ajax(
-            {
+        {
                 type: 'GET',
                 timeout: 5000,
                 url: '/Rh/CarregaGrafico?id='+id,
                 async: true,
-                success: function (jsonResult) {
-                    jsonResult.dados.forEach(function (item) {
-                        var coluna = $("<div>", { class: "coluna" });
-                        var tituloColuna = $("<div>", { class: "tituloColuna" });
-                        tituloColuna.text(item.tituloRodape);
-
-                        var colunaPorcentagem = $("<div>", { class: "colunaPorcentagem" });
-                        var porcentagem = $("<div>", { class: "porcentagem", style: "height: " + item.porcentagem });
-                        colunaPorcentagem.append(porcentagem);
-
-                        var bolinha = $("<div>", { class: "bolinha" });
-                        var porcentagemTitulo = $("<span>", { class: "porcentagemTitulo" });
-                        porcentagemTitulo.text(item.porcentagem);
-
-                        bolinha.append(porcentagemTitulo);
-
-                        coluna.append(tituloColuna);
-                        coluna.append(colunaPorcentagem);
-                        coluna.append(bolinha);
-
-                        $("#gridColuna").append(coluna);
-                    });
+                success: function (jsonResult) 
+                {
+                        console.log(jsonResult);
+                        jsonResult.dados.forEach(function (item)
+                        {
+                            console.log(item);
+                            var linha = $("<div>", { class: "linha" });                           
+                            item.lista.forEach(function (item2) 
+                            {
+                                var coluna = $("<div>", { class: "coluna" });
+                                  var tituloColuna = $("<div>", { class: "tituloColuna" });
+                                  tituloColuna.text(item2.tituloRodape);
+                                  var colunaPorcentagem = $("<div>", { class: "colunaPorcentagem" });
+                                  var porcentagem = $("<div>", { class: "porcentagem", style: "height: " + item2.porcentagem });
+                                  colunaPorcentagem.append(porcentagem);
+                                  var bolinha = $("<div>", { class: "bolinha" });
+                                  var porcentagemTitulo = $("<span>", { class: "porcentagemTitulo" });
+                                  porcentagemTitulo.text(item.porcentagem);
+                                  bolinha.append(porcentagemTitulo);
+                                  coluna.append(tituloColuna);
+                                  coluna.append(colunaPorcentagem);
+                                  coluna.append(bolinha);                                  
+                                @* $("#gridColuna").append(coluna);*@
+                                linha.append(coluna);
+                            });
+                            $("#gridColuna").append(linha);
+                        });
                 }
-            });
+        });
     });
 </script>
 }
