@@ -6,13 +6,14 @@
     FuncionarioUpdateAdmViewModel funcionario = ViewBag.Funcionario;
     List<Entities.Cargo> cargos = ViewBag.Cargos;
 }
+ <link href='EditarFuncionarios' rel='stylesheet'>
 <head>
-    <title>
+    <title class="edittitle">
         Editar
     </title>
 </head>
-<h1>Edit</h1>
-<hr />
+<h1 class="edittitle">Edit</h1>
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Editar">
