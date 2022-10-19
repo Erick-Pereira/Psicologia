@@ -294,6 +294,8 @@ namespace VisualLayer.Controllers.Adm
                 string caminho_WebRoot = hostEnvironment.WebRootPath;
                 string path = Path.Combine(caminho_WebRoot, $"SystemImg\\Funcionarios\\{funcionario.Cpf.StringCleaner()}");
                 funcionarioDetail.Foto = $"/SystemImg/Funcionarios/{funcionario.Cpf.StringCleaner()}.jpg";
+                int userID = await GetIdByCookie();
+                ViewBag.ID = userID.ToString().Encrypt(ENCRYPT);
                 return View(funcionarioDetail);
             }
             catch (Exception ex)
@@ -348,6 +350,7 @@ namespace VisualLayer.Controllers.Adm
                     ViewBag.Funcionario = funcionario;
                     ViewBag.Cargos = _CargoService.GetAll().Result.Data;
                     ViewBag.Erros = response.Message;
+
                     return View();
                 }
             }
