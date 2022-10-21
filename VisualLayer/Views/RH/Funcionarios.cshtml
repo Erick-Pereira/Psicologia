@@ -118,6 +118,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.IsAtivo)
                 </th>
+                <th>
+                    Ações
+                </th>
             </tr>
         </thead>
         <tbody>            
@@ -151,17 +154,17 @@
                     <td>
                         @if (id != item.Id)
                         {
-                            @Html.ActionLink("Requisitar Teste", "RequisitarTeste", new {  id= item.Id})
-                            @Html.ActionLink("Grafico","Grafico", new {id = item.Id})
+                            @Html.ActionLink("Requisitar Teste", "RequisitarTeste", new {  id= item.Id}, new {@class="btn btn-secondary btn-sm"})
+                            @Html.ActionLink("Grafico","Grafico", new {id = item.Id}, new {@class="btn btn-secondary btn-sm"})
                         }
-                        @Html.ActionLink("Detalhar", "Detalhar", new {  id= item.Id })                        
-                        @Html.ActionLink("Requisitar Update","RequisitarUpdate", new {id = item.Id})
+                        @Html.ActionLink("Detalhar", "Detalhar", new {  id= item.Id}, new {@class="btn btn-secondary btn-sm"})                        
+                        @Html.ActionLink("Requisitar Update","RequisitarUpdate", new {id = item.Id}, new {@class="btn btn-secondary btn-sm"})
                         @if (id != item.Id)
                         {
                             @if (item.IsAtivo)
-                            @Html.ActionLink("Desativar","Desativar", new {id = item.Id})
+                            @Html.ActionLink("Desativar","Desativar", new {id = item.Id}, new {@class="btn btn-secondary btn-sm"})
                             @if (!item.IsAtivo)
-                            @Html.ActionLink("Ativar","Ativar", new {id = item.Id})
+                            @Html.ActionLink("Ativar","Ativar", new {id = item.Id}, new {@class="btn btn-secondary btn-sm"})
                         }
                     </td>
                 </tr>
