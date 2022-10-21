@@ -154,11 +154,11 @@
                     <td>
                         @if (id != item.Id)
                         {
-                            @Html.ActionLink("Requisitar Teste", "RequisitarTeste", new {  id= item.Id}, new {@class="btn btn-secondary btn-sm"})
+                            @Html.ActionLink("Req-Teste", "RequisitarTeste", new {  id= item.Id}, new {@class="btn btn-secondary btn-sm"})
                             @Html.ActionLink("Grafico","Grafico", new {id = item.Id}, new {@class="btn btn-secondary btn-sm"})
                         }
                         @Html.ActionLink("Detalhar", "Detalhar", new {  id= item.Id}, new {@class="btn btn-secondary btn-sm"})                        
-                        @Html.ActionLink("Requisitar Update","RequisitarUpdate", new {id = item.Id}, new {@class="btn btn-secondary btn-sm"})
+                        @Html.ActionLink("Req-Update","RequisitarUpdate", new {id = item.Id}, new {@class="btn btn-secondary btn-sm"})
                         @if (id != item.Id)
                         {
                             @if (item.IsAtivo)

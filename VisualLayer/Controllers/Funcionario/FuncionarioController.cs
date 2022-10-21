@@ -175,7 +175,7 @@ namespace VisualLayer.Controllers.Funcionario
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Update()
+        public async Task<IActionResult> Update(Response errorResponse)
         {
             try
             {
@@ -196,6 +196,10 @@ namespace VisualLayer.Controllers.Funcionario
                     funcionario.Foto = $"/SystemImg/Funcionarios/{funcionario.Cpf.StringCleaner()}.jpg";
                     List<Estado> estados = _estadoService.GetAll().Result.Data;
                     ViewBag.Estados = estados;
+                    if (!response.HasSuccess)
+                    {
+                        ViewBag.Errors = errorResponse.Message;
+                    }
                     return View(funcionario);
                 }
                 return RedirectToAction(actionName: "Index", controllerName: "Home");
@@ -212,7 +216,7 @@ namespace VisualLayer.Controllers.Funcionario
         {
             try
             {
-                Entities.Funcionario funcionario2 = _FuncionarioService.GetByID(Convert.ToInt32(funcionarioUpdate.Id)).Result.Item;
+                Entities.Funcionario funcionario2 = _FuncionarioService.GetByID(Convert.ToInt32(await GetIdByCookie())).Result.Item;
                 funcionario2.Nome = funcionarioUpdate.Nome;
                 funcionario2.Celular = funcionarioUpdate.Celular;
                 funcionario2.Endereco.Bairro.Cidade.Estado = _estadoService.GetByUF(funcionarioUpdate.EstadoUf).Result.Item;
@@ -221,13 +225,21 @@ namespace VisualLayer.Controllers.Funcionario
                 funcionario2.Endereco.Bairro.NomeBairro = funcionarioUpdate.Bairro;
                 funcionario2.Endereco.Complemento = funcionarioUpdate.Complemento;
                 funcionario2.Endereco.NumeroCasa = funcionarioUpdate.NumeroCasa;
-                funcionario2.Endereco.CEP = funcionarioUpdate.Cep.StringCleaner();
+                if(funcionarioUpdate.Cep != null)
+                {
+                    funcionario2.Endereco.CEP = funcionarioUpdate.Cep.StringCleaner();
+                }
+                else
+                {
+                    funcionario2.Endereco.CEP = "";
+                }
+                
                 funcionario2.Endereco.Rua = funcionarioUpdate.Rua;
                 funcionario2.DataNascimento = funcionarioUpdate.DataNascimento;
                 funcionario2.Genero = funcionarioUpdate.Genero;
                 funcionario2.EstadoCivil = funcionarioUpdate.EstadoCivil;
-                Response response = await _FuncionarioService.UpdateFuncionario(funcionario2);
-                if (response.HasSuccess)
+                Response responseError = await _FuncionarioService.UpdateFuncionario(funcionario2);
+                if (responseError.HasSuccess)
                 {
                     if (funcionarioUpdate.Image != null)
                     {
@@ -256,7 +268,30 @@ namespace VisualLayer.Controllers.Funcionario
                     if (funcionario2.Cargo.NivelPermissao == 0)
                         return RedirectToAction(actionName: "Index", controllerName: "Adm");
                 }
-                return RedirectToAction(actionName: "Update");
+                SingleResponse<Entities.Funcionario> response = await _FuncionarioService.GetByID(await GetIdByCookie());
+                if (response.Item.IsFirstLogin)
+                {
+                    FuncionarioUpdateViewModel funcionario = _mapper.Map<FuncionarioUpdateViewModel>(response.Item);
+                    funcionario.EstadoUf = response.Item.Endereco.Bairro.Cidade.Estado.Sigla;
+                    funcionario.Celular = response.Item.Celular;
+                    funcionario.Cep = response.Item.Endereco.CEP;
+                    funcionario.NumeroCasa = response.Item.Endereco.NumeroCasa;
+                    funcionario.Rua = response.Item.Endereco.Rua;
+                    funcionario.Complemento = response.Item.Endereco.Complemento;
+                    funcionario.Bairro = response.Item.Endereco.Bairro.NomeBairro;
+                    funcionario.Cidade = response.Item.Endereco.Bairro.Cidade.NomeCidade;
+                    string caminho_WebRoot = _hostEnvironment.WebRootPath;
+                    string path = Path.Combine(caminho_WebRoot, $"SystemImg\\Funcionarios\\{funcionario.Cpf.StringCleaner()}");
+                    funcionario.Foto = $"/SystemImg/Funcionarios/{funcionario.Cpf.StringCleaner()}.jpg";
+                    List<Estado> estados = _estadoService.GetAll().Result.Data;
+                    ViewBag.Estados = estados;
+                    if (!responseError.HasSuccess)
+                    {
+                        ViewBag.Errors = responseError.Message;
+                    }
+                    return View(funcionario);
+                }
+                return RedirectToAction(actionName: "Index", controllerName: "Home");
             }
             catch (Exception ex)
             {
