@@ -8,7 +8,7 @@
 {
         @Html.AntiForgeryToken()
         <li class="nav-item">
-            @Html.ActionLink("Hello " + funcionario.Nome + "!", "Logarr", "Home")
+            @Html.ActionLink("Olá " + funcionario.Nome + "!", "Logarr", "Home")
         </li>
         <li class="nav-item">
         @Html.ActionLink("Log off", "LogOff", "Home")

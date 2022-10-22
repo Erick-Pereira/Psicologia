@@ -113,10 +113,10 @@ h1 {
 }
 
 .porcentagemTitulo {
-    font-size: 12px;
     font-style: normal;
+    left: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    top: 15px;
+    top: 9px;
     position: absolute;
 }
 
