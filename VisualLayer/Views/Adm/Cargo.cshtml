@@ -8,20 +8,18 @@
         Cadastro Cargo
     </title>
 </head>
-<h1>Criar</h1>
-
-<h4>CargoInsertViewModel</h4>
+<h1 style="margin:15px;">Criar</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row" style="margin: 15px;">
+    <div class="col-md-8">
         <form asp-action="Cargo">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="col-md-4">
                 <label asp-for="Funcao" class="control-label"></label>
                 <input asp-for="Funcao" class="form-control" />
                 <span asp-validation-for="Funcao" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-md-8">
                 <label asp-for="NivelPermissao" class="control-label"></label>
                 <input asp-for="NivelPermissao" class="form-control" />
                 <span asp-validation-for="NivelPermissao" class="text-danger"></span>
@@ -35,15 +33,16 @@
                 </div>
             }
             <div class="form-group">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                <input type="submit" value="Cadastrar" class="btn btn-secondary btn-sm" />
             </div>
         </form>
     </div>
+    <div>
+        <a asp-area="" asp-controller="Adm" asp-action="Cadastrar" class="btn btn-secondary btn-sm">Back to List</a>
+    </div>
 </div>
 
-<div>
-    <a asp-area="" asp-controller="Adm" asp-action="Cadastrar">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
