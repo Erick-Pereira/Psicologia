@@ -20,7 +20,9 @@ h1 {
 }
 
 .grafico {
-    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
     width: 100%;
     padding-top: 8px;
     position: absolute;
@@ -38,40 +40,52 @@ h1 {
 .gridColuna {
     display: flex;
     width: 100%;
+    margin: 15px;
     padding: 2px 2px 2px 2px;
-    position: absolute;
+    /* position: absolute; */
     background: rgba(220, 220, 220, 0.488);
-    padding: 1rem;
+    /* padding: 1rem; */
     overflow: auto;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    align-items: stretch;
 }
 
 .coluna {
-    height: 400px;
+    display: flex;
+    height: 430px;
     width: 100px;
-    margin-left: 3.8%;
+    margin: 10px;
+    /* margin-left: 3.8%; */
     background: rgba(250, 250, 210, 0.639);
     margin-bottom: 10px;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    align-items: stretch;
+    position: relative;
 }
 
 .tituloColuna {
-    width: 100px;
-    height: 10px;
     bottom: 11px;
     position: absolute;
     font-size: 12px;
     font-style: normal;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-left: 5px;
+    text-align: left;
 }
 
 .colunaPorcentagem {
     width: 10px;
     border-radius: 7px;
-    height: 280px;
+    height: 250px;
     background: gray;
-    bottom: 40px;
+    bottom: 65px;
     position: absolute;
-    margin-left: 45px;
+    /* margin-left: 45px; */
+    /* align-items: baseline; */
 }
 
 .porcentagem {
@@ -79,7 +93,7 @@ h1 {
     height: 90%;
     background: rgba(0, 255, 136, 0.488);
     position: absolute;
-    bottom: 2px;
+    bottom: 2px px;
     margin-left: 1.9px;
     border-radius: 5px;
 }
@@ -92,9 +106,9 @@ h1 {
     border: 1px solid black;
     border-style: dashed;
     position: absolute;
-    margin-left: 30px;
-    top: 60px;
-    display: flex;
+    /* margin-left: 30px; */
+    top: 20px;
+    /* display: flex; */
     justify-content: center;
 }
 
@@ -108,4 +122,11 @@ h1 {
 
 .bolinhaVermelha {
     background: MistyRose;
+}
+
+.linha {
+    display: flex;
+    background: #567999;
+    margin: inherit;
+    height: 450px;
 }
