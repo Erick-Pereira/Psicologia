@@ -25,6 +25,7 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
+        /// Recebe um Funcionario com a senha alterada e atualiza no banco de dados chamando o metodo Update do FuncionarioDAL
         /// </summary>
         /// <param name="funcionario"></param>
         /// <returns></returns>

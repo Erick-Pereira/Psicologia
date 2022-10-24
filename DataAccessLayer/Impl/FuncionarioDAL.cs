@@ -204,6 +204,11 @@ namespace DataAccessLayer.Impl
             }
         }
 
+        /// <summary>
+        /// Recebe um String e procura no banco de dados Funcionarios que parte do nome contenha essa string
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns>Retorna um DataResponse contendo Funcionarios</returns>
         public async Task<DataResponse<Funcionario>> SearchItem(string searchString)
         {
             try

@@ -84,18 +84,20 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
+        /// Recebe um cargo e chama o metodo Insert do CargoDAL
         /// </summary>
         /// <param name="cargo"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo o ID do Cargo inserido</returns>
         public async Task<SingleResponse<int>> InsertReturnId(Cargo cargo)
         {
             return await _cargoDAL.InsertReturnId(cargo);
         }
 
         /// <summary>
+        /// Recebe um Cargo e chama o metodo Update do CargoDAL
         /// </summary>
         /// <param name="cargo"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Update(Cargo cargo)
         {
             return await _cargoDAL.Update(cargo);

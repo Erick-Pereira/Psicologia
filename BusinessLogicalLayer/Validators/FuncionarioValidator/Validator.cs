@@ -47,10 +47,10 @@ namespace BusinessLogicalLayer.Validators.FuncionarioValidator
         }
 
         /// <summary>
-        ///
+        /// Recebe um String e valida se ela esta apta a ser uma senha
         /// </summary>
         /// <param name="senha"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Reponse informando se é apta</returns>
         public static Response ValidateSenha(string senha)
         {
             if (string.IsNullOrWhiteSpace(senha))
@@ -73,10 +73,10 @@ namespace BusinessLogicalLayer.Validators.FuncionarioValidator
         }
 
         /// <summary>
-        ///
+        /// Recebe um String e valida se é um CEP
         /// </summary>
         /// <param name="cep"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se é um CEP valido</returns>
         public Response ValidateCEP(string cep)
         {
             if (string.IsNullOrWhiteSpace(cep))
@@ -125,10 +125,10 @@ namespace BusinessLogicalLayer.Validators.FuncionarioValidator
         }
 
         /// <summary>
-        ///
+        /// Verifica se o telefone esta dentro dos padrões
         /// </summary>
         /// <param name="telefone"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response caso o telefone esteja correto</returns>
         public Response ValidateTelefone(string telefone)
         {
             if (string.IsNullOrWhiteSpace(telefone))

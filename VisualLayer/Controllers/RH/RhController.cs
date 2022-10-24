@@ -203,6 +203,7 @@ namespace VisualLayer.Controllers.RH
         [HttpGet("/RH/CarregaGrafico")]
         public async Task<JsonResult> CarregaGrafico(string id)
         {
+            //AJAX - CHAMADO PELO JAVASCRIPT ASSINCRONAMENTE
             //int[] valore = { 67, 11, 98, 33, 1, 34, 66, 12, 90, 99, 7, 12, 44 };
             //var dados = new List<GraficoModel>();
             //for (int i = 0; i < 8; i++)
@@ -393,7 +394,14 @@ namespace VisualLayer.Controllers.RH
             try
             {
                 model.Id = model.Id.Decrypt(ENCRYPT);
-                Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(model);
+                SingleResponse<Entities.Funcionario> singleResponse = await _FuncionarioService.GetByID(Convert.ToInt32(model.Id));
+                Entities.Funcionario funcionario = singleResponse.Item;
+                funcionario.Nome = model.Nome;
+                funcionario.Email = model.Email;
+                funcionario.CargoID = model.CargoId;
+                SingleResponse<Entities.Cargo> singleResponseCargo = await _CargoService.GetByID(model.CargoId);
+                funcionario.Cargo = singleResponseCargo.Item;
+                funcionario.Salario = model.Salario;
                 Response response = await _FuncionarioService.UpdateAdm(funcionario);
                 if (response.HasSuccess)
                 {

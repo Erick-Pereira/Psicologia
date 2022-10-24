@@ -16,6 +16,12 @@ namespace BusinessLogicalLayer.BLL
             _funcionarioService = funcionarioService;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sf36scoretotal"></param>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<Response> CalcularScore(FuncionarioRespostasQuestionarioSf36 sf36scoretotal, Funcionario funcionario)
         {
             double[] constructs = new double[8];
@@ -56,6 +62,11 @@ namespace BusinessLogicalLayer.BLL
             return repsponse;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sf36scoreAspectosSociais"></param>
+        /// <returns></returns>
         public async Task<double> CalcularScoreAspectosSociais(FuncionarioRespostasQuestionarioSf36 sf36scoreAspectosSociais)
         {
             double aspectosSociais = 0;
@@ -108,6 +119,11 @@ namespace BusinessLogicalLayer.BLL
             return (aspectosSociais - limiteInferior) * 100 / variacao;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sf36scoreCapacidadeFuncional"></param>
+        /// <returns></returns>
         public async Task<double> CalcularScoreCapacidadeFuncional(FuncionarioRespostasQuestionarioSf36 sf36scoreCapacidadeFuncional)
         {
             double capaficadeFuncional = 0;
@@ -258,6 +274,11 @@ namespace BusinessLogicalLayer.BLL
             return (capaficadeFuncional - limiteInferior) * 100 / variacao;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sf36scoreDor"></param>
+        /// <returns></returns>
         public async Task<double> CalcularScoreDor(FuncionarioRespostasQuestionarioSf36 sf36scoreDor)
         {
             double dor = 0;
@@ -353,6 +374,11 @@ namespace BusinessLogicalLayer.BLL
             return (Math.Round((dor - limiteInferior) * 100 / variacao, MidpointRounding.AwayFromZero));
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sf36scoreEstadoSaude"></param>
+        /// <returns></returns>
         public async Task<double> CalcularScoreEstadoSaude(FuncionarioRespostasQuestionarioSf36 sf36scoreEstadoSaude)
         {
             double estadoSaude1 = 0;
@@ -472,6 +498,11 @@ namespace BusinessLogicalLayer.BLL
             return (estadoSaude1 + estadoSaude11 - limiteInferior) * 100 / variacao;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sf36scoreLimitacaoEmocional"></param>
+        /// <returns></returns>
         public async Task<double> CalcularScoreLimitacaoEmocional(FuncionarioRespostasQuestionarioSf36 sf36scoreLimitacaoEmocional)
         {
             double limitacaoEmocional = 0;
@@ -512,6 +543,11 @@ namespace BusinessLogicalLayer.BLL
             return (limitacaoEmocional - limiteInferior) * 100 / variacao;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sf36scoreLimitacaoFisica"></param>
+        /// <returns></returns>
         public async Task<double> CalcularScoreLimitacaoFisica(FuncionarioRespostasQuestionarioSf36 sf36scoreLimitacaoFisica)
         {
             double limitacaoFisica = 0;
@@ -560,6 +596,11 @@ namespace BusinessLogicalLayer.BLL
             return (limitacaoFisica - limiteInferior) * 100 / variacao;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sf36scoreSaudeMental"></param>
+        /// <returns></returns>
         public async Task<double> CalcularScoreSaudeMental(FuncionarioRespostasQuestionarioSf36 sf36scoreSaudeMental)
         {
             double saudeMental = 0;
@@ -698,6 +739,11 @@ namespace BusinessLogicalLayer.BLL
             return (saudeMental - limiteInferior) * 100 / variacao;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sf36scoreVitalidade"></param>
+        /// <returns></returns>
         public async Task<double> CalcularScoreVitalidade(FuncionarioRespostasQuestionarioSf36 sf36scoreVitalidade)
         {
             double vitalidade = 0;
@@ -810,6 +856,11 @@ namespace BusinessLogicalLayer.BLL
             return (vitalidade - limiteInferior) * 100 / variacao;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sf36scoreSaudeComparada"></param>
+        /// <returns></returns>
         public async Task<string> CopararSaude(FuncionarioRespostasQuestionarioSf36 sf36scoreSaudeComparada)
         {
             {
@@ -842,41 +893,84 @@ namespace BusinessLogicalLayer.BLL
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
         public async Task<Response> Delete(SF36Score score)
         {
             return await _scoreDAL.Delete(score);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <returns></returns>
         public async Task<DataResponse<SF36Score>> GetAllByFuncionario(Funcionario funcionario)
         {
             return await _scoreDAL.GetAllByFuncionario(funcionario);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<DataResponse<SF36Score>> GetAllByFuncionario(int id)
         {
             return await _scoreDAL.GetAllByFuncionario(id);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="funcionario"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(Funcionario funcionario, DateTime data)
         {
             return await _scoreDAL.GetByFuncionarioAndDate(funcionario, data);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public async Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(int id, DateTime data)
         {
             return await _scoreDAL.GetByFuncionarioAndDate(id, data);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<DataResponse<SF36Score>> GetLast3SFByFuncionario(int id)
         {
             return await _scoreDAL.GetLast3SFByFuncionario(id);
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
 
         public async Task<Response> Insert(SF36Score score)
         {
             return await _scoreDAL.Insert(score);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
         public Task<Response> Update(SF36Score score)
         {
             return _scoreDAL.Update(score);

@@ -5,6 +5,7 @@ using Shared;
 
 namespace BusinessLogicalLayer.BLL
 {
+    //ESSA CLASSE NÃO ESTA SENDO USADA NO MOMENTO
     public class EquipeService : IEquipeService
     {
         private readonly IEquipeDAL _equipeDAL;
