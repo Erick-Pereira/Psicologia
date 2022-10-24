@@ -43,7 +43,7 @@ namespace DataAccessLayer.Interfaces
         Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(Funcionario funcionario, DateTime data);
 
         /// <summary>
-        /// Recebe um ID de Funcionario e uma data e busca os ultimos 3 SF36 ligados a ele
+        /// Recebe um ID de Funcionario e busca os ultimos 3 SF36 ligados a ele
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Retorna um DataResponse contendo os ultimos 3 SF36 ligados ao Funcionario informado</returns>

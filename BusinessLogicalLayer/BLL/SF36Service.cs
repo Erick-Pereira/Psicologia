@@ -7,8 +7,8 @@ namespace BusinessLogicalLayer.BLL
 {
     public class SF36Service : ISF36Service
     {
-        private readonly ISFScoreDAL _scoreDAL;
         private readonly IFuncionarioService _funcionarioService;
+        private readonly ISFScoreDAL _scoreDAL;
 
         public SF36Service(ISFScoreDAL scoreDAL, IFuncionarioService funcionarioService)
         {
@@ -17,11 +17,11 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        /// Calcula o Resultado do SF36 e Insere no banco de dados chamando o metodo Insert do SF36ScoreDAL
         /// </summary>
         /// <param name="sf36scoretotal"></param>
         /// <param name="funcionario"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> CalcularScore(FuncionarioRespostasQuestionarioSf36 sf36scoretotal, Funcionario funcionario)
         {
             double[] constructs = new double[8];
@@ -63,10 +63,10 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        /// Calcula o resultado de Aspectos Sociais do Questionario SF36
         /// </summary>
         /// <param name="sf36scoreAspectosSociais"></param>
-        /// <returns></returns>
+        /// <returns>Retorna a pontuação de Aspectos Sociais</returns>
         public async Task<double> CalcularScoreAspectosSociais(FuncionarioRespostasQuestionarioSf36 sf36scoreAspectosSociais)
         {
             double aspectosSociais = 0;
@@ -120,10 +120,10 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        /// Calcula o resultado de Capacidade Funcional do Questionario SF36
         /// </summary>
         /// <param name="sf36scoreCapacidadeFuncional"></param>
-        /// <returns></returns>
+        /// <returns>Retorna a pontuação de Capacidade Funcional</returns>
         public async Task<double> CalcularScoreCapacidadeFuncional(FuncionarioRespostasQuestionarioSf36 sf36scoreCapacidadeFuncional)
         {
             double capaficadeFuncional = 0;
@@ -275,10 +275,10 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        /// Calcula o resultado de Dor do Questionario SF36
         /// </summary>
         /// <param name="sf36scoreDor"></param>
-        /// <returns></returns>
+        /// <returns>Retorna a pontuação de Dor</returns>
         public async Task<double> CalcularScoreDor(FuncionarioRespostasQuestionarioSf36 sf36scoreDor)
         {
             double dor = 0;
@@ -375,10 +375,10 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        /// Calcula o resultado de Estado Saude do Questionario SF36
         /// </summary>
         /// <param name="sf36scoreEstadoSaude"></param>
-        /// <returns></returns>
+        /// <returns>Retorna a pontuação de Estado Saude</returns>
         public async Task<double> CalcularScoreEstadoSaude(FuncionarioRespostasQuestionarioSf36 sf36scoreEstadoSaude)
         {
             double estadoSaude1 = 0;
@@ -499,10 +499,10 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        /// Calcula o resultado de Limitação Emocional do Questionario SF36
         /// </summary>
         /// <param name="sf36scoreLimitacaoEmocional"></param>
-        /// <returns></returns>
+        /// <returns>Retorna a pontuação de Limitação Emocional</returns>
         public async Task<double> CalcularScoreLimitacaoEmocional(FuncionarioRespostasQuestionarioSf36 sf36scoreLimitacaoEmocional)
         {
             double limitacaoEmocional = 0;
@@ -544,10 +544,10 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        /// Calcula o resultado de Limitação Fisica do Questionario SF36
         /// </summary>
         /// <param name="sf36scoreLimitacaoFisica"></param>
-        /// <returns></returns>
+        /// <returns>Retorna a pontuação de Limitação Fisica</returns>
         public async Task<double> CalcularScoreLimitacaoFisica(FuncionarioRespostasQuestionarioSf36 sf36scoreLimitacaoFisica)
         {
             double limitacaoFisica = 0;
@@ -597,10 +597,10 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        /// Calcula o resultado de Saude Mental do Questionario SF36
         /// </summary>
         /// <param name="sf36scoreSaudeMental"></param>
-        /// <returns></returns>
+        /// <returns>Retorna a pontuação de Saude Mental</returns>
         public async Task<double> CalcularScoreSaudeMental(FuncionarioRespostasQuestionarioSf36 sf36scoreSaudeMental)
         {
             double saudeMental = 0;
@@ -740,10 +740,10 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        /// Calcula o resultado de Vitalidade do Questionario SF36
         /// </summary>
         /// <param name="sf36scoreVitalidade"></param>
-        /// <returns></returns>
+        /// <returns>Retorna a pontuação de Vitalidade</returns>
         public async Task<double> CalcularScoreVitalidade(FuncionarioRespostasQuestionarioSf36 sf36scoreVitalidade)
         {
             double vitalidade = 0;
@@ -857,10 +857,10 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        /// Calcula o resultado de Comparação Saude do Questionario SF36
         /// </summary>
         /// <param name="sf36scoreSaudeComparada"></param>
-        /// <returns></returns>
+        /// <returns>Retorna a alternativa de Comparação Saude</returns>
         public async Task<string> CopararSaude(FuncionarioRespostasQuestionarioSf36 sf36scoreSaudeComparada)
         {
             {
@@ -894,72 +894,72 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        /// Recebe um SF36Score e Chama o metodo Delete do SF36ScoreDAL
         /// </summary>
         /// <param name="score"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public async Task<Response> Delete(SF36Score score)
         {
             return await _scoreDAL.Delete(score);
         }
 
         /// <summary>
-        ///
+        /// Recebe um Funcionario e chama o metodo GetAllByFuncionario do SF36ScoreDAL
         /// </summary>
         /// <param name="funcionario"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um DataResponse contendo todos os SF36 ligados a um Funcionario</returns>
         public async Task<DataResponse<SF36Score>> GetAllByFuncionario(Funcionario funcionario)
         {
             return await _scoreDAL.GetAllByFuncionario(funcionario);
         }
 
         /// <summary>
-        ///
+        /// Recebe um id de Funcionario e chama o metodo GetAllByFuncionario do SF36ScoreDAL
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um DataResponse contendo todos os SF36 ligados a um Funcionario</returns>
         public async Task<DataResponse<SF36Score>> GetAllByFuncionario(int id)
         {
             return await _scoreDAL.GetAllByFuncionario(id);
         }
 
         /// <summary>
-        ///
+        /// Recebe um Funcionario e uma data e chama o metodo GetByFuncionarioAndDate do SF36ScoreDAL
         /// </summary>
         /// <param name="funcionario"></param>
         /// <param name="data"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo todos os SF36 ligados a um Funcionario que foram feitos na data informada</returns>
         public async Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(Funcionario funcionario, DateTime data)
         {
             return await _scoreDAL.GetByFuncionarioAndDate(funcionario, data);
         }
 
         /// <summary>
-        ///
+        /// Recebe um ID de Funcionario e uma data e chama o metodo GetByFuncionarioAndDate do SF36ScoreDAL
         /// </summary>
         /// <param name="id"></param>
         /// <param name="data"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um SingleResponse contendo todos os SF36 ligados a um Funcionario que foram feitos na data informada</returns>
         public async Task<SingleResponse<SF36Score>> GetByFuncionarioAndDate(int id, DateTime data)
         {
             return await _scoreDAL.GetByFuncionarioAndDate(id, data);
         }
 
         /// <summary>
-        ///
+        /// Recebe um ID de Funcionario e chama o metodo GetLast3SFByFuncionario do SF36ScoreDAL
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um DataResponse contendo os ultimos 3 SF36 ligados ao Funcionario informado</returns>
         public async Task<DataResponse<SF36Score>> GetLast3SFByFuncionario(int id)
         {
             return await _scoreDAL.GetLast3SFByFuncionario(id);
         }
 
         /// <summary>
-        ///
+        /// Recebe um SF36Score e chama o metodo Insert do SF36ScoreDAL
         /// </summary>
         /// <param name="score"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
 
         public async Task<Response> Insert(SF36Score score)
         {
@@ -967,10 +967,10 @@ namespace BusinessLogicalLayer.BLL
         }
 
         /// <summary>
-        ///
+        /// Recebe um SF36Score e chama o metodo Update do SF36ScoreDAL
         /// </summary>
         /// <param name="score"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response informando se teve sucesso</returns>
         public Task<Response> Update(SF36Score score)
         {
             return _scoreDAL.Update(score);
