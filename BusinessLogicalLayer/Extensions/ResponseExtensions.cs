@@ -7,10 +7,10 @@ namespace BusinessLogicalLayer.Extensions
     internal static class ResponseExtensions
     {
         /// <summary>
-        ///
+        /// Transforma um ValidationResult em um Response
         /// </summary>
         /// <param name="result"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um Response</returns>
         public static Response ToResponse(this ValidationResult result)
         {
             StringBuilder sb = new StringBuilder();

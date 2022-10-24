@@ -44,6 +44,10 @@ namespace BusinessLogicalLayer.BLL
             _estadoDAL = estadoDAL;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public async Task<Response> VerifyEstados()
         {
             Response response = new Response();

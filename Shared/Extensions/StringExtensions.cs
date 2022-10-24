@@ -1,15 +1,16 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 
 namespace Shared.Extensions
 {
     public static class StringExtensions
     {
         /// <summary>
-        ///
+        /// Extenção de String, Hasheia uma String usando SHA256
         /// </summary>
         /// <param name="result"></param>
-        /// <returns></returns>
+        /// <returns>Retorna uma String hasheada</returns>
         public static string Hash(this string result)
         {
             result = "Q342SSGQQWERTD" + result + "U7RGJ786EFGQ2";
@@ -30,10 +31,10 @@ namespace Shared.Extensions
         }
 
         /// <summary>
-        ///
+        /// Extenção de String, Limpa alguns caracteres de uma String passada
         /// </summary>
         /// <param name="info"></param>
-        /// <returns></returns>
+        /// <returns>Retorna uma String</returns>
         public static string StringCleaner(this string info)
         {
             info = info.Replace("R", "").Replace("$", "").Replace(",", "").Replace(".", "").Replace("(", "").Replace(")", "").Replace("-", "");
@@ -42,11 +43,11 @@ namespace Shared.Extensions
         }
 
         /// <summary>
-        ///
+        /// Extenção de String,Recebe uma chave e encripta uma String Usando Aes
         /// </summary>
         /// <param name="clearText"></param>
         /// <param name="EncryptionKey"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um String encriptada</returns>
         public static string Encrypt(this string clearText, string EncryptionKey)
         {
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
@@ -69,13 +70,14 @@ namespace Shared.Extensions
         }
 
         /// <summary>
-        ///
+        /// Extenção de String,Recebe uma chave e desencripta uma String Usando Aes
         /// </summary>
         /// <param name="cipherText"></param>
         /// <param name="EncryptionKey"></param>
-        /// <returns></returns>
+        /// <returns>Retorna um String desencriptada</returns>
         public static string Decrypt(this string cipherText, string EncryptionKey)
         {
+            cipherText = HttpUtility.UrlDecode(cipherText);
             cipherText = cipherText.Replace(" ", "+").Replace("%2F", "/").Replace("%3D", "=");
             byte[] cipherBytes = Convert.FromBase64String(cipherText);
             using (Aes encryptor = Aes.Create())

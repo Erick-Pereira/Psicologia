@@ -225,7 +225,7 @@ namespace VisualLayer.Controllers.Funcionario
                 funcionario2.Endereco.Bairro.NomeBairro = funcionarioUpdate.Bairro;
                 funcionario2.Endereco.Complemento = funcionarioUpdate.Complemento;
                 funcionario2.Endereco.NumeroCasa = funcionarioUpdate.NumeroCasa;
-                if(funcionarioUpdate.Cep != null)
+                if (funcionarioUpdate.Cep != null)
                 {
                     funcionario2.Endereco.CEP = funcionarioUpdate.Cep.StringCleaner();
                 }
@@ -233,7 +233,7 @@ namespace VisualLayer.Controllers.Funcionario
                 {
                     funcionario2.Endereco.CEP = "";
                 }
-                
+
                 funcionario2.Endereco.Rua = funcionarioUpdate.Rua;
                 funcionario2.DataNascimento = funcionarioUpdate.DataNascimento;
                 funcionario2.Genero = funcionarioUpdate.Genero;

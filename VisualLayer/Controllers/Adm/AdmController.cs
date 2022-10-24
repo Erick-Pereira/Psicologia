@@ -339,7 +339,14 @@ namespace VisualLayer.Controllers.Adm
             try
             {
                 model.Id = model.Id.Decrypt(ENCRYPT);
-                Entities.Funcionario funcionario = _mapper.Map<Entities.Funcionario>(model);
+                SingleResponse<Entities.Funcionario> singleResponse = await _FuncionarioService.GetByID(Convert.ToInt32(model.Id));
+                Entities.Funcionario funcionario = singleResponse.Item;
+                funcionario.Nome = model.Nome;
+                funcionario.Email = model.Email;
+                funcionario.CargoID = model.CargoId;
+                SingleResponse<Entities.Cargo> singleResponseCargo = await _CargoService.GetByID(model.CargoId);
+                funcionario.Cargo = singleResponseCargo.Item;
+                funcionario.Salario = model.Salario;
                 Response response = await _FuncionarioService.UpdateAdm(funcionario);
                 if (response.HasSuccess)
                 {
